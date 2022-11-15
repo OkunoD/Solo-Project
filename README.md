@@ -30,10 +30,10 @@ More categories (socks, etc…) could be added. Ideally, there will be a selecto
 
 4. What is the MVP scope? (core features you must get working)
 
-  1. User login
-  2. Allow users to upload clothing items to DB with categories
-  3. Allow user to view their clothes from DB in categories
-  4. Allow user to delete their clothes from DB
+  - User login
+  - Allow users to upload clothing items to DB with categories
+  - Allow user to view their clothes from DB in categories
+  - Allow user to delete their clothes from DB
 
 
 5. What are the tough technical problems involved with solving this problem?
