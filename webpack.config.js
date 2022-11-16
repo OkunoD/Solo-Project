@@ -4,6 +4,8 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
+    mode: process.env.NODE_ENV,
+    
     entry: './src/index.js',
 
     output: {
@@ -30,5 +32,14 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    devServer: {
+        historyApiFallback: true,
+        static: {
+          directory: path.join(__dirname, "build"),
+          publicPath: "/",
+        },
+        proxy: {
+        },
+      },
 }
