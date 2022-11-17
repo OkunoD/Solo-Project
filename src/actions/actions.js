@@ -1,52 +1,42 @@
 // import actionType constants
 import * as types from '../constants/actionTypes';
 
-export const addCardActionCreator = marketId => ({
-  type: types.ADD_CARD,
-  payload: marketId,
-});
-
-export const addMarketActionCreator = () => {
-  return {
-  type: types.ADD_MARKET,
-  }
-};
-
-export const setNewLocationActionCreator = newLocation => ({
-  type: types.SET_NEW_LOCATION,
-  payload: newLocation
-});
-
-export const deleteCardActionCreator = marketId => ({
-  type: types.DELETE_CARD,
-  payload: marketId
-});
-
-/*
 //WARDROBE ADDITION ACTIONS
-export const addHeadwearActionCreator = (headwearName, imgUrl) => ({
+export const addHeadwearActionCreator = (name, imgUrl, color) => ({
   type: types.ADD_HEADWEAR,
-  payload: headwearName, imgUrl
+  payload1: name,
+  payload2: imgUrl,
+  payload3: color,
 });
-export const addTopCreator = (topName, imgUrl) => ({
+export const addTopActionCreator = (name, imgUrl, color) => ({
   type: types.ADD_TOP,
-  payload: topName, imgUrl
+  payload1: name, 
+  payload2: imgUrl,
+  payload3: color,
 });
-export const addJacketCreator = (jacketName, imgUrl) => ({
+export const addJacketActionCreator = (name, imgUrl, color) => ({
   type: types.ADD_JACKET,
-  payload: jacketName, imgUrl
+  payload1: name, 
+  payload2: imgUrl,
+  payload3: color,
 });
-export const addBottomCreator = (bottomName, imgUrl) => ({
+export const addBottomActionCreator = (name, imgUrl, color) => ({
   type: types.ADD_BOTTOM,
-  payload: bottomName, imgUrl
+  payload1: name, 
+  payload2: imgUrl,
+  payload3: color,
 });
-export const addShoesCreator = (shoesName, imgUrl) => ({
+export const addShoesActionCreator = (name, imgUrl, color) => ({
   type: types.ADD_SHOES,
-  payload: shoesName, imgUrl
+  payload1: name, 
+  payload2: imgUrl,
+  payload3: color,
 });
-export const addAccessoriesCreator = (accessoryName, imgUrl) => ({
+export const addAccessoriesActionCreator = (name, imgUrl, color) => ({
   type: types.ADD_ACCESSORY,
-  payload: accessoryName, imgUrl
+  payload1: name, 
+  payload2: imgUrl,
+  payload3: color,
 });
 
 
@@ -77,7 +67,7 @@ export const tryOnAccessoryActionCreator = (accessoryId) => ({
 });
 
 
-/* --for stretch goal--
+// --for stretch goal--
 //WARDROBE DELETION ACTIONS
 export const deleteHeadwearActionCreator = headwearId => ({
   type: types.DELETE_HEADWEAR,
@@ -105,4 +95,3 @@ export const deleteAccessoryActionCreator = accessoryId => ({
 });
 
 // add more action creators
-*/

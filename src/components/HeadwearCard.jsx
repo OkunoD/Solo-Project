@@ -1,18 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addHeadwearctionCreator, removeHeadwearActionCreator } from '../actions/actions.js'
+import { addHeadwearctionCreator, deleteHeadwearActionCreator, tryOnHeadwearActionCreator } from '../actions/actions.js'
+import './styles.css'; 
 
 let key = undefined;
 
-const Headwear = props => {
+const mapStateToProps = function(state, ownProps) {
+  return {
+    headwearId: state.headwearList[ownProps.index].id,
+    headwearName: state.headwearList[ownProps.index].name,
+    headwearColor: state.headwearList[ownProps.index].color,
+    imgUrl: state.headwearList[ownProps.index].imgUrl,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  tryOnHeadwear : (payload) => dispatch(tryOnHeadwearActionCreator(payload)),
+  //deleteHeadwear : (payload) => dispatch(deleteHeadwearActionCreator(payload)),
+});
+
+const Headwear = (props) => {
     key = props.index;
 
     return (
-      <div style={{border: '1px solid', borderRadius: '2px'}} className="headwearBox">
-        <p><strong> Id: </strong>{props.lastMarketId}</p>
-        <p><strong>Location: </strong>{props.location}</p>
-        <p><strong>Cards: </strong>{props.cards}</p>
+      <div className="itemBox">
+        <p><strong>&nbsp;&nbsp;{props.headwearName}</strong></p>
+        <p>&nbsp;&nbsp;{props.headwearColor}</p>
+        <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
+        <div className="itemButton">
+          <input className="selectItemButton" onClick={() => props.tryOnHeadwear(props.headwearId)} type="Submit" value="Try it on" readOnly/>
+          <input className="deleteItemButton" onClick={() => props.tryOnHeadwear(props.headwearId)} type="Submit" value="Delete" readOnly/>
+        </div>
       </div>
     );};
 
+export default connect(mapStateToProps, mapDispatchToProps) (Headwear);
 

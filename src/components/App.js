@@ -1,24 +1,13 @@
 import React from 'react';
-import { Component } from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-//import WardrobeContainer from '../containers/WardrobeContainer.jsx'
+import WardrobeContainer from '../containers/WardrobeContainer.jsx'
+import './styles.css';
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        console.log('hi');
-    }
-    
-    render() {
-        return(
-            <div>
-                <h1>Hey we are working</h1>
-                {/*<WardrobeContainer/>*/}
-            </div>
-
-        )
-    }
+const App = () => {
+    return(
+        <div>
+            <WardrobeContainer/>
+        </div>
+    );
 }
 
 export default App;
