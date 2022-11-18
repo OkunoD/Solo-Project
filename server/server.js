@@ -1,37 +1,56 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 const path = require('path');
-const webpack = require('webpack');
+const PORT = 3000;
+const wardrobeRouter = require('./routes.js')
+const { default: mongoose } = require('mongoose');
+const MONGO_URI = 'mongodb+srv://derek:derek@cluster0.wmt8hg8.mongodb.net/';
 
-
+// const userApi = require('.routes/userApi'); 
 //serve
-app.use(express.static('../dist'));
-
-// console.log('server updated')
-// const mainPage = path.join(__dirname, '../dist/index.html');
-// console.log(mainPage); 
 
 
-// app.get('/', (req, res) => {
-//     res.sendFile(mainPage);
-//     // res.sendFile();
-// });
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
+
+mongoose.connect(MONGO_URI, {
+    // options for the connect method to parse the URI
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // sets the name of the DB that our collections are part of
+    dbName: 'Cluster0',
+  })
+  .then(() => console.log('Connected to Mongo DB.'))
+  .catch((err) => console.log(err));
 
 
+app.use(express.static(__dirname + '../dist'));
 
-// app.use('/*', function(req, res){
-//     res.sendFile('/Users/derekokuno/codesmith/SoloProjectVirtualWardrobe/dist/index.html'); // change the path to your index.html
-// });
 app.get('/*', (req, res) => {
     res.sendFile('/Users/derekokuno/codesmith/SoloProjectVirtualWardrobe/dist/index.html')
 });
 
+app.use(wardrobeRouter);
 
-app.listen(port, (error) => {
+app.use((err, req, res, next) => {
+    const defaultErr = {
+      log: 'Express error handler caught unknown middleware error',
+      status: 500,
+      message: { err: 'An error occurred' },
+    };
+    const errorObj = Object.assign({}, defaultErr, err);
+    // console.log(errorObj.log);
+    return res.status(errorObj.status).json(errorObj.message);
+  });
+
+
+
+app.listen(PORT, (error) => {
     if(error) {
         console.log('Something went wrong', error)
     } else {
-    console.log(`Express is listening on localhost:${port}`)
+    console.log(`Express is listening on localhost:${PORT}`)
     }
 });
+
+module.exports = app;
