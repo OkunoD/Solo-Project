@@ -47,7 +47,10 @@ const ItemCreator = (props) => {
         </div>
         <div>
           <label>Item Name: </label>
-          <input className="addItemField" onChange={(e) => setName(e.target.value)} type="text" value={itemName} />
+          <input className="addItemField" onChange={(e) => {
+            setName(e.target.value);
+            console.log('hi')
+          }} type="text" value={itemName} />
         </div>
         <div>
           <label>Color: </label>
@@ -60,15 +63,21 @@ const ItemCreator = (props) => {
         <input style={{padding: '3px'}} className="addItem" onClick={() => {
             if (itemType === "addHeadwear") {
               props.addHeadwear(itemName,itemUrl,itemColor);
+              console.log('im working')
             } if (itemType === "addTop") {
+              console.log('im working')
               props.addTop(itemName,itemUrl,itemColor);
             } if (itemType === "addJacket") {
+              console.log('im working')
               props.addJacket(itemName,itemUrl,itemColor);
             } if (itemType === "addBottom") {
+              console.log('im working')
               props.addBottom(itemName,itemUrl,itemColor);
             } if (itemType === "addShoes") {
+              console.log('im working')
               props.addShoes(itemName,itemUrl,itemColor);
             } if (itemType === "addAccessory") {
+              console.log('im working')
               props.addAccessory(itemName,itemUrl,itemColor);
             }
       }} type="submit" value="Add Item" />
@@ -77,7 +86,5 @@ const ItemCreator = (props) => {
   );
 };
 
-
-// export default MarketCreator;
 
 export default connect(null, mapDispatchToProps) (ItemCreator);
