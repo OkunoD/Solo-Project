@@ -23,14 +23,15 @@ mongoose.connect(MONGO_URI, {
   .then(() => console.log('Connected to Mongo DB.'))
   .catch((err) => console.log(err));
 
+app.use(wardrobeRouter);
 
-app.use(express.static(__dirname + '../dist'));
+app.use(express.static('/Users/derekokuno/codesmith/SoloProjectVirtualWardrobe/dist/'));
 
 app.get('/*', (req, res) => {
     res.sendFile('/Users/derekokuno/codesmith/SoloProjectVirtualWardrobe/dist/index.html')
 });
 
-app.use(wardrobeRouter);
+
 
 app.use((err, req, res, next) => {
     const defaultErr = {
