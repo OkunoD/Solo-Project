@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Open+Sans:wght@300&display=swap');
+
 body {
     margin: .5%;
     background-color: lightblue;
     color: black;
+    font-family: 'Open Sans';
 }
 .wardrobeContainer {
     margin: 2%;
@@ -9,6 +12,10 @@ body {
     border-width: 30px;
     border-radius: 8px;
     border-color: rgb(109, 168, 251);
+}
+.header{
+    font-size: 40px;
+    font-weight: 900;
 }
 .clothingBox {
     margin: 1%;
@@ -18,19 +25,22 @@ body {
     border-color: rgb(116, 82, 37);
 }
 .categoryHeaders {
-    font-size: 30px;
+    font-size: 25px;
     margin-left: 9px;
+    font-weight: bold;
 }
 .addItemHeaders {
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 25px;
+    margin-top: 6px;
     margin-left: 10px;
 }
 .addItemBorders {
     margin-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
 }
 .addItemField {
-    margin: 4px;
+    margin: 2px;
     border-style: solid;
     border-width: 1px;
 }
@@ -53,7 +63,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin-top: 5px;
-    margin-left: 10px;
+    margin-left: 16px;
     margin-right: 80%;
     margin-bottom: 10px;
     border-style: solid;

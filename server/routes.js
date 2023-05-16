@@ -13,13 +13,8 @@ const {User,
     AccessoryItem} = wardrobeModel;
 
 app.get('/wardrobe', async (req, res) => {
-    const Hats = await HeadwearItem.find({});
-    const Tops = await TopsItem.find({});
-    const Jackets = await JacketsItem.find({});
-    const Pants = await BottomsItem.find({});
-    const Shoes = await ShoesItem.find({});
-    const Accessories = await AccessoryItem.find({});
-    const clothes = [Hats, Tops, Jackets, Pants, Shoes, Accessories];
+    const clothes = await wardrobeModel.find({});
+
     try {
         res.send(clothes);
     } catch (error) {
