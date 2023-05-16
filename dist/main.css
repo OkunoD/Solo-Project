@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    background-color: blueviolet;
+    color: #222;
+}
+.itemBox {
+    border: '1000px solid';
+    border-radius: '100px';
+}
+.addItemBox {
+    border: '100px solid';
+    border-radius: '10px';
+    color: blue;
+}
+
+/*# sourceMappingURL=main.css.map*/

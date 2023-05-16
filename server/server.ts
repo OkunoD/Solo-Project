@@ -8,6 +8,7 @@ const MONGO_URI = 'mongodb+srv://derek:derek@cluster0.wmt8hg8.mongodb.net/';
 
 // const userApi = require('.routes/userApi'); 
 //serve
+//switched to TS 5/16/23
 
 
 app.use(express.json()); 
@@ -23,15 +24,14 @@ mongoose.connect(MONGO_URI, {
   .then(() => console.log('Connected to Mongo DB.'))
   .catch((err) => console.log(err));
 
-app.use(wardrobeRouter);
 
-app.use(express.static('/Users/derekokuno/codesmith/SoloProjectVirtualWardrobe/dist/'));
+app.use(express.static(__dirname + '../dist'));
 
 app.get('/*', (req, res) => {
     res.sendFile('/Users/derekokuno/codesmith/SoloProjectVirtualWardrobe/dist/index.html')
 });
 
-
+app.use(wardrobeRouter);
 
 app.use((err, req, res, next) => {
     const defaultErr = {
