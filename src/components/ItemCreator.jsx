@@ -58,6 +58,7 @@ const ItemCreator = (props) => {
           <input className="addItemField" onChange={(e) => setUrl(e.target.value)} type="text" value={itemUrl} />
         </div>
         <input style={{padding: '3px'}} className="addItem" onClick={() => {
+            console.log('input received');
             if (itemType === "addHeadwear") {
               props.addHeadwear(itemName,itemUrl,itemColor);
             } if (itemType === "addTop") {
