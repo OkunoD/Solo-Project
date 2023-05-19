@@ -25,9 +25,10 @@ mongoose.connect(MONGO_URI, {
   .catch((err) => console.log(err));
 
 
-app.use(express.static(__dirname + '../dist'));
+app.use(express.static(path.join(__dirname, '../dist/')));
 
 app.get('/*', (req, res) => {
+    console.log('get request hit')
     res.sendFile('/Users/derekokuno/codesmith/SoloProjectVirtualWardrobe/dist/index.html')
 });
 
