@@ -6,9 +6,8 @@ const wardrobeRouter = require('./routes.js')
 const { default: mongoose } = require('mongoose');
 const MONGO_URI = 'mongodb+srv://derek:derek@cluster0.wmt8hg8.mongodb.net/';
 
-// const userApi = require('.routes/userApi'); 
 //serve
-//switched to TS 5/16/23
+//begin converting to TS 5/16/23
 
 
 app.use(express.json()); 

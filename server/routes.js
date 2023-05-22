@@ -1,5 +1,4 @@
 const express = require('express');
-const { response } = require('./server');
 const wardrobeModel = require('./models.js'); 
 const wardrobeController = require('./controller.js');
 const app = express(); 
