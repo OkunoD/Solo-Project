@@ -13,6 +13,7 @@ const MONGO_URI = 'mongodb+srv://derek:derek@cluster0.wmt8hg8.mongodb.net/';
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
+mongoose.set("strictQuery", false);
 mongoose.connect(MONGO_URI, {
     // options for the connect method to parse the URI
     useNewUrlParser: true,
