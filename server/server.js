@@ -27,12 +27,12 @@ mongoose.connect(MONGO_URI, {
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
+app.use(wardrobeRouter);
+
 app.get('/*', (req, res) => {
     console.log('get request hit')
     res.sendFile('/Users/derekokuno/codesmith/SoloProjectVirtualWardrobe/dist/index.html')
 });
-
-app.use(wardrobeRouter);
 
 app.use((err, req, res, next) => {
     const defaultErr = {
