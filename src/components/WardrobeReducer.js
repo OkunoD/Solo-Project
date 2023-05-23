@@ -48,6 +48,17 @@ const wardrobeReducer = (state = initialState, action) => {
       [listName]: updatedList,
     };
   };
+  const tryOnItem = (listName, itemId, selectedType) => {
+    console.log('listName is: ', listName);
+    console.log('itemId is: ', itemId);
+    console.log('selectedType is: ', selectedType);
+    const wornItem = state[listName].find(item => item.id === itemId)
+    console.log('wornItem is: ', wornItem);
+    return {
+      ...state,
+      [selectedType]: wornItem,
+    }
+  }
 
   let headwearList;
   let topsList;
@@ -195,18 +206,15 @@ const wardrobeReducer = (state = initialState, action) => {
                 lastAccessoryId,
               };
             }
-        case types.TRYON_HEADWEAR:
-            {
-              //change selectedHeadwear to headwear object with Id of the payload
-              let selectedHeadwear = state.selectedHeadwear;
-              //searches through headwearList Array and finds item with headwearId match
-              //payload is the headwear.id
-              selectedHeadwear = state.headwearList.find(item => item.id === action.payload);
-
-              return{
-                ...state,
-                selectedHeadwear,
-              };
+        case types.TRYON_HEADWEAR:{
+              return tryOnItem('headwearList', action.payload, 'selectedHeadwear');
+              // let selectedHeadwear = state.selectedHeadwear;
+              // selectedHeadwear = state.headwearList.find(item => item.id === action.payload);
+              // console.log(selectedHeadwear);
+              // return{
+              //   ...state,
+              //   selectedHeadwear,
+              // };
             }
         case types.TRYON_TOP:
             {
@@ -258,19 +266,7 @@ const wardrobeReducer = (state = initialState, action) => {
                 selectedAccessory,
               };
             }
-        // case types.DELETE_HEADWEAR:
-        //     {
-        //       console.log('state.headwearList is ', state.headwearList);
-        //       console.log('action.payload is ', action.payload);
-        //       console.log('state is ', state);
-        //       let id = action.payload;
-        //       state.headwearList[id-1] = null;
-        //       console.log('state.headwearList is now ', state.headwearList);
-        //       return{
-        //         ...state,
-        //         headwearList,
-        //       };
-        //     }
+
         case types.DELETE_HEADWEAR:
           return deleteItem('headwearList', action.payload);
 

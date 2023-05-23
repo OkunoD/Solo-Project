@@ -11,9 +11,11 @@ const mapStateToProps = function(state, ownProps) {
     headwearName: state.headwearList[ownProps.index].name,
     headwearColor: state.headwearList[ownProps.index].color,
     imgUrl: state.headwearList[ownProps.index].imgUrl,
+    //state below comment not needed
     headwearList: state.headwearList,
     ownProps: ownProps,
     randomNum: 299,
+    selectedHeadwear: state.selectedHeadwear,
   };
 };
 
