@@ -11,12 +11,15 @@ const mapStateToProps = function(state, ownProps) {
     headwearName: state.headwearList[ownProps.index].name,
     headwearColor: state.headwearList[ownProps.index].color,
     imgUrl: state.headwearList[ownProps.index].imgUrl,
+    headwearList: state.headwearList,
+    ownProps: ownProps,
+    randomNum: 299,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   tryOnHeadwear : (payload) => dispatch(tryOnHeadwearActionCreator(payload)),
-  //deleteHeadwear : (payload) => dispatch(deleteHeadwearActionCreator(payload)),
+  deleteHeadwear : (payload) => dispatch(deleteHeadwearActionCreator(payload)),
 });
 
 const Headwear = (props) => {
@@ -28,8 +31,13 @@ const Headwear = (props) => {
         <p>&nbsp;&nbsp;{props.headwearColor}</p>
         <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
         <div className="itemButton">
-          <input className="selectItemButton" onClick={() => props.tryOnHeadwear(props.headwearId)} type="Submit" value="Try it on" readOnly/>
-          <input className="deleteItemButton" onClick={() => props.tryOnHeadwear(props.headwearId)} type="Submit" value="Delete" readOnly/>
+          <input className="selectItemButton" onClick={() => {
+            console.log('try-on input received');
+            props.tryOnHeadwear(props.headwearId)}} type="Submit" value="Try it on" readOnly/>
+          <input className="deleteItemButton" onClick={() => {
+            console.log('delete input received');
+            console.log('props.ownProps is ', props.ownProps);
+            props.deleteHeadwear(props.headwearId)}} type="Submit" value="Delete" readOnly/>
         </div>
       </div>
     );};
