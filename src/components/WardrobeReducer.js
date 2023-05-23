@@ -13,15 +13,15 @@ const initialState = {
     selectedHeadwear: {},
 
     topsList: [],
-    lastTopId: 0,
+    lastTopsId: 0,
     selectedTop: {},
 
     jacketsList: [],
-    lastJacketId: 0,
+    lastJacketsId: 0,
     selectedJacket: {},
 
     bottomsList: [],
-    lastBottomId: 0,
+    lastBottomsId: 0,
     selectedBottom: {},
 
     shoesList: [],
@@ -29,17 +29,20 @@ const initialState = {
     selectedShoes: {},
 
     accessoriesList: [],
-    lastAccessoryId: 0,
+    lastAccessoriesId: 0,
     selectedAccessory: {}
 }
 
-const deleteItemById = (list, itemId) => {
-  return list.filter(item => item.id !== itemId);
-}
 // put the post/fetch inside the frontend
 //     in same action 
 
 const wardrobeReducer = (state = initialState, action) => {
+  let headwearList;
+  let topsList;
+  let jacketsList;
+  let bottomsList;
+  let shoesList;
+  let accessoriesList;
 
   const deleteItem = (listName, itemId) => {
     const updatedList = state[listName].filter(item => item.id !== itemId);
@@ -49,248 +52,100 @@ const wardrobeReducer = (state = initialState, action) => {
     };
   };
   const tryOnItem = (listName, itemId, selectedType) => {
-    console.log('listName is: ', listName);
-    console.log('itemId is: ', itemId);
-    console.log('selectedType is: ', selectedType);
     const wornItem = state[listName].find(item => item.id === itemId)
-    console.log('wornItem is: ', wornItem);
     return {
       ...state,
       [selectedType]: wornItem,
     }
   }
 
-  let headwearList;
-  let topsList;
-  let jacketsList;
-  let bottomsList;
-  let shoesList;
-  let accessoriesList;
+  const addItem = (listName, ...payload) => {
+    console.log('payload is :', payload);
+    const trimmedListName = listName.replace("List", "");
+    const lastItemIdString = `last${trimmedListName.charAt(0).toUpperCase()}${trimmedListName.slice(1)}Id`;
+    const totalItemIdString = `total${trimmedListName.charAt(0).toUpperCase()}${trimmedListName.slice(1)}`;
 
-    switch (action.type) {
-        case types.ADD_HEADWEAR:
-            {
-              let lastHeadwearId = state.lastHeadwearId;
-              lastHeadwearId++;
-              let totalHeadwear = state.totalHeadwear;
-              totalHeadwear++;
-              
-              const newHeadwear = {
-                id: lastHeadwearId,
-                name: action.payload1,
-                imgUrl: action.payload2,
-                color: action.payload3,
-              };
-              headwearList = state.headwearList.slice();
-              headwearList.push(newHeadwear);
+    const lastItemId = state[lastItemIdString];
+    const updatedList = [...state[listName]];
+    const newItemId = lastItemId + 1;
 
-              return{
-                ...state,
-                totalHeadwear,
-                headwearList,
-                lastHeadwearId,
-              };
-            }
-        case types.ADD_TOP:
-            {
-              let lastTopId = state.lastTopId;
-              lastTopId++;
-              let totalTops = state.totalTops;
-              totalTops++;
+    const newItem = {
+      id: newItemId,
+      name: payload[0],
+      imgUrl: payload[1],
+      color: payload[2],
+    };
 
-              const newTop = {
-                id: lastTopId,
-                name: action.payload1,
-                imgUrl: action.payload2,
-                color: action.payload3,
-              };
-              topsList = state.topsList.slice();
-              topsList.push(newTop);
+    console.log(newItem);
+    updatedList.push(newItem);
 
-              return{
-                ...state,
-                totalTops,
-                topsList,
-                lastTopId,
-              };
-            }
-        case types.ADD_JACKET:
-            {
-              let lastJacketId = state.lastJacketId;
-              lastJacketId++;
-              let totalJackets = state.totalJackets;
-              totalJackets++;
+    return {
+      ...state,
+      [listName]: updatedList,
+      [totalItemIdString]: state[totalItemIdString] + 1,
+      [lastItemIdString]: newItemId,
+    };
+  };
 
-              const newJacket = {
-                id: lastJacketId,
-                name: action.payload1,
-                imgUrl: action.payload2,
-                color: action.payload3,
-              };
-              jacketsList = state.jacketsList.slice();
-              jacketsList.push(newJacket);
+  switch (action.type) {
+    case types.ADD_HEADWEAR:
+      return addItem('headwearList', action.payload1, action.payload2, action.payload3);
 
-              return{
-                ...state,
-                totalJackets,
-                jacketsList,
-                lastJacketId,
-              };
-            }
-        case types.ADD_BOTTOM:
-            {
-              let lastBottomId = state.lastBottomId;
-              lastBottomId++;
-              let totalBottoms = state.totalBottoms;
-              totalBottoms++;
+    case types.ADD_TOP:
+      return addItem('topsList', action.payload1, action.payload2, action.payload3);
 
-              const newBottom = {
-                id: lastBottomId,
-                name: action.payload1,
-                imgUrl: action.payload2,
-                color: action.payload3,
-              };
-              bottomsList = state.bottomsList.slice();
-              bottomsList.push(newBottom);
+    case types.ADD_JACKET:
+      return addItem('jacketsList', action.payload1, action.payload2, action.payload3);
 
-              return{
-                ...state,
-                totalBottoms,
-                bottomsList,
-                lastBottomId,
-              };
-            }
-        case types.ADD_SHOES:
-            {
-              let lastShoesId = state.lastShoesId;
-              lastShoesId++;
-              let totalShoes = state.totalShoes;
-              totalShoes++;
+    case types.ADD_BOTTOM:
+      return addItem('bottomsList', action.payload1, action.payload2, action.payload3);
 
-              const newShoes = {
-                id: lastShoesId,
-                name: action.payload1,
-                imgUrl: action.payload2,
-                color: action.payload3,
-              };
-              shoesList = state.shoesList.slice();
-              shoesList.push(newShoes);
+    case types.ADD_SHOES:
+      return addItem('shoesList', action.payload1, action.payload2, action.payload3);
 
-              return{
-                ...state,
-                totalShoes,
-                shoesList,
-                lastShoesId,
-              };
-            }
-        case types.ADD_ACCESSORY:
-            {
-              let lastAccessoryId = state.lastAccessoryId;
-              lastAccessoryId++;
-              let totalAccessories = state.totalAccessories;
-              totalAccessories++;
+    case types.ADD_ACCESSORY:
+      return addItem('accessoriesList', action.payload1, action.payload2, action.payload3);
 
-              const newAccessory = {
-                id: lastAccessoryId,
-                name: action.payload1,
-                imgUrl: action.payload2,
-                color: action.payload3,
-              };
-              accessoriesList = state.accessoriesList.slice();
-              accessoriesList.push(newAccessory);
+    case types.TRYON_HEADWEAR:
+      return tryOnItem('headwearList', action.payload, 'selectedHeadwear');
+      
+    case types.TRYON_TOP:
+      return tryOnItem('topsList', action.payload, 'selectedTop');
 
-              return{
-                ...state,
-                totalAccessories,
-                accessoriesList,
-                lastAccessoryId,
-              };
-            }
-        case types.TRYON_HEADWEAR:{
-              return tryOnItem('headwearList', action.payload, 'selectedHeadwear');
-              // let selectedHeadwear = state.selectedHeadwear;
-              // selectedHeadwear = state.headwearList.find(item => item.id === action.payload);
-              // console.log(selectedHeadwear);
-              // return{
-              //   ...state,
-              //   selectedHeadwear,
-              // };
-            }
-        case types.TRYON_TOP:
-            {
-              let selectedTop = state.selectedTop;
-              selectedTop = state.topsList.find(item => item.id === action.payload);
+    case types.TRYON_JACKET:
+      return tryOnItem('jacketsList', action.payload, 'selectedJacket');
 
-              return{
-                ...state,
-                selectedTop,
-              };
-            }
-        case types.TRYON_JACKET:
-            {
-              let selectedJacket = state.selectedJacket;
-              selectedJacket = state.jacketsList.find(item => item.id === action.payload);
+    case types.TRYON_BOTTOM:
+      return tryOnItem('bottomsList', action.payload, 'selectedBottom');
 
-              return{
-                ...state,
-                selectedJacket,
-              };
-            }
-        case types.TRYON_BOTTOM:
-            {
-              let selectedBottom = state.selectedBottom;
-              selectedBottom = state.bottomsList.find(item => item.id === action.payload);
+    case types.TRYON_SHOES:
+      return tryOnItem('shoesList', action.payload, 'selectedShoes');
 
-              return{
-                ...state,
-                selectedBottom,
-              };
-            }
-        case types.TRYON_SHOES:
-            {
-              let selectedShoes = state.selectedShoes;
-              selectedShoes = state.shoesList.find(item => item.id === action.payload);
+    case types.TRYON_ACCESSORY:
+      return tryOnItem('accessoriesList', action.payload, 'selectedAccessory');
 
-              return{
-                ...state,
-                selectedShoes,
-              };
-            }
-        case types.TRYON_ACCESSORY:
-            {
-              let selectedAccessory = state.selectedAccessory;
-              selectedAccessory = state.accessoriesList.find(item => item.id === action.payload);
+    case types.DELETE_HEADWEAR:
+      return deleteItem('headwearList', action.payload);
 
-              return{
-                ...state,
-                selectedAccessory,
-              };
-            }
+    case types.DELETE_TOP:
+      return deleteItem('topsList', action.payload);
 
-        case types.DELETE_HEADWEAR:
-          return deleteItem('headwearList', action.payload);
+    case types.DELETE_JACKET:
+      return deleteItem('jacketsList', action.payload);
 
-        case types.DELETE_TOP:
-          return deleteItem('topsList', action.payload);
+    case types.DELETE_BOTTOM:
+      return deleteItem('bottomsList', action.payload);
 
-        case types.DELETE_JACKET:
-          return deleteItem('jacketsList', action.payload);
+    case types.DELETE_SHOES:
+      return deleteItem('shoesList', action.payload);
 
-        case types.DELETE_BOTTOM:
-          return deleteItem('bottomsList', action.payload);
+    case types.DELETE_ACCESSORY:
+      return deleteItem('accessoriesList', action.payload);
 
-        case types.DELETE_SHOES:
-          return deleteItem('shoesList', action.payload);
-
-        case types.DELETE_ACCESSORY:
-          return deleteItem('accessoriesList', action.payload);
-
-        default: {
-          return state;
-        }
-    }
+    default: {
+      return state;
+    };
+  };
 };
 
 export default wardrobeReducer;
-
-//to add later: delete item reducers

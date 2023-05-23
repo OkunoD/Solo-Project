@@ -34,11 +34,9 @@ const Headwear = (props) => {
         <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
         <div className="itemButton">
           <input className="selectItemButton" onClick={() => {
-            console.log('try-on input received');
+            console.log('tryon input received');
             props.tryOnHeadwear(props.headwearId)}} type="Submit" value="Try it on" readOnly/>
           <input className="deleteItemButton" onClick={() => {
-            console.log('delete input received');
-            console.log('props.ownProps is ', props.ownProps);
             props.deleteHeadwear(props.headwearId)}} type="Submit" value="Delete" readOnly/>
         </div>
       </div>
