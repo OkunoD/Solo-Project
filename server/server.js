@@ -6,14 +6,14 @@ const wardrobeRouter = require('./routes.js')
 const { default: mongoose } = require('mongoose');
 const MONGO_URI = 'mongodb+srv://derek:derek@cluster0.wmt8hg8.mongodb.net/';
 
-// const userApi = require('.routes/userApi'); 
 //serve
-//switched to TS 5/16/23
+//begin converting to TS 5/16/23
 
 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
+mongoose.set("strictQuery", false);
 mongoose.connect(MONGO_URI, {
     // options for the connect method to parse the URI
     useNewUrlParser: true,
@@ -27,12 +27,12 @@ mongoose.connect(MONGO_URI, {
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
+app.use(wardrobeRouter);
+
 app.get('/*', (req, res) => {
     console.log('get request hit')
     res.sendFile('/Users/derekokuno/codesmith/SoloProjectVirtualWardrobe/dist/index.html')
 });
-
-app.use(wardrobeRouter);
 
 app.use((err, req, res, next) => {
     const defaultErr = {

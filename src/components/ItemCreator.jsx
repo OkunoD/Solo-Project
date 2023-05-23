@@ -36,7 +36,7 @@ const ItemCreator = (props) => {
         <div>
         <label>Type: </label>
         <select name="selectList" id="selectList" onChange={handleSelect} value={itemType}>
-         <option value="addHeadwear">select type</option>
+         <option value="null">select type</option>
          <option value="addHeadwear">Hat</option>
          <option value="addTop">Top</option>
          <option value="addJacket">Jacket</option>
