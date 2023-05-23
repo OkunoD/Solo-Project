@@ -40,6 +40,15 @@ const deleteItemById = (list, itemId) => {
 //     in same action 
 
 const wardrobeReducer = (state = initialState, action) => {
+
+  const deleteItem = (listName, itemId) => {
+    const updatedList = state[listName].filter(item => item.id !== itemId);
+    return {
+      ...state,
+      [listName]: updatedList,
+    };
+  };
+
   let headwearList;
   let topsList;
   let jacketsList;
@@ -262,65 +271,24 @@ const wardrobeReducer = (state = initialState, action) => {
         //         headwearList,
         //       };
         //     }
-          case types.DELETE_HEADWEAR: {
-              const headwearId = action.payload;
-              const updatedHeadwearList = deleteItemById(state.headwearList, headwearId);
-      
-              return {
-                ...state,
-                headwearList: updatedHeadwearList,
-              };
-            }
+        case types.DELETE_HEADWEAR:
+          return deleteItem('headwearList', action.payload);
 
-          case types.DELETE_TOP: {
-            const topId = action.payload;
-            const updatedTopsList = deleteItemById(state.topsList, topId);
-      
-            return {
-              ...state,
-              topsList: updatedTopsList,
-            };
-          }
-      
-          case types.DELETE_JACKET: {
-            const jacketId = action.payload;
-            const updatedJacketsList = deleteItemById(state.jacketsList, jacketId);
-      
-            return {
-              ...state,
-              jacketsList: updatedJacketsList,
-            };
-          }
-      
-          case types.DELETE_BOTTOM: {
-            const bottomId = action.payload;
-            const updatedBottomsList = deleteItemById(state.bottomsList, bottomId);
-      
-            return {
-              ...state,
-              bottomsList: updatedBottomsList,
-            };
-          }
-      
-          case types.DELETE_SHOES: {
-            const shoesId = action.payload;
-            const updatedShoesList = deleteItemById(state.shoesList, shoesId);
-      
-            return {
-              ...state,
-              shoesList: updatedShoesList,
-            };
-          }
-      
-          case types.DELETE_ACCESSORY: {
-            const accessoryId = action.payload;
-            const updatedAccessoriesList = deleteItemById(state.accessoriesList, accessoryId);
-      
-            return {
-              ...state,
-              accessoriesList: updatedAccessoriesList,
-            };
-          }
+        case types.DELETE_TOP:
+          return deleteItem('topsList', action.payload);
+
+        case types.DELETE_JACKET:
+          return deleteItem('jacketsList', action.payload);
+
+        case types.DELETE_BOTTOM:
+          return deleteItem('bottomsList', action.payload);
+
+        case types.DELETE_SHOES:
+          return deleteItem('shoesList', action.payload);
+
+        case types.DELETE_ACCESSORY:
+          return deleteItem('accessoriesList', action.payload);
+
         default: {
           return state;
         }
