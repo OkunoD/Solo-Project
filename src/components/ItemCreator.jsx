@@ -59,6 +59,7 @@ const ItemCreator = (props) => {
         </div>
         <input style={{padding: '3px'}} className="addItem" onClick={() => {
             console.log('input received');
+            console.log(itemName, itemUrl, itemColor);
             if (itemType === "addHeadwear") {
               props.addHeadwear(itemName,itemUrl,itemColor);
             } if (itemType === "addTop") {
