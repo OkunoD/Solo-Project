@@ -33,8 +33,7 @@ const initialState = {
     selectedAccessory: {}
 }
 
-// put the post/fetch inside the frontend
-//     in same action 
+// put the post/fetch inside the frontend in same action 
 
 const wardrobeReducer = (state = initialState, action) => {
   let headwearList;
