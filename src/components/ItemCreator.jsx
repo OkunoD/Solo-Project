@@ -28,7 +28,24 @@ const ItemCreator = (props) => {
   const handleSelect = (e) => {
     setType(e.target.value);
   };
-
+  //BELOW CODE TO TEST ITEMS GOING IN DATABASE
+  useEffect(() => {
+    console.log('useeffect hit')
+    fetch('/api/items')
+      .then(console.log('after get fetch request'))
+      .then((response) => {
+        console.log('response is: ', response);
+        return response.json();
+      })
+      .then((data) => {
+        console.log('data is: ', data); // Display the retrieved items in the console
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, [itemType]);
+  //END DATABASE TESTING CODE
+  
   return (
     <div className="addItemBox">
       <div className="addItemHeaders">Add Piece</div>
@@ -58,7 +75,7 @@ const ItemCreator = (props) => {
           <input className="addItemField" onChange={(e) => setUrl(e.target.value)} type="text" value={itemUrl} />
         </div>
         <input style={{padding: '3px'}} className="addItem" onClick={() => {
-            console.log('input received');
+            console.log('input received new');
             console.log(itemName, itemUrl, itemColor);
             if (itemType === "headwear") {
               props.addHeadwear(itemName,itemUrl,itemColor);
@@ -73,6 +90,26 @@ const ItemCreator = (props) => {
             } if (itemType === "accessory") {
               props.addAccessory(itemName,itemUrl,itemColor);
             }
+            console.log('reached fetch request');
+            fetch('/api/items', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                type: itemType,
+                name: itemName,
+                url: itemUrl,
+                color: itemColor,
+              }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
       }} type="submit" value="Add Item" />
       </div>
     </div>
