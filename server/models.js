@@ -10,49 +10,58 @@ const userSchema = new Schema({
 
 const User = mongoose.model('users', userSchema); 
 
-const headwearSchema = new Schema({
-    itemName: {type: String, required: true},
-    imgUrl: {type: String, required: true}
+const itemSchema = new mongoose.Schema({
+    type: {String},
+    name: {String},
+    url: {String},
+    color: {String},
 })
 
-const HeadwearItem = mongoose.model('headwear', headwearSchema);
+const Item = mongoose.model('Item', itemSchema);
+
+// const headwearSchema = new Schema({
+//     itemName: {type: String, required: true},
+//     imgUrl: {type: String, required: true}
+// })
+
+// const HeadwearItem = mongoose.model('headwear', headwearSchema);
 
 
-const topsSchema = new Schema ({
-    itemName: {type: String, required: true},
-    imgUrl: {type: String, required: true}
-})
+// const topsSchema = new Schema ({
+//     itemName: {type: String, required: true},
+//     imgUrl: {type: String, required: true}
+// })
 
-const TopsItem = mongoose.model('tops', topsSchema);
+// const TopsItem = mongoose.model('tops', topsSchema);
 
 
-const jacketsSchema = new Schema({
-    itemName: {type: String, required: true},
-    imgUrl: {type: String, required: true}
-})
+// const jacketsSchema = new Schema({
+//     itemName: {type: String, required: true},
+//     imgUrl: {type: String, required: true}
+// })
 
-const JacketsItem = mongoose.model('jackets', jacketsSchema);
+// const JacketsItem = mongoose.model('jackets', jacketsSchema);
 
-const bottomsSchema = new Schema({
-    itemName: {type: String, required: true},
-    imgUrl: {type: String, required: true}
-})
+// const bottomsSchema = new Schema({
+//     itemName: {type: String, required: true},
+//     imgUrl: {type: String, required: true}
+// })
 
-const BottomsItem = mongoose.model('bottoms', bottomsSchema);
+// const BottomsItem = mongoose.model('bottoms', bottomsSchema);
 
-const shoesSchema = new Schema({
-    itemName: {type: String, required: true},
-    imgUrl: {type: String, required: true}
-})
+// const shoesSchema = new Schema({
+//     itemName: {type: String, required: true},
+//     imgUrl: {type: String, required: true}
+// })
 
-const ShoesItem = mongoose.model('shoes', shoesSchema);
+// const ShoesItem = mongoose.model('shoes', shoesSchema);
 
-const accessoriesSchema = new Schema({
-    itemName: {type: String, required: true},
-    imgUrl: {type: String, required: true}
-})
+// const accessoriesSchema = new Schema({
+//     itemName: {type: String, required: true},
+//     imgUrl: {type: String, required: true}
+// })
 
-const AccessoryItem = mongoose.model('accessories', accessoriesSchema);
+// const AccessoryItem = mongoose.model('accessories', accessoriesSchema);
 
 module.exports = {
     User,
