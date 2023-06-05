@@ -65,10 +65,5 @@ const Item = mongoose.model('Item', itemSchema);
 
 module.exports = {
     User,
-    HeadwearItem,
-    TopsItem,
-    JacketsItem,
-    BottomsItem,
-    ShoesItem,
-    AccessoryItem,
+    Item,
 }
