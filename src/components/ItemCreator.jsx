@@ -37,12 +37,12 @@ const ItemCreator = (props) => {
         <label>Type: </label>
         <select name="selectList" id="selectList" onChange={handleSelect} value={itemType}>
          <option value="null">select type</option>
-         <option value="addHeadwear">Hat</option>
-         <option value="addTop">Top</option>
-         <option value="addJacket">Jacket</option>
-         <option value="addBottom">Bottom</option>
-         <option value="addShoes">Shoes</option>
-         <option value="addAccessory">Accessory</option>
+         <option value="headwear">Hat</option>
+         <option value="top">Top</option>
+         <option value="jacket">Jacket</option>
+         <option value="bottom">Bottom</option>
+         <option value="shoes">Shoes</option>
+         <option value="accessory">Accessory</option>
         </select>
         </div>
         <div>
@@ -60,17 +60,17 @@ const ItemCreator = (props) => {
         <input style={{padding: '3px'}} className="addItem" onClick={() => {
             console.log('input received');
             console.log(itemName, itemUrl, itemColor);
-            if (itemType === "addHeadwear") {
+            if (itemType === "headwear") {
               props.addHeadwear(itemName,itemUrl,itemColor);
-            } if (itemType === "addTop") {
+            } if (itemType === "top") {
               props.addTop(itemName,itemUrl,itemColor);
-            } if (itemType === "addJacket") {
+            } if (itemType === "jacket") {
               props.addJacket(itemName,itemUrl,itemColor);
-            } if (itemType === "addBottom") {
+            } if (itemType === "bottom") {
               props.addBottom(itemName,itemUrl,itemColor);
-            } if (itemType === "addShoes") {
+            } if (itemType === "shoes") {
               props.addShoes(itemName,itemUrl,itemColor);
-            } if (itemType === "addAccessory") {
+            } if (itemType === "accessory") {
               props.addAccessory(itemName,itemUrl,itemColor);
             }
       }} type="submit" value="Add Item" />
