@@ -10,38 +10,68 @@ const initialState = {
 
     headwearList: [],
     lastHeadwearId: 0,
-    selectedHeadwear: {},
+    wornHeadwear: { 
+      id: 'none',
+      type: 'none',
+      name: 'none',
+      imgUrl: 'none',
+      color: 'none',
+    },
 
     topsList: [],
     lastTopsId: 0,
-    selectedTop: {},
+    wornTop: { 
+      id: 'none',
+      type: 'none',
+      name: 'none',
+      imgUrl: 'none',
+      color: 'none',
+    },
 
     jacketsList: [],
     lastJacketsId: 0,
-    selectedJacket: {},
+    wornJacket: { 
+      id: 'none',
+      type: 'none',
+      name: 'none',
+      imgUrl: 'none',
+      color: 'none',
+    },
 
     bottomsList: [],
     lastBottomsId: 0,
-    selectedBottom: {},
+    wornBottom: { 
+      id: 'none',
+      type: 'none',
+      name: 'none',
+      imgUrl: 'none',
+      color: 'none',
+    },
 
     shoesList: [],
     lastShoesId: 0,
-    selectedShoes: {},
+    wornShoes: { 
+      id: 'none',
+      type: 'none',
+      name: 'none',
+      imgUrl: 'none',
+      color: 'none',
+    },
 
     accessoriesList: [],
     lastAccessoriesId: 0,
-    selectedAccessory: {}
+    wornAccessory: { 
+      id: 'none',
+      type: 'none',
+      name: 'none',
+      imgUrl: 'none',
+      color: 'none',
+    },
 }
 
 // put the post/fetch inside the frontend in same action 
 
 const wardrobeReducer = (state = initialState, action) => {
-  let headwearList;
-  let topsList;
-  let jacketsList;
-  let bottomsList;
-  let shoesList;
-  let accessoriesList;
 
   const deleteItem = (listName, itemId) => {
     const updatedList = state[listName].filter(item => item.id !== itemId);
@@ -50,11 +80,11 @@ const wardrobeReducer = (state = initialState, action) => {
       [listName]: updatedList,
     };
   };
-  const tryOnItem = (listName, itemId, selectedType) => {
+  const tryOnItem = (listName, itemId, wornType) => {
     const wornItem = state[listName].find(item => item.id === itemId)
     return {
       ...state,
-      [selectedType]: wornItem,
+      [wornType]: wornItem,
     }
   }
 
@@ -71,6 +101,7 @@ const wardrobeReducer = (state = initialState, action) => {
 
     const newItem = {
       id: newItemId,
+      type: payload[0],
       name: payload[1],
       imgUrl: payload[2],
       color: payload[3],

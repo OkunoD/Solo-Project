@@ -12,6 +12,7 @@ import JacketsDrawer from '../components/JacketsDrawer.jsx';
 import BottomsDrawer from '../components/BottomsDrawer.jsx';
 import ShoesDrawer from '../components/ShoesDrawer.jsx';
 import AccessoriesDrawer from '../components/AccessoriesDrawer.jsx';
+import Outfit from '../components/Outfit';
 import Dispatch from 'react';
 
 const mapStateToProps = state => ({  
@@ -24,6 +25,7 @@ function WardrobeContainer() {
         <div className="header"><strong>&nbsp;&nbsp;Your Wardrobe</strong></div>
         { /* Start adding components here... */ }
         <ItemCreator />
+        <Outfit />
         <HeadwearDrawer />
         <TopsDrawer />
         <JacketsDrawer />
