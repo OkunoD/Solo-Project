@@ -2,6 +2,14 @@
 import * as types from '../constants/actionTypes';
 
 //WARDROBE ADDITION ACTIONS
+export const addItemActionCreator = (itemType, name, imgUrl, color) => ({
+  type: types.ADD_ITEM,
+  payload1: itemType,
+  payload2: name,
+  payload3: imgUrl,
+  payload4: color,
+});
+
 export const addHeadwearActionCreator = (name, imgUrl, color) => ({
   type: types.ADD_HEADWEAR,
   payload1: name,

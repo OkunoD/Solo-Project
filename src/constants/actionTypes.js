@@ -1,4 +1,5 @@
 
+export const ADD_ITEM = 'ADD_ITEM';
 export const ADD_HEADWEAR = 'ADD_HEADWEAR';
 export const ADD_TOP = 'ADD_TOP';
 export const ADD_JACKET = 'ADD_JACKET';

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { 
+  addItemActionCreator,
   addHeadwearActionCreator,
   addTopActionCreator,
   addJacketActionCreator,
@@ -12,6 +13,7 @@ import './styles.css';
 //   useEffect(() => {}, [location]);
 const mapDispatchToProps = dispatch => ({
   // addMarket : (location) => dispatch(addMarketActionCreator(location)),
+  addItem : (payload1, payload2, payload3, payload4) => dispatch(addItemActionCreator(payload1, payload2, payload3, payload4)),
   addHeadwear : (payload1, payload2, payload3) => dispatch(addHeadwearActionCreator(payload1,payload2,payload3)),
   addTop : (payload1, payload2, payload3) => dispatch(addTopActionCreator(payload1,payload2,payload3)),
   addJacket : (payload1, payload2, payload3) => dispatch(addJacketActionCreator(payload1,payload2,payload3)),
@@ -55,11 +57,11 @@ const ItemCreator = (props) => {
         <select name="selectList" id="selectList" onChange={handleSelect} value={itemType}>
          <option value="null">select type</option>
          <option value="headwear">Hat</option>
-         <option value="top">Top</option>
-         <option value="jacket">Jacket</option>
-         <option value="bottom">Bottom</option>
+         <option value="tops">Top</option>
+         <option value="jackets">Jacket</option>
+         <option value="bottoms">Bottom</option>
          <option value="shoes">Shoes</option>
-         <option value="accessory">Accessory</option>
+         <option value="accessories">Accessory</option>
         </select>
         </div>
         <div>
@@ -75,21 +77,8 @@ const ItemCreator = (props) => {
           <input className="addItemField" onChange={(e) => setUrl(e.target.value)} type="text" value={itemUrl} />
         </div>
         <input style={{padding: '3px'}} className="addItem" onClick={() => {
-            console.log('input received new');
-            console.log(itemName, itemUrl, itemColor);
-            if (itemType === "headwear") {
-              props.addHeadwear(itemName,itemUrl,itemColor);
-            } if (itemType === "top") {
-              props.addTop(itemName,itemUrl,itemColor);
-            } if (itemType === "jacket") {
-              props.addJacket(itemName,itemUrl,itemColor);
-            } if (itemType === "bottom") {
-              props.addBottom(itemName,itemUrl,itemColor);
-            } if (itemType === "shoes") {
-              props.addShoes(itemName,itemUrl,itemColor);
-            } if (itemType === "accessory") {
-              props.addAccessory(itemName,itemUrl,itemColor);
-            }
+            props.addItem(itemType, itemName, itemUrl, itemColor);
+
             console.log('reached fetch request');
             fetch('/api/items', {
               method: 'POST',
