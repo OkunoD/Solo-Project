@@ -58,11 +58,12 @@ const wardrobeReducer = (state = initialState, action) => {
     }
   }
 
-  const addItem = (listName, ...payload) => {
+  const addItem = (...payload) => {
     console.log('payload is :', payload);
-    const trimmedListName = listName.replace("List", "");
-    const lastItemIdString = `last${trimmedListName.charAt(0).toUpperCase()}${trimmedListName.slice(1)}Id`;
-    const totalItemIdString = `total${trimmedListName.charAt(0).toUpperCase()}${trimmedListName.slice(1)}`;
+    const itemType = payload[0];
+    const listName = `${itemType}List`;
+    const lastItemIdString = `last${itemType.charAt(0).toUpperCase()}${itemType.slice(1)}Id`;
+    const totalItemIdString = `total${itemType.charAt(0).toUpperCase()}${itemType.slice(1)}`;
 
     const lastItemId = state[lastItemIdString];
     const updatedList = [...state[listName]];
@@ -70,9 +71,9 @@ const wardrobeReducer = (state = initialState, action) => {
 
     const newItem = {
       id: newItemId,
-      name: payload[0],
-      imgUrl: payload[1],
-      color: payload[2],
+      name: payload[1],
+      imgUrl: payload[2],
+      color: payload[3],
     };
 
     console.log(newItem);
@@ -87,23 +88,14 @@ const wardrobeReducer = (state = initialState, action) => {
   };
 
   switch (action.type) {
-    case types.ADD_HEADWEAR:
-      return addItem('headwearList', action.payload1, action.payload2, action.payload3);
-
-    case types.ADD_TOP:
-      return addItem('topsList', action.payload1, action.payload2, action.payload3);
-
-    case types.ADD_JACKET:
-      return addItem('jacketsList', action.payload1, action.payload2, action.payload3);
-
-    case types.ADD_BOTTOM:
-      return addItem('bottomsList', action.payload1, action.payload2, action.payload3);
-
-    case types.ADD_SHOES:
-      return addItem('shoesList', action.payload1, action.payload2, action.payload3);
-
-    case types.ADD_ACCESSORY:
-      return addItem('accessoriesList', action.payload1, action.payload2, action.payload3);
+    case types.ADD_ITEM:
+      return addItem(action.payload1, action.payload2, action.payload3, action.payload4);
+    //BELOW TO REFACTOR/MAKE GENERAL ACTIONS FOR TRY ON AND DELETE
+    // case types.TRYON_ITEM:
+    //   return tryOnItem(action.payload1, action.payload2, action.payload3, action.payload4);
+    
+    // case types.DELETE_ITEM:
+    //   return deleteItem('accessoriesList', action.payload);
 
     case types.TRYON_HEADWEAR:
       return tryOnItem('headwearList', action.payload, 'selectedHeadwear');
