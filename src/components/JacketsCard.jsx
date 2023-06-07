@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 // import
-import { addJacketActionCreator, deleteItemActionCreator, tryOnItemActionCreator, deleteJacketActionCreator, tryOnJacketActionCreator } from '../actions/actions.js'
+import { deleteItemActionCreator, tryOnItemActionCreator } from '../actions/actions.js'
 import './styles.css'; 
 
 let key = undefined;
