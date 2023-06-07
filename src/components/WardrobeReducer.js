@@ -118,7 +118,7 @@ const wardrobeReducer = (state = initialState, action) => {
       [listName]: updatedList,
     };
   };
-  
+
   switch (action.type) {
     case types.ADD_ITEM:
       return addItem(action.payload1, action.payload2, action.payload3, action.payload4);
@@ -134,43 +134,6 @@ const wardrobeReducer = (state = initialState, action) => {
       console.log('in reducer, itemTypeToDelete is: ', itemTypeToDelete);
       console.log('in reducer, itemIdToDelete is: ', itemIdToDelete);
       return deleteItem(`${itemTypeToDelete}List`, itemIdToDelete);
-
-    // case types.TRYON_HEADWEAR:
-    //   console.log('in TRYON_HEADWEAR in wardrobeReducers')
-    //   return tryOnItem('headwearList', action.payload, 'wornHeadwear');
-      
-    // case types.TRYON_TOP:
-    //   return tryOnItem('topsList', action.payload, 'wornTop');
-
-    // case types.TRYON_JACKET:
-    //   return tryOnItem('jacketsList', action.payload, 'wornJacket');
-
-    // case types.TRYON_BOTTOM:
-    //   return tryOnItem('bottomsList', action.payload, 'wornBottom');
-
-    // case types.TRYON_SHOES:
-    //   return tryOnItem('shoesList', action.payload, 'wornShoes');
-
-    // case types.TRYON_ACCESSORY:
-    //   return tryOnItem('accessoriesList', action.payload, 'wornAccessory');
-
-    // case types.DELETE_HEADWEAR:
-    //   return deleteItem('headwearList', action.payload);
-
-    // case types.DELETE_TOP:
-    //   return deleteItem('topsList', action.payload);
-
-    // case types.DELETE_JACKET:
-    //   return deleteItem('jacketsList', action.payload);
-
-    // case types.DELETE_BOTTOM:
-    //   return deleteItem('bottomsList', action.payload);
-
-    // case types.DELETE_SHOES:
-    //   return deleteItem('shoesList', action.payload);
-
-    // case types.DELETE_ACCESSORY:
-    //   return deleteItem('accessoriesList', action.payload);
 
     default: {
       return state;
