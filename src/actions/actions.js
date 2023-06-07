@@ -45,8 +45,8 @@ export const tryOnAccessoryActionCreator = (accessoryId) => ({
 // --for stretch goal--
 //WARDROBE DELETION ACTIONS
 export const deleteItemActionCreator = (itemTypeToDelete, itemId) => ({
-  type: types.DELETE_HEADWEAR,
-  payload: [itemTypeToDelete, itemId],
+  type: types.DELETE_ITEM,
+  payload: [ itemTypeToDelete, itemId ],
 });
 
 export const deleteHeadwearActionCreator = headwearId => ({
