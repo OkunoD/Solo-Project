@@ -73,21 +73,6 @@ const initialState = {
 
 const wardrobeReducer = (state = initialState, action) => {
 
-  const deleteItem = (listName, itemId) => {
-    const updatedList = state[listName].filter(item => item.id !== itemId);
-    return {
-      ...state,
-      [listName]: updatedList,
-    };
-  };
-  const tryOnItem = (listName, itemId, wornType) => {
-    const wornItem = state[listName].find(item => item.id === itemId)
-    return {
-      ...state,
-      [wornType]: wornItem,
-    }
-  }
-
   const addItem = (...payload) => {
     console.log('payload is :', payload);
     const itemType = payload[0];
@@ -118,6 +103,22 @@ const wardrobeReducer = (state = initialState, action) => {
     };
   };
 
+  const tryOnItem = (listName, itemId, wornType) => {
+    const wornItem = state[listName].find(item => item.id === itemId)
+    return {
+      ...state,
+      [wornType]: wornItem,
+    };
+  };
+
+  const deleteItem = (listName, itemId) => {
+    const updatedList = state[listName].filter(item => item.id !== itemId);
+    return {
+      ...state,
+      [listName]: updatedList,
+    };
+  };
+  
   switch (action.type) {
     case types.ADD_ITEM:
       return addItem(action.payload1, action.payload2, action.payload3, action.payload4);
@@ -129,7 +130,9 @@ const wardrobeReducer = (state = initialState, action) => {
       return tryOnItem(`${itemType}List`, itemId, `worn${wornType}`);
 
     case types.DELETE_ITEM:
-      const { itemTypeToDelete, itemIdToDelete } = action.payload;
+      const [ itemTypeToDelete, itemIdToDelete ] = action.payload;
+      console.log('in reducer, itemTypeToDelete is: ', itemTypeToDelete);
+      console.log('in reducer, itemIdToDelete is: ', itemIdToDelete);
       return deleteItem(`${itemTypeToDelete}List`, itemIdToDelete);
 
     // case types.TRYON_HEADWEAR:
