@@ -29,7 +29,8 @@ const Outfit = props => {
 
     for (let i = 0; i < outfitArr.length; i++) {
         const currentItem = outfitArr[i];
-        console.log('currentItemId is: ', currentItem.id);
+        console.log('in loop, currentItemId is: ', currentItem.id);
+        console.log('in loop, currentItemName is: ', currentItem.name);
         outfit.push(
             <ItemCard
                 key = {i}

@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { 
-  addItemActionCreator,
-  addHeadwearActionCreator,
-  addTopActionCreator,
-  addJacketActionCreator,
-  addBottomActionCreator, 
-  addShoesActionCreator,
-  addAccessoriesActionCreator, } from '../actions/actions';
+import { addItemActionCreator } from '../actions/actions';
 import { connect } from 'react-redux';
 import './styles.css';
 //   const [location, setLocation] = useState('');

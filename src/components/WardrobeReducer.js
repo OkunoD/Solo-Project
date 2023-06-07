@@ -13,7 +13,7 @@ const initialState = {
     wornHeadwear: { 
       id: 'none',
       type: 'none',
-      name: 'none',
+      name: 'headwearname',
       imgUrl: 'none',
       color: 'none',
     },
@@ -23,7 +23,7 @@ const initialState = {
     wornTop: { 
       id: 'none',
       type: 'none',
-      name: 'none',
+      name: 'topsname',
       imgUrl: 'none',
       color: 'none',
     },
@@ -129,22 +129,23 @@ const wardrobeReducer = (state = initialState, action) => {
     //   return deleteItem('accessoriesList', action.payload);
 
     case types.TRYON_HEADWEAR:
-      return tryOnItem('headwearList', action.payload, 'selectedHeadwear');
+      console.log('in TRYON_HEADWEAR in wardrobeReducers')
+      return tryOnItem('headwearList', action.payload, 'wornHeadwear');
       
     case types.TRYON_TOP:
-      return tryOnItem('topsList', action.payload, 'selectedTop');
+      return tryOnItem('topsList', action.payload, 'wornTop');
 
     case types.TRYON_JACKET:
-      return tryOnItem('jacketsList', action.payload, 'selectedJacket');
+      return tryOnItem('jacketsList', action.payload, 'wornJacket');
 
     case types.TRYON_BOTTOM:
-      return tryOnItem('bottomsList', action.payload, 'selectedBottom');
+      return tryOnItem('bottomsList', action.payload, 'wornBottom');
 
     case types.TRYON_SHOES:
-      return tryOnItem('shoesList', action.payload, 'selectedShoes');
+      return tryOnItem('shoesList', action.payload, 'wornShoes');
 
     case types.TRYON_ACCESSORY:
-      return tryOnItem('accessoriesList', action.payload, 'selectedAccessory');
+      return tryOnItem('accessoriesList', action.payload, 'wornAccessory');
 
     case types.DELETE_HEADWEAR:
       return deleteItem('headwearList', action.payload);
