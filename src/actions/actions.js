@@ -11,6 +11,11 @@ export const addItemActionCreator = (itemType, name, imgUrl, color) => ({
 });
 
 //TRYON ACTIONS
+export const tryOnItemActionCreator =  (itemType, itemId, wornType) => ({
+  type: types.TRYON_ITEM,
+  payload: [ itemType, itemId, wornType ],
+});
+
 export const tryOnHeadwearActionCreator = (headwearId) => ({
   type: types.TRYON_HEADWEAR,
   payload: headwearId
@@ -39,6 +44,11 @@ export const tryOnAccessoryActionCreator = (accessoryId) => ({
 
 // --for stretch goal--
 //WARDROBE DELETION ACTIONS
+export const deleteItemActionCreator = (itemTypeToDelete, itemId) => ({
+  type: types.DELETE_HEADWEAR,
+  payload: [itemTypeToDelete, itemId],
+});
+
 export const deleteHeadwearActionCreator = headwearId => ({
   type: types.DELETE_HEADWEAR,
   payload: headwearId
