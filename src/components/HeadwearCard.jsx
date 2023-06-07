@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addHeadwearctionCreator, deleteHeadwearActionCreator, tryOnHeadwearActionCreator } from '../actions/actions.js'
+import { deleteItemActionCreator, tryOnItemActionCreator } from '../actions/actions.js'
 import './styles.css'; 
 
 let key = undefined;
@@ -20,8 +20,8 @@ const mapStateToProps = function(state, ownProps) {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  tryOnHeadwear : (payload) => dispatch(tryOnHeadwearActionCreator(payload)),
-  deleteHeadwear : (payload) => dispatch(deleteHeadwearActionCreator(payload)),
+  tryOnItem : (payload1, payload2, payload3) => dispatch(tryOnItemActionCreator(payload1, payload2, payload3)),
+  deleteItem : (payload1, payload2) => dispatch(deleteItemActionCreator(payload1, payload2)),
 });
 
 const Headwear = (props) => {
@@ -35,9 +35,9 @@ const Headwear = (props) => {
         <div className="itemButton">
           <input className="selectItemButton" onClick={() => {
             console.log('tryon input received');
-            props.tryOnHeadwear(props.headwearId)}} type="Submit" value="Try it on" readOnly/>
+            props.tryOnItem('headwear', props.headwearId, 'Headwear')}} type="Submit" value="Try it on" readOnly/>
           <input className="deleteItemButton" onClick={() => {
-            props.deleteHeadwear(props.headwearId)}} type="Submit" value="Delete" readOnly/>
+            props.deleteItem('headwear', props.headwearId)}} type="Submit" value="Delete" readOnly/>
         </div>
       </div>
     );};

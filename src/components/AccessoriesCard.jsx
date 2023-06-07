@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addAccessoriesActionCreator, deleteAccessoryActionCreator, tryOnAccessoryActionCreator } from '../actions/actions.js'
+import { deleteItemActionCreator, tryOnItemActionCreator } from '../actions/actions.js'
 import './styles.css'; 
 
 let key = undefined;
@@ -15,8 +15,8 @@ const mapStateToProps = function(state, ownProps) {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  tryOnAccessory : (payload) => dispatch(tryOnAccessoryActionCreator(payload)),
-  deleteAccessory : (payload) => dispatch(deleteAccessoryActionCreator(payload)),
+  tryOnItem : (payload1, payload2, payload3) => dispatch(tryOnItemActionCreator(payload1, payload2, payload3)),
+  deleteItem : (payload1, payload2) => dispatch(deleteItemActionCreator(payload1, payload2)),
 });
 
 const Accessories = (props) => {
@@ -30,9 +30,9 @@ const Accessories = (props) => {
         <div className="itemButton">
         <input className="selectItemButton" onClick={() => {
             console.log('tryon input received');
-            props.tryOnAccessory(props.accessoryId)}} type="Submit" value="Try it on" readOnly/>
+            props.tryOnItem('accessories', props.accessoryId, 'Accessory')}} type="Submit" value="Try it on" readOnly/>
           <input className="deleteItemButton" onClick={() => {
-            props.deleteAccessory(props.accessoryId)}} type="Submit" value="Delete" readOnly/>
+            props.deleteItem('accessories', props.accessoryId)}} type="Submit" value="Delete" readOnly/>
         </div>
       </div>
     );};

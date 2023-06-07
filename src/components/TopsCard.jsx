@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addTopActionCreator, deleteTopActionCreator, tryOnTopActionCreator } from '../actions/actions.js'
+import { deleteItemActionCreator, tryOnItemActionCreator } from '../actions/actions.js'
 import './styles.css'; 
 
 let key = undefined;
@@ -15,8 +15,8 @@ const mapStateToProps = function(state, ownProps) {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  tryOnTop : (payload) => dispatch(tryOnTopActionCreator(payload)),
-  deleteTop : (payload) => dispatch(deleteTopActionCreator(payload)),
+  tryOnItem : (payload1, payload2, payload3) => dispatch(tryOnItemActionCreator(payload1, payload2, payload3)),
+  deleteItem : (payload1, payload2) => dispatch(deleteItemActionCreator(payload1, payload2)),
 });
 
 const Tops = (props) => {
@@ -30,9 +30,9 @@ const Tops = (props) => {
         <div className="itemButton">
           <input className="selectItemButton" onClick={() => {
             console.log('tryon input received');
-            props.tryOnTop(props.topId)}} type="Submit" value="Try it on" readOnly/>
+            props.tryOnItem('tops', props.topId, 'Top')}} type="Submit" value="Try it on" readOnly/>
           <input className="deleteItemButton" onClick={() => {
-            props.deleteTop(props.topId)}} type="Submit" value="Delete" readOnly/>
+            props.deleteItem('tops', props.topId)}} type="Submit" value="Delete" readOnly/>
         </div>
       </div>
     );};
