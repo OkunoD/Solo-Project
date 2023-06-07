@@ -10,44 +10,6 @@ export const addItemActionCreator = (itemType, name, imgUrl, color) => ({
   payload4: color,
 });
 
-export const addHeadwearActionCreator = (name, imgUrl, color) => ({
-  type: types.ADD_HEADWEAR,
-  payload1: name,
-  payload2: imgUrl,
-  payload3: color,
-});
-export const addTopActionCreator = (name, imgUrl, color) => ({
-  type: types.ADD_TOP,
-  payload1: name, 
-  payload2: imgUrl,
-  payload3: color,
-});
-export const addJacketActionCreator = (name, imgUrl, color) => ({
-  type: types.ADD_JACKET,
-  payload1: name, 
-  payload2: imgUrl,
-  payload3: color,
-});
-export const addBottomActionCreator = (name, imgUrl, color) => ({
-  type: types.ADD_BOTTOM,
-  payload1: name, 
-  payload2: imgUrl,
-  payload3: color,
-});
-export const addShoesActionCreator = (name, imgUrl, color) => ({
-  type: types.ADD_SHOES,
-  payload1: name, 
-  payload2: imgUrl,
-  payload3: color,
-});
-export const addAccessoriesActionCreator = (name, imgUrl, color) => ({
-  type: types.ADD_ACCESSORY,
-  payload1: name, 
-  payload2: imgUrl,
-  payload3: color,
-});
-
-
 //TRYON ACTIONS
 export const tryOnHeadwearActionCreator = (headwearId) => ({
   type: types.TRYON_HEADWEAR,

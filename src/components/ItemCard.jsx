@@ -7,10 +7,10 @@ let key = undefined;
 
 const mapStateToProps = function(state, ownProps) {
   return {
-    itemId: state.wornTop.id,
-    itemName: state.wornTop.name,
-    itemColor: state.wornTop.color,
-    imgUrl: state.wornTop.imgUrl,
+    itemId: ownProps.id,
+    itemName: ownProps.name,
+    itemColor: ownProps.color,
+    imgUrl: ownProps.imgUrl,
   };
 };
 
