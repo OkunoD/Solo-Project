@@ -34,26 +34,43 @@ app.use(wardrobeRouter);
 //     res.sendFile('/Users/derekokuno/codesmith/SoloProjectVirtualWardrobe/dist/index.html')
 // });
 
-app.post('/api/items', (req,res) => {
-  console.log('items api hit');
-  const { type, name, url, color } = req.body;
+app.post('/api/items', async(req,res) => {
+  try {
+    console.log('post api hit');
+    const item = await Item.create(req.body);
+    console.log('item is', item);
+    res.status(200).json(item);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({message: error.messge});
+  }
+  // console.log('items api hit');
+  // console.log('req.body is: ', req.body);
+  // const { type, name, url, color } = req.body;
+  // console.log({type});
+  // console.log({name});
+  // console.log({url});
+  // console.log({color});
 
-  const newItem = new Item({
-    type,
-    name,
-    url,
-    color,
-  });
+  // const newItem = new Item({
+  //   type,
+  //   name,
+  //   url,
+  //   color,
+  // });
 
-  newItem.save((err, savedItem) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      console.log('item saved');
-      res.status(200).json(savedItem); 
-    }
-  });
-});
+  // console.log({newItem});
+
+  // newItem.save((err, savedItem) => {
+  //   if (err) {
+  //     res.status(500).send(err);
+  //   } else {
+  //     console.log('item saved');
+  //     res.status(200).json(savedItem); 
+  //   }
+  // });
+}
+);
 
 
 //Below code to retrieve items in database
@@ -63,7 +80,7 @@ app.get('/api/items', (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      console.log('sending items: ', items);
+      // console.log('sending items: ', items);
       res.status(200).json(items);
     }
   });

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+const userSchema = Schema({
     firstName: {type: String, required :true},
     lastName: {type: String, required :true},
     userame: {type: String, required :true},
@@ -10,14 +10,14 @@ const userSchema = new Schema({
 
 const User = mongoose.model('users', userSchema); 
 
-const itemSchema = new mongoose.Schema({
-    type: {String},
-    name: {String},
-    url: {String},
-    color: {String},
+const itemSchema = mongoose.Schema({
+    type: {type: String},
+    name: {type: String},
+    url: {type: String},
+    color: {type: String},
 })
 
-const Item = mongoose.model('Item', itemSchema);
+const Item = mongoose.model('Item', itemSchema); 
 
 // const headwearSchema = new Schema({
 //     itemName: {type: String, required: true},
