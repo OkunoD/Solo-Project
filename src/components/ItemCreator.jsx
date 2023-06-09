@@ -24,21 +24,21 @@ const ItemCreator = (props) => {
     setType(e.target.value);
   };
   //BELOW CODE TO TEST ITEMS GOING IN DATABASE
-  // useEffect(() => {
-  //   console.log('useeffect hit')
-  //   fetch('/api/items')
-  //     .then(console.log('after get fetch request'))
-  //     .then((response) => {
-  //       console.log('response is: ', response);
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       console.log('data is: ', data); // Display the retrieved items in the console
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error:', error);
-  //     });
-  // }, [itemType]);
+  useEffect(() => {
+    console.log('useeffect hit')
+    fetch('/api/items')
+      .then(console.log('after get fetch request'))
+      .then((response) => {
+        console.log('response is: ', response);
+        return response.json();
+      })
+      .then((data) => {
+        console.log('data is: ', data); // Display the retrieved items in the console
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, [itemType]);
   // //END DATABASE TESTING CODE
   
   return (

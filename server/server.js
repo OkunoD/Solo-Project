@@ -29,11 +29,6 @@ app.use(express.static(path.join(__dirname, '../dist')));
 
 app.use(wardrobeRouter);
 
-// app.get('/*', (req, res) => {
-//     console.log('get request hit')
-//     res.sendFile('/Users/derekokuno/codesmith/SoloProjectVirtualWardrobe/dist/index.html')
-// });
-
 app.post('/api/items', async(req,res) => {
   try {
     console.log('post api hit');
@@ -43,34 +38,8 @@ app.post('/api/items', async(req,res) => {
   } catch (error) {
     console.log(error.message);
     res.status(500).json({message: error.messge});
-  }
-  // console.log('items api hit');
-  // console.log('req.body is: ', req.body);
-  // const { type, name, url, color } = req.body;
-  // console.log({type});
-  // console.log({name});
-  // console.log({url});
-  // console.log({color});
-
-  // const newItem = new Item({
-  //   type,
-  //   name,
-  //   url,
-  //   color,
-  // });
-
-  // console.log({newItem});
-
-  // newItem.save((err, savedItem) => {
-  //   if (err) {
-  //     res.status(500).send(err);
-  //   } else {
-  //     console.log('item saved');
-  //     res.status(200).json(savedItem); 
-  //   }
-  // });
-}
-);
+  };
+});
 
 
 //Below code to retrieve items in database
