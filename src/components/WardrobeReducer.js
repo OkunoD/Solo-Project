@@ -132,7 +132,7 @@ const wardrobeReducer = (state = initialState, action) => {
     case types.DELETE_ITEM:
       const [ itemTypeToDelete, itemIdToDelete ] = action.payload;
       console.log('in reducer, itemTypeToDelete is: ', itemTypeToDelete);
-      console.log('in reducer, itemIdToDelete is: ', itemIdToDelete);
+      console.log('in DELETE_ITEM reducer', {itemIdToDelete});
       return deleteItem(`${itemTypeToDelete}List`, itemIdToDelete);
 
     default: {
