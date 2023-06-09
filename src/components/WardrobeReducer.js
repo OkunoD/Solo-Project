@@ -72,6 +72,40 @@ const initialState = {
 // put the post/fetch inside the frontend in same action 
 
 const wardrobeReducer = (state = initialState, action) => {
+  const fillWardrobe = (payload) => {
+    const headwear = []
+    const tops = [];
+    const jackets = [];
+    const bottoms = [];
+    const shoes = [];
+    const accessories = [];
+
+    console.log('fillWardrobe payload is: ', payload); //should be an array of objects [{type: 'headwear'}, {type: 'headwear'}, etc]
+    for (let i = 0; i < payload.length; i++) {
+      if (payload[i].type === 'headwear') {
+        headwear.push(payload[i]); 
+      } else if (payload[i].type === 'tops') {
+        tops.push(payload[i]); 
+      } else if (payload[i].type === 'jackets') {
+        jackets.push(payload[i]); 
+      } else if (payload[i].type === 'bottoms') {
+        bottoms.push(payload[i]); 
+      } else if (payload[i].type === 'shoes') {
+        shoes.push(payload[i]); 
+      } else if (payload[i].type === 'accessories') {
+        accessories.push(payload[i]); 
+      };
+    };
+    return {
+      ...state,
+      headwearList: headwear,
+      topsList: tops,
+      jacketsList: jackets,
+      bottomsList: bottoms,
+      shoesList: shoes,
+      accessoriesList: accessories,
+    }
+  }
 
   const addItem = (...payload) => {
     console.log('payload is :', payload);
@@ -120,6 +154,12 @@ const wardrobeReducer = (state = initialState, action) => {
   };
 
   switch (action.type) {
+    case types.FETCH_MONGO_DATA_SUCCESS:
+      return fillWardrobe(payload);
+      
+    case types.FETCH_MONGO_DATA_ERROR:
+      return 
+
     case types.ADD_ITEM:
       return addItem(action.payload1, action.payload2, action.payload3, action.payload4);
 
