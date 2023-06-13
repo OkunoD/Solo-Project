@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { useSelector } from 'react-redux';
 import { addItemActionCreator, fillWardrobeActionCreator } from '../actions/actions';
 import { connect } from 'react-redux';
 import './styles.css';
@@ -17,6 +18,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const ItemCreator = (props) => {
+  const state = useSelector((state) => state);
   const [itemType, setType] = useState('');
   const [itemName, setName] = useState('');
   const [itemUrl, setUrl] = useState('');
@@ -24,7 +26,7 @@ const ItemCreator = (props) => {
   const handleSelect = (e) => {
     setType(e.target.value);
   };
-  //BELOW CODE TO TEST ITEMS GOING IN DATABASE
+  //BELOW CODE TO FILL WARDROBE FROM DATABASE
   useEffect(() => {
     console.log('useeffect hit')
     fetch('/api/items')
@@ -72,6 +74,8 @@ const ItemCreator = (props) => {
         </div>
         <input style={{padding: '3px'}} className="addItem" onClick={() => {
             props.addItem(itemType, itemName, itemUrl, itemColor);
+            const lastItemIdString = `last${itemType.charAt(0).toUpperCase()}${itemType.slice(1)}Id`;
+            const lastItemId = state[lastItemIdString];
 
             console.log('reached fetch request');
             fetch('/api/items', {
@@ -80,9 +84,10 @@ const ItemCreator = (props) => {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
+                id: lastItemId+1,
                 type: itemType,
                 name: itemName,
-                url: itemUrl,
+                imgUrl: itemUrl,
                 color: itemColor,
               }),
             })

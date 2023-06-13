@@ -23,22 +23,22 @@ const Outfit = props => {
     
     const outfit = []; 
     const outfitArr = [props.wornHeadwear, props.wornTop, props.wornJacket, props.wornBottom, props.wornShoes, props.wornAccessory];
-    console.log(outfitArr);
-    console.log('outfitID is: ', outfitArr[1].id);
-    console.log('outfitName is: ', outfitArr[1].name);
+    console.log('in Outfit, outfitArr is:', outfitArr);
 
     for (let i = 0; i < outfitArr.length; i++) {
         const currentItem = outfitArr[i];
-        console.log('in loop, currentItemId is: ', currentItem.id);
-        console.log('in loop, currentItemName is: ', currentItem.name);
+        console.log('in outfit loop, currentItem is: ', currentItem);
+        // console.log('in outfit loop, currentItemName is: ', currentItem.name);
+        // console.log('in outfit loop currentItemColor is: ', currentItem.color);
+        // console.log('in outfit loop, currentOutfitImgUrl is: ', currentItem.imgUrl);
         outfit.push(
             <ItemCard
-                key = {i}
-                itemId={currentItem.id}
-                itemName={currentItem.name}
-                itemColor={currentItem.color}
+                // key = {i}
+                id={currentItem.id}
+                name={currentItem.name}
+                color={currentItem.color}
                 imgUrl={currentItem.imgUrl}
-                index = {i}
+                // index = {i}
             />);
     }
     return(
