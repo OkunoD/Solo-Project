@@ -11,9 +11,10 @@ const userSchema = Schema({
 const User = mongoose.model('users', userSchema); 
 
 const itemSchema = mongoose.Schema({
+    id: {type: String},
     type: {type: String},
     name: {type: String},
-    url: {type: String},
+    imgUrl: {type: String},
     color: {type: String},
 })
 
