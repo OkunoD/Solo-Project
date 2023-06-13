@@ -155,10 +155,10 @@ const wardrobeReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case types.FETCH_MONGO_DATA_SUCCESS:
-      return fillWardrobe(payload);
-      
+      return fillWardrobe(action.payload);//
+
     case types.FETCH_MONGO_DATA_ERROR:
-      return 
+      return
 
     case types.ADD_ITEM:
       return addItem(action.payload1, action.payload2, action.payload3, action.payload4);

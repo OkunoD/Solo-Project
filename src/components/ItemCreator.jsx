@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import { addItemActionCreator } from '../actions/actions';
+import { addItemActionCreator, fillWardrobeActionCreator } from '../actions/actions';
 import { connect } from 'react-redux';
 import './styles.css';
 //   const [location, setLocation] = useState('');
 //   useEffect(() => {}, [location]);
 const mapDispatchToProps = dispatch => ({
   // addMarket : (location) => dispatch(addMarketActionCreator(location)),
+  fillWardrobe : (payload) => dispatch(fillWardrobeActionCreator(payload)),
   addItem : (payload1, payload2, payload3, payload4) => dispatch(addItemActionCreator(payload1, payload2, payload3, payload4)),
   addHeadwear : (payload1, payload2, payload3) => dispatch(addHeadwearActionCreator(payload1,payload2,payload3)),
   addTop : (payload1, payload2, payload3) => dispatch(addTopActionCreator(payload1,payload2,payload3)),
@@ -27,13 +28,13 @@ const ItemCreator = (props) => {
   useEffect(() => {
     console.log('useeffect hit')
     fetch('/api/items')
-      .then(console.log('after get fetch request'))
       .then((response) => {
         console.log('response is: ', response);
         return response.json();
       })
       .then((data) => {
-        console.log('data is: ', data); // Display the retrieved items in the console
+        console.log('data is: ', data);
+        props.fillWardrobe(data);
       })
       .catch((error) => {
         console.error('Error:', error);
