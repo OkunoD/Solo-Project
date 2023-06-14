@@ -29,14 +29,14 @@ const Item = (props) => {
         <p><strong>&nbsp;&nbsp;{props.name}</strong></p>
         <p>&nbsp;&nbsp;{props.color}</p>
         <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
-        <div className="itemButton">
+        {/* <div className="itemButton">
           <input className="selectItemButton" onClick={() => {
             console.log('tryon input received')}
            } readOnly/>
           <input className="deleteItemButton" onClick={() => {
             console.log('delete input received')}
            } readOnly/>
-        </div>
+        </div> */}
       </div>
     );};
 
