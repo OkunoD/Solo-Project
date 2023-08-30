@@ -46,13 +46,6 @@ const Item = (props) => {
       setImageSrc(`data:${contentType};base64,${base64}`);
     }, [props]);
 
-    // const imageStyle = {
-    //   width: '100%',
-    //   height: 'auto',
-    //   display: 'flex',  // Ensures the image is contained within the specified dimensions
-    //   justifyContent: 'center', // Horizontally centers the image
-    //   alignItems: 'center'  // Vertically centers the image
-    // };
 
     return (
       <div className="itemBox">
