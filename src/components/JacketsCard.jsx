@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 // import
 import { deleteItemActionCreator, tryOnItemActionCreator } from '../actions/actions.js'
@@ -11,7 +11,7 @@ const mapStateToProps = function(state, ownProps) {
     jacketId: state.jacketsList[ownProps.index].id,
     jacketName: state.jacketsList[ownProps.index].name,
     jacketColor: state.jacketsList[ownProps.index].color,
-    imgUrl: state.jacketsList[ownProps.index].imgUrl,
+    file: state.jacketsList[ownProps.index].imgUrl,
   };
 };
 
@@ -23,8 +23,39 @@ const mapDispatchToProps = (dispatch) => ({
 const Jackets = (props) => {
     key = props.index;
 
+    const [imageSrc, setImageSrc] = useState('');
+
+    const imageData = props.file ? props.file.data : null;
+    const contentType = props.contentType;
+
+    useEffect(() => {
+      // Convert ArrayBuffer to base64
+      const base64 = btoa(
+        new Uint8Array(imageData).reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          ''
+        )
+      );
+      setImageSrc(`data:${contentType};base64,${base64}`);
+    }, [props]);
+  
+    const handleDelete = (itemId) => {
+      fetch(`/api/items/${itemId}`, {
+        method: "DELETE",
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.error('Error deleting item:', error);
+      });
+    };
+
     return (
       <div className="itemBox">
+        <div className="image-container">
+          <img src={imageSrc} alt="Retrieved from state" className="image-content" />
+        </div>
         <p><strong>&nbsp;&nbsp;{props.jacketName}</strong></p>
         <p>&nbsp;&nbsp;{props.jacketColor}</p>
         <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
@@ -34,7 +65,7 @@ const Jackets = (props) => {
             console.log('jacketId is: ', props.jacketId);
             props.tryOnItem('jackets', props.jacketId, 'Jacket')}} type="Submit" value="Try it on" readOnly/>
           <input className="deleteItemButton" onClick={() => {
-            console.log('delete input received');
+            handleDelete(props.jacketId);
             props.deleteItem('jackets', props.jacketId)}} type="Submit" value="Delete" readOnly/>
         </div>
       </div>
