@@ -37,7 +37,8 @@ const Outfit = props => {
                 id={currentItem.id}
                 name={currentItem.name}
                 color={currentItem.color}
-                imgUrl={currentItem.imgUrl}
+                file={currentItem.file}
+                contentType={currentItem.contentType}
                 // index = {i}
             />);
     }
