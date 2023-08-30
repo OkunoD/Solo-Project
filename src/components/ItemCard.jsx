@@ -46,19 +46,19 @@ const Item = (props) => {
       setImageSrc(`data:${contentType};base64,${base64}`);
     }, [props]);
 
-    const imageStyle = {
-      width: '100%',
-      height: 'auto',
-      display: 'flex',  // Ensures the image is contained within the specified dimensions
-      justifyContent: 'center', // Horizontally centers the image
-      alignItems: 'center'  // Vertically centers the image
-    };
+    // const imageStyle = {
+    //   width: '100%',
+    //   height: 'auto',
+    //   display: 'flex',  // Ensures the image is contained within the specified dimensions
+    //   justifyContent: 'center', // Horizontally centers the image
+    //   alignItems: 'center'  // Vertically centers the image
+    // };
 
     return (
       <div className="itemBox">
         <p><strong>&nbsp;&nbsp;{props.name}</strong></p>
-        <div style={imageStyle}>
-          <img src={imageSrc} alt="Retrieved from state" style={imageStyle} />
+        <div className="image-container">
+          <img src={imageSrc} alt="Retrieved from state" className="image-content" />
         </div>
         <p>&nbsp;&nbsp;{props.color}</p>
         <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
