@@ -11,7 +11,7 @@ const mapStateToProps = function(state, ownProps) {
     jacketId: state.jacketsList[ownProps.index].id,
     jacketName: state.jacketsList[ownProps.index].name,
     jacketColor: state.jacketsList[ownProps.index].color,
-    file: state.jacketsList[ownProps.index].imgUrl,
+    file: state.jacketsList[ownProps.index].file,
   };
 };
 
