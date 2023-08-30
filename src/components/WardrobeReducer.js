@@ -7,6 +7,7 @@ const initialState = {
     totalBottoms: 0,
     totalShoes: 0,
     totalAccessories: 0,
+    lastItemId: 0,
 
     headwearList: [],
     lastHeadwearId: 0,
@@ -96,8 +97,12 @@ const wardrobeReducer = (state = initialState, action) => {
         accessories.push(payload[i]); 
       };
     };
+    
+    console.log('fillWardrobe payload[payload.length-1].id is: ', payload[payload.length-1].id)
+    
     return {
       ...state,
+      lastItemId: payload[payload.length-1].id,
       headwearList: headwear,
       topsList: tops,
       jacketsList: jackets,
@@ -108,21 +113,24 @@ const wardrobeReducer = (state = initialState, action) => {
   }
 
   const addItem = (...payload) => {
-    console.log('payload is :', payload);
+    console.log("Inside addItem reducer");
+    // console.log('payload is :', payload);
     const itemType = payload[0];
     const listName = `${itemType}List`;
-    const lastItemIdString = `last${itemType.charAt(0).toUpperCase()}${itemType.slice(1)}Id`;
+    // const lastItemIdString = `last${itemType.charAt(0).toUpperCase()}${itemType.slice(1)}Id`;
     const totalItemIdString = `total${itemType.charAt(0).toUpperCase()}${itemType.slice(1)}`;
 
-    const lastItemId = state[lastItemIdString];
+    // // const lastItemId = state[lastItemIdString];
     const updatedList = [...state[listName]];
-    const newItemId = lastItemId + 1;
+    // const newItemId = lastItemId + 1;
+
+    const newItemId = state['lastItemId'] + 1;
 
     const newItem = {
       id: newItemId,
       type: payload[0],
       name: payload[1],
-      imgUrl: payload[2],
+      file: payload[2],
       color: payload[3],
     };
 
@@ -133,7 +141,7 @@ const wardrobeReducer = (state = initialState, action) => {
       ...state,
       [listName]: updatedList,
       [totalItemIdString]: state[totalItemIdString] + 1,
-      [lastItemIdString]: newItemId,
+      lastItemId: newItemId,
     };
   };
 
