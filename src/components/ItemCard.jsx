@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addJacketActionCreator, deleteJacketActionCreator, tryOnJacketActionCreator } from '../actions/actions.js'
 import './styles.css'; 
@@ -10,7 +10,7 @@ const mapStateToProps = function(state, ownProps) {
     id: ownProps.id,
     name: ownProps.name,
     color: ownProps.color,
-    imgUrl: ownProps.imgUrl,
+    file: ownProps.file,
   };
 };
 
@@ -19,14 +19,47 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Item = (props) => {
     // key = props.index;
+    console.log('in Item, props is', props);
+    console.log('in Item, props.file is:', props.file);
+    console.log('in Item, props.contentType is:', props.contentType);
+
     console.log('in Item, props.id is:', props.id);
     console.log('in Item, props.name is:', props.name);
     console.log('in Item, props.color is:', props.color);
-    console.log('in Item, props.imgUrl is:', props.imgUrl);
+
+    const [imageSrc, setImageSrc] = useState('');
+
+    // console.log('in Item, props.imgUrl is:', props.imgUrl);
+
+    const imageData = props.file ? props.file.data : null;
+    console.log('imageData is', imageData);
+    const contentType = props.contentType;
+
+    useEffect(() => {
+      // Convert ArrayBuffer to base64
+      const base64 = btoa(
+        new Uint8Array(imageData).reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          ''
+        )
+      );
+      setImageSrc(`data:${contentType};base64,${base64}`);
+    }, [props]);
+
+    const imageStyle = {
+      width: '100%',
+      height: 'auto',
+      display: 'flex',  // Ensures the image is contained within the specified dimensions
+      justifyContent: 'center', // Horizontally centers the image
+      alignItems: 'center'  // Vertically centers the image
+    };
 
     return (
       <div className="itemBox">
         <p><strong>&nbsp;&nbsp;{props.name}</strong></p>
+        <div style={imageStyle}>
+          <img src={imageSrc} alt="Retrieved from state" style={imageStyle} />
+        </div>
         <p>&nbsp;&nbsp;{props.color}</p>
         <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
         {/* <div className="itemButton">
