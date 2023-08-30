@@ -10,7 +10,7 @@ const initialState = {
     lastItemId: 0,
 
     headwearList: [],
-    lastHeadwearId: 0,
+    // lastHeadwearId: 0,
     wornHeadwear: { 
       id: '',
       type: '',
@@ -20,7 +20,7 @@ const initialState = {
     },
 
     topsList: [],
-    lastTopsId: 0,
+    // lastTopsId: 0,
     wornTop: { 
       id: '',
       type: '',
@@ -30,7 +30,7 @@ const initialState = {
     },
 
     jacketsList: [],
-    lastJacketsId: 0,
+    // lastJacketsId: 0,
     wornJacket: { 
       id: '',
       type: '',
@@ -40,7 +40,7 @@ const initialState = {
     },
 
     bottomsList: [],
-    lastBottomsId: 0,
+    // lastBottomsId: 0,
     wornBottom: { 
       id: '',
       type: '',
@@ -50,7 +50,7 @@ const initialState = {
     },
 
     shoesList: [],
-    lastShoesId: 0,
+    // lastShoesId: 0,
     wornShoes: { 
       id: '',
       type: '',
@@ -60,7 +60,7 @@ const initialState = {
     },
 
     accessoriesList: [],
-    lastAccessoriesId: 0,
+    // lastAccessoriesId: 0,
     wornAccessory: { 
       id: '',
       type: '',
