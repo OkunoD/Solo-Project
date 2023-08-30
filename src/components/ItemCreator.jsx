@@ -86,36 +86,13 @@ const ItemCreator = (props) => {
             const lastItemId = state['lastItemId'];
 
             console.log('reached fetch request');
-            // fetch('/api/items', {
-            //   method: 'POST',
-            //   headers: {
-            //     'Content-Type': 'application/json',
-            //   },
-            //   body: JSON.stringify({
-            //     id: lastItemId+1,
-            //     type: itemType,
-            //     name: itemName,
-            //     imgUrl: itemUrl,
-            //     color: itemColor,
-            //   }),
-            // })
-            //   .then((response) => response.json())
-            //   .then((data) => {
-            //     console.log(data);
-            //   })
-            //   .catch((error) => {
-            //     console.error('Error:', error);
-            //   });
+
             const formData = new FormData();
             formData.append('file', selectedFile);
             formData.append('id', lastItemId+1);
             formData.append('name', itemName);
             formData.append('type', itemType);
             formData.append('color', itemColor);
-
-            for (const [key, value] of formData.entries()) {
-              console.log(`${key}:`, value);
-            }
 
             fetch('/api/items', {
               method: 'POST',

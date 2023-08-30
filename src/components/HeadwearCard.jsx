@@ -11,11 +11,6 @@ const mapStateToProps = function(state, ownProps) {
     headwearName: state.headwearList[ownProps.index].name,
     headwearColor: state.headwearList[ownProps.index].color,
     file: state.headwearList[ownProps.index].file,
-    //state below comment not needed
-    headwearList: state.headwearList,
-    ownProps: ownProps,
-    randomNum: 299,
-    selectedHeadwear: state.selectedHeadwear,
   };
 };
 
@@ -25,14 +20,13 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Headwear = (props) => {
-  const [imageSrc, setImageSrc] = useState('');
-
   key = props.index;
-
-  console.log('props in headwear is: ', props)
+  
+  const [imageSrc, setImageSrc] = useState('');
 
   const imageData = props.file ? props.file.data : null;
   const contentType = props.contentType;
+  
 
   useEffect(() => {
     // Convert ArrayBuffer to base64
@@ -44,6 +38,18 @@ const Headwear = (props) => {
     );
     setImageSrc(`data:${contentType};base64,${base64}`);
   }, [props]);
+
+  const handleDelete = (itemId) => {
+    fetch(`/api/items/${itemId}`, {
+      method: "DELETE",
+    })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.error('Error deleting item:', error);
+    });
+  };
 
   return (
     <div className="itemBox">
@@ -58,10 +64,12 @@ const Headwear = (props) => {
           console.log('tryon input received');
           props.tryOnItem('headwear', props.headwearId, 'Headwear')}} type="Submit" value="Try it on" readOnly/>
         <input className="deleteItemButton" onClick={() => {
+          handleDelete(props.headwearId);
           props.deleteItem('headwear', props.headwearId)}} type="Submit" value="Delete" readOnly/>
       </div>
     </div>
-  );};
+  );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps) (Headwear);
 

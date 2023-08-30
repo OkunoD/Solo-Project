@@ -80,6 +80,21 @@ app.get('/api/items', (req, res) => {
   });
 });
 
+app.delete('/api/items/:itemId', async (req, res) => {
+  const itemId = req.params.itemId;
+
+  try {
+    const deletedItem = await Item.deleteMany({});
+
+    if (!deletedItem) {
+      return res.status(404).json({ message: 'Item not found.' });
+    }
+    res.status(200).json({ message: 'Item deleted successfully.' });
+  } catch (error) {
+    console.error('Error deleting item:', error);
+    res.status(500).json({ message: 'Internal server error.' });
+  }
+})
 
 
 app.use((err, req, res, next) => {
