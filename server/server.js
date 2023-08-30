@@ -1,17 +1,19 @@
 const express = require('express');
 const app = express();
+const multer = require('multer');
 const path = require('path');
 const PORT = 3000;
-const wardrobeRouter = require('./routes.js')
+const { User, Item } = require('./models.js')
 const { default: mongoose } = require('mongoose');
 const MONGO_URI = 'mongodb+srv://derek:derek@cluster0.wmt8hg8.mongodb.net/';
-const { User, Item } = require('./models.js')
 //serve
 //begin converting to TS 5/16/23
 
-
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 mongoose.set("strictQuery", false);
 mongoose.connect(MONGO_URI, {
@@ -27,20 +29,43 @@ mongoose.connect(MONGO_URI, {
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
-app.use(wardrobeRouter);
+// app.post('/api/items', async(req,res) => {
+  
+//   try {
+//     console.log('post api hit');
+//     const item = await Item.create(req.body);
+//     console.log('item is', item);
+//     res.status(200).json(item);
+//   } catch (error) {
+//     console.log(error.message);
+//     res.status(500).json({message: error.messge});
+//   };
+// });
 
-app.post('/api/items', async(req,res) => {
+
+app.post('/api/items', upload.single('file'), async(req,res) => {
+  if (!req.file) {
+    return res.status(400).send(JSON.stringify('No file uploaded.'));
+  }
+  
+  const item = new Item({
+    file: req.file.buffer,
+    contentType: req.file.mimetype,
+    id: req.body.id,
+    name: req.body.name,
+    type: req.body.type,
+    color: req.body.color,
+  })
+  console.log("item in server is: ", item)
+
   try {
-    console.log('post api hit');
-    const item = await Item.create(req.body);
-    console.log('item is', item);
-    res.status(200).json(item);
+    await item.save();
+    res.status(200).send(JSON.stringify('File uploaded and saved.'));
   } catch (error) {
-    console.log(error.message);
-    res.status(500).json({message: error.messge});
-  };
+    console.error('Error saving photo:', error);
+    res.status(500).send('Internal server error.');
+  }
 });
-
 
 //Below code to retrieve items in database
 app.get('/api/items', (req, res) => {
