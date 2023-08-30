@@ -19,13 +19,20 @@ const mapDispatchToProps = dispatch => ({
 
 const ItemCreator = (props) => {
   const state = useSelector((state) => state);
+  // const [itemUrl, setUrl] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
+  
   const [itemType, setType] = useState('');
   const [itemName, setName] = useState('');
-  const [itemUrl, setUrl] = useState('');
   const [itemColor, setColor] = useState('');
   const handleSelect = (e) => {
     setType(e.target.value);
   };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+  }
   //BELOW CODE TO FILL WARDROBE FROM DATABASE
   useEffect(() => {
     console.log('useeffect hit')
@@ -41,7 +48,7 @@ const ItemCreator = (props) => {
       .catch((error) => {
         console.error('Error:', error);
       });
-  }, [itemType]);
+  }, []);
   // //END DATABASE TESTING CODE
   
   return (
@@ -69,27 +76,50 @@ const ItemCreator = (props) => {
           <input className="addItemField" onChange={(e) => setColor(e.target.value)} type="text" value={itemColor} />
         </div>
         <div>
-          <label>Img Url: </label>
-          <input className="addItemField" onChange={(e) => setUrl(e.target.value)} type="text" value={itemUrl} />
+          <label>Upload Image: </label>
+          {/* <input className="addItemField" onChange={(e) => setUrl(e.target.value)} type="text" value={itemUrl} /> */}
+          <input type="file" accept="image/*" onChange={handleFileChange} />
         </div>
         <input style={{padding: '3px'}} className="addItem" onClick={() => {
-            props.addItem(itemType, itemName, itemUrl, itemColor);
-            const lastItemIdString = `last${itemType.charAt(0).toUpperCase()}${itemType.slice(1)}Id`;
-            const lastItemId = state[lastItemIdString];
+            props.addItem(itemType, itemName, selectedFile, itemColor);
+
+            const lastItemId = state['lastItemId'];
 
             console.log('reached fetch request');
+            // fetch('/api/items', {
+            //   method: 'POST',
+            //   headers: {
+            //     'Content-Type': 'application/json',
+            //   },
+            //   body: JSON.stringify({
+            //     id: lastItemId+1,
+            //     type: itemType,
+            //     name: itemName,
+            //     imgUrl: itemUrl,
+            //     color: itemColor,
+            //   }),
+            // })
+            //   .then((response) => response.json())
+            //   .then((data) => {
+            //     console.log(data);
+            //   })
+            //   .catch((error) => {
+            //     console.error('Error:', error);
+            //   });
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+            formData.append('id', lastItemId+1);
+            formData.append('name', itemName);
+            formData.append('type', itemType);
+            formData.append('color', itemColor);
+
+            for (const [key, value] of formData.entries()) {
+              console.log(`${key}:`, value);
+            }
+
             fetch('/api/items', {
               method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                id: lastItemId+1,
-                type: itemType,
-                name: itemName,
-                imgUrl: itemUrl,
-                color: itemColor,
-              }),
+              body: formData,
             })
               .then((response) => response.json())
               .then((data) => {
