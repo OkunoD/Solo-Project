@@ -56,10 +56,10 @@ const Item = (props) => {
 
     return (
       <div className="itemBox">
-        <p><strong>&nbsp;&nbsp;{props.name}</strong></p>
         <div className="image-container">
           <img src={imageSrc} alt="Retrieved from state" className="image-content" />
         </div>
+        <p><strong>&nbsp;&nbsp;{props.name}</strong></p>
         <p>&nbsp;&nbsp;{props.color}</p>
         <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
         {/* <div className="itemButton">
