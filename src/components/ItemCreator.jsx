@@ -19,9 +19,7 @@ const mapDispatchToProps = dispatch => ({
 
 const ItemCreator = (props) => {
   const state = useSelector((state) => state);
-  // const [itemUrl, setUrl] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
-  
   const [itemType, setType] = useState('');
   const [itemName, setName] = useState('');
   const [itemColor, setColor] = useState('');
@@ -53,10 +51,9 @@ const ItemCreator = (props) => {
   
   return (
     <div className="addItemBox">
-      <div className="addItemHeaders">Add Piece</div>
+      <div className="addItemHeaders">ADD PIECE</div>
       <div className="addItemBorders">
         <div>
-        <label>Type: </label>
         <select name="selectList" id="selectList" onChange={handleSelect} value={itemType}>
          <option value="null">select type</option>
          <option value="headwear">Hat</option>
@@ -68,17 +65,13 @@ const ItemCreator = (props) => {
         </select>
         </div>
         <div>
-          <label>Item Name: </label>
-          <input className="addItemField" onChange={(e) => setName(e.target.value)} type="text" value={itemName} />
+          <input className="user-input-field" placeholder="Name" onChange={(e) => setName(e.target.value)} type="text" value={itemName} />
         </div>
         <div>
-          <label>Color: </label>
-          <input className="addItemField" onChange={(e) => setColor(e.target.value)} type="text" value={itemColor} />
+          <input className="user-input-field" placeholder="Color" onChange={(e) => setColor(e.target.value)} type="text" value={itemColor} />
         </div>
         <div>
-          <label>Upload Image: </label>
-          {/* <input className="addItemField" onChange={(e) => setUrl(e.target.value)} type="text" value={itemUrl} /> */}
-          <input type="file" accept="image/*" onChange={handleFileChange} />
+          <input id="getFile" type="file" placeholder="Item Name" accept="image/*" onChange={handleFileChange} />
         </div>
         <input style={{padding: '3px'}} className="addItem" onClick={() => {
             props.addItem(itemType, itemName, selectedFile, itemColor);
