@@ -22,7 +22,7 @@ function WardrobeContainer() {
   return(
     <div className="wardrobeContainer">
       <div className="outerBox">
-        <div className="header"><strong>&nbsp;&nbsp;Your Wardrobe</strong></div>
+        <div className="header"><strong>&nbsp;&nbsp;YOUR WARDROBE</strong></div>
         { /* Start adding components here... */ }
         <ItemCreator />
         <Outfit />

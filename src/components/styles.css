@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin&family=Open+Sans:wght@300&display=swap');
 
 body {
+    font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-weight: bold;
     margin: .5%;
     background-color: lightblue;
     color: black;
     font-family: 'Open Sans';
 }
 .wardrobeContainer {
+    font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-weight: normal;
     margin: 2%;
     border-style: ridge;
     border-width: 30px;
@@ -39,7 +43,7 @@ body {
     font-size: 15px;
     font-weight: bold;
 }
-.addItemField {
+.user-input-field {
     margin: 2px;
     border-style: solid;
     border-width: 1px;
@@ -60,6 +64,7 @@ body {
     border-color: blue;
 }
 .addItemBox {
+    box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
     margin-top: 5px;
@@ -101,3 +106,4 @@ body {
 max-width: 100%;
 max-height: 100%;
 }
+
