@@ -2,8 +2,6 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('./models.js'); 
 
-
-
 passport.use(
   new GoogleStrategy(
     {
@@ -12,10 +10,11 @@ passport.use(
       callbackURL:process.env.GOOGLE_CALLBACK_URL,
       passReqToCallback:true,
     },
-    (accessToken, refreshToken, profile, done) => {
+    (request, accessToken, refreshToken, profile, done) => {
       // User.findOrCreate({ googleId: profile.id }, function (err, user) {
       //   return done(err, user);
       // });
+      console.log("inside passport middleware in authConfig")
       console.log(profile)
       return done(null,profile)
     }

@@ -12,7 +12,6 @@ const App = () => {
             <Header/>
             <Routes>
                 <Route exact path="/" element={<WardrobeContainer/>}/>
-
             </Routes>
         </Router>
     );

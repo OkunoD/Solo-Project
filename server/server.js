@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
-    secret: 'AIzaSyCQog78xR2OIpp4FJ4V2Euj8T-iZjqm__0',
+    secret:process.env.API_SECRET,
     resave: false,
     saveUninitialized: false,
   })
@@ -24,12 +24,27 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+function logRouteHit(req, res, next) {
+  console.log('Route hit');
+  next(); // Call next to proceed to the route handler
+}
 
-// app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
-//   // Successful authentication
-//   res.redirect('/'); // Redirect to the dashboard or another page
-// });
+app.get('/auth/google', logRouteHit, passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
+  // Successful authentication
+  console.log('in /auth/google/callback')
+  res.redirect('/'); // Redirect to the dashboard or another page
+});
+
+app.get('/logout', (req, res) => {
+  console.log("attempting log out!");
+  req.logout((err) => {
+    if (err) { return next(err); }
+    // res.status(200).json({ message: 'Logout Successful' });
+    res.redirect('/');
+  });
+});
 
 
 

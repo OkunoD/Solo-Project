@@ -31,16 +31,18 @@ const Outfit = props => {
         // console.log('in outfit loop currentItemColor is: ', currentItem.color);
         // console.log('in outfit loop, currentOutfitImgUrl is: ', currentItem.imgUrl);
         
-        currentItem.id ? outfit.push(
+        currentItem.id ? 
+        outfit.push(
             <ItemCard
-                // key = {i}
+                key={i}
                 id={currentItem.id}
                 name={currentItem.name}
                 color={currentItem.color}
                 file={currentItem.file}
                 contentType={currentItem.contentType}
                 // index = {i}
-            />) : outfit.push(<></>);
+            />) 
+            : outfit.push(<div key={i}></div>);
     }
     return(
         <div className="clothingBox">
