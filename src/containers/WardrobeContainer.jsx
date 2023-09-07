@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
   
 function WardrobeContainer() {
   return(
-    <div className="wardrobeContainer">
+    <div className="wardrobe-container">
       <div className="outerBox">
         <div className="header"><strong>&nbsp;&nbsp;YOUR WARDROBE</strong></div>
         { /* Start adding components here... */ }
