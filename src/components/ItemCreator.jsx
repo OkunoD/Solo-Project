@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 import { addItemActionCreator, fillWardrobeActionCreator } from '../actions/actions';
 import { connect } from 'react-redux';
-import './styles.css';
+// import './styles.css';
 //   const [location, setLocation] = useState('');
 //   useEffect(() => {}, [location]);
 const mapDispatchToProps = dispatch => ({
