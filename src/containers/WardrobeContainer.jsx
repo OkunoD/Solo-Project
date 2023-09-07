@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import '../components/styles.css';
 
 // import WardrobeReducer from '../components/WardrobeReducer.js';
 

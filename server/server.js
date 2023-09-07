@@ -1,4 +1,8 @@
+require('dotenv').config();
+require('./authConfig');
 const express = require('express');
+const session = require('express-session')
+const passport = require('passport');
 const app = express();
 const multer = require('multer');
 const path = require('path');
@@ -6,11 +10,28 @@ const PORT = 3000;
 const { User, Item } = require('./models.js')
 const { default: mongoose } = require('mongoose');
 const MONGO_URI = 'mongodb+srv://derek:derek@cluster0.wmt8hg8.mongodb.net/';
-//serve
-//begin converting to TS 5/16/23
 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  session({
+    secret: 'AIzaSyCQog78xR2OIpp4FJ4V2Euj8T-iZjqm__0',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+// app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
+//   // Successful authentication
+//   res.redirect('/'); // Redirect to the dashboard or another page
+// });
+
+
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -28,19 +49,6 @@ mongoose.connect(MONGO_URI, {
 
 
 app.use(express.static(path.join(__dirname, '../dist')));
-
-// app.post('/api/items', async(req,res) => {
-  
-//   try {
-//     console.log('post api hit');
-//     const item = await Item.create(req.body);
-//     console.log('item is', item);
-//     res.status(200).json(item);
-//   } catch (error) {
-//     console.log(error.message);
-//     res.status(500).json({message: error.messge});
-//   };
-// });
 
 
 app.post('/api/items', upload.single('file'), async(req,res) => {
