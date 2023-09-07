@@ -1,6 +1,6 @@
 import React from 'react';
 import WardrobeContainer from '../containers/WardrobeContainer.jsx'
-import './styles.css';
+// import './styles.css';
 
 const App = () => {
     return(
