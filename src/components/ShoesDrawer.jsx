@@ -29,7 +29,7 @@ const ShoesDrawer = props => {
     }
     return(
         <div className="clothingBox">
-            <div className="categoryHeaders">Your Shoes</div>
+            <div className="categoryHeaders">Shoes</div>
             <div className="yourClothing">
             {shoes}
             </div>
