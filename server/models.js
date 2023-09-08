@@ -5,8 +5,9 @@ const userSchema = Schema({
     userame: {type: String, required :true},
     password: {type: String, required :true}
 });
-
 const User = mongoose.model('users', userSchema); 
+
+
 
 const itemSchema = Schema({
     file: {type: Buffer},
@@ -16,10 +17,20 @@ const itemSchema = Schema({
     name: {type: String},
     color: {type: String},
 })
-
 const Item = mongoose.model('Item', itemSchema); 
+
+
+
+const outfitSchema = Schema({
+    name: {type: String},
+    outfit: [{ type: Schema.Types.ObjectId, ref: 'Item' }], // Array of Item references
+})
+const Outfit = mongoose.model('Outfit', outfitSchema);
+
+
 
 module.exports = {
     User,
     Item,
+    Outfit,
 }
