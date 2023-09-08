@@ -98,6 +98,7 @@ app.get('/api/items', (req, res) => {
       res.status(500).send(err);
     } else {
       // console.log('sending items: ', items);
+      console.log(JSON.stringify(items))
       res.status(200).json(items);
     }
   });
