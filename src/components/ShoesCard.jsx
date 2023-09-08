@@ -58,11 +58,11 @@ const Shoes = (props) => {
       <p><strong>&nbsp;&nbsp;{props.shoesName}</strong></p>
       <p>&nbsp;&nbsp;{props.shoesColor}</p>
       <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
-      <div className="itemButton">
-      <input className="selectItemButton" onClick={() => {
+      <div className="item-button-div">
+      <input className="black-button" onClick={() => {
           console.log('tryon input received');
           props.tryOnItem('shoes', props.shoesId, 'Shoes')}} type="Submit" value="Try it on" readOnly/>
-        <input className="deleteItemButton" onClick={() => {
+        <input className="red-button" onClick={() => {
           handleDelete(props.shoesId);
           props.deleteItem('shoes', props.shoesId)}} type="Submit" value="Delete" readOnly/>
       </div>

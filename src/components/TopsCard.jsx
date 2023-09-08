@@ -57,11 +57,11 @@ const Tops = (props) => {
       <p><strong>&nbsp;&nbsp;{props.topName}</strong></p>
       <p>&nbsp;&nbsp;{props.topColor}</p>
       <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
-      <div className="itemButton">
-        <input className="selectItemButton" onClick={() => {
+      <div className="item-button-div">
+        <input className="black-button" onClick={() => {
           console.log('tryon input received');
           props.tryOnItem('tops', props.topId, 'Top')}} type="Submit" value="Try it on" readOnly/>
-        <input className="deleteItemButton" onClick={() => {
+        <input className="red-button" onClick={() => {
           handleDelete(props.topsId);
           props.deleteItem('tops', props.topId)}} type="Submit" value="Delete" readOnly/>
       </div>
