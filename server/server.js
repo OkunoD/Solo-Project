@@ -7,7 +7,7 @@ const app = express();
 const multer = require('multer');
 const path = require('path');
 const PORT = 3000;
-const { User, Item } = require('./models.js')
+const { User, Item, Outfit } = require('./models.js')
 const { default: mongoose } = require('mongoose');
 const MONGO_URI = 'mongodb+srv://derek:derek@cluster0.wmt8hg8.mongodb.net/';
 
@@ -62,9 +62,7 @@ mongoose.connect(MONGO_URI, {
   .then(() => console.log('Connected to Mongo DB.'))
   .catch((err) => console.log(err));
 
-
 app.use(express.static(path.join(__dirname, '../dist')));
-
 
 app.post('/api/items', upload.single('file'), async(req,res) => {
   if (!req.file) {
@@ -85,7 +83,7 @@ app.post('/api/items', upload.single('file'), async(req,res) => {
     await item.save();
     res.status(200).send(JSON.stringify('File uploaded and saved.'));
   } catch (error) {
-    console.error('Error saving photo:', error);
+    console.error('Error saving item:', error);
     res.status(500).send('Internal server error.');
   }
 });
@@ -119,6 +117,30 @@ app.delete('/api/items/:itemId', async (req, res) => {
     res.status(500).json({ message: 'Internal server error.' });
   }
 })
+
+app.post('/api/outfits', async (req,res) => {
+  if (!req.body.name) {
+    return res.status(400).send(JSON.stringify('Need outfit name.'));
+  }
+  const outfit = new Outfit({
+    name: req.body.name,
+    outfit: req.body.outfit,
+  })
+
+  console.log("outfit in server is: ", outfit);
+
+  try {
+    await outfit.save();
+    res.status(200).send(JSON.stringify('outfit saved.'));
+  } catch (error) {
+    console.error('Error saving outfit:', error);
+    res.status(500).send('Internal server error.');
+  }
+})
+
+app.get('*', (req,res) => {
+  res.sendFile(path.resolve(__dirname, '../dist', 'index.html'));
+});
 
 
 app.use((err, req, res, next) => {

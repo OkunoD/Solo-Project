@@ -21,7 +21,7 @@ function WardrobeContainer() {
   return(
     <div className="wardrobe-container">
       <div className="outerBox">
-        <div className="header"><strong>&nbsp;&nbsp;YOUR WARDROBE</strong></div>
+        <div className="header"><strong>&nbsp;&nbsp;MY CLOSET</strong></div>
         { /* Start adding components here... */ }
         <ItemCreator />
         <Outfit />
