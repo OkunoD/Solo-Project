@@ -78,7 +78,7 @@ const ItemCreator = (props) => {
         <div>
           <input id="getFile" type="file" placeholder="Item Name" accept="image/*" onChange={handleFileChange} />
         </div>
-        <input style={{padding: '3px'}} className="addItem" onClick={() => {
+        <input style={{padding: '3px'}} className="green-button" onClick={() => {
             props.addItem(itemType, itemName, selectedFile, itemColor);
 
             const lastItemId = state['lastItemId'];

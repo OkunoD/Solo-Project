@@ -55,11 +55,11 @@ const Item = (props) => {
         <p><strong>&nbsp;&nbsp;{props.name}</strong></p>
         <p>&nbsp;&nbsp;{props.color}</p>
         <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
-        {/* <div className="itemButton">
-          <input className="selectItemButton" onClick={() => {
+        {/* <div className="item-button-div">
+          <input className="black-button" onClick={() => {
             console.log('tryon input received')}
            } readOnly/>
-          <input className="deleteItemButton" onClick={() => {
+          <input className="red-button" onClick={() => {
             console.log('delete input received')}
            } readOnly/>
         </div> */}
