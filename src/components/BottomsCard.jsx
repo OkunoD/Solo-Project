@@ -58,11 +58,11 @@ const Bottoms = (props) => {
       <p><strong>&nbsp;&nbsp;{props.bottomName}</strong></p>
       <p>&nbsp;&nbsp;{props.bottomColor}</p>
       <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
-      <div className="itemButton">
-      <input className="selectItemButton" onClick={() => {
+      <div className="item-button-div">
+      <input className="black-button" onClick={() => {
           console.log('tryon input received');
           props.tryOnItem('bottoms', props.bottomId, 'Bottom')}} type="Submit" value="Try it on" readOnly/>
-        <input className="deleteItemButton" onClick={() => {
+        <input className="red-button" onClick={() => {
           handleDelete(props.bottomId);
           props.deleteItem('bottoms', props.bottomId)}} type="Submit" value="Delete" readOnly/>
       </div>

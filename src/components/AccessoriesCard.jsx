@@ -59,11 +59,11 @@ const Accessories = (props) => {
       <p><strong>&nbsp;&nbsp;{props.accesssoryName}</strong></p>
       <p>&nbsp;&nbsp;{props.accessoryColor}</p>
       <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
-      <div className="itemButton">
-      <input className="selectItemButton" onClick={() => {
+      <div className="item-button-div">
+      <input className="black-button" onClick={() => {
           console.log('tryon input received');
           props.tryOnItem('accessories', props.accessoryId, 'Accessory')}} type="Submit" value="Try it on" readOnly/>
-        <input className="deleteItemButton" onClick={() => {
+        <input className="red-button" onClick={() => {
           handleDelete(accessoryId);
           props.deleteItem('accessories', props.accessoryId)}} type="Submit" value="Delete" readOnly/>
       </div>
