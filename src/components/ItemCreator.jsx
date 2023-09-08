@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 import { addItemActionCreator, fillWardrobeActionCreator } from '../actions/actions';
 import { connect } from 'react-redux';
-// import './styles.css';
-//   const [location, setLocation] = useState('');
-//   useEffect(() => {}, [location]);
+import { mockData } from '../../server/mockData';
+
+
 const mapDispatchToProps = dispatch => ({
   // addMarket : (location) => dispatch(addMarketActionCreator(location)),
   fillWardrobe : (payload) => dispatch(fillWardrobeActionCreator(payload)),
@@ -34,18 +34,23 @@ const ItemCreator = (props) => {
   //BELOW CODE TO FILL WARDROBE FROM DATABASE
   useEffect(() => {
     console.log('useeffect hit')
-    fetch('/api/items')
-      .then((response) => {
-        console.log('response is: ', response);
-        return response.json();
-      })
-      .then((data) => {
-        console.log('data is: ', data);
-        props.fillWardrobe(data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    if (process.env.NODE_ENV==='development') {
+      console.log({mockData});
+      props.fillWardrobe(mockData);
+    } else {
+      fetch('/api/items')
+        .then((response) => {
+          console.log('response is: ', response);
+          return response.json();
+        })
+        .then((data) => {
+          console.log('data is: ', data);
+          props.fillWardrobe(data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
   }, []);
   // //END DATABASE TESTING CODE
   
