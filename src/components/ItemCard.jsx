@@ -17,7 +17,7 @@ const mapStateToProps = function(state, ownProps) {
 const mapDispatchToProps = (dispatch) => ({
 });
 
-const Item = (props) => {
+const ItemCard = (props) => {
     // key = props.index;
     // console.log('in Item, props is', props);
     // console.log('in Item, props.file is:', props.file);
@@ -66,5 +66,5 @@ const Item = (props) => {
       </div>
     );};
 
-export default connect(mapStateToProps, mapDispatchToProps) (Item);
+export default connect(mapStateToProps, mapDispatchToProps) (ItemCard);
 
