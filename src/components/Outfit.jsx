@@ -27,15 +27,27 @@ const Outfit = props => {
     const outfitArr = [props.wornHeadwear, props.wornTop, props.wornJacket, props.wornBottom, props.wornShoes, props.wornAccessory];
     
     const saveOutfit = () => {
-        //should save outfit to database
-        //needs to write outfit array to db, needs current item.id
-        //
-        const formData = new FormData();
-        formData.append('name', outfitName)
-        formData.append('outfit', outfitArr)
+
+        const outfitIds = [];
+        for (let i=0; i<outfitArr.length; i++) {
+            outfitIds.push(outfitArr[i].id)
+        }
+
+        const outfitData = {
+            name: outfitName,
+            outfit: outfitIds,
+        }
+
+        console.log({outfitData});
+        console.log({outfitArr});
+        console.log({outfitName});
+
         fetch('/api/outfits', {
             method: 'POST',
-            body: formData,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(outfitData),
           })
             .then((response) => response.json())
             .then((data) => {
@@ -72,10 +84,10 @@ const Outfit = props => {
             <div className="yourClothing">
                 {outfit}
             </div>
-            <input classname="user-input-field" placeholder="Outfit Name" onChange={(e)=>setOutfitName(e.target.value)} type="text" value={outfitName}></input>
-            <button type="submit" class="black-button" onClick={() => {
+            <input classname="user-input-field" placeholder="Outfit Name" onChange={(e) => setOutfitName(e.target.value)} type="text" value={outfitName}></input>
+            <input type="submit" class="black-button" onClick={() => {
                 saveOutfit();
-            }}>Save Outfit</button>
+            }} value="Save Outfit"/>
         </div>
     );
 };
