@@ -5,7 +5,7 @@ import { fillWardrobeActionCreator } from '../actions/actions';
 import WardrobeContainer from '../containers/WardrobeContainer.jsx'
 import OutfitContainer from '../containers/OutfitContainer.jsx';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-
+import { mockData } from '../../server/mockData.js';
 
 // import './styles.css';
 
