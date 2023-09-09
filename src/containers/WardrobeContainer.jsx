@@ -17,7 +17,7 @@ import Dispatch from 'react';
 const mapStateToProps = state => ({  
 });
   
-function WardrobeContainer() {
+const WardrobeContainer = () => {
   return(
     <div className="wardrobe-container">
       <div className="outerBox">
@@ -36,4 +36,4 @@ function WardrobeContainer() {
   );
 }
 
-  export default connect(mapStateToProps, null)(WardrobeContainer);
+export default connect(mapStateToProps, null)(WardrobeContainer);
