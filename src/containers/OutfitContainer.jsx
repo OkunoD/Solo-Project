@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 
 // import WardrobeReducer from '../components/WardrobeReducer.js';
 
@@ -14,7 +14,12 @@ const OutfitContainer = () => {
     //fetch outfits from db (outfits have {name: string, outfit: array of ids})
     //use outfit array to fetch entire items from state to then fill an outfit card
 
+    const state = useSelector((state) => state);
+
     const [outfits, setOutfits] = useState([]);
+
+    console.log("state in outfitcontainer is: ", state);
+
 
     useEffect(() => {
         fetch('/api/outfits')
@@ -28,7 +33,7 @@ const OutfitContainer = () => {
         }).catch((error) => {
             console.log('Error fetching outfits:', error);
         });
-    }, [outfits]);
+    }, []);
 
 
   return(

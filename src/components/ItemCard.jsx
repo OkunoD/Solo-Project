@@ -19,13 +19,13 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Item = (props) => {
     // key = props.index;
-    console.log('in Item, props is', props);
-    console.log('in Item, props.file is:', props.file);
-    console.log('in Item, props.contentType is:', props.contentType);
+    // console.log('in Item, props is', props);
+    // console.log('in Item, props.file is:', props.file);
+    // console.log('in Item, props.contentType is:', props.contentType);
 
-    console.log('in Item, props.id is:', props.id);
-    console.log('in Item, props.name is:', props.name);
-    console.log('in Item, props.color is:', props.color);
+    // console.log('in Item, props.id is:', props.id);
+    // console.log('in Item, props.name is:', props.name);
+    // console.log('in Item, props.color is:', props.color);
 
     const [imageSrc, setImageSrc] = useState('');
 
