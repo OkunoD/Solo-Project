@@ -23,7 +23,7 @@ const Item = mongoose.model('Item', itemSchema);
 
 const outfitSchema = Schema({
     name: {type: String},
-    outfit: [{ type: Schema.Types.ObjectId, ref: 'Item' }], // Array of Item references
+    outfit: [{type: Number}],
 })
 const Outfit = mongoose.model('Outfit', outfitSchema);
 
