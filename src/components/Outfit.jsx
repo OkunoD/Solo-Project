@@ -1,6 +1,3 @@
-//components: HeadwearCard, TopsCard, etc...
-//title of box: Your outfit
-
 import React, { Component, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 //import { Link } from 'react-router-dom';
@@ -27,7 +24,6 @@ const Outfit = props => {
     const outfitArr = [props.wornHeadwear, props.wornTop, props.wornJacket, props.wornBottom, props.wornShoes, props.wornAccessory];
     
     const saveOutfit = () => {
-
         const outfitIds = [];
         for (let i=0; i<outfitArr.length; i++) {
             outfitIds.push(outfitArr[i].id)
