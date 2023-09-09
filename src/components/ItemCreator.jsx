@@ -52,7 +52,6 @@ const ItemCreator = (props) => {
         });
     }
   }, []);
-  // //END DATABASE TESTING CODE
   
   return (
     <div className="addItemBox">

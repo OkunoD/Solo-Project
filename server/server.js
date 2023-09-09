@@ -119,6 +119,7 @@ app.delete('/api/items/:itemId', async (req, res) => {
 })
 
 app.post('/api/outfits', async (req,res) => {
+  console.log('req.body in server is: ', req.body);
   if (!req.body.name) {
     return res.status(400).send(JSON.stringify('Need outfit name.'));
   }
