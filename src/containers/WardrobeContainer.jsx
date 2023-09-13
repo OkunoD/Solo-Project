@@ -21,9 +21,25 @@ const WardrobeContainer = () => {
   return(
     <div className="wardrobe-container">
       <div className="outerBox">
-        <div className="header"><strong>&nbsp;&nbsp;MY CLOSET</strong></div>
+        <div className="header">
+          {/* <strong>MY CLOSET</strong> */}
+        <div className="waviy">
+          <span style={{'--i': 1}}>M</span>
+          <span style={{'--i': 2}}>Y</span>
+          <span>.</span>
+          <span style={{'--i': 3}}>C</span>
+          <span style={{'--i': 4}}>L</span>
+          <span style={{'--i': 5}}>O</span>
+          <span style={{'--i': 6}}>S</span>
+          <span style={{'--i': 7}}>E</span>
+          <span style={{'--i': 8}}>T</span>
+        </div>
+
+        <a href="/addItem" className="black-button">ADD ITEM</a>
+        </div>
+
         { /* Start adding components here... */ }
-        <ItemCreator />
+        {/* <ItemCreator /> */}
         <Outfit />
         <HeadwearDrawer />
         <TopsDrawer />

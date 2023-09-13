@@ -30,8 +30,33 @@ body {
     border-color: #e1e1e1;
 }
 .header{
-    font-size: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 9px 12px 20px;
+    font-size: 30px;
     font-weight: 900;
+}
+.waviy {
+position: relative;
+// background-color: #111;
+// display: flex;
+// justify-content: center;
+// align-items: center;
+// min-height: 100vh;
+}
+.waviy span {
+position: relative;
+display: inline-block;
+font-size: 40px;
+color: black;
+text-transform: uppercase;
+animation: flip 7s infinite;
+animation-delay: calc(.4s * var(--i))
+}
+@keyframes flip {
+0%,80% {
+    transform: rotateY(360deg) 
+}
 }
 .sticky-outfit {
     padding-bottom: 4px;
