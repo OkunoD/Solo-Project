@@ -33,16 +33,63 @@ body {
     font-size: 40px;
     font-weight: 900;
 }
+.sticky-outfit {
+    padding-bottom: 4px;
+    margin-bottom: 0px;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: none;
+    transition: all 0.8s ease; /* Add a transition for the shadow */
+}
+.sticky-outfit.with-shadow {
+    box-shadow: 0px 15px 12px rgba(0, 0, 0, .25); /* Add shadow to the bottom */
+    border-color: white;
+  }
+
+.outfit-submit {
+    justify-content: space-between;
+    display: flex;
+    box-sizing: border-box;
+    border-color:#000000;
+    border-style: solid;
+    border-width: 1px;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 250px;
+    margin: 10px;
+    padding-top: 1px;
+}
 .clothingBox {
-    margin: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
     border-style: solid;
     border-width: 1px;
     border-radius: 0px;
     border-color: #7f7f7f;
 }
+.my-outfit {
+    margin: 7px 0px 0px 11px;
+    padding: 0rem .8rem;
+    font-size: 16px;
+    font-weight: 100;
+    color: white;
+    background-color: #000000;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    letter-spacing: .03em;
+    line-height: 1.3;
+    font-family: "Video",monospace;
+    text-transform: uppercase;
+}
 .categoryHeaders {
     font-size: 25px;
-    margin-left: 9px;
+    margin: 7px 0px 7px 11px;
     font-weight: bold;
 }
 .outfit-name-and-delete {
@@ -54,6 +101,13 @@ body {
     overflow: hidden;
     white-space: nowrap;
 }
+.user-input-field {
+    margin: 2px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(212, 212, 212);
+}
+
 .outfit-names {
     
     //pink-cyan-gradient
@@ -139,16 +193,11 @@ body {
     font-size: 15px;
     font-weight: bold;
 }
-.user-input-field {
-    margin: 2px;
-    border-style: solid;
-    border-width: 1px;
-}
 .yourClothing {
     padding-left: 10px;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 .itemBox {
     width: 140px;
