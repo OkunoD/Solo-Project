@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
 import ItemCard from '../components/ItemCard.jsx'
+import Header from '../components/Header.jsx';
 import { mockOutfits } from '../../server/mockData.js';
 
 // import WardrobeReducer from '../components/WardrobeReducer.js';
@@ -102,7 +103,7 @@ const OutfitContainer = () => {
     
   return(
     <div className="outfit-container">
-        <div className="header"><strong>MY OUTFITS</strong></div>
+        <Header view={"myOutfits"}/>
             <div>
                 {fitsList}
             </div>

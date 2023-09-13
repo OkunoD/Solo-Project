@@ -26,7 +26,7 @@ const Outfit = props => {
     
     useEffect(() => {
         const handleScroll = () => {
-          const scrollThreshold = 260; 
+          const scrollThreshold = 20; 
           if (window.scrollY >= scrollThreshold) {
             setIsSticky(true);
           } else {
@@ -99,8 +99,8 @@ const Outfit = props => {
                     {outfit}
                 </div>
                 <div className="outfit-submit">
-                    <input style={{borderColor:"white",borderWidth:"0px"}}classname="user-input-field" placeholder="Outfit Name" onChange={(e) => setOutfitName(e.target.value)} type="text" value={outfitName}></input>
-                    <input type="submit" class="black-button" onClick={() => {
+                    <input style={{borderColor:"white",borderWidth:"0px"}} className="user-input-field" placeholder="Outfit Name" onChange={(e) => setOutfitName(e.target.value)} type="text" value={outfitName}></input>
+                    <input type="submit" className="black-button" onClick={() => {
                         saveOutfit();
                     }} value="Save Outfit"/>
                 </div>
