@@ -3,7 +3,7 @@
 body {
     font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     font-weight: bold;
-    margin: .5%;
+    margin: 0%;
     background-color: rgb(255, 255, 255);
     color: black;
     font-family: 'Open Sans';
@@ -11,30 +11,44 @@ body {
 .wardrobe-container {
     font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     font-weight: normal;
-    margin: 1%;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 0px;
+    margin: 0%;
+    // border-style: solid;
+    // border-width: 1px;
+    // border-radius: 0px;
     border-color: #e1e1e1;
 }
 .outfit-container {
     @extend .wardrobe-container;
 }
+a {
+    text-decoration: none;
+    text-decoration-color: #000000;
+}
 .nav-bar{
     font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     font-weight: normal;
-    margin: 2%;
-    border-style: solid;
-    border-width: 1px;
+    background-color: white;
+    // align-items: center;
+    padding: 15px 16px 10px 16px;
+    margin: 0px 0px 0px 0px;
+    height: 35px;
+    border-bottom: 1px solid #c3c3c3;
     border-radius: 0px;
-    border-color: #e1e1e1;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 200;
 }
 .header{
     display: flex;
     justify-content: space-between;
-    padding: 12px 9px 12px 20px;
-    font-size: 30px;
-    font-weight: 900;
+    padding: 12px 0px 16px 20px;
+    margin-right: 1%;
+    font-size: 20px;
+    font-weight: 2000;
+    top: 0;
 }
 .waviy {
 position: relative;
@@ -47,11 +61,12 @@ position: relative;
 .waviy span {
 position: relative;
 display: inline-block;
-font-size: 40px;
+font-size: 28px;
+font-weight: 450;
 color: black;
 text-transform: uppercase;
 animation: flip 7s infinite;
-animation-delay: calc(.4s * var(--i))
+animation-delay: calc(.5s * var(--i))
 }
 @keyframes flip {
 0%,80% {
@@ -59,11 +74,11 @@ animation-delay: calc(.4s * var(--i))
 }
 }
 .sticky-outfit {
-    padding-bottom: 4px;
+    padding-bottom: 0px;
     margin-bottom: 0px;
     background-color: white;
     position: sticky;
-    top: 0;
+    top: 61px;
     z-index: 100;
     box-shadow: none;
     transition: all 0.8s ease; /* Add a transition for the shadow */
@@ -72,7 +87,6 @@ animation-delay: calc(.4s * var(--i))
     box-shadow: 0px 15px 12px rgba(0, 0, 0, .25); /* Add shadow to the bottom */
     border-color: white;
   }
-
 .outfit-submit {
     justify-content: space-between;
     display: flex;
@@ -84,19 +98,21 @@ animation-delay: calc(.4s * var(--i))
     width: 100%;
     max-width: 250px;
     margin: 10px;
-    padding-top: 1px;
+    padding: 1.5px;
 }
 .clothingBox {
+    // height: ;
     margin-bottom: 1%;
-    margin-left: 1%;
-    margin-right: 1%;
-    border-style: solid;
-    border-width: 1px;
+    margin-left: 0%;
+    margin-right: 0%;
+    // actual Grailed color
+    // border-bottom: 1px solid #e1e1e1;
+    //darker for clearer division
+    border-bottom: 1px solid #c3c3c3;
     border-radius: 0px;
-    border-color: #7f7f7f;
 }
 .my-outfit {
-    margin: 7px 0px 0px 11px;
+    margin: 7px 0px 5px 18px;
     padding: 0rem .8rem;
     font-size: 16px;
     font-weight: 100;
@@ -113,8 +129,8 @@ animation-delay: calc(.4s * var(--i))
     text-transform: uppercase;
 }
 .categoryHeaders {
-    font-size: 25px;
-    margin: 7px 0px 7px 11px;
+    font-size: 20px;
+    margin: 7px 0px 7px 18px;
     font-weight: bold;
 }
 .outfit-name-and-delete {
@@ -132,7 +148,6 @@ animation-delay: calc(.4s * var(--i))
     border-width: 1px;
     border-color: rgb(212, 212, 212);
 }
-
 .outfit-names {
     
     //pink-cyan-gradient
@@ -219,7 +234,7 @@ animation-delay: calc(.4s * var(--i))
     font-weight: bold;
 }
 .yourClothing {
-    padding-left: 10px;
+    padding-left: 16px;
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 8px;
@@ -313,7 +328,7 @@ animation-delay: calc(.4s * var(--i))
     justify-content: center;
     margin: .5px;
     text-align: center;
-    transition: background-color 250ms ease,border-color 250ms ease,color 250ms ease;
+    transition: background-color 300ms ease,border-color 250ms ease,color 250ms ease;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -325,7 +340,6 @@ animation-delay: calc(.4s * var(--i))
     font-family: "Video",monospace;
     text-transform: uppercase;
 }
-
 .red-button {
     @extend .button;
     color: rgb(255, 0, 0);
@@ -339,7 +353,6 @@ animation-delay: calc(.4s * var(--i))
         border-color: white; /* Border color becomes white when hovered */
     }
 }
-
 .black-button{
     @extend .button;
     color: black;
@@ -352,7 +365,6 @@ animation-delay: calc(.4s * var(--i))
         border-color: white; /* Border color becomes white when hovered */
     }
 }
-
 .green-button{
     @extend .button;
     color: black;
@@ -365,7 +377,6 @@ animation-delay: calc(.4s * var(--i))
         border-color: black; /* Border color becomes white when hovered */
     }
 }
-
 .image-container1 {
     display: flex;
     justify-content: center;
@@ -373,7 +384,6 @@ animation-delay: calc(.4s * var(--i))
     width: 100%;
     height: auto;
 }
-
 .image-container {
     align-items: center;
     justify-content: center;
@@ -392,4 +402,14 @@ animation-delay: calc(.4s * var(--i))
 max-width: 100%;
 max-height: 100%;
 }
-
+.add-item-button {
+    @extend .black-button;
+    padding: 10px;
+    font-size: 18px;
+}
+.header-button {
+    @extend .black-button;
+    font-size: 18px;
+    padding: 0px 10px;
+    margin: 4px 10px 5px 10px;
+}
