@@ -17,6 +17,9 @@ body {
     border-radius: 0px;
     border-color: #e1e1e1;
 }
+.outfit-container {
+    @extend .wardrobe-container;
+}
 .nav-bar{
     font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     font-weight: normal;
