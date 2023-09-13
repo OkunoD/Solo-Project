@@ -84,7 +84,11 @@ const OutfitContainer = () => {
 
                     return (
                         <div key={index}>
-                            <div className="outfit-names">{outfitRefs.name}</div>
+                            <p></p>
+                            <div className="outfit-name-and-delete">
+                                <div className="outfit-names">{outfitRefs.name}</div>
+                                <button className="delete-item-button">delete outfit</button>
+                            </div>
                             <div className="yourClothing">{currentOutfit}</div>
                         </div>
                     )
