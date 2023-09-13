@@ -52,9 +52,14 @@ const ItemCard = (props) => {
         <div className="image-container">
           <img src={imageSrc} alt="Retrieved from state" className="image-content" />
         </div>
-        <p><strong>&nbsp;&nbsp;{props.name}</strong></p>
-        <p>&nbsp;&nbsp;{props.color}</p>
-        <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
+        <div className="item-details">
+          <div className="designer-and-size">
+            <p className="item-brand">brandname</p>
+            <p className="item-size">m</p>
+          </div>
+        <p className="item-name">{props.name}</p>
+        {/* <p>{props.color}</p> */}
+        </div>
         {/* <div className="item-button-div">
           <input className="black-button" onClick={() => {
             console.log('tryon input received')}

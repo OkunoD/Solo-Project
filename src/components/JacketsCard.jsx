@@ -55,17 +55,25 @@ const Jackets = (props) => {
         <div className="image-container">
           <img src={imageSrc} alt="Retrieved from state" className="image-content" />
         </div>
-        <p><strong>&nbsp;&nbsp;{props.jacketName}</strong></p>
-        <p>&nbsp;&nbsp;{props.jacketColor}</p>
-        <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
-        <div className="item-button-div">
-          <input className="black-button" onClick={() => {
-            console.log('tryon input received');
-            console.log('jacketId is: ', props.jacketId);
-            props.tryOnItem('jackets', props.jacketId, 'Jacket')}} type="Submit" value="Try it on" readOnly/>
-          <input className="red-button" onClick={() => {
-            handleDelete(props.jacketId);
-            props.deleteItem('jackets', props.jacketId)}} type="Submit" value="Delete" readOnly/>
+        {/* <p>&nbsp;&nbsp;{props.jacketColor}</p> */}
+        {/* <p>&nbsp;&nbsp;{props.imgUrl}</p>need to add img styling */}
+        <div>
+          <div className="item-details">
+            <div className="designer-and-size">
+            <p className="item-brand">brandname</p>
+            <p className="item-size">size</p>
+          </div>
+          <p className="item-name">{props.jacketName}</p>
+          <div className="item-button-div">
+            <input className="black-button" onClick={() => {
+              console.log('tryon input received');
+              console.log('jacketId is: ', props.jacketId);
+              props.tryOnItem('jackets', props.jacketId, 'Jacket')}} type="Submit" value="Try it on" readOnly/>
+            <input className="red-button" onClick={() => {
+              handleDelete(props.jacketId);
+              props.deleteItem('jackets', props.jacketId)}} type="Submit" value="Delete" readOnly/>
+            </div>
+          </div>
         </div>
       </div>
     );};

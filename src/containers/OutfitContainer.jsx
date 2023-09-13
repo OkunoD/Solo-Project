@@ -68,23 +68,23 @@ const OutfitContainer = () => {
                         }
                         // console.log('foundObject is: ', foundObject);
                         // console.log('about to push to fits')
-                        currentOutfit.push
-                        (
-                            <ItemCard
-                                key={foundObject.id}
-                                id={foundObject.id}
-                                name={foundObject.name}
-                                color={foundObject.color}
-                                file={foundObject.file}
-                                contentType={foundObject.contentType}
-                            />
-                            )
+
+                        if (foundObject && foundObject.id) {
+                            currentOutfit.push(
+                                <ItemCard
+                                    key={foundObject.id}
+                                    id={foundObject.id}
+                                    name={foundObject.name}
+                                    color={foundObject.color}
+                                    file={foundObject.file}
+                                    contentType={foundObject.contentType}
+                                />)
+                            }
                         }
-                    
 
                     return (
                         <div key={index}>
-                            <div className="categoryHeaders">{outfitRefs.name}</div>
+                            <div className="outfit-names">{outfitRefs.name}</div>
                             <div className="yourClothing">{currentOutfit}</div>
                         </div>
                     )
@@ -99,11 +99,9 @@ const OutfitContainer = () => {
   return(
     <div className="outfit-container">
         <div className="header"><strong>&nbsp;&nbsp;MY OUTFITS</strong></div>
-        <div>
-            <div className="yourClothing">
+            <div>
                 {fitsList}
             </div>
-        </div>
     </div>
   );
 }
