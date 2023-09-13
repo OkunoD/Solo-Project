@@ -102,7 +102,7 @@ const OutfitContainer = () => {
     
   return(
     <div className="outfit-container">
-        <div className="header"><strong>&nbsp;&nbsp;MY OUTFITS</strong></div>
+        <div className="header"><strong>MY OUTFITS</strong></div>
             <div>
                 {fitsList}
             </div>

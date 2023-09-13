@@ -15,9 +15,6 @@ const mapStateToProps = (state) => {
     };
 };
 
-
-
-
 const Outfit = props => {
     
     const [isSticky, setIsSticky] = useState(false);
