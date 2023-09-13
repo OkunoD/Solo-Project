@@ -16,13 +16,33 @@ const mapStateToProps = (state) => {
 };
 
 
+
+
 const Outfit = props => {
-
+    
+    const [isSticky, setIsSticky] = useState(false);
     const [outfitName, setOutfitName] = useState('');
-
+    
     const outfit = []; 
     const outfitArr = [props.wornHeadwear, props.wornTop, props.wornJacket, props.wornBottom, props.wornShoes, props.wornAccessory];
     
+    
+    useEffect(() => {
+        const handleScroll = () => {
+          const scrollThreshold = 260; 
+          if (window.scrollY >= scrollThreshold) {
+            setIsSticky(true);
+          } else {
+            setIsSticky(false);
+          }
+        };
+        window.addEventListener('scroll', handleScroll);
+    
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }, []);
+
     const saveOutfit = () => {
         const outfitIds = [];
         for (let i=0; i<outfitArr.length; i++) {
@@ -75,15 +95,19 @@ const Outfit = props => {
             : outfit.push(<div key={i}></div>);
     }
     return(
-        <div className="clothingBox">
-            <div className="categoryHeaders">My Outfit</div>
-            <div className="yourClothing">
-                {outfit}
+        <div className={`sticky-outfit ${isSticky ? 'with-shadow' : ''}`}>
+            <div className="clothingBox">
+                <div className="my-outfit">My Outfit</div>
+                <div className="yourClothing" style={{marginBottom:"0px"}}>
+                    {outfit}
+                </div>
+                <div className="outfit-submit">
+                    <input style={{borderColor:"white",borderWidth:"0px"}}classname="user-input-field" placeholder="Outfit Name" onChange={(e) => setOutfitName(e.target.value)} type="text" value={outfitName}></input>
+                    <input type="submit" class="black-button" onClick={() => {
+                        saveOutfit();
+                    }} value="Save Outfit"/>
+                </div>
             </div>
-            <input classname="user-input-field" placeholder="Outfit Name" onChange={(e) => setOutfitName(e.target.value)} type="text" value={outfitName}></input>
-            <input type="submit" class="black-button" onClick={() => {
-                saveOutfit();
-            }} value="Save Outfit"/>
         </div>
     );
 };
