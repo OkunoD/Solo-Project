@@ -32,7 +32,7 @@ const ItemCard = (props) => {
     // console.log('in Item, props.imgUrl is:', props.imgUrl);
 
     const imageData = props.file ? props.file.data : null;
-    console.log('imageData is', imageData);
+    // console.log('imageData is', imageData);
     const contentType = props.contentType;
 
     useEffect(() => {
