@@ -45,57 +45,63 @@ const OutfitContainer = () => {
         }
     }, []);
 
-    //foreach of our outfit ids, 
+    console.log({outfitRefs})
+    //outfitRefs = Array [{name:"winter fit", outfit: []}, {name:"random", outfit:[]}]
 
-    const fits = [];
-    
-    {outfitRefs.map((outfitRefs, index) => {
-        let foundObject = {};
-        // Iterate through the object's keys
-        fits.push(<div>{outfitRefs.name}</div>)
-        for (let i=0;i<outfitRefs.outfit.length;i++) {
-            for (const key in state) {
-                if (state.hasOwnProperty(key)) {
-                    // Search within each array
-                    const value = state[key];
-                    if (Array.isArray(value)) {
-
-                        foundObject = state[key].find((obj) => obj.id === outfitRefs.outfit[i]);
-                        if (foundObject) {
-                            break; // If found, exit the loop
+    const fitsList = (
+        <>
+            <div className="clothingBox">
+                {outfitRefs.map((outfitRefs, index) => {
+                    const currentOutfit = [];
+                    let foundObject = {};
+                    // <div>{outfitRefs["name"]}</div>
+            
+                    for (let i=0;i<outfitRefs.outfit.length;i++) {
+                        for (const key in state) {
+                            const value = state[key];
+                            if (Array.isArray(value)) {
+                                foundObject = state[key].find((obj) => obj.id === outfitRefs.outfit[i]);
+                                if (foundObject) {
+                                    break; // If found, exit the loop
+                                }
+                            }
                         }
-                    }
-                }
-            }
-            console.log('foundObject is: ', foundObject);
+                        // console.log('foundObject is: ', foundObject);
+                        // console.log('about to push to fits')
+                        currentOutfit.push
+                        (
+                            <ItemCard
+                                key={foundObject.id}
+                                id={foundObject.id}
+                                name={foundObject.name}
+                                color={foundObject.color}
+                                file={foundObject.file}
+                                contentType={foundObject.contentType}
+                            />
+                            )
+                        }
+                    
 
-            if (foundObject && foundObject.id) {
-                console.log('about to push to fits')
-                fits.push(
-                    <ItemCard
-                        key={foundObject.id}
-                        id={foundObject.id}
-                        name={foundObject.name}
-                        color={foundObject.color}
-                        file={foundObject.file}
-                        contentType={foundObject.contentType}
-                    />)
-            } else {
-                fits.push(<div key={i}>hello</div>)
-            }
-        }
-        fits.push(<br />)
-    }
-    )}
+                    return (
+                        <div key={index}>
+                            <div className="categoryHeaders">{outfitRefs.name}</div>
+                            <div className="yourClothing">{currentOutfit}</div>
+                        </div>
+                    )
+                    }
+                )
+                }
+            
+            </div>
+        </>
+    )
     
   return(
     <div className="outfit-container">
-      <div className="outerBox">
         <div className="header"><strong>&nbsp;&nbsp;MY OUTFITS</strong></div>
-            <div>
-                <div className="yourClothing">
-                    <strong>{outfitRefs.name}</strong> {fits}
-                </div>
+        <div>
+            <div className="yourClothing">
+                {fitsList}
             </div>
         </div>
     </div>
