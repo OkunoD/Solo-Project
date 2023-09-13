@@ -54,16 +54,22 @@ const Tops = (props) => {
       <div className="image-container">
         <img src={imageSrc} alt="Retrieved from state" className="image-content" />
       </div>
-      <p><strong>&nbsp;&nbsp;{props.topName}</strong></p>
-      <p>&nbsp;&nbsp;{props.topColor}</p>
-      <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
-      <div className="item-button-div">
-        <input className="black-button" onClick={() => {
-          console.log('tryon input received');
-          props.tryOnItem('tops', props.topId, 'Top')}} type="Submit" value="Try it on" readOnly/>
-        <input className="red-button" onClick={() => {
-          handleDelete(props.topsId);
-          props.deleteItem('tops', props.topId)}} type="Submit" value="Delete" readOnly/>
+      <div className="item-details">
+        <div className="designer-and-size">
+          <p className="item-brand">brandname</p>
+          <p className="item-size">size</p>
+        </div>
+        <p className="item-name">{props.topName}</p>
+        {/* <p>&nbsp;&nbsp;{props.topColor}</p> */}
+        {/* <p>&nbsp;&nbsp;{props.imgUrl}</p>need to add img styling */}
+        <div className="item-button-div">
+          <input className="black-button" onClick={() => {
+            console.log('tryon input received');
+            props.tryOnItem('tops', props.topId, 'Top')}} type="Submit" value="Try it on" readOnly/>
+          <input className="red-button" onClick={() => {
+            handleDelete(props.topsId);
+            props.deleteItem('tops', props.topId)}} type="Submit" value="Delete" readOnly/>
+        </div>
       </div>
     </div>
   );

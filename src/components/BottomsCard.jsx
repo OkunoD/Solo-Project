@@ -55,16 +55,18 @@ const Bottoms = (props) => {
       <div className="image-container">
         <img src={imageSrc} alt="Retrieved from state" className="image-content" />
       </div>
-      <p><strong>&nbsp;&nbsp;{props.bottomName}</strong></p>
-      <p>&nbsp;&nbsp;{props.bottomColor}</p>
-      <p>&nbsp;&nbsp;{props.imgUrl}</p>{/* need to add img styling*/}
-      <div className="item-button-div">
-      <input className="black-button" onClick={() => {
+      <div className="item-details">
+        <p className="item-name">{props.bottomName}</p>
+        {/* <p>&nbsp;&nbsp;{props.bottomColor}</p>
+        <p>&nbsp;&nbsp;{props.imgUrl}</p>need to add img styling */}
+        <div className="item-button-div">
+        <input className="black-button" onClick={() => {
           console.log('tryon input received');
           props.tryOnItem('bottoms', props.bottomId, 'Bottom')}} type="Submit" value="Try it on" readOnly/>
-        <input className="red-button" onClick={() => {
-          handleDelete(props.bottomId);
-          props.deleteItem('bottoms', props.bottomId)}} type="Submit" value="Delete" readOnly/>
+          <input className="red-button" onClick={() => {
+            handleDelete(props.bottomId);
+            props.deleteItem('bottoms', props.bottomId)}} type="Submit" value="Delete" readOnly/>
+        </div>
       </div>
     </div>
   );
