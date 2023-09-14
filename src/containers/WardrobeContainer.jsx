@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // import WardrobeReducer from '../components/WardrobeReducer.js';
 
 // import from child components...
-import ItemCreator from '../components/ItemCreator';
+import ItemCreator from '../components/ItemCreatorModal';
 import HeadwearDrawer from '../components/HeadwearDrawer.jsx';
 import TopsDrawer from '../components/TopsDrawer.jsx';
 import JacketsDrawer from '../components/JacketsDrawer.jsx';

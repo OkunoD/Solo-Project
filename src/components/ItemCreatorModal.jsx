@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => ({
   addAccessory : (payload1, payload2, payload3) => dispatch(addAccessoriesActionCreator(payload1,payload2,payload3)),
 });
 
-const ItemCreator = (props) => {
+export const ItemCreatorModal = ({toggleModal, handleClick}) => {
   const state = useSelector((state) => state);
   const [selectedFile, setSelectedFile] = useState(null);
   const [itemType, setType] = useState('');
@@ -31,7 +31,7 @@ const ItemCreator = (props) => {
   }
   
   return (
-    <div className="addItemBox">
+    <div className="add-item-modal">
       <div className="addItemHeaders">ADD PIECE</div>
       <div className="addItemBorders">
         <div>
@@ -80,12 +80,11 @@ const ItemCreator = (props) => {
                 console.error('Error:', error);
               });
       }} type="submit" value="Add Item" />
+      <button className="red-button" onClick={()=>{toggleModal();handleClick();}}>Exit</button>
       </div>
     </div>
   );
 };
 
 
-// export default MarketCreator;
-
-export default connect(null, mapDispatchToProps) (ItemCreator);
+export default connect(null, mapDispatchToProps) (ItemCreatorModal);

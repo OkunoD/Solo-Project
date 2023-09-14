@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { Link } from 'react-router-dom';
 import TopsCard from './TopsCard.jsx';
-import ItemCreator from './ItemCreator';//change to itemCreator
+import ItemCreator from './ItemCreatorModal.jsx';//change to itemCreator
 import { addTopActionCreator, deleteTopActionCreator } from '../actions/actions.js'
 
 const mapStateToProps = (state) => {
