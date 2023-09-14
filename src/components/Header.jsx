@@ -55,7 +55,7 @@ const Header = ({view}) => {
     } else if (view === "myOutfits") {
         return (
             <div className="nav-bar">
-                <header>
+                {/* <header> */}
                     <div>{myOutfitsLogo}</div>
                     <a href="/">
                         <div className="header-button">CLOSET</div>
@@ -69,7 +69,7 @@ const Header = ({view}) => {
                     <a href="/logout">        
                         <div className="header-button">LOG OUT</div>
                     </a>
-                </header>
+                {/* </header> */}
                 
             </div>
         )
