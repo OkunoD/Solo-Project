@@ -52,11 +52,7 @@ a {
 }
 .waviy {
 position: relative;
-// background-color: #111;
-// display: flex;
-// justify-content: center;
-// align-items: center;
-// min-height: 100vh;
+
 }
 .waviy span {
 position: relative;
@@ -250,7 +246,12 @@ animation-delay: calc(.5s * var(--i))
     border-radius: 0px;
     border-color: #000000;
 }
-.addItemBox {
+.add-item-modal {
+    position: fixed;
+    left: 33%;
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
@@ -261,7 +262,8 @@ animation-delay: calc(.5s * var(--i))
     border-style: solid;
     border-width: 1px;
     border-radius: 0px;
-    border-color: #e1e1e1;
+    border-color: black;
+    background-color: white;
 }
 .item-details {
     font-size: 12px;
@@ -412,4 +414,37 @@ max-height: 100%;
     font-size: 18px;
     padding: 0px 10px;
     margin: 4px 10px 5px 10px;
+    &:hover span {
+        animation-name: flip;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        // animation-delay: 0s;
+        animation-delay: calc(0s + (.2s * var(--i)));
+        animation-play-state: alternate;
+    }
+}
+.clicked-button {
+    @extend .header-button;
+    color: white;
+    background-color: black;
+    border-color: white;
+
+    span {
+        animation-name: flip;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        // animation-delay: 0s;
+        animation-delay: calc(0s + (.2s * var(--i)));
+        animation-play-state: alternate;
+    }
+}
+
+@keyframes flip {
+    0%,50% {
+        transform: rotateY(360deg) 
+    }
+}
+.flip-animation {
 }

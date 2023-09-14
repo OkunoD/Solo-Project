@@ -4,7 +4,7 @@ import Header from './Header.jsx';
 import { fillWardrobeActionCreator } from '../actions/actions';
 import WardrobeContainer from '../containers/WardrobeContainer.jsx'
 import OutfitContainer from '../containers/OutfitContainer.jsx';
-import ItemCreator from './ItemCreator.jsx';
+import ItemCreator from './ItemCreatorModal.jsx';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { mockData } from '../../server/mockData.js';
 
@@ -44,7 +44,7 @@ const App = (props) => {
             <Routes>
                 <Route exact path="/" element={<WardrobeContainer/>}/>
                 <Route exact path="/outfits" element={<OutfitContainer/>}/>
-                <Route exact path="/addItem" element={<ItemCreator/>}/>
+                {/* <Route exact path="/addItem" element={<ItemCreator/>}/> */}
             </Routes>
         </Router>
     );
