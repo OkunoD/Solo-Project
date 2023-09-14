@@ -134,7 +134,7 @@ animation-delay: calc(.5s * var(--i))
     font-weight: bold;
 }
 .outfit-name-and-delete {
-    margin: 0px;
+    margin: 0px 16px;
     padding: 0px;
     display: flex;
     width: 100%;
@@ -180,7 +180,7 @@ animation-delay: calc(.5s * var(--i))
     flex: 1;
     font-size: 13px;
     font-weight: 100;
-    margin-left: 10px;
+    margin-left: 0px;
     margin-bottom: 0px;
     padding-left: 6px;
     padding-top: 3px;
