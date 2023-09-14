@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { Link } from 'react-router-dom';
 import JacketsCard from './JacketsCard.jsx';
-import HeadwearCreator from './ItemCreator';//change to itemCreator
+import HeadwearCreator from './ItemCreatorModal.jsx';//change to itemCreator
 import { addJacketActionCreator, deleteJacketActionCreator } from '../actions/actions.js'
 
 const mapStateToProps = (state) => {
