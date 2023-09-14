@@ -420,7 +420,7 @@ max-height: 100%;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
         // animation-delay: 0s;
-        animation-delay: calc(0s + (.2s * var(--i)));
+        animation-delay: calc(0s + (.1s * var(--i)));
         animation-play-state: alternate;
     }
 }
@@ -436,7 +436,19 @@ max-height: 100%;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
         // animation-delay: 0s;
-        animation-delay: calc(0s + (.2s * var(--i)));
+        animation-delay: calc(0s + (.1s * var(--i)));
+        animation-play-state: alternate;
+    }
+}
+.header-button-alt {
+    @extend .header-button;
+    &:hover span {
+        animation-name: flip;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        // animation-delay: 0s;
+        animation-delay: calc(0s + (.1s * var(--i)));
         animation-play-state: alternate;
     }
 }

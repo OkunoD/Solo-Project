@@ -41,58 +41,100 @@ const Header = ({view}) => {
             <span style={{'--i': 9}}>s</span>
         </div>
     )
-    // if (showModal) {
-    //     return <ItemCreatorModal toggleModal={toggleModal}/>
-    // } else 
+
+    const outfitsButton = (
+        <div className={"header-button"}>
+            <span style={{'--i': 0}}>O</span>
+            <span style={{'--i': 1}}>U</span>
+            <span style={{'--i': 2}}>T</span>
+            <span style={{'--i': 3}}>F</span>
+            <span style={{'--i': 4}}>I</span>
+            <span style={{'--i': 5}}>T</span>
+            <span style={{'--i': 6}}>S</span>
+        </div>
+    );
+
+    const closetButton = (
+        <div className={"header-button"}>
+            <span style={{'--i': 0}}>C</span>
+            <span style={{'--i': 1}}>L</span>
+            <span style={{'--i': 2}}>O</span>
+            <span style={{'--i': 3}}>S</span>
+            <span style={{'--i': 4}}>E</span>
+            <span style={{'--i': 5}}>T</span>
+        </div>
+    );
+
+    const addItemButton = (
+        <div className={isClicked ? "clicked-button": "header-button"} onClick={()=>{toggleModal();handleClick();}}>
+            <span style={{'--i': 0}}>A</span>
+            <span style={{'--i': 1}}>D</span>
+            <span style={{'--i': 2}}>D</span>
+            <span>&nbsp;</span>
+            <span style={{'--i': 3}}>I</span>
+            <span style={{'--i': 4}}>T</span>
+            <span style={{'--i': 5}}>E</span>
+            <span style={{'--i': 6}}>M</span>
+        </div>
+    );
+
+    const signInButton = (
+        <div className={"header-button"}>
+            <span style={{'--i': 0}}>S</span>
+            <span style={{'--i': 1}}>I</span>
+            <span style={{'--i': 2}}>G</span>
+            <span style={{'--i': 3}}>N</span>
+            <span style={{'--i': 4}}>-</span>
+            <span style={{'--i': 5}}>U</span>
+            <span style={{'--i': 6}}>P</span>
+            <span style={{'--i': 7}}>/</span>
+            <span style={{'--i': 8}}>L</span>
+            <span style={{'--i': 9}}>O</span>
+            <span style={{'--i': 10}}>G</span>
+            <span>&nbsp;</span>
+            <span style={{'--i': 11}}>I</span>
+            <span style={{'--i': 12}}>N</span>
+         </div>
+    );
+
+    const signOutButton = (
+        <div className={"header-button"}>
+            <span style={{'--i': 0}}>S</span>
+            <span style={{'--i': 1}}>I</span>
+            <span style={{'--i': 2}}>G</span>
+            <span style={{'--i': 3}}>N</span>
+            <span>&nbsp;</span>
+            <span style={{'--i': 4}}>O</span>
+            <span style={{'--i': 5}}>U</span>
+            <span style={{'--i': 6}}>T</span>
+        </div>
+    );
+ 
     if (view === "myCloset") {
         return (
             <>
                 <div className="nav-bar">
                     <div>{myClosetLogo}</div>
-                    <a href="/outfits">
-                        <div className="header-button">OUTFITS</div>
-                    </a>
-                    <div className={isClicked ? "clicked-button": "header-button"} onClick={()=>{toggleModal();handleClick();}}>
-                        <span style={{'--i': 0}}>A</span>
-                        <span style={{'--i': 1}}>D</span>
-                        <span style={{'--i': 2}}>D</span>
-                        <span>&nbsp;</span>
-                        <span style={{'--i': 3}}>I</span>
-                        <span style={{'--i': 4}}>T</span>
-                        <span style={{'--i': 5}}>E</span>
-                        <span style={{'--i': 6}}>M</span>
-                    </div>
-                    <a href="/auth/google">
-                        <div className="header-button">LOG IN/SIGN-UP</div>
-                    </a>
-                    <a href="/logout">        
-                        <div className="header-button">LOG OUT</div>
-                    </a>
+                    <a href="/outfits">{outfitsButton}</a>
+                    {addItemButton}
+                    <a href="/auth/google">{signInButton}</a>
+                    <a href="/logout">{signOutButton}</a>
                 </div>
                 { showModal ? <ItemCreatorModal toggleModal={toggleModal} handleClick={handleClick}/> : null}
             </>
         )
-    } else if (!showModal && view === "myOutfits") {
+    } else if (view === "myOutfits") {
         return (
-            <div className="nav-bar">
-                {/* <header> */}
+            <>
+                <div className="nav-bar">
                     <div>{myOutfitsLogo}</div>
-                    <a href="/">
-                        <div className="header-button">CLOSET</div>
-                    </a>
-                    <div className="header-button" onClick={()=>toggleModal()}>
-                        ADD ITEM
-                    </div>
-                    { showModal ? <ItemCreatorModal toggleModal={toggleModal}/> : null}
-                    <a href="/auth/google">
-                        <div className="header-button">LOG IN/SIGN-UP</div>
-                    </a>
-                    <a href="/logout">        
-                        <div className="header-button">LOG OUT</div>
-                    </a>
-                {/* </header> */}
-                
-            </div>
+                    <a href="/">{closetButton}</a>
+                    {addItemButton}
+                    <a href="/auth/google">{signInButton}</a>
+                    <a href="/logout">{signOutButton}</a>
+                </div>
+                { showModal ? <ItemCreatorModal toggleModal={toggleModal} handleClick={handleClick}/> : null}
+            </>
         )
     }
 }
