@@ -102,11 +102,27 @@ app.get('/api/items', (req, res) => {
   });
 });
 
+app.get('/api/items/:id', async (req, res) => {
+  const { id } = req.params;
+  console.log('api/items/:id get request hit!')
+  try {
+    const item = await Item.find({id: id});
+    if (!item) {
+      return res.status(404).json({ message: 'Item not found' });
+    };
+    res.json(item);
+  } catch {
+    console.log(error);
+    res.status(500).json({message: 'Server error in get to /api/items/:id'});
+  }
+})
+
+
 app.delete('/api/items/:itemId', async (req, res) => {
   const itemId = req.params.itemId;
 
   try {
-    const deletedItem = await Item.deleteMany({});
+    const deletedItem = await Item.deleteOne({id: itemId});
 
     if (!deletedItem) {
       return res.status(404).json({ message: 'Item not found.' });

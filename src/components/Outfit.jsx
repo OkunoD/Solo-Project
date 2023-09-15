@@ -73,7 +73,7 @@ const Outfit = props => {
 
     for (let i = 0; i < outfitArr.length; i++) {
         const currentItem = outfitArr[i];
-        console.log('in outfit loop, currentItem is: ', currentItem);
+        // console.log('in outfit loop, currentItem is: ', currentItem);
         // console.log('in outfit loop, currentItemName is: ', currentItem.name);
         // console.log('in outfit loop currentItemColor is: ', currentItem.color);
         // console.log('in outfit loop, currentOutfitImgUrl is: ', currentItem.imgUrl);

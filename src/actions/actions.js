@@ -1,28 +1,18 @@
 // import actionType constants
 import * as types from '../constants/actionTypes';
 
+export const openAlert = (message) => ({
+  type: types.TURN_ON_ALERT,
+  payload: message,
+});
+
+export const closeAlert = () => ({
+  type: types.TURN_OFF_ALERT,
+});
+
 export const fillWardrobeActionCreator = (data) => ({
   type: types.FETCH_MONGO_DATA_SUCCESS,
   payload: data,
-  // console.log('in fillWardrobeActionCreator')
-  // fetch('/api/items')
-  //   .then(() => {
-  //     console.log('after fillWardrobe fetch request')
-  //     return response.json();
-  //   })
-  //   .then((data) => {
-  //     console.log('in fillWardrobe data is: ', data); // Display the retrieved items in the console
-  //     dispatch({
-  //       type: 'FETCH_MONGO_DATA_SUCCESS',
-  //       payload: data,
-  //     })
-  //   })
-  //   .catch((error) => {
-  //     dispatch({
-  //       type: 'FETCH_MONGO_DATA_ERROR',
-  //       payload: error.message,
-  //     });
-  //   });
 });
 
 export const addItemActionCreator = (itemType, name, imgUrl, color) => ({
