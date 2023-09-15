@@ -1,35 +1,31 @@
 import React, {useEffect, useState} from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { addItemActionCreator, fillWardrobeActionCreator } from '../actions/actions';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { mockData } from '../../server/mockData';
-
-
-const mapDispatchToProps = dispatch => ({
-  addItem : (payload1, payload2, payload3, payload4) => dispatch(addItemActionCreator(payload1, payload2, payload3, payload4)),
-  addHeadwear : (payload1, payload2, payload3) => dispatch(addHeadwearActionCreator(payload1,payload2,payload3)),
-  addTop : (payload1, payload2, payload3) => dispatch(addTopActionCreator(payload1,payload2,payload3)),
-  addJacket : (payload1, payload2, payload3) => dispatch(addJacketActionCreator(payload1,payload2,payload3)),
-  addBottom : (payload1, payload2, payload3) => dispatch(addBottomActionCreator(payload1,payload2,payload3)),
-  addShoes : (payload1, payload2, payload3) => dispatch(addShoesActionCreator(payload1,payload2,payload3)),
-  addAccessory : (payload1, payload2, payload3) => dispatch(addAccessoriesActionCreator(payload1,payload2,payload3)),
-});
 
 export const ItemCreatorModal = ({toggleModal, handleClick}) => {
   const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [itemType, setType] = useState('');
   const [itemName, setName] = useState('');
   const [itemColor, setColor] = useState('');
+
+  const addItem = (payload1, payload2, payload3, payload4) => {
+    dispatch(addItemActionCreator(payload1,payload2,payload3,payload4));
+  }
+  
   const handleSelect = (e) => {
     setType(e.target.value);
   };
-
+  
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedFile(file);
   }
-  
+
   return (
     <div className="add-item-modal">
       <div className="addItemHeaders">ADD PIECE</div>
@@ -55,36 +51,36 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
           <input id="getFile" type="file" placeholder="Item Name" accept="image/*" onChange={handleFileChange} />
         </div>
         <input style={{padding: '3px'}} className="green-button" onClick={() => {
-            props.addItem(itemType, itemName, selectedFile, itemColor);
+          // props.addItem(itemType, itemName, selectedFile, itemColor);
+          addItem(itemType, itemName, selectedFile, itemColor);
 
-            const lastItemId = state['lastItemId'];
+          const lastItemId = state['lastItemId'];
 
-            console.log('reached fetch request');
+          console.log('reached fetch request');
 
-            const formData = new FormData();
-            formData.append('file', selectedFile);
-            formData.append('id', lastItemId+1);
-            formData.append('name', itemName);
-            formData.append('type', itemType);
-            formData.append('color', itemColor);
+          const formData = new FormData();
+          formData.append('file', selectedFile);
+          formData.append('id', lastItemId+1);
+          formData.append('name', itemName);
+          formData.append('type', itemType);
+          formData.append('color', itemColor);
 
-            fetch('/api/items', {
-              method: 'POST',
-              body: formData,
+          fetch('/api/items', {
+            method: 'POST',
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
             })
-              .then((response) => response.json())
-              .then((data) => {
-                console.log(data);
-              })
-              .catch((error) => {
-                console.error('Error:', error);
-              });
-      }} type="submit" value="Add Item" />
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+          }} type="submit" value="Add Item" />
       <button className="red-button" onClick={()=>{toggleModal();handleClick();}}>Exit</button>
       </div>
     </div>
   );
 };
 
-
-export default connect(null, mapDispatchToProps) (ItemCreatorModal);
+export default ItemCreatorModal;

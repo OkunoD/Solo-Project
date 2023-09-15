@@ -1,19 +1,20 @@
 import React, {useContext, useState} from 'react';
+import { connect } from 'react-redux';
 import { useNavigate } from  'react-router-dom'
 import { ItemCreatorModal } from './ItemCreatorModal'
 
 const Header = ({view}) => {
-
+    
     const [ showModal, setShowModal ] = useState(false);
     const [ isClicked, setIsClicked ] = useState(false);
-
+    
     const toggleModal = () => {
         setShowModal(!showModal);
     };
     const handleClick = () => {
         setIsClicked(!isClicked);
-    }
-
+    };
+    
     const myClosetLogo = (
         <div className="waviy">
             <span style={{'--i': 1}}>M</span>
@@ -26,7 +27,7 @@ const Header = ({view}) => {
             <span style={{'--i': 7}}>E</span>
             <span style={{'--i': 8}}>T</span>
         </div>
-    )
+    );
     const myOutfitsLogo = (
         <div className="waviy">
             <span style={{'--i': 1}}>M</span>
@@ -40,8 +41,7 @@ const Header = ({view}) => {
             <span style={{'--i': 8}}>T</span>
             <span style={{'--i': 9}}>s</span>
         </div>
-    )
-
+    );
     const outfitsButton = (
         <div className={"header-button"}>
             <span style={{'--i': 0}}>O</span>
@@ -53,7 +53,6 @@ const Header = ({view}) => {
             <span style={{'--i': 6}}>S</span>
         </div>
     );
-
     const closetButton = (
         <div className={"header-button"}>
             <span style={{'--i': 0}}>C</span>
@@ -64,7 +63,6 @@ const Header = ({view}) => {
             <span style={{'--i': 5}}>T</span>
         </div>
     );
-
     const addItemButton = (
         <div className={isClicked ? "clicked-button": "header-button"} onClick={()=>{toggleModal();handleClick();}}>
             <span style={{'--i': 0}}>A</span>
@@ -77,7 +75,6 @@ const Header = ({view}) => {
             <span style={{'--i': 6}}>M</span>
         </div>
     );
-
     const signInButton = (
         <div className={"header-button"}>
             <span style={{'--i': 0}}>S</span>
@@ -96,7 +93,6 @@ const Header = ({view}) => {
             <span style={{'--i': 12}}>N</span>
          </div>
     );
-
     const signOutButton = (
         <div className={"header-button"}>
             <span style={{'--i': 0}}>S</span>
@@ -109,7 +105,7 @@ const Header = ({view}) => {
             <span style={{'--i': 6}}>T</span>
         </div>
     );
- 
+
     if (view === "myCloset") {
         return (
             <>
@@ -140,5 +136,5 @@ const Header = ({view}) => {
 }
 
 
-
+// export default connect(mapStateToProps, null)(Header);
 export default Header;
