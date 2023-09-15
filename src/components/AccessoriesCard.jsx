@@ -57,7 +57,7 @@ const Accessories = (props) => {
         <img src={imageSrc} alt="Retrieved from state" className="image-content" />
       </div>
       <div className="item-details">
-        <p className="item-name">{props.accesssoryName}</p>
+        <p className="item-name">{props.accessoryName}</p>
         {/* <p>&nbsp;&nbsp;{props.accessoryColor}</p> */}
         <div className="item-button-div">
         <input className="black-button" onClick={() => {

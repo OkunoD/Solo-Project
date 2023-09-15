@@ -17,8 +17,12 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
     dispatch(addItemActionCreator(payload1,payload2,payload3,payload4));
   }
   
-  const handleSelect = (e) => {
+  const handleCategorySelect = (e) => {
     setType(e.target.value);
+  };
+
+  const handleColorSelect = (e) => {
+    setColor(e.target.value);
   };
   
   const handleFileChange = (e) => {
@@ -31,8 +35,8 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
       <div className="addItemHeaders">ADD PIECE</div>
       <div className="addItemBorders">
         <div>
-        <select name="selectList" id="selectList" onChange={handleSelect} value={itemType}>
-         <option value="null">select type</option>
+        <select className="select-list" id="select-list" onChange={handleCategorySelect} value={itemType}>
+         <option value="null">Category</option>
          <option value="headwear">Hat</option>
          <option value="tops">Top</option>
          <option value="jackets">Jacket</option>
@@ -40,12 +44,29 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
          <option value="shoes">Shoes</option>
          <option value="accessories">Accessory</option>
         </select>
+        <select className="select-list" id="select-list" onChange={handleColorSelect} value={itemColor}>
+         <option value="null">Color</option>
+         <option value="White">White</option>
+         <option value="Black">Black</option>
+         <option value="Grey">Grey</option>
+         <option value="Navy">Navy</option>
+         <option value="Blue">Blue</option>
+         <option value="Light Blue">Light Blue</option>
+         <option value="Red">Red</option>
+         <option value="Green">Green</option>
+         <option value="Yellow">Yellow</option>
+         <option value="Orange">Orange</option>
+         <option value="Brown">Brown</option>
+         <option value="Tan">Tan</option>
+         <option value="Cream">Cream</option>
+         <option value="Gold">Gold</option>
+         <option value="Silver">Silver</option>
+         <option value="Camo">Camo</option>
+         <option value="New Color">New Color</option>
+        </select>
         </div>
         <div>
           <input className="user-input-field" placeholder="Name" onChange={(e) => setName(e.target.value)} type="text" value={itemName} />
-        </div>
-        <div>
-          <input className="user-input-field" placeholder="Color" onChange={(e) => setColor(e.target.value)} type="text" value={itemColor} />
         </div>
         <div>
           <input className="file-input" id="getFile" type="file" placeholder="Item Name" accept="image/*" onChange={handleFileChange} />
