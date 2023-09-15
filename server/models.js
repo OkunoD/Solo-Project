@@ -15,6 +15,7 @@ const itemSchema = Schema({
     name: {type: String},
     color: {type: String},
     brand: {type: String},
+    size: {type: String},
 })
 const Item = mongoose.model('Item', itemSchema); 
 
