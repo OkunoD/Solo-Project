@@ -10,6 +10,8 @@ const mapStateToProps = function(state, ownProps) {
     jacketId: state.jacketsList[ownProps.index].id,
     jacketName: state.jacketsList[ownProps.index].name,
     jacketColor: state.jacketsList[ownProps.index].color,
+    jacketSize: state.jacketsList[ownProps.index].size,
+    jacketBrand: state.jacketsList[ownProps.index].brand,
     file: state.jacketsList[ownProps.index].file,
   };
 };
@@ -60,8 +62,8 @@ const Jackets = (props) => {
         <div>
           <div className="item-details">
             <div className="designer-and-size">
-            <p className="item-brand">brandname</p>
-            <p className="item-size">size</p>
+            <p className="item-brand">{props.jacketBrand ? props.jacketBrand : 'no brand'}</p>
+            <p className="item-size">{props.jacketSize ? props.jacketSize: 'no size'}</p>
           </div>
           <p className="item-name">{props.jacketName}</p>
           <div className="item-button-div">

@@ -78,6 +78,7 @@ app.post('/api/items', upload.single('file'), async(req,res) => {
     type: req.body.type,
     color: req.body.color,
     brand: req.body.brand,
+    size: req.body.size,
   })
   console.log("item in server is: ", item)
 

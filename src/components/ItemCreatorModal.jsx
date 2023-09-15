@@ -13,6 +13,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
   const [itemBrand, setBrand] = useState('');
   const [itemName, setName] = useState('');
   const [itemColor, setColor] = useState('');
+  const [itemSize, setSize] = useState('');
 
   const addItem = (payload1, payload2, payload3, payload4, payload5) => {
     dispatch(addItemActionCreator(payload1,payload2,payload3,payload4,payload5));
@@ -24,6 +25,9 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
 
   const handleColorSelect = (e) => {
     setColor(e.target.value);
+  };
+  const handleSizeSelect = (e) => {
+    setSize(e.target.value);
   };
   
   const handleFileChange = (e) => {
@@ -53,6 +57,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
          <option value="Navy">Navy</option>
          <option value="Blue">Blue</option>
          <option value="Light Blue">Light Blue</option>
+         <option value="Purple">Purple</option>
          <option value="Red">Red</option>
          <option value="Green">Green</option>
          <option value="Yellow">Yellow</option>
@@ -64,6 +69,22 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
          <option value="Silver">Silver</option>
          <option value="Camo">Camo</option>
          <option value="New Color">New Color</option>
+        </select>
+        <select className="select-list" id="size-select-list" onChange={handleSizeSelect} value={itemSize}>
+         <option value="null">Size</option>
+         <option value="XS">XS</option>
+         <option value="S">S</option>
+         <option value="M">M</option>
+         <option value="L">L</option>
+         <option value="XL">XL</option>
+         <option value="6">6</option>
+         <option value="7">7</option>
+         <option value="8">8</option>
+         <option value="9">9</option>
+         <option value="10">10</option>
+         <option value="11">11</option>
+         <option value="12">12</option>
+         <option value="13">13</option>
         </select>
         </div>
         <div>
@@ -91,6 +112,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
             formData.append('type', itemType);
             formData.append('color', itemColor);
             formData.append('brand', itemBrand);
+            formData.append('size', itemSize);
 
             fetch('/api/items', {
               method: 'POST',

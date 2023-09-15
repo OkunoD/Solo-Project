@@ -136,6 +136,8 @@ const wardrobeReducer = (state = initialState, action) => {
       name: payload[1],
       file: payload[2],
       color: payload[3],
+      brand: payload[4],
+      size: payload[5],
     };
 
     console.log("newItem inside addItem reducer is: ", newItem);
