@@ -130,6 +130,7 @@ animation-delay: calc(.5s * var(--i))
     margin: 0px 16px;
     padding: 0px;
     display: flex;
+    max-width: 898px;
     width: 100%;
     text-overflow: ellipses;
     overflow: hidden;
