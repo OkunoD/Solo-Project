@@ -132,7 +132,7 @@ app.delete('/api/items/:itemId', async (req, res) => {
   } catch (error) {
     console.error('Error deleting item:', error);
     res.status(500).json({ message: 'Internal server error.' });
-  }
+  } 
 })
 
 app.get('/api/outfits', async (req, res) => {
@@ -165,6 +165,21 @@ app.post('/api/outfits', async (req, res) => {
     console.error('Error saving outfit:', error);
     res.status(500).send('Internal server error.');
   }
+})
+
+app.delete('/api/outfits/:outfit_id', async (req, res) => {
+  console.log('inside /api/outfits/:outfit_id in server');
+  const outfit_id =  req.params.outfit_id;
+  try {
+    const deletedOutfit = await Outfit.deleteOne({_id: outfit_id})
+    if (!deletedOutfit) {
+      return res.status(404).json({ message: 'Outfit not found.' });
+    }
+    res.status(200).json({ message: 'Outfit deleted successfully.' });
+  } catch (error) {
+    console.error('Error deleting outfit:', error);
+    res.status(500).json({ message: 'Internal server error.' });
+  } 
 })
 
 app.get('*', (req,res) => {
