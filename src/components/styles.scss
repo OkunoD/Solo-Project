@@ -137,10 +137,20 @@ animation-delay: calc(.5s * var(--i))
     white-space: nowrap;
 }
 .user-input-field {
-    margin: 2px;
+    margin-top: 4px;
+    padding: 2px;
     border-style: solid;
     border-width: 1px;
     border-color: rgb(212, 212, 212);
+}
+.file-input {
+    margin-top: 4px;
+}
+.add-item-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    margin-right: 9.5px;
 }
 .outfit-names {
     
@@ -220,10 +230,13 @@ animation-delay: calc(.5s * var(--i))
 .addItemHeaders {
     font-size: 25px;
     margin-top: 6px;
-    margin-left: 10px;
+    margin-bottom: 6px;
+    margin-left: 0px;
 }
 .addItemBorders {
     margin-left: 10px;
+    margin-bottom: 0px;
+    padding: 2px;
     font-size: 15px;
     font-weight: bold;
 }
@@ -244,9 +257,13 @@ animation-delay: calc(.5s * var(--i))
     border-radius: 0px;
     border-color: #000000;
 }
+.add-item-container {
+    position: relative;
+}
 .add-item-modal {
-    position: fixed;
-    left: 33%;
+    position: absolute;
+    top: 50px;
+    left: -79px;
     z-index: 2000;
     justify-content: center;
     align-items: center;
@@ -257,11 +274,14 @@ animation-delay: calc(.5s * var(--i))
     margin-left: 16px;
     margin-right: 80%;
     margin-bottom: 10px;
+    padding-bottom: 4px;
     border-style: solid;
     border-width: 1px;
     border-radius: 0px;
     border-color: black;
     background-color: white;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2); /* Horizontal offset, Vertical offset, Blur radius, Color */
+    transition: all;
 }
 .item-details {
     font-size: 12px;

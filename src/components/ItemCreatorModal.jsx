@@ -48,36 +48,38 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
           <input className="user-input-field" placeholder="Color" onChange={(e) => setColor(e.target.value)} type="text" value={itemColor} />
         </div>
         <div>
-          <input id="getFile" type="file" placeholder="Item Name" accept="image/*" onChange={handleFileChange} />
+          <input className="file-input" id="getFile" type="file" placeholder="Item Name" accept="image/*" onChange={handleFileChange} />
         </div>
-        <input style={{padding: '3px'}} className="green-button" onClick={() => {
-          // props.addItem(itemType, itemName, selectedFile, itemColor);
-          addItem(itemType, itemName, selectedFile, itemColor);
+        <div className="add-item-buttons-container">
+          <input style={{padding: '3px'}} className="green-button" onClick={() => {
+            // props.addItem(itemType, itemName, selectedFile, itemColor);
+            addItem(itemType, itemName, selectedFile, itemColor);
 
-          const lastItemId = state['lastItemId'];
+            const lastItemId = state['lastItemId'];
 
-          console.log('reached fetch request');
+            console.log('reached fetch request');
 
-          const formData = new FormData();
-          formData.append('file', selectedFile);
-          formData.append('id', lastItemId+1);
-          formData.append('name', itemName);
-          formData.append('type', itemType);
-          formData.append('color', itemColor);
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+            formData.append('id', lastItemId+1);
+            formData.append('name', itemName);
+            formData.append('type', itemType);
+            formData.append('color', itemColor);
 
-          fetch('/api/items', {
-            method: 'POST',
-            body: formData,
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log(data);
+            fetch('/api/items', {
+              method: 'POST',
+              body: formData,
             })
-            .catch((error) => {
-              console.error('Error:', error);
-            });
-          }} type="submit" value="Add Item" />
-      <button className="red-button" onClick={()=>{toggleModal();handleClick();}}>Exit</button>
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+            }} type="submit" value="Add Item" />
+          <button className="red-button" onClick={()=>{toggleModal();handleClick();}}>Close</button>
+        </div>
       </div>
     </div>
   );
