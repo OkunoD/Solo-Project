@@ -7,6 +7,7 @@ import OutfitContainer from '../containers/OutfitContainer.jsx';
 import ItemCreator from './ItemCreatorModal.jsx';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { mockData } from '../../server/mockData.js';
+import Alert from './Alert.jsx';
 
 // import './styles.css';
 
@@ -17,8 +18,11 @@ const mapDispatchToProps = dispatch => ({
 const App = (props) => {
     const state = useSelector((state) => state);
 
+    // const message = useSelector((state) => state.message);
+    // const isAlertOn = useSelector((state) => state.isAlertOn);
+
+
     useEffect(() => {
-        console.log('useeffect hit')
         if (process.env.NODE_ENV==='development') {
           console.log({mockData});
           props.fillWardrobe(mockData);
@@ -41,6 +45,9 @@ const App = (props) => {
     return(
         <Router>
             <Header/>
+            {state.isAlertOn && (
+                <Alert message={state.message} />
+            )}
             <Routes>
                 <Route exact path="/" element={<WardrobeContainer/>}/>
                 <Route exact path="/outfits" element={<OutfitContainer/>}/>

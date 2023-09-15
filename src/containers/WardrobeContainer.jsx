@@ -11,9 +11,11 @@ import JacketsDrawer from '../components/JacketsDrawer.jsx';
 import BottomsDrawer from '../components/BottomsDrawer.jsx';
 import ShoesDrawer from '../components/ShoesDrawer.jsx';
 import AccessoriesDrawer from '../components/AccessoriesDrawer.jsx';
+import ItemCreatorModal from '../components/ItemCreatorModal';
 import Outfit from '../components/Outfit';
 import Header from '../components/Header';
 import Dispatch from 'react';
+
 
 const mapStateToProps = state => ({  
 });

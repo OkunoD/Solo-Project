@@ -1,78 +1,82 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-    totalHeadwear: 0,
-    totalTops: 0,
-    totalJackets: 0,
-    totalBottoms: 0,
-    totalShoes: 0,
-    totalAccessories: 0,
-    lastItemId: 0,
+  isAlertOn: false,
+  message: '',
 
-    headwearList: [],
-    // lastHeadwearId: 0,
-    wornHeadwear: { 
-      id: '',
-      type: '',
-      name: '',
-      imgUrl: '',
-      color: '',
-    },
+  totalHeadwear: 0,
+  totalTops: 0,
+  totalJackets: 0,
+  totalBottoms: 0,
+  totalShoes: 0,
+  totalAccessories: 0,
+  lastItemId: 0,
 
-    topsList: [],
-    // lastTopsId: 0,
-    wornTop: { 
-      id: '',
-      type: '',
-      name: '',
-      imgUrl: '',
-      color: '',
-    },
+  headwearList: [],
+  // lastHeadwearId: 0,
+  wornHeadwear: { 
+    id: '',
+    type: '',
+    name: '',
+    imgUrl: '',
+    color: '',
+  },
 
-    jacketsList: [],
-    // lastJacketsId: 0,
-    wornJacket: { 
-      id: '',
-      type: '',
-      name: '',
-      imgUrl: '',
-      color: '',
-    },
+  topsList: [],
+  // lastTopsId: 0,
+  wornTop: { 
+    id: '',
+    type: '',
+    name: '',
+    imgUrl: '',
+    color: '',
+  },
 
-    bottomsList: [],
-    // lastBottomsId: 0,
-    wornBottom: { 
-      id: '',
-      type: '',
-      name: '',
-      imgUrl: '',
-      color: '',
-    },
+  jacketsList: [],
+  // lastJacketsId: 0,
+  wornJacket: { 
+    id: '',
+    type: '',
+    name: '',
+    imgUrl: '',
+    color: '',
+  },
 
-    shoesList: [],
-    // lastShoesId: 0,
-    wornShoes: { 
-      id: '',
-      type: '',
-      name: '',
-      imgUrl: '',
-      color: '',
-    },
+  bottomsList: [],
+  // lastBottomsId: 0,
+  wornBottom: { 
+    id: '',
+    type: '',
+    name: '',
+    imgUrl: '',
+    color: '',
+  },
 
-    accessoriesList: [],
-    // lastAccessoriesId: 0,
-    wornAccessory: { 
-      id: '',
-      type: '',
-      name: '',
-      imgUrl: '',
-      color: '',
-    },
+  shoesList: [],
+  // lastShoesId: 0,
+  wornShoes: { 
+    id: '',
+    type: '',
+    name: '',
+    imgUrl: '',
+    color: '',
+  },
+
+  accessoriesList: [],
+  // lastAccessoriesId: 0,
+  wornAccessory: { 
+    id: '',
+    type: '',
+    name: '',
+    imgUrl: '',
+    color: '',
+  },
 }
 
 // put the post/fetch inside the frontend in same action 
 
 const wardrobeReducer = (state = initialState, action) => {
+
   const fillWardrobe = (payload) => {
     const headwear = []
     const tops = [];
@@ -81,7 +85,7 @@ const wardrobeReducer = (state = initialState, action) => {
     const shoes = [];
     const accessories = [];
 
-    console.log('fillWardrobe payload is: ', payload); //should be an array of objects [{type: 'headwear'}, {type: 'headwear'}, etc]
+    // console.log('fillWardrobe payload is: ', payload); //should be an array of objects [{type: 'headwear'}, {type: 'headwear'}, etc]
     for (let i = 0; i < payload.length; i++) {
       if (payload[i].type === 'headwear') {
         headwear.push(payload[i]); 
@@ -98,7 +102,7 @@ const wardrobeReducer = (state = initialState, action) => {
       };
     };
     
-    console.log('fillWardrobe payload[payload.length-1].id is: ', payload[payload.length-1].id)
+    // console.log('fillWardrobe payload[payload.length-1].id is: ', payload[payload.length-1].id)
     
     return {
       ...state,
@@ -134,7 +138,9 @@ const wardrobeReducer = (state = initialState, action) => {
       color: payload[3],
     };
 
-    console.log(newItem);
+    console.log("newItem inside addItem reducer is: ", newItem);
+    console.log("newItem.file inside addItem reducer is: ", newItem.file);
+
     updatedList.push(newItem);
 
     return {
@@ -162,6 +168,21 @@ const wardrobeReducer = (state = initialState, action) => {
   };
 
   switch (action.type) {
+    case types.TURN_ON_ALERT:
+      console.log('inside TURN_ON_ALERT');
+      return {
+        ...state,
+        isAlertOn: true,
+        message: action.payload,
+      };
+    case types.TURN_OFF_ALERT:
+      console.log('inside TURN_OFF_ALERT');
+      return {
+        ...state,
+        isAlertOn: false,
+        message: '',
+      };
+
     case types.FETCH_MONGO_DATA_SUCCESS:
       return fillWardrobe(action.payload);//
 
