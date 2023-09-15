@@ -457,3 +457,26 @@ max-height: 100%;
 }
 .flip-animation {
 }
+
+.alert {
+    font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-weight: 100;
+    position: fixed;
+    left: 30%;
+    bottom: 0;
+    width: 40%;
+    text-align: center;
+    padding: 4px;
+    color: red;
+    background-color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-color: red;
+    z-index: 3000;
+    transition: all 250ms linear .2s;
+}
+
+.alert.hidden {
+    opacity: 0;
+    transition: all 250ms linear 4s;
+}

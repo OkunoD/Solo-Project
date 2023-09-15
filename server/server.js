@@ -34,11 +34,12 @@ app.get('/auth/google', logRouteHit, passport.authenticate('google', { scope: ['
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
   // Successful authentication
   console.log('in /auth/google/callback')
+
   res.redirect('/'); // Redirect to the dashboard or another page
 });
 
 app.get('/logout', (req, res) => {
-  console.log("attempting log out!");
+  console.log("Logging out!");
   req.logout((err) => {
     if (err) { return next(err); }
     // res.status(200).json({ message: 'Logout Successful' });
