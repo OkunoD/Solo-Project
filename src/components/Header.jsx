@@ -112,11 +112,13 @@ const Header = ({view}) => {
                 <div className="nav-bar">
                     <div>{myClosetLogo}</div>
                     <a href="/outfits">{outfitsButton}</a>
-                    {addItemButton}
+                        <div className="add-item-container">
+                            {addItemButton}
+                            { showModal ? <ItemCreatorModal toggleModal={toggleModal} handleClick={handleClick}/> : null}
+                        </div>
                     <a href="/auth/google">{signInButton}</a>
                     <a href="/logout">{signOutButton}</a>
                 </div>
-                { showModal ? <ItemCreatorModal toggleModal={toggleModal} handleClick={handleClick}/> : null}
             </>
         )
     } else if (view === "myOutfits") {
@@ -125,11 +127,13 @@ const Header = ({view}) => {
                 <div className="nav-bar">
                     <div>{myOutfitsLogo}</div>
                     <a href="/">{closetButton}</a>
-                    {addItemButton}
+                    <div className="add-item-container">
+                        {addItemButton}
+                        { showModal ? <ItemCreatorModal toggleModal={toggleModal} handleClick={handleClick}/> : null}
+                    </div>
                     <a href="/auth/google">{signInButton}</a>
                     <a href="/logout">{signOutButton}</a>
                 </div>
-                { showModal ? <ItemCreatorModal toggleModal={toggleModal} handleClick={handleClick}/> : null}
             </>
         )
     }
