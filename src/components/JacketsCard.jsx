@@ -7,11 +7,11 @@ let key = undefined;
 
 const mapStateToProps = function(state, ownProps) {
   return {
-    jacketId: state.jacketsList[ownProps.index].id,
-    jacketName: state.jacketsList[ownProps.index].name,
-    jacketColor: state.jacketsList[ownProps.index].color,
-    jacketSize: state.jacketsList[ownProps.index].size,
-    jacketBrand: state.jacketsList[ownProps.index].brand,
+    id: state.jacketsList[ownProps.index].id,
+    name: state.jacketsList[ownProps.index].name,
+    color: state.jacketsList[ownProps.index].color,
+    size: state.jacketsList[ownProps.index].size,
+    brand: state.jacketsList[ownProps.index].brand,
     file: state.jacketsList[ownProps.index].file,
   };
 };
@@ -57,23 +57,21 @@ const Jackets = (props) => {
         <div className="image-container">
           <img src={imageSrc} alt="Retrieved from state" className="image-content" />
         </div>
-        {/* <p>&nbsp;&nbsp;{props.jacketColor}</p> */}
-        {/* <p>&nbsp;&nbsp;{props.imgUrl}</p>need to add img styling */}
         <div>
           <div className="item-details">
             <div className="designer-and-size">
-            <p className="item-brand">{props.jacketBrand ? props.jacketBrand : 'no brand'}</p>
-            <p className="item-size">{props.jacketSize ? props.jacketSize: 'no size'}</p>
+            <p className="item-brand">{props.brand ? props.brand : 'no brand'}</p>
+            <p className="item-size">{props.size ? props.size: 'no size'}</p>
           </div>
-          <p className="item-name">{props.jacketName}</p>
+          <p className="item-name">{props.name}</p>
           <div className="item-button-div">
             <input className="black-button" onClick={() => {
               console.log('tryon input received');
-              console.log('jacketId is: ', props.jacketId);
-              props.tryOnItem('jackets', props.jacketId, 'Jacket')}} type="Submit" value="Try it on" readOnly/>
+              console.log('jacketId is: ', props.id);
+              props.tryOnItem('jackets', props.id, 'Jacket')}} type="Submit" value="Try it on" readOnly/>
             <input className="red-button" onClick={() => {
-              handleDelete(props.jacketId);
-              props.deleteItem('jackets', props.jacketId)}} type="Submit" value="Delete" readOnly/>
+              handleDelete(props.id);
+              props.deleteItem('jackets', props.id)}} type="Submit" value="Delete" readOnly/>
             </div>
           </div>
         </div>
