@@ -7,8 +7,6 @@ const userSchema = Schema({
 });
 const User = mongoose.model('users', userSchema); 
 
-
-
 const itemSchema = Schema({
     file: {type: Buffer},
     contentType: {type: String},
@@ -16,18 +14,15 @@ const itemSchema = Schema({
     type: {type: String},
     name: {type: String},
     color: {type: String},
+    brand: {type: String},
 })
 const Item = mongoose.model('Item', itemSchema); 
-
-
 
 const outfitSchema = Schema({
     name: {type: String},
     outfit: [{type: Number}],
 })
 const Outfit = mongoose.model('Outfit', outfitSchema);
-
-
 
 module.exports = {
     User,
