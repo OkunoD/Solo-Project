@@ -24,61 +24,47 @@ const mapDispatchToProps = (dispatch) => ({
 const Shoes = (props) => {
   key = props.index;
   const [imageSrc, setImageSrc] = useState('');
-  // const [alertMessage, setAlertMessage] = useState('');
-  // const [alertOn, setAlertOn] = useState(false);
-
-  const toggleAlert = (message) => {
-    console.log('inside toggleAlert, message is', message);
-    props.openAlert(message);
-    // setTimeout(() => props.closeAlert(), 3000);
-  }
-
+  
   const imageData = props.file ? props.file.data : null;
-  console.log('props.file is: ', props.file);
-  console.log('props.file.data is: ', props.file.data);
-
   const contentType = props.contentType;
 
-  console.log('props.shoesName is: ', props.shoesName);
-  console.log('imageData is: ', imageData);
-  console.log('imageSrc is: ', imageSrc);
-  console.log('content-type is: ', contentType);
-  
   
   useEffect(() => {
-    console.log("useEffect hit in ShoesCard");
-    console.log("inside quick load!!!!!!!")
-    // Convert ArrayBuffer to base64
     const base64 = btoa(
       new Uint8Array(imageData).reduce(
         (data, byte) => data + String.fromCharCode(byte),
         ''
-      )
-    );
-    setImageSrc(`data:${contentType};base64,${base64}`);
-    //  if (!imageSrc) codeblock below is to render newly added items without refresh. 
-    //  probably could use reworking, but works.  
-    if (!imageSrc) {
-      console.log('INSIDE !imageSrc CONDITIONAL!!!!')
-      setTimeout(()=> {
-        fetch(`api/items/${props.shoesId}`)
-        .then((response) => {
-          return response.json();
-        }).then((item) => {
-          const altBase64 = btoa(
-            new Uint8Array(item[0].file.data).reduce(
-              (data, byte) => data + String.fromCharCode(byte),
-              ''
-            )
-          );
-          setImageSrc(`data:${item[0].contentType};base64,${altBase64}`);
-        })
-        .catch((error)=>{
-          console.error('Error fetching item', error.message);
-        });
-      }, 500);
-    } 
-  }, []);
+        )
+        );
+        setImageSrc(`data:${contentType};base64,${base64}`);
+        //  if (!imageSrc) codeblock below is to render newly added items without refresh. 
+        //  probably could use reworking, but works.  
+        if (!imageSrc) {
+          console.log('INSIDE !imageSrc CONDITIONAL!!!!')
+          setTimeout(()=> {
+            fetch(`api/items/${props.shoesId}`)
+            .then((response) => {
+              return response.json();
+            }).then((item) => {
+              const altBase64 = btoa(
+                new Uint8Array(item[0].file.data).reduce(
+                  (data, byte) => data + String.fromCharCode(byte),
+                  ''
+                  )
+                  );
+                  setImageSrc(`data:${item[0].contentType};base64,${altBase64}`);
+                })
+                .catch((error)=>{
+                  console.error('Error fetching item', error.message);
+                });
+              }, 500);
+            } 
+          }, []);
+          
+  const toggleAlert = (message) => {
+    console.log('inside toggleAlert, message is', message);
+    props.openAlert(message);
+  }
 
   const handleDelete = async (itemId) => {
     try {
@@ -96,7 +82,7 @@ const Shoes = (props) => {
       console.error('Error deleting item:', error);
     }
   };
-
+  
   return (
     <>
       <div className="itemBox">

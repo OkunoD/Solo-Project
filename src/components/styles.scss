@@ -283,6 +283,9 @@ animation-delay: calc(.5s * var(--i))
     box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2); /* Horizontal offset, Vertical offset, Blur radius, Color */
     transition: all;
 }
+.select-list {
+    margin-right: 10px;
+}
 .item-details {
     font-size: 12px;
     margin: 5px 5px;
