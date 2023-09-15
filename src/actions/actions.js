@@ -15,13 +15,14 @@ export const fillWardrobeActionCreator = (data) => ({
   payload: data,
 });
 
-export const addItemActionCreator = (itemType, name, imgUrl, color, brand) => ({
+export const addItemActionCreator = (itemType, name, imgUrl, color, brand, size) => ({
   type: types.ADD_ITEM,
   payload1: itemType,
   payload2: name,
   payload3: imgUrl,
   payload4: color,
   payload5: brand,
+  payload6: size,
 });
 
 export const tryOnItemActionCreator =  (itemType, itemId, wornType) => ({
