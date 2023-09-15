@@ -45,9 +45,7 @@ const App = (props) => {
     return(
         <Router>
             <Header/>
-            {state.isAlertOn && (
-                <Alert message={state.message} />
-            )}
+            <Alert message={state.message}/>
             <Routes>
                 <Route exact path="/" element={<WardrobeContainer/>}/>
                 <Route exact path="/outfits" element={<OutfitContainer/>}/>
