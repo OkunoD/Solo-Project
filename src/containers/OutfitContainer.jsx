@@ -3,16 +3,19 @@ import { connect, useSelector } from 'react-redux';
 import ItemCard from '../components/ItemCard.jsx'
 import Header from '../components/Header.jsx';
 import { mockOutfits } from '../../server/mockData.js';
+import { openAlert, closeAlert } from '../actions/actions.js';
 
 // import WardrobeReducer from '../components/WardrobeReducer.js';
 
 import Outfit from '../components/Outfit';
-import Dispatch from 'react';
+import dispatch from 'react';
 
-const mapStateToProps = state => ({  
+const mapDispatchToProps = (dispatch) => ({
+    openAlert : (payload)  => dispatch(openAlert(payload)),
+    closeAlert : ()  => dispatch(closeAlert()),
 });
   
-const OutfitContainer = () => {
+const OutfitContainer = (props) => {
 
     //fetch outfits from db (outfits have {name: string, outfit: array of ids})
     //use outfit array to fetch entire items from state to then fill an outfit card
@@ -46,22 +49,45 @@ const OutfitContainer = () => {
         }
     }, []);
 
+    const toggleAlert = (message) => {
+        console.log('inside toggleAlert, message is', message);
+        props.openAlert(message);
+        // setTimeout(() => props.closeAlert(), 3000);
+      }
+
+    const deleteOutfit = async (outfit_id) => {
+    try {
+        const response = await fetch(`/api/outfits/${outfit_id}`, {
+            method: "DELETE",
+        });
+        if (response.status === 200) {
+            const data = await response.json();
+            console.log('inside deleteOutfit, data.message is: ',data.message);
+            toggleAlert(data.message);
+        } else {
+            throw new Error('Error deleting outfit');
+        }
+        } catch(error) {
+        console.error('Error deleting outfit:', error);
+        }
+    }
+
     console.log({outfitRefs})
     //outfitRefs = Array [{name:"winter fit", outfit: []}, {name:"random", outfit:[]}]
 
     const fitsList = (
         <>
             <div className="clothingBox">
-                {outfitRefs.map((outfitRefs, index) => {
+                {outfitRefs.map((outfitRef, index) => {
                     const currentOutfit = [];
                     let foundObject = {};
                     // <div>{outfitRefs["name"]}</div>
             
-                    for (let i=0;i<outfitRefs.outfit.length;i++) {
+                    for (let i=0;i<outfitRef.outfit.length;i++) {
                         for (const key in state) {
                             const value = state[key];
                             if (Array.isArray(value)) {
-                                foundObject = state[key].find((obj) => obj.id === outfitRefs.outfit[i]);
+                                foundObject = state[key].find((obj) => obj.id === outfitRef.outfit[i]);
                                 if (foundObject) {
                                     break; // If found, exit the loop
                                 }
@@ -87,8 +113,11 @@ const OutfitContainer = () => {
                         <div key={index}>
                             <p></p>
                             <div className="outfit-name-and-delete">
-                                <div className="outfit-names">{outfitRefs.name}</div>
-                                <button className="delete-item-button">delete outfit</button>
+                                <div className="outfit-names">{outfitRef.name}</div>
+                                <button className="delete-item-button" onClick={()=>{
+                                    deleteOutfit(outfitRef._id);
+                                    outfitRefs.splice(index, 1);
+                                    }}>delete outfit</button>
                             </div>
                             <div className="yourClothing">{currentOutfit}</div>
                         </div>
@@ -111,4 +140,4 @@ const OutfitContainer = () => {
   );
 }
 
-  export default connect(mapStateToProps, null)(OutfitContainer);
+  export default connect(null, mapDispatchToProps)(OutfitContainer);

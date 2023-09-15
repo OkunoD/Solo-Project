@@ -33,4 +33,9 @@ export const deleteItemActionCreator = (itemTypeToDelete, itemId) => ({
   payload: [ itemTypeToDelete, itemId ],
 });
 
+//not sure if need
+// export const deleteOutfitActionCreator = (outfitToDelete) => ({
+//   type: types.DELETE_OUTFIT,
+//   payload: outfitToDelete,
+// })
 // add more action creators
