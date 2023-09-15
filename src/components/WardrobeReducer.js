@@ -180,7 +180,6 @@ const wardrobeReducer = (state = initialState, action) => {
       return {
         ...state,
         isAlertOn: false,
-        message: '',
       };
 
     case types.FETCH_MONGO_DATA_SUCCESS:

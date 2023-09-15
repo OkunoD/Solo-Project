@@ -30,7 +30,7 @@ const Shoes = (props) => {
   const toggleAlert = (message) => {
     console.log('inside toggleAlert, message is', message);
     props.openAlert(message);
-    setTimeout(() => props.closeAlert(), 3000);
+    // setTimeout(() => props.closeAlert(), 3000);
   }
 
   const imageData = props.file ? props.file.data : null;
@@ -47,19 +47,24 @@ const Shoes = (props) => {
   
   useEffect(() => {
     console.log("useEffect hit in ShoesCard");
-
-    if (!contentType) {
-      console.log('inside !contenType conditional')
+    console.log("inside quick load!!!!!!!")
+    // Convert ArrayBuffer to base64
+    const base64 = btoa(
+      new Uint8Array(imageData).reduce(
+        (data, byte) => data + String.fromCharCode(byte),
+        ''
+      )
+    );
+    setImageSrc(`data:${contentType};base64,${base64}`);
+    //  if (!imageSrc) codeblock below is to render newly added items without refresh. 
+    //  probably could use reworking, but works.  
+    if (!imageSrc) {
+      console.log('INSIDE !imageSrc CONDITIONAL!!!!')
       setTimeout(()=> {
         fetch(`api/items/${props.shoesId}`)
         .then((response) => {
-          console.log('fetch item response is: ', response);
           return response.json();
         }).then((item) => {
-          console.log('item is: ,', item);
-          console.log('item.contentType is: ', item[0].contentType);
-          console.log('item.file.data is: ', item[0].file.data);
-    
           const altBase64 = btoa(
             new Uint8Array(item[0].file.data).reduce(
               (data, byte) => data + String.fromCharCode(byte),
@@ -67,22 +72,12 @@ const Shoes = (props) => {
             )
           );
           setImageSrc(`data:${item[0].contentType};base64,${altBase64}`);
-  
         })
         .catch((error)=>{
           console.error('Error fetching item', error.message);
         });
-      }, 2000);
-    } else if (contentType) {
-      // Convert ArrayBuffer to base64
-      const base64 = btoa(
-        new Uint8Array(imageData).reduce(
-          (data, byte) => data + String.fromCharCode(byte),
-          ''
-        )
-      );
-      setImageSrc(`data:${contentType};base64,${base64}`);
-    }
+      }, 500);
+    } 
   }, []);
 
   const handleDelete = async (itemId) => {
