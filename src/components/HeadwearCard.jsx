@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { deleteItemActionCreator, tryOnItemActionCreator } from '../actions/actions.js'
-
+import { deleteItemActionCreator, tryOnItemActionCreator, openAlert, closeAlert } from '../actions/actions.js'
 
 let key = undefined;
 
 const mapStateToProps = function(state, ownProps) {
   return {
-    headwearId: state.headwearList[ownProps.index].id,
-    headwearName: state.headwearList[ownProps.index].name,
-    headwearColor: state.headwearList[ownProps.index].color,
+    id: state.headwearList[ownProps.index].id,
+    name: state.headwearList[ownProps.index].name,
+    color: state.headwearList[ownProps.index].color,
+    size: state.shoesList[ownProps.index].size,
+    brand: state.shoesList[ownProps.index].brand,
     file: state.headwearList[ownProps.index].file,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  openAlert : (payload)  => dispatch(openAlert(payload)),
+  closeAlert : ()  => dispatch(closeAlert()),
   tryOnItem : (payload1, payload2, payload3) => dispatch(tryOnItemActionCreator(payload1, payload2, payload3)),
   deleteItem : (payload1, payload2) => dispatch(deleteItemActionCreator(payload1, payload2)),
 });
@@ -29,26 +32,56 @@ const Headwear = (props) => {
   
 
   useEffect(() => {
-    // Convert ArrayBuffer to base64
     const base64 = btoa(
       new Uint8Array(imageData).reduce(
         (data, byte) => data + String.fromCharCode(byte),
         ''
-      )
-    );
-    setImageSrc(`data:${contentType};base64,${base64}`);
-  }, [props]);
+        )
+        );
+        setImageSrc(`data:${contentType};base64,${base64}`);
+        //  if (!imageSrc) codeblock below is to render newly added items without refresh. 
+        //  probably could use reworking, but works.  
+        if (!imageSrc) {
+          setTimeout(()=> {
+            fetch(`api/items/${props.id}`)
+            .then((response) => {
+              return response.json();
+            }).then((item) => {
+              const altBase64 = btoa(
+                new Uint8Array(item[0].file.data).reduce(
+                  (data, byte) => data + String.fromCharCode(byte),
+                  ''
+                  )
+                  );
+                  setImageSrc(`data:${item[0].contentType};base64,${altBase64}`);
+                })
+                .catch((error)=>{
+                  console.error('Error fetching item', error.message);
+                });
+              }, 500);
+            } 
+          }, []);
+          
+  const toggleAlert = (message) => {
+    console.log('inside toggleAlert, message is', message);
+    props.openAlert(message);
+  }
 
-  const handleDelete = (itemId) => {
-    fetch(`/api/items/${itemId}`, {
-      method: "DELETE",
-    })
-    .then(response => {
-      console.log(response);
-    })
-    .catch(error => {
+  const handleDelete = async (itemId) => {
+    try {
+      const response = await fetch(`/api/items/${itemId}`, {
+        method: "DELETE",
+      });
+      if (response.status === 200) {
+        const data = await response.json();
+        console.log('inside handleDelete, data.message is: ',data.message);
+        toggleAlert(data.message);
+      } else {
+        throw new Error('Error deleting item');
+      }
+    } catch(error) {
       console.error('Error deleting item:', error);
-    });
+    }
   };
 
   return (
@@ -56,24 +89,24 @@ const Headwear = (props) => {
       <div className="image-container">
         <img src={imageSrc} alt="Retrieved from state" className="image-content" />
       </div>
+      <div>
       <div className="item-details">
         <div className="designer-and-size">
-          <p className="item-brand">brandname</p>
-          <p className="item-size">m</p>
+        <p className="item-brand">{props.brand ? props.brand : 'no brand'}</p>
+        <p className="item-size">{props.size ? props.size: 'no size'}</p>
         </div>
-        <p className="item-name">{props.headwearName}</p>
-        {/* <p>&nbsp;&nbsp;{props.headwearColor}</p> */}
-        {/* <p>&nbsp;&nbsp;{props.imgUrl}</p>need to add img styling */}
-        <div className="item-button-div">
-          <input className="black-button" onClick={() => {
-            console.log('tryon input received');
-            props.tryOnItem('headwear', props.headwearId, 'Headwear')}} type="Submit" value="Try it on" readOnly/>
-          <input className="red-button" onClick={() => {
-            handleDelete(props.headwearId);
-            props.deleteItem('headwear', props.headwearId)}} type="Submit" value="Delete" readOnly/>
+      <p className="item-name">{props.name}</p>
+      <div className="item-button-div">
+        <input className="black-button" onClick={() => {
+          console.log('tryon input received');
+          props.tryOnItem('headwear', props.id, 'Headwear')}} type="Submit" value="Try it on" readOnly/>
+        <input className="red-button" onClick={() => {
+          handleDelete(props.id);
+          props.deleteItem('headwear', props.id)}} type="Submit" value="Delete" readOnly/>
         </div>
       </div>
     </div>
+  </div>
   );
 };
 
