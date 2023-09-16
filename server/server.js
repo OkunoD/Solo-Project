@@ -114,7 +114,7 @@ app.get('/api/items/:id', async (req, res) => {
       return res.status(404).json({ message: 'Item not found' });
     };
     res.json(item);
-  } catch {
+  } catch (error) {
     console.log(error);
     res.status(500).json({message: 'Server error in get to /api/items/:id'});
   }

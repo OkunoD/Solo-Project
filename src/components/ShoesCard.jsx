@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { deleteItemActionCreator, tryOnItemActionCreator, openAlert, closeAlert } from '../actions/actions.js'
-import Alert from './Alert.jsx';
 
 let key = undefined;
 
 const mapStateToProps = function(state, ownProps) {
   return {
-    shoesId: state.shoesList[ownProps.index].id,
-    shoesName: state.shoesList[ownProps.index].name,
-    shoesColor: state.shoesList[ownProps.index].color,
-    file: state.shoesList[ownProps.index].file
+    id: state.shoesList[ownProps.index].id,
+    name: state.shoesList[ownProps.index].name,
+    color: state.shoesList[ownProps.index].color,
+    size: state.shoesList[ownProps.index].size,
+    brand: state.shoesList[ownProps.index].brand,
+    file: state.shoesList[ownProps.index].file,
   };
 };
 
@@ -23,6 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Shoes = (props) => {
   key = props.index;
+  
   const [imageSrc, setImageSrc] = useState('');
   
   const imageData = props.file ? props.file.data : null;
@@ -40,9 +42,8 @@ const Shoes = (props) => {
         //  if (!imageSrc) codeblock below is to render newly added items without refresh. 
         //  probably could use reworking, but works.  
         if (!imageSrc) {
-          console.log('INSIDE !imageSrc CONDITIONAL!!!!')
           setTimeout(()=> {
-            fetch(`api/items/${props.shoesId}`)
+            fetch(`api/items/${props.id}`)
             .then((response) => {
               return response.json();
             }).then((item) => {
@@ -84,26 +85,28 @@ const Shoes = (props) => {
   };
   
   return (
-    <>
-      <div className="itemBox">
-        <div className="image-container">
-          <img src={imageSrc} alt="Retrieved from state" className="image-content" />
+    <div className="itemBox">
+      <div className="image-container">
+        <img src={imageSrc} alt="Retrieved from state" className="image-content" />
+      </div>
+      <div>
+      <div className="item-details">
+        <div className="designer-and-size">
+        <p className="item-brand">{props.brand ? props.brand : 'no brand'}</p>
+        <p className="item-size">{props.size ? props.size: 'no size'}</p>
         </div>
-        <div className="item-details">
-          <p className="item-name">{props.shoesName}</p>
-          {/* <p>&nbsp;&nbsp;{props.shoesColor}</p> */}
-          <div className="item-button-div">
-          <input className="black-button" onClick={() => {
-            console.log('tryon input received');
-            props.tryOnItem('shoes', props.shoesId, 'Shoes')}} type="Submit" value="Try it on" readOnly/>
-            <input className="red-button" onClick={() => {
-              handleDelete(props.shoesId);
-              props.deleteItem('shoes', props.shoesId)}} type="Submit" value="Delete" readOnly/>
-          </div>
+      <p className="item-name">{props.name}</p>
+      <div className="item-button-div">
+        <input className="black-button" onClick={() => {
+          console.log('tryon input received');
+          props.tryOnItem('shoes', props.id, 'Shoes')}} type="Submit" value="Try it on" readOnly/>
+        <input className="red-button" onClick={() => {
+          handleDelete(props.id);
+          props.deleteItem('shoes', props.id)}} type="Submit" value="Delete" readOnly/>
         </div>
       </div>
-    </>
-
+    </div>
+  </div>
   );
 };
 

@@ -1,74 +1,112 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { deleteItemActionCreator, tryOnItemActionCreator } from '../actions/actions.js'
-
+import { deleteItemActionCreator, tryOnItemActionCreator, openAlert, closeAlert } from '../actions/actions.js'
 
 let key = undefined;
 
 const mapStateToProps = function(state, ownProps) {
   return {
-    bottomId: state.bottomsList[ownProps.index].id,
-    bottomName: state.bottomsList[ownProps.index].name,
-    bottomColor: state.bottomsList[ownProps.index].color,
-    file: state.bottomsList[ownProps.index].file
+    id: state.bottomsList[ownProps.index].id,
+    name: state.bottomsList[ownProps.index].name,
+    color: state.bottomsList[ownProps.index].color,
+    size: state.bottomsList[ownProps.index].size,
+    brand: state.bottomsList[ownProps.index].brand,
+    file: state.bottomsList[ownProps.index].file,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  openAlert : (payload)  => dispatch(openAlert(payload)),
+  closeAlert : ()  => dispatch(closeAlert()),
   tryOnItem : (payload1, payload2, payload3) => dispatch(tryOnItemActionCreator(payload1, payload2, payload3)),
   deleteItem : (payload1, payload2) => dispatch(deleteItemActionCreator(payload1, payload2)),
 });
 
 const Bottoms = (props) => {
   key = props.index;
+  
   const [imageSrc, setImageSrc] = useState('');
-
+  
   const imageData = props.file ? props.file.data : null;
   const contentType = props.contentType;
-  
 
+  
   useEffect(() => {
-    // Convert ArrayBuffer to base64
     const base64 = btoa(
       new Uint8Array(imageData).reduce(
         (data, byte) => data + String.fromCharCode(byte),
         ''
-      )
-    );
-    setImageSrc(`data:${contentType};base64,${base64}`);
-  }, [props]);
+        )
+        );
+        setImageSrc(`data:${contentType};base64,${base64}`);
+        //  if (!imageSrc) codeblock below is to render newly added items without refresh. 
+        //  probably could use reworking, but works.  
+        if (!imageSrc) {
+          setTimeout(()=> {
+            fetch(`api/items/${props.id}`)
+            .then((response) => {
+              return response.json();
+            }).then((item) => {
+              const altBase64 = btoa(
+                new Uint8Array(item[0].file.data).reduce(
+                  (data, byte) => data + String.fromCharCode(byte),
+                  ''
+                  )
+                  );
+                  setImageSrc(`data:${item[0].contentType};base64,${altBase64}`);
+                })
+                .catch((error)=>{
+                  console.error('Error fetching item', error.message);
+                });
+              }, 500);
+            } 
+          }, []);
+          
+  const toggleAlert = (message) => {
+    console.log('inside toggleAlert, message is', message);
+    props.openAlert(message);
+  }
 
-  const handleDelete = (itemId) => {
-    fetch(`/api/items/${itemId}`, {
-      method: "DELETE",
-    })
-    .then(response => {
-      console.log(response);
-    })
-    .catch(error => {
+  const handleDelete = async (itemId) => {
+    try {
+      const response = await fetch(`/api/items/${itemId}`, {
+        method: "DELETE",
+      });
+      if (response.status === 200) {
+        const data = await response.json();
+        console.log('inside handleDelete, data.message is: ',data.message);
+        toggleAlert(data.message);
+      } else {
+        throw new Error('Error deleting item');
+      }
+    } catch(error) {
       console.error('Error deleting item:', error);
-    });
+    }
   };
-
+  
   return (
     <div className="itemBox">
       <div className="image-container">
         <img src={imageSrc} alt="Retrieved from state" className="image-content" />
       </div>
+      <div>
       <div className="item-details">
-        <p className="item-name">{props.bottomName}</p>
-        {/* <p>&nbsp;&nbsp;{props.bottomColor}</p>
-        <p>&nbsp;&nbsp;{props.imgUrl}</p>need to add img styling */}
-        <div className="item-button-div">
+        <div className="designer-and-size">
+        <p className="item-brand">{props.brand ? props.brand : 'no brand'}</p>
+        <p className="item-size">{props.size ? props.size: 'no size'}</p>
+        </div>
+      <p className="item-name">{props.name}</p>
+      <div className="item-button-div">
         <input className="black-button" onClick={() => {
           console.log('tryon input received');
-          props.tryOnItem('bottoms', props.bottomId, 'Bottom')}} type="Submit" value="Try it on" readOnly/>
-          <input className="red-button" onClick={() => {
-            handleDelete(props.bottomId);
-            props.deleteItem('bottoms', props.bottomId)}} type="Submit" value="Delete" readOnly/>
+          props.tryOnItem('bottoms', props.id, 'Bottom')}} type="Submit" value="Try it on" readOnly/>
+        <input className="red-button" onClick={() => {
+          handleDelete(props.id);
+          props.deleteItem('bottoms', props.id)}} type="Submit" value="Delete" readOnly/>
         </div>
       </div>
     </div>
+  </div>
   );
 };
 
