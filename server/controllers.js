@@ -30,10 +30,11 @@ const fillWardrobeController = (req, res) => {
   console.log('api/items get request hit')
   Item.find({}, (err, items) => {
     if (err) {
+      console.log('error');
       res.status(500).send(err);
     } else {
-      // console.log('sending items: ', items);
-      // console.log(JSON.stringify(items))
+      console.log('sending items: ', items);
+      console.log(JSON.stringify(items))
       res.status(200).json(items);
     }
   });
