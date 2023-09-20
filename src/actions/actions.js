@@ -1,97 +1,43 @@
 // import actionType constants
 import * as types from '../constants/actionTypes';
 
-//WARDROBE ADDITION ACTIONS
-export const addHeadwearActionCreator = (name, imgUrl, color) => ({
-  type: types.ADD_HEADWEAR,
-  payload1: name,
-  payload2: imgUrl,
-  payload3: color,
-});
-export const addTopActionCreator = (name, imgUrl, color) => ({
-  type: types.ADD_TOP,
-  payload1: name, 
-  payload2: imgUrl,
-  payload3: color,
-});
-export const addJacketActionCreator = (name, imgUrl, color) => ({
-  type: types.ADD_JACKET,
-  payload1: name, 
-  payload2: imgUrl,
-  payload3: color,
-});
-export const addBottomActionCreator = (name, imgUrl, color) => ({
-  type: types.ADD_BOTTOM,
-  payload1: name, 
-  payload2: imgUrl,
-  payload3: color,
-});
-export const addShoesActionCreator = (name, imgUrl, color) => ({
-  type: types.ADD_SHOES,
-  payload1: name, 
-  payload2: imgUrl,
-  payload3: color,
-});
-export const addAccessoriesActionCreator = (name, imgUrl, color) => ({
-  type: types.ADD_ACCESSORY,
-  payload1: name, 
-  payload2: imgUrl,
-  payload3: color,
+export const openAlert = (message) => ({
+  type: types.TURN_ON_ALERT,
+  payload: message,
 });
 
-
-//TRYON ACTIONS
-export const tryOnHeadwearActionCreator = (headwearId) => ({
-  type: types.TRYON_HEADWEAR,
-  payload: headwearId
-});
-export const tryOnTopActionCreator = (topId) => ({
-  type: types.TRYON_TOP,
-  payload: topId
-});
-export const tryOnJacketActionCreator = (jacketId) => ({
-  type: types.TRYON_JACKET,
-  payload: jacketId
-});
-export const tryOnBottomActionCreator = (bottomId) => ({
-  type: types.TRYON_BOTTOM,
-  payload: bottomId
-});
-export const tryOnShoesActionCreator = (shoesId) => ({
-  type: types.TRYON_SHOES,
-  payload: shoesId
-});
-export const tryOnAccessoryActionCreator = (accessoryId) => ({
-  type: types.TRYON_ACCESSORY,
-  payload: accessoryId
+export const closeAlert = () => ({
+  type: types.TURN_OFF_ALERT,
 });
 
-
-// --for stretch goal--
-//WARDROBE DELETION ACTIONS
-export const deleteHeadwearActionCreator = headwearId => ({
-  type: types.DELETE_HEADWEAR,
-  payload: headwearId
-});
-export const deleteTopActionCreator = topId => ({
-  type: types.DELETE_TOP,
-  payload: topId
-});
-export const deleteJacketActionCreator = jacketId => ({
-  type: types.DELETE_JACKET,
-  payload: jacketId
-});
-export const deleteBottomActionCreator = bottomId => ({
-  type: types.DELETE_BOTTOM,
-  payload: bottomId
-});
-export const deleteShoesActionCreator = shoesId => ({
-  type: types.DELETE_SHOES,
-  payload: shoesId
-});
-export const deleteAccessoryActionCreator = accessoryId => ({
-  type: types.DELETE_ACCESSORY,
-  payload: accessoryId
+export const fillWardrobeActionCreator = (data) => ({
+  type: types.FETCH_MONGO_DATA_SUCCESS,
+  payload: data,
 });
 
+export const addItemActionCreator = (itemType, name, imgUrl, color, brand, size) => ({
+  type: types.ADD_ITEM,
+  payload1: itemType,
+  payload2: name,
+  payload3: imgUrl,
+  payload4: color,
+  payload5: brand,
+  payload6: size,
+});
+
+export const tryOnItemActionCreator =  (itemType, itemId, wornType) => ({
+  type: types.TRYON_ITEM,
+  payload: [ itemType, itemId, wornType ],
+});
+
+export const deleteItemActionCreator = (itemTypeToDelete, itemId) => ({
+  type: types.DELETE_ITEM,
+  payload: [ itemTypeToDelete, itemId ],
+});
+
+//not sure if need
+// export const deleteOutfitActionCreator = (outfitToDelete) => ({
+//   type: types.DELETE_OUTFIT,
+//   payload: outfitToDelete,
+// })
 // add more action creators

@@ -1,65 +1,32 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-    firstName: {type: String, required :true},
-    lastName: {type: String, required :true},
+const userSchema = Schema({
     userame: {type: String, required :true},
     password: {type: String, required :true}
 });
-
 const User = mongoose.model('users', userSchema); 
 
-const headwearSchema = new Schema({
-    itemName: {type: String, required: true},
-    imgUrl: {type: String, required: true}
+const itemSchema = Schema({
+    file: {type: Buffer},
+    contentType: {type: String},
+    id: {type: Number},
+    type: {type: String},
+    name: {type: String},
+    color: {type: String},
+    brand: {type: String},
+    size: {type: String},
 })
+const Item = mongoose.model('Item', itemSchema); 
 
-const HeadwearItem = mongoose.model('headwear', headwearSchema);
-
-
-const topsSchema = new Schema ({
-    itemName: {type: String, required: true},
-    imgUrl: {type: String, required: true}
+const outfitSchema = Schema({
+    name: {type: String},
+    outfit: [{type: Number}],
 })
-
-const TopsItem = mongoose.model('tops', topsSchema);
-
-
-const jacketsSchema = new Schema({
-    itemName: {type: String, required: true},
-    imgUrl: {type: String, required: true}
-})
-
-const JacketsItem = mongoose.model('jackets', jacketsSchema);
-
-const bottomsSchema = new Schema({
-    itemName: {type: String, required: true},
-    imgUrl: {type: String, required: true}
-})
-
-const BottomsItem = mongoose.model('bottoms', bottomsSchema);
-
-const shoesSchema = new Schema({
-    itemName: {type: String, required: true},
-    imgUrl: {type: String, required: true}
-})
-
-const ShoesItem = mongoose.model('shoes', shoesSchema);
-
-const accessoriesSchema = new Schema({
-    itemName: {type: String, required: true},
-    imgUrl: {type: String, required: true}
-})
-
-const AccessoryItem = mongoose.model('accessories', accessoriesSchema);
+const Outfit = mongoose.model('Outfit', outfitSchema);
 
 module.exports = {
     User,
-    HeadwearItem,
-    TopsItem,
-    JacketsItem,
-    BottomsItem,
-    ShoesItem,
-    AccessoryItem,
+    Item,
+    Outfit,
 }

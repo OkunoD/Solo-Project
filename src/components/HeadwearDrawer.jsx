@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 //import { Link } from 'react-router-dom';
 import HeadwearCard from './HeadwearCard.jsx';
-import HeadwearCreator from './ItemCreator';
+import HeadwearCreator from './ItemCreatorModal.jsx';
 import { addHeadwearctionCreator, deleteHeadwearActionCreator } from '../actions/actions.js'
 
 const mapStateToProps = (state) => {
@@ -29,7 +29,7 @@ const HeadwearDrawer = props => {
     }
     return(
         <div className="clothingBox">
-            <div className="categoryHeaders">Your Hats</div>
+            <div className="categoryHeaders">Headwear</div>
             <div className="yourClothing">
             {headwear}
             </div>

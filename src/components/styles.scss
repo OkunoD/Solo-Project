@@ -1,0 +1,506 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Open+Sans:wght@300&display=swap');
+
+body {
+    font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-weight: bold;
+    margin: 0%;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    font-family: 'Open Sans';
+}
+.wardrobe-container {
+    font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-weight: normal;
+    margin: 0%;
+    border-color: #e1e1e1;
+}
+.outfit-container {
+    @extend .wardrobe-container;
+}
+a {
+    text-decoration: none;
+    text-decoration-color: #000000;
+}
+.nav-bar{
+    font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-weight: normal;
+    background-color: white;
+    // align-items: center;
+    padding: 15px 16px 10px 16px;
+    margin: 0px 0px 0px 0px;
+    height: 35px;
+    border-bottom: 1px solid #c3c3c3;
+    border-radius: 0px;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0px 16px 20px;
+    margin-right: 1%;
+    font-size: 20px;
+    font-weight: 2000;
+    top: 0;
+}
+.waviy {
+position: relative;
+
+}
+.waviy span {
+position: relative;
+display: inline-block;
+font-size: 28px;
+font-weight: 450;
+color: black;
+text-transform: uppercase;
+animation: flip 7s infinite;
+animation-delay: calc(.5s * var(--i))
+}
+@keyframes flip {
+0%,80% {
+    transform: rotateY(360deg) 
+}
+}
+.sticky-outfit {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    background-color: white;
+    position: sticky;
+    top: 61px;
+    z-index: 100;
+    box-shadow: none;
+    transition: all 0.8s ease; /* Add a transition for the shadow */
+}
+.sticky-outfit.with-shadow {
+    box-shadow: 0px 15px 12px rgba(0, 0, 0, .25); /* Add shadow to the bottom */
+    border-color: white;
+  }
+.outfit-submit {
+    justify-content: space-between;
+    display: flex;
+    box-sizing: border-box;
+    border-color:#000000;
+    border-style: solid;
+    border-width: 1px;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 250px;
+    margin: 5px 0px 9px 16px;
+    padding: 1.5px;
+}
+.clothingBox {
+    // height: ;
+    margin-bottom: 1%;
+    margin-left: 0%;
+    margin-right: 0%;
+    // actual Grailed color
+    // border-bottom: 1px solid #e1e1e1;
+    //darker for clearer division
+    border-bottom: 1px solid #c3c3c3;
+    border-radius: 0px;
+}
+.my-outfit {
+    margin: 7px 0px 5px 18px;
+    padding: 0rem .8rem;
+    font-size: 16px;
+    font-weight: 100;
+    color: white;
+    background-color: #000000;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    letter-spacing: .03em;
+    line-height: 1.3;
+    font-family: "Video",monospace;
+    text-transform: uppercase;
+}
+.categoryHeaders {
+    font-size: 20px;
+    margin: 7px 0px 7px 18px;
+    font-weight: bold;
+}
+.outfit-name-and-delete {
+    margin: 0px 16px;
+    padding: 0px;
+    display: flex;
+    max-width: 898px;
+    width: 100%;
+    text-overflow: ellipses;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.user-input-field {
+    margin-top: 4px;
+    padding: 2px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(212, 212, 212);
+}
+.file-input {
+    margin-top: 4px;
+}
+.add-item-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    margin-right: 9.5px;
+}
+.outfit-names {
+    
+    //pink-cyan-gradient
+    // background-color: #FC00FF;
+    // background-image: linear-gradient(90deg, #FC00FF 15%, #00DBDE 35%, #ffffff 75%);
+
+    //purple-gray-gradient
+    background-color: #9000ff;
+    background-image: linear-gradient(90deg, #9000ff 10%, #b7b7b7 23%, #ffffff 50%, #ffffff 100%);
+    
+    //lightgray-white-gradient
+    // background-color: #b7b7b7;
+    // background-image: linear-gradient(90deg, #b7b7b7 15%, #d8d8d8 32%, #ffffff 85%);
+
+    //darkergray-white-gradient
+    background-color: #a4a4a4;
+    background-image: linear-gradient(90deg, #a4a4a4 15%, #d8d8d8 32%, #ffffff 85%);
+
+    //veryLightCoolGray-White-Gradient
+    // background-color: #d9dbde;
+    // background-image: linear-gradient(90deg, #d9dbde 15%, #e0e0e0 32%, #ffffff 85%);
+
+
+    //black-gray-white-gradient
+    // background-color: #000000;
+    // background-image: linear-gradient(90deg, #000000 10%, #b7b7b7 23%, #ffffff 50%, #ffffff 100%);
+
+    text-transform: lowercase;
+    display: block;
+    flex: 1;
+    font-size: 13px;
+    font-weight: 100;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    padding-left: 6px;
+    padding-top: 3px;
+    padding-bottom: 0px;
+    color:#ffffff;
+    // color:#000000;
+    // text-shadow:
+        // -1px -1px 0 black, /* Top-left shadow */
+        // 1px -1px 0 black, /* Top-right shadow */
+        // -1px  1px 0 black, /* Bottom-left shadow */
+        // 1px  1px 0 black; /* Bottom-right shadow */
+}
+.delete-item-button {
+    color: red;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid rgb(255, 0, 0);
+    box-shadow: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 31px;
+    margin-bottom: 2px;
+    text-align: center;
+    transition: background-color 250ms ease,border-color 250ms ease,color 250ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: .03em;
+    line-height: 1.3;
+    font-family: "Video",monospace;
+    text-transform: uppercase;
+    &:hover {
+        color: white; /* Text color becomes white when hovered */
+        background-color: red; /* Background becomes black when hovered */
+        border-color: white; /* Border color becomes white when hovered */
+    }
+}
+.addItemHeaders {
+    font-size: 25px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: 0px;
+}
+.addItemBorders {
+    margin-left: 10px;
+    margin-bottom: 0px;
+    padding: 2px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.yourClothing {
+    padding-left: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+.itemBox {
+    width: 140px;
+    // height: 220px;
+    margin-left: 0px;
+    margin-right: 3px;
+    margin-bottom: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0px;
+    border-color: #000000;
+}
+.add-item-container {
+    position: relative;
+}
+.add-item-modal {
+    position: absolute;
+    top: 50px;
+    left: -79px;
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    margin-left: 16px;
+    margin-right: 80%;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0px;
+    border-color: black;
+    background-color: white;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2); /* Horizontal offset, Vertical offset, Blur radius, Color */
+    transition: all;
+}
+.select-list {
+    margin-right: 10px;
+}
+.item-details {
+    font-size: 12px;
+    margin: 5px 5px;
+    text-transform: uppercase;
+}
+.designer-and-size {
+    margin: 0px;
+    padding: 0px;
+    font-weight: 600;
+    display: flex;
+    width: 100%;
+    text-overflow: ellipses;
+    overflow: hidden;
+    white-space: nowrap;
+
+}
+.item-brand {
+    margin: 0px;
+    display: block;
+    flex: 1;
+    font-size: 12px;
+}
+.item-size {
+    margin: 0px;
+    display: block;
+    font-size: 12px;
+}
+.item-name {
+    text-transform: capitalize;
+    display: block;
+    margin: 7px 0px;
+    font-weight: 100;
+    max-height: 2.4em;
+    line-height: 1.2em;
+    white-space: nowrap;    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 1.4em;
+    transition: all 0s ease-in-out;
+
+    &:hover {
+        white-space: normal;
+        max-height: none;
+        font-weight: 400;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+.item-button-div {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    // margin: 2px 2.5px;
+}
+.button {
+    box-shadow: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: .5px;
+    text-align: center;
+    transition: background-color 300ms ease,border-color 250ms ease,color 250ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: .03em;
+    line-height: 1.3;
+    font-family: "Video",monospace;
+    text-transform: uppercase;
+}
+.red-button {
+    @extend .button;
+    color: rgb(255, 0, 0);
+    background-color: rgba(0,0,0,0);
+    border: 1px solid rgb(255, 0, 0);
+    margin: .5px;
+
+    &:hover {
+        color: white; /* Text color becomes white when hovered */
+        background-color: red; /* Background becomes black when hovered */
+        border-color: white; /* Border color becomes white when hovered */
+    }
+}
+.black-button{
+    @extend .button;
+    color: black;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid rgb(0, 0, 0);
+
+    &:hover {
+        color: white; /* Text color becomes white when hovered */
+        background-color: black; /* Background becomes black when hovered */
+        border-color: white; /* Border color becomes white when hovered */
+    }
+}
+.green-button{
+    @extend .button;
+    color: black;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid rgb(0, 0, 0);
+
+    &:hover {
+        color: black; /* Text color becomes white when hovered */
+        background-color: rgb(98, 255, 0);/* Background becomes black when hovered */
+        border-color: black; /* Border color becomes white when hovered */
+    }
+}
+.image-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+.image-container {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 150px;
+    width: auto;
+    min-height: 0;
+    max-height: 500px;
+    overflow: hidden;
+    padding-top: 0%;
+    position: relative;
+    transition: width .2s linear,height .2s linear;
+    background-color: var(--colors--off-white-background);
+}
+.image-content {
+max-width: 100%;
+max-height: 100%;
+}
+.add-item-button {
+    @extend .black-button;
+    padding: 10px;
+    font-size: 18px;
+}
+.header-button {
+    @extend .black-button;
+    font-size: 18px;
+    padding: 0px 10px;
+    margin: 4px 10px 5px 10px;
+    &:hover span {
+        animation-name: flip;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        // animation-delay: 0s;
+        animation-delay: calc(0s + (.1s * var(--i)));
+        animation-play-state: alternate;
+    }
+}
+.clicked-button {
+    @extend .header-button;
+    color: white;
+    background-color: black;
+    border-color: white;
+
+    span {
+        animation-name: flip;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        // animation-delay: 0s;
+        animation-delay: calc(0s + (.1s * var(--i)));
+        animation-play-state: alternate;
+    }
+}
+.header-button-alt {
+    @extend .header-button;
+    &:hover span {
+        animation-name: flip;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        // animation-delay: 0s;
+        animation-delay: calc(0s + (.1s * var(--i)));
+        animation-play-state: alternate;
+    }
+}
+
+@keyframes flip {
+    0%,50% {
+        transform: rotateY(360deg) 
+    }
+}
+.flip-animation {
+}
+
+.alert {
+    font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-weight: 100;
+    position: fixed;
+    left: 30%;
+    bottom: 0;
+    width: 40%;
+    text-align: center;
+    padding: 4px;
+    color: red;
+    background-color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-color: red;
+    z-index: 3000;
+    transition: all 250ms linear .2s;
+}
+
+.alert.hidden {
+    opacity: 0;
+    transition: all 250ms linear 4s;
+}

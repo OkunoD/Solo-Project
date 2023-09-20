@@ -1,48 +1,165 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-    totalHeadwear: 0,
-    totalTops: 0,
-    totalJackets: 0,
-    totalBottoms: 0,
-    totalShoes: 0,
-    totalAccessories: 0,
+  isAlertOn: false,
+  message: '',
 
-    headwearList: [],
-    lastHeadwearId: 0,
-    selectedHeadwear: {},
+  totalHeadwear: 0,
+  totalTops: 0,
+  totalJackets: 0,
+  totalBottoms: 0,
+  totalShoes: 0,
+  totalAccessories: 0,
+  lastItemId: 0,
 
-    topsList: [],
-    lastTopsId: 0,
-    selectedTop: {},
+  headwearList: [],
+  // lastHeadwearId: 0,
+  wornHeadwear: { 
+    id: '',
+    type: '',
+    name: '',
+    imgUrl: '',
+    color: '',
+  },
 
-    jacketsList: [],
-    lastJacketsId: 0,
-    selectedJacket: {},
+  topsList: [],
+  // lastTopsId: 0,
+  wornTop: { 
+    id: '',
+    type: '',
+    name: '',
+    imgUrl: '',
+    color: '',
+  },
 
-    bottomsList: [],
-    lastBottomsId: 0,
-    selectedBottom: {},
+  jacketsList: [],
+  // lastJacketsId: 0,
+  wornJacket: { 
+    id: '',
+    type: '',
+    name: '',
+    imgUrl: '',
+    color: '',
+  },
 
-    shoesList: [],
-    lastShoesId: 0,
-    selectedShoes: {},
+  bottomsList: [],
+  // lastBottomsId: 0,
+  wornBottom: { 
+    id: '',
+    type: '',
+    name: '',
+    imgUrl: '',
+    color: '',
+  },
 
-    accessoriesList: [],
-    lastAccessoriesId: 0,
-    selectedAccessory: {}
+  shoesList: [],
+  // lastShoesId: 0,
+  wornShoes: { 
+    id: '',
+    type: '',
+    name: '',
+    imgUrl: '',
+    color: '',
+  },
+
+  accessoriesList: [],
+  // lastAccessoriesId: 0,
+  wornAccessory: { 
+    id: '',
+    type: '',
+    name: '',
+    imgUrl: '',
+    color: '',
+  },
 }
 
-// put the post/fetch inside the frontend
-//     in same action 
+// put the post/fetch inside the frontend in same action 
 
 const wardrobeReducer = (state = initialState, action) => {
-  let headwearList;
-  let topsList;
-  let jacketsList;
-  let bottomsList;
-  let shoesList;
-  let accessoriesList;
+
+  const fillWardrobe = (payload) => {
+    const headwear = []
+    const tops = [];
+    const jackets = [];
+    const bottoms = [];
+    const shoes = [];
+    const accessories = [];
+
+    // console.log('fillWardrobe payload is: ', payload); //should be an array of objects [{type: 'headwear'}, {type: 'headwear'}, etc]
+    for (let i = 0; i < payload.length; i++) {
+      if (payload[i].type === 'headwear') {
+        headwear.push(payload[i]); 
+      } else if (payload[i].type === 'tops') {
+        tops.push(payload[i]); 
+      } else if (payload[i].type === 'jackets') {
+        jackets.push(payload[i]); 
+      } else if (payload[i].type === 'bottoms') {
+        bottoms.push(payload[i]); 
+      } else if (payload[i].type === 'shoes') {
+        shoes.push(payload[i]); 
+      } else if (payload[i].type === 'accessories') {
+        accessories.push(payload[i]); 
+      };
+    };
+    
+    // console.log('fillWardrobe payload[payload.length-1].id is: ', payload[payload.length-1].id)
+    
+    return {
+      ...state,
+      lastItemId: payload[payload.length-1].id,
+      headwearList: headwear,
+      topsList: tops,
+      jacketsList: jackets,
+      bottomsList: bottoms,
+      shoesList: shoes,
+      accessoriesList: accessories,
+    }
+  }
+
+  const addItem = (...payload) => {
+    console.log("Inside addItem reducer");
+    // console.log('payload is :', payload);
+    const itemType = payload[0];
+    const listName = `${itemType}List`;
+    // const lastItemIdString = `last${itemType.charAt(0).toUpperCase()}${itemType.slice(1)}Id`;
+    const totalItemIdString = `total${itemType.charAt(0).toUpperCase()}${itemType.slice(1)}`;
+
+    // // const lastItemId = state[lastItemIdString];
+    const updatedList = [...state[listName]];
+    // const newItemId = lastItemId + 1;
+
+    const newItemId = state['lastItemId'] + 1;
+
+    const newItem = {
+      id: newItemId,
+      type: payload[0],
+      name: payload[1],
+      file: payload[2],
+      color: payload[3],
+      brand: payload[4],
+      size: payload[5],
+    };
+
+    console.log("newItem inside addItem reducer is: ", newItem);
+    console.log("newItem.file inside addItem reducer is: ", newItem.file);
+
+    updatedList.push(newItem);
+
+    return {
+      ...state,
+      [listName]: updatedList,
+      [totalItemIdString]: state[totalItemIdString] + 1,
+      lastItemId: newItemId,
+    };
+  };
+
+  const tryOnItem = (listName, itemId, wornType) => {
+    const wornItem = state[listName].find(item => item.id === itemId)
+    return {
+      ...state,
+      [wornType]: wornItem,
+    };
+  };
 
   const deleteItem = (listName, itemId) => {
     const updatedList = state[listName].filter(item => item.id !== itemId);
@@ -51,96 +168,42 @@ const wardrobeReducer = (state = initialState, action) => {
       [listName]: updatedList,
     };
   };
-  const tryOnItem = (listName, itemId, selectedType) => {
-    const wornItem = state[listName].find(item => item.id === itemId)
-    return {
-      ...state,
-      [selectedType]: wornItem,
-    }
-  }
-
-  const addItem = (listName, ...payload) => {
-    console.log('payload is :', payload);
-    const trimmedListName = listName.replace("List", "");
-    const lastItemIdString = `last${trimmedListName.charAt(0).toUpperCase()}${trimmedListName.slice(1)}Id`;
-    const totalItemIdString = `total${trimmedListName.charAt(0).toUpperCase()}${trimmedListName.slice(1)}`;
-
-    const lastItemId = state[lastItemIdString];
-    const updatedList = [...state[listName]];
-    const newItemId = lastItemId + 1;
-
-    const newItem = {
-      id: newItemId,
-      name: payload[0],
-      imgUrl: payload[1],
-      color: payload[2],
-    };
-
-    console.log(newItem);
-    updatedList.push(newItem);
-
-    return {
-      ...state,
-      [listName]: updatedList,
-      [totalItemIdString]: state[totalItemIdString] + 1,
-      [lastItemIdString]: newItemId,
-    };
-  };
 
   switch (action.type) {
-    case types.ADD_HEADWEAR:
-      return addItem('headwearList', action.payload1, action.payload2, action.payload3);
+    case types.TURN_ON_ALERT:
+      console.log('inside TURN_ON_ALERT');
+      return {
+        ...state,
+        isAlertOn: true,
+        message: action.payload,
+      };
+    case types.TURN_OFF_ALERT:
+      console.log('inside TURN_OFF_ALERT');
+      return {
+        ...state,
+        isAlertOn: false,
+      };
 
-    case types.ADD_TOP:
-      return addItem('topsList', action.payload1, action.payload2, action.payload3);
+    case types.FETCH_MONGO_DATA_SUCCESS:
+      return fillWardrobe(action.payload);//
 
-    case types.ADD_JACKET:
-      return addItem('jacketsList', action.payload1, action.payload2, action.payload3);
+    case types.FETCH_MONGO_DATA_ERROR:
+      return
 
-    case types.ADD_BOTTOM:
-      return addItem('bottomsList', action.payload1, action.payload2, action.payload3);
+    case types.ADD_ITEM:
+      return addItem(action.payload1, action.payload2, action.payload3, action.payload4);
 
-    case types.ADD_SHOES:
-      return addItem('shoesList', action.payload1, action.payload2, action.payload3);
+    case types.TRYON_ITEM:
+      const [ itemType, itemId, wornType ] = action.payload;
+      console.log('action payload is: ', action.payload);
+      console.log('in reducer, itemType is: ', itemType);
+      return tryOnItem(`${itemType}List`, itemId, `worn${wornType}`);
 
-    case types.ADD_ACCESSORY:
-      return addItem('accessoriesList', action.payload1, action.payload2, action.payload3);
-
-    case types.TRYON_HEADWEAR:
-      return tryOnItem('headwearList', action.payload, 'selectedHeadwear');
-      
-    case types.TRYON_TOP:
-      return tryOnItem('topsList', action.payload, 'selectedTop');
-
-    case types.TRYON_JACKET:
-      return tryOnItem('jacketsList', action.payload, 'selectedJacket');
-
-    case types.TRYON_BOTTOM:
-      return tryOnItem('bottomsList', action.payload, 'selectedBottom');
-
-    case types.TRYON_SHOES:
-      return tryOnItem('shoesList', action.payload, 'selectedShoes');
-
-    case types.TRYON_ACCESSORY:
-      return tryOnItem('accessoriesList', action.payload, 'selectedAccessory');
-
-    case types.DELETE_HEADWEAR:
-      return deleteItem('headwearList', action.payload);
-
-    case types.DELETE_TOP:
-      return deleteItem('topsList', action.payload);
-
-    case types.DELETE_JACKET:
-      return deleteItem('jacketsList', action.payload);
-
-    case types.DELETE_BOTTOM:
-      return deleteItem('bottomsList', action.payload);
-
-    case types.DELETE_SHOES:
-      return deleteItem('shoesList', action.payload);
-
-    case types.DELETE_ACCESSORY:
-      return deleteItem('accessoriesList', action.payload);
+    case types.DELETE_ITEM:
+      const [ itemTypeToDelete, itemIdToDelete ] = action.payload;
+      console.log('in reducer, itemTypeToDelete is: ', itemTypeToDelete);
+      console.log('in DELETE_ITEM reducer', {itemIdToDelete});
+      return deleteItem(`${itemTypeToDelete}List`, itemIdToDelete);
 
     default: {
       return state;
