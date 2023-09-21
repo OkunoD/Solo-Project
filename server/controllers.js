@@ -1,24 +1,17 @@
 const { User, Item, Outfit} = require('./models');
 
 const fillWardrobeController = (req, res) => {
-  // console.log('api/items get request hit')
   Item.find({}, (err, items) => {
     if (err) {
       console.log('error');
       res.status(500).send(err);
     } else {
-      // console.log('sending items: ', items);
-      // console.log(JSON.stringify(items))
       res.status(200).json(items);
     }
   });
 };
 
 const addItemController = async (req, res, next) => {
-
-  // console.log('req.body is: ', req.body);
-  // console.log('req.body.file is: ', req.body.file);
-
   if (!req.file && !req.body.file) {
     return res.status(400).json({ message: 'No file uploaded.' });
   }
@@ -65,10 +58,8 @@ const addItemController = async (req, res, next) => {
 
 const getItemController = async (req, res) => {
   const { id } = req.params;
-  // console.log('id is: ', id);
   try {
     const item = await Item.find({id: id});
-    // console.log('item is: ', item);
     if (item.length === 0) {
       return res.status(404).json({ message: 'Item not found.' });
     } else {
@@ -85,7 +76,6 @@ const deleteItemController = async (req, res) => {
 
   try {
     const deletedItem = await Item.deleteOne({id: itemId});
-    // console.log('deletedItem is', deletedItem)
 
     if (deletedItem.deletedCount === 0) {
       return res.status(404).json({ message: 'Item not found.' });
@@ -102,14 +92,12 @@ const getOutfitsController = async (req, res) => {
     if (err) {
       res.status(500).json({ message: err });
     } else {
-      console.log('server outfits !!!!', JSON.stringify(outfits));
       res.status(200).json(outfits);
     }
   })
 };
 
 const addOutfitController = async (req, res) => {
-  console.log('req.body in server is: ', req.body);
   if (!req.body.name) {
     return res.status(400).json({ message: 'Need outfit name.' });
   }
@@ -117,9 +105,6 @@ const addOutfitController = async (req, res) => {
     name: req.body.name,
     outfit: req.body.outfit,
   })
-
-  console.log("outfit in server is: ", outfit);
-
   try {
     await outfit.save();
     res.status(200).json({ message: 'Outfit saved.'});
@@ -130,12 +115,10 @@ const addOutfitController = async (req, res) => {
 };
 
 const deleteOutfitController = async (req, res) => {
-  console.log('inside /api/outfits/:outfit_id in server');
   const outfit_id =  req.params.outfit_id;
   try {
     const deletedOutfit = await Outfit.deleteOne({_id: outfit_id})
     if (deletedOutfit.deletedCount === 0) {
-      console.log('inside deletedOutfit.deletecount')
       return res.status(404).json({ message: 'Outfit not found.' });
     }
     res.status(200).json({ message: 'Outfit deleted successfully.' });
