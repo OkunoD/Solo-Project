@@ -52,8 +52,8 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // Define routes and controllers
-router.post('/api/items', upload.single('file'), addItemController);
 router.get('/api/items', fillWardrobeController);
+router.post('/api/items', upload.single('file'), addItemController);
 router.get('/api/items/:id', getItemController);
 router.delete('/api/items/:itemId', deleteItemController);
 
