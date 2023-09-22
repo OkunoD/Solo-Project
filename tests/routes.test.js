@@ -28,7 +28,7 @@ export const itemPayload2 = {
     file: {type: 'Buffer', data: []},
     contentType:  'image/webp',
     id: 171,
-    type: 'hats',
+    type: 'headwear',
     name: 'Blue Arcteryx Beanie',
     color: 'Blue',
     brand: 'Arcteryx',

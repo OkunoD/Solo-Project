@@ -9,8 +9,8 @@ const mapStateToProps = function(state, ownProps) {
     id: state.headwearList[ownProps.index].id,
     name: state.headwearList[ownProps.index].name,
     color: state.headwearList[ownProps.index].color,
-    size: state.shoesList[ownProps.index].size,
-    brand: state.shoesList[ownProps.index].brand,
+    size: state.headwearList[ownProps.index].size,
+    brand: state.headwearList[ownProps.index].brand,
     file: state.headwearList[ownProps.index].file,
   };
 };

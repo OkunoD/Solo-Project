@@ -4,13 +4,14 @@
 import '@testing-library/jest-dom';
 import express from 'express';
 import * as React from 'react';
-import { render, fireEvent, screen, waitFor } from '@testing-library/react';
+import { act, render, fireEvent, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import Header from '../src/components/Header.jsx';
 import { Item, User, Outfit } from '../server/models'
 import store from "../src/store.js";
 import router from '../server/router.js';
 import { MongoMemoryServer } from 'mongodb-memory-server';
+import { MemoryRouter } from 'react-router-dom';
 import mongoose from 'mongoose';
 import { 
         addItemController, 
@@ -22,12 +23,13 @@ import {
         deleteOutfitController,
     } from '../server/controllers.js'
 import WardrobeContainer from '../src/containers/WardrobeContainer.jsx';
+import App from '../src/components/App.js';
 
 export const itemPayload1 = {
     file: {type: 'Buffer', data: []},
     contentType:  'image/webp',
     id: 170,
-    type: 'hats',
+    type: 'headwear',
     name: 'Blue Arcteryx Beanie',
     color: 'Blue',
     brand: 'Arcteryx',
@@ -93,12 +95,28 @@ const fillWardrobeMockResponse = [
 ]
 
 describe("WardrobeContainer", () => {
-    it('renders all the drawers and places items in their correct drawers', () => {
-        render(
-            <Provider store={store}>
-                <WardrobeContainer />
-            </Provider>
-        )
+    global.fetch = jest.fn();
+    global.fetch.mockResolvedValue({
+        json: () => Promise.resolve(fillWardrobeMockResponse),
+    });
+
+    it('renders all the drawers and places items in their correct drawers', async () => {
+        act(()=> { 
+            render(
+                <Provider store={store}>
+                    <App initialEntries={['/']}/>
+                </Provider>
+            )
+        })
+
+        //  below await waitFor() is to ensure async fill wardrobe actions,
+        //  specifically useEffect hook that sets imageSrc inside clothing cards,
+        //  has time to register with react and trigger full rendering of components
+        await waitFor(() => {
+            const image = screen.getAllByAltText('Retrieved from state');
+            expect(image).not.toBeUndefined();
+        });
+        //
 
         const myClosetLogo = screen.getByTitle("my-closet-logo");
         expect(myClosetLogo).toBeVisible();
@@ -121,7 +139,7 @@ describe("WardrobeContainer", () => {
         const shoesDrawer = screen.getByTestId("shoes-drawer");
         expect(shoesDrawer).toBeVisible();
 
-        const accessoriesDrawer = screen.getByTestId("accessories-drawer");
+        const accessoriesDrawer = screen.getByTestId("accessosfdries-drawer");
         expect(accessoriesDrawer).toBeVisible();
         
     })
