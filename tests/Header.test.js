@@ -49,9 +49,6 @@ import router from '../server/router.js';
 //     outfit: [6,5,4,3,2,1],
 // }
 
-const app = new express();
-app.use('/', router);
-
 describe('Header', () => {
     it('renders the closet logo and outfit, sign-up/in, and add-item buttons when in closet view', () => {
         render(<Header view={"myCloset"}/>);

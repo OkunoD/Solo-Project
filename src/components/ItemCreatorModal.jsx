@@ -40,7 +40,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
       <div className="addItemHeaders">ADD PIECE</div>
       <div className="addItemBorders">
         <div>
-        <select className="select-list" id="category-select-list" onChange={handleCategorySelect} value={itemType}>
+        <select className="select-list" id="category-select-list" data-testid="category-select-list" onChange={handleCategorySelect} value={itemType}>
          <option value="null">Category</option>
          <option value="headwear">Hat</option>
          <option value="tops">Top</option>
@@ -49,7 +49,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
          <option value="shoes">Shoes</option>
          <option value="accessories">Accessory</option>
         </select>
-        <select className="select-list" id="color-select-list" onChange={handleColorSelect} value={itemColor}>
+        <select className="select-list" id="color-select-list" data-testid="color-select-list" onChange={handleColorSelect} value={itemColor}>
          <option value="null">Color</option>
          <option value="White">White</option>
          <option value="Black">Black</option>
@@ -70,7 +70,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
          <option value="Camo">Camo</option>
          <option value="New Color">New Color</option>
         </select>
-        <select className="select-list" id="size-select-list" onChange={handleSizeSelect} value={itemSize}>
+        <select className="select-list" id="size-select-list" data-testid="size-select-list" onChange={handleSizeSelect} value={itemSize}>
          <option value="null">Size</option>
          <option value="XS">XS</option>
          <option value="S">S</option>
@@ -97,7 +97,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
           <input className="file-input" id="getFile" type="file" placeholder="Item Name" accept="image/*" onChange={handleFileChange} />
         </div>
         <div className="add-item-buttons-container">
-          <input style={{padding: '3px'}} className="green-button" onClick={() => {
+          <input style={{padding: '3px'}} className="green-button" data-testid="submit-item-button" onClick={() => {
             // props.addItem(itemType, itemName, selectedFile, itemColor);
             addItem(itemType, itemName, selectedFile, itemColor);
 
@@ -126,7 +126,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
                 console.error('Error:', error);
               });
             }} type="submit" value="Add Item" />
-          <button className="red-button" onClick={()=>{toggleModal();handleClick();}}>Close</button>
+          <button data-testid="close-modal-button" className="red-button" onClick={()=>{toggleModal();handleClick();}}>Close</button>
         </div>
       </div>
     </div>
