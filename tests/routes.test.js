@@ -43,7 +43,6 @@ export const outfitPayload2 = {
     outfit: [6,5,4,3,2,1],
 }
 
-
 const app = new express();
 app.use('/', router);
 

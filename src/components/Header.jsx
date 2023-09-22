@@ -16,7 +16,7 @@ const Header = ({view}) => {
     };
     
     const myClosetLogo = (
-        <div className="waviy">
+        <div className="waviy" title="my-closet-logo">
             <span style={{'--i': 1}}>M</span>
             <span style={{'--i': 2}}>Y</span>
             <span>.</span>
@@ -29,7 +29,7 @@ const Header = ({view}) => {
         </div>
     );
     const myOutfitsLogo = (
-        <div className="waviy">
+        <div className="waviy" title="my-outfits-logo">
             <span style={{'--i': 1}}>M</span>
             <span style={{'--i': 2}}>Y</span>
             <span>.</span>
@@ -43,7 +43,7 @@ const Header = ({view}) => {
         </div>
     );
     const outfitsButton = (
-        <div className={"header-button"}>
+        <div className={"header-button"} title="outfits-button">
             <span style={{'--i': 0}}>O</span>
             <span style={{'--i': 1}}>U</span>
             <span style={{'--i': 2}}>T</span>
@@ -54,7 +54,7 @@ const Header = ({view}) => {
         </div>
     );
     const closetButton = (
-        <div className={"header-button"}>
+        <div className={"header-button"} title="closet-button">
             <span style={{'--i': 0}}>C</span>
             <span style={{'--i': 1}}>L</span>
             <span style={{'--i': 2}}>O</span>
@@ -64,7 +64,7 @@ const Header = ({view}) => {
         </div>
     );
     const addItemButton = (
-        <div className={isClicked ? "clicked-button": "header-button"} onClick={()=>{toggleModal();handleClick();}}>
+        <div title="add-item-button" className={isClicked ? "clicked-button": "header-button"} onClick={()=>{toggleModal();handleClick();}}>
             <span style={{'--i': 0}}>A</span>
             <span style={{'--i': 1}}>D</span>
             <span style={{'--i': 2}}>D</span>
@@ -76,7 +76,7 @@ const Header = ({view}) => {
         </div>
     );
     const signInButton = (
-        <div className={"header-button"}>
+        <div title="sign-in-button" className={"header-button"}>
             <span style={{'--i': 0}}>S</span>
             <span style={{'--i': 1}}>I</span>
             <span style={{'--i': 2}}>G</span>
@@ -94,7 +94,7 @@ const Header = ({view}) => {
          </div>
     );
     const signOutButton = (
-        <div className={"header-button"}>
+        <div title="sign-out-button" className={"header-button"}>
             <span style={{'--i': 0}}>S</span>
             <span style={{'--i': 1}}>I</span>
             <span style={{'--i': 2}}>G</span>

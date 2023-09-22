@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, connect } from 'react-redux';
 import { openAlert, closeAlert } from '../actions/actions';
-import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
+// import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
 
 const mapDispatchToProps = (dispatch) => ({
     closeAlert : () => dispatch(closeAlert()),

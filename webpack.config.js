@@ -29,7 +29,9 @@ module.exports = {
             },
             //     ---in index.html above document
             {
-                test: /.jsx?/,
+                // test: /.jsx?/,
+                test: /\.(js|jsx)$/,
+
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
