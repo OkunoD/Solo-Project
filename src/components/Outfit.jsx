@@ -93,7 +93,7 @@ const Outfit = props => {
     }
     return(
         <div className={`sticky-outfit ${isSticky ? 'with-shadow' : ''}`}>
-            <div className="clothingBox">
+            <div className="clothingBox" data-testid="my-outfit-container">
                 <div className="my-outfit">My Outfit</div>
                 <div className="yourClothing" style={{marginBottom:"0px"}}>
                     {outfit}

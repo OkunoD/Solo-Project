@@ -28,7 +28,7 @@ const HeadwearDrawer = props => {
             />);
     }
     return(
-        <div className="clothingBox">
+        <div className="clothingBox" data-testid="headwear-drawer">
             <div className="categoryHeaders">Headwear</div>
             <div className="yourClothing">
             {headwear}
