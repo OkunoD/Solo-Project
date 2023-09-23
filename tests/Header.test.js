@@ -99,9 +99,9 @@ describe('Header', () => {
             </Provider>
             );
 
-        const outfitsButton = screen.getByRole('link', { name: "C L O S E T" });
-        fireEvent.click(outfitsButton);
-        expect(outfitsButton.getAttribute("href")).toMatchInlineSnapshot(`"/"`);
+        const closetButton = screen.getByRole('link', { name: "C L O S E T" });
+        fireEvent.click(closetButton);
+        expect(closetButton.getAttribute("href")).toMatchInlineSnapshot(`"/"`);
         
         const loginButton = screen.getByRole('link', { name: "S I G N - U P / L O G I N" });
         fireEvent.click(loginButton);

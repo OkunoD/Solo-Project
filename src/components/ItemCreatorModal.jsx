@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItemActionCreator, fillWardrobeActionCreator } from '../actions/actions';
 // import { connect } from 'react-redux';
-import { mockData } from '../../server/mockData';
+import { mockData } from '../../mockData';
 
 export const ItemCreatorModal = ({toggleModal, handleClick}) => {
   const state = useSelector((state) => state);

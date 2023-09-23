@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect, useSelector } from 'react-redux';
 import ItemCard from '../components/ItemCard.jsx'
 import Header from '../components/Header.jsx';
-import { mockOutfits } from '../../server/mockData.js';
+import { mockOutfits } from '../../mockData.js';
 import { openAlert, closeAlert } from '../actions/actions.js';
 
 // import WardrobeReducer from '../components/WardrobeReducer.js';
@@ -110,7 +110,7 @@ const OutfitContainer = (props) => {
                         }
 
                     return (
-                        <div key={index}>
+                        <div key={index} className="outfit-container" data-testid={`outfit-container-${index}`}>
                             <p></p>
                             <div className="outfit-name-and-delete">
                                 <div className="outfit-names">{outfitRef.name}</div>

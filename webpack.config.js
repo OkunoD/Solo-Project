@@ -1,5 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
 
@@ -32,7 +33,7 @@ module.exports = {
                 // test: /.jsx?/,
                 test: /\.(js|jsx)$/,
 
-                exclude: /node_modules/,
+                exclude: [/node_modules/, /mockData/],
                 use: {
                     loader: 'babel-loader',
                     options: {

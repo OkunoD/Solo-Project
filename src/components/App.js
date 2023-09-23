@@ -6,7 +6,7 @@ import WardrobeContainer from '../containers/WardrobeContainer.jsx'
 import OutfitContainer from '../containers/OutfitContainer.jsx';
 import ItemCreator from './ItemCreatorModal.jsx';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import { mockData } from '../../server/mockData.js';
+import { mockData } from '../../mockData.js';
 import Alert from './Alert.jsx';
 
 // import './styles.css';
@@ -43,7 +43,7 @@ const App = (props) => {
       }, []);
 
     return(
-        <Router>
+        <>
             <Header/>
             <Alert message={state.message}/>
             <Routes>
@@ -51,7 +51,7 @@ const App = (props) => {
                 <Route exact path="/outfits" element={<OutfitContainer/>}/>
                 {/* <Route exact path="/addItem" element={<ItemCreator/>}/> */}
             </Routes>
-        </Router>
+        </>
     );
 }
 
