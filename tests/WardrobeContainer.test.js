@@ -125,23 +125,35 @@ describe("WardrobeContainer", () => {
         expect(myOutfitContainer).toBeVisible();
 
         const headwearDrawer = screen.getByTestId("headwear-drawer");
+        const hat = screen.getByText("Blue Arcteryx Beanie");
         expect(headwearDrawer).toBeVisible();
+        expect(headwearDrawer.contains(hat)).toBe(true);
 
         const topsDrawer = screen.getByTestId("tops-drawer");
+        const top = screen.getByText("Patagonia LS");
         expect(topsDrawer).toBeVisible();
+        expect(topsDrawer.contains(top)).toBe(true);
+
 
         const jacketsDrawer = screen.getByTestId("jackets-drawer");
+        const jacket = screen.getByText("Grey Dri Duck Jacket");
         expect(jacketsDrawer).toBeVisible();
+        expect(jacketsDrawer.contains(jacket)).toBe(true);
 
         const bottomsDrawer = screen.getByTestId("bottoms-drawer");
+        const bottom = screen.getByText("Kapital Lumber Denim");
         expect(bottomsDrawer).toBeVisible();
+        expect(bottomsDrawer.contains(bottom)).toBe(true);
 
         const shoesDrawer = screen.getByTestId("shoes-drawer");
+        const shoes = screen.getByText("Gel Kayano 14");
         expect(shoesDrawer).toBeVisible();
+        expect(shoesDrawer.contains(shoes)).toBe(true);
 
-        const accessoriesDrawer = screen.getByTestId("accessosfdries-drawer");
+        const accessoriesDrawer = screen.getByTestId("accessories-drawer");
+        const accessory = screen.getByText("Tiffany Solitaire Earrings");
         expect(accessoriesDrawer).toBeVisible();
-        
+        expect(accessoriesDrawer.contains(accessory)).toBe(true);
     })
 })
 

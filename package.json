@@ -7,7 +7,7 @@
     "start": "NODE_ENV=production nodemon server/server.js",
     "dev": "NODE_ENV=development webpack-dev-server --open --hot",
     "build": "NODE_ENV=production webpack",
-    "test": "node_modules/.bin/jest --watchAll --detectOpenHandles"
+    "test": "node_modules/.bin/jest --watchAll --detectOpenHandles --verbose"
   },
   "keywords": [],
   "author": "",
