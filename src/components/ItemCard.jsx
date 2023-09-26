@@ -11,6 +11,8 @@ const mapStateToProps = function(state, ownProps) {
     name: ownProps.name,
     color: ownProps.color,
     file: ownProps.file,
+    brand: ownProps.brand,
+    size: ownProps.size,
   };
 };
 
@@ -54,8 +56,8 @@ const ItemCard = (props) => {
         </div>
         <div className="item-details">
           <div className="designer-and-size">
-            <p className="item-brand">brandname</p>
-            <p className="item-size">m</p>
+            <p className="item-brand">{props.brand}</p>
+            <p className="item-size">{props.size}</p>
           </div>
         <p className="item-name">{props.name}</p>
         {/* <p>{props.color}</p> */}

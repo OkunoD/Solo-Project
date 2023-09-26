@@ -26,9 +26,6 @@ const Outfit = props => {
     
     
     useEffect(() => {
-        fillOutfit(outfitArr);
-        console.log('outfit is', outfit);
-
         const handleScroll = () => {
           const scrollThreshold = 20; 
           if (window.scrollY >= scrollThreshold) {
@@ -42,7 +39,7 @@ const Outfit = props => {
         return () => {
           window.removeEventListener('scroll', handleScroll);
         };
-      }, [props.refresh]);
+      }, []);
 
     const saveOutfit = () => {
         const outfitIds = [];
@@ -96,6 +93,8 @@ const Outfit = props => {
                     color={currentItem.color}
                     file={currentItem.file}
                     contentType={currentItem.contentType}
+                    brand={currentItem.brand}
+                    size={currentItem.size}
                     // index = {i}
                 />) 
                 : outfit.push(<div key={i + 10000}></div>);
