@@ -5,10 +5,6 @@ import Header from '../components/Header.jsx';
 import { mockOutfits } from '../../mockData.js';
 import { openAlert, closeAlert } from '../actions/actions.js';
 
-// import WardrobeReducer from '../components/WardrobeReducer.js';
-
-import Outfit from '../components/Outfit';
-import dispatch from 'react';
 
 const mapDispatchToProps = (dispatch) => ({
     openAlert : (payload)  => dispatch(openAlert(payload)),

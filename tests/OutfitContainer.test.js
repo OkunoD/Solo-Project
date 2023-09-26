@@ -2,30 +2,13 @@
  * @jest-environment jsdom
  */
 import '@testing-library/jest-dom';
-import express from 'express';
 import * as React from 'react';
-import { act, render, fireEvent, screen, waitFor, prettyDOM } from '@testing-library/react';
+import { act, render, fireEvent, screen, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import Header from '../src/components/Header.jsx';
-import { Item, User, Outfit } from '../server/models.js'
 import store from "../src/store.js";
-import router from '../server/router.js';
-import { MongoMemoryServer } from 'mongodb-memory-server';
 import { MemoryRouter } from 'react-router-dom';
 import fetchMock from 'jest-fetch-mock';
-import mongoose from 'mongoose';
-import { 
-        addItemController, 
-        fillWardrobeController, 
-        getItemController,
-        deleteItemController,
-        getOutfitsController,
-        addOutfitController,
-        deleteOutfitController,
-    } from '../server/controllers.js'
-import WardrobeContainer from '../src/containers/WardrobeContainer.jsx';
 import App from '../src/components/App.js';
-import OutfitContainer from '../src/containers/OutfitContainer.jsx';
 
 export const itemPayload1 = {
     file: {type: 'Buffer', data: []},
