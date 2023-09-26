@@ -19,15 +19,15 @@ const initialState = {
 
   topsList: [],
   // lastTopsId: 0,
-  wornTop: [],
+  wornTops: [],
 
   jacketsList: [],
   // lastJacketsId: 0,
-  wornJacket: [],
+  wornJackets: [],
 
   bottomsList: [],
   // lastBottomsId: 0,
-  wornBottom: [],
+  wornBottoms: [],
 
   shoesList: [],
   // lastShoesId: 0,
@@ -35,7 +35,7 @@ const initialState = {
 
   accessoriesList: [],
   // lastAccessoriesId: 0,
-  wornAccessory: [],
+  wornAccessories: [],
 }
 
 // put the post/fetch inside the frontend in same action 
@@ -142,6 +142,20 @@ const wardrobeReducer = (state = initialState, action) => {
     };
   };
 
+  const takeOffItem = (itemId, wornType) => {
+    console.log('itemId is', itemId);
+    console.log('wornType is', wornType);
+    const wornItemsArray = state[wornType];
+    console.log('state[wornType] is:', state[wornType])
+    const updatedList = wornItemsArray.filter((item) => itemId !== item.id);
+
+    return {
+      ...state,
+      refresh: !state["refresh"],
+      [wornType]: updatedList,
+    };
+  }
+
   const deleteItem = (listName, itemId) => {
     const updatedList = state[listName].filter(item => item.id !== itemId);
     return {
@@ -176,9 +190,16 @@ const wardrobeReducer = (state = initialState, action) => {
 
     case types.TRYON_ITEM:
       const [ itemType, itemId, wornType ] = action.payload;
-      console.log('action payload is: ', action.payload);
-      console.log('in reducer, itemType is: ', itemType);
+      // console.log('action payload is: ', action.payload);
+      // console.log('in reducer, itemType is: ', itemType);
       return tryOnItem(`${itemType}List`, itemId, `worn${wornType}`);
+
+    case types.TAKEOFF_ITEM:
+      const [ takeOffItemId, takeOffWornType ] = action.payload;
+      // console.log('action payload is: ', action.payload);
+      // console.log('in reducer, itemType is: ', itemType);
+      const wornTypeString = takeOffWornType.charAt(0).toUpperCase() + takeOffWornType.slice(1);
+      return takeOffItem(takeOffItemId, `worn${wornTypeString}`);
 
     case types.DELETE_ITEM:
       const [ itemTypeToDelete, itemIdToDelete ] = action.payload;

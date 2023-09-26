@@ -99,7 +99,7 @@ const Accessories = (props) => {
       <div className="item-button-div">
         <input className="black-button" onClick={() => {
           console.log('tryon input received');
-          props.tryOnItem('accessories', props.id, 'Accessory')}} type="Submit" value="Try it on" readOnly/>
+          props.tryOnItem('accessories', props.id, 'Accessories')}} type="Submit" value="Try it on" readOnly/>
         <input className="red-button" onClick={() => {
           handleDelete(props.id);
           props.deleteItem('accessories', props.id)}} type="Submit" value="Delete" readOnly/>

@@ -97,7 +97,7 @@ const Jackets = (props) => {
           <p className="item-name">{props.name}</p>
           <div className="item-button-div">
             <input className="black-button" onClick={() => {
-              props.tryOnItem('jackets', props.id, 'Jacket')}} type="Submit" value="Try it on" readOnly/>
+              props.tryOnItem('jackets', props.id, 'Jackets')}} type="Submit" value="Try it on" readOnly/>
             <input className="red-button" onClick={() => {
               handleDelete(props.id);
               props.deleteItem('jackets', props.id)}} type="Submit" value="Delete" readOnly/>

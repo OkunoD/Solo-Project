@@ -12,6 +12,7 @@ const mapStateToProps = function(state, ownProps) {
     size: state.headwearList[ownProps.index].size,
     brand: state.headwearList[ownProps.index].brand,
     file: state.headwearList[ownProps.index].file,
+    type: state.headwearList[ownProps.index].type,
   };
 };
 
@@ -99,7 +100,7 @@ const Headwear = (props) => {
       <div className="item-button-div">
         <input className="black-button" onClick={() => {
           console.log('tryon input received');
-          props.tryOnItem('headwear', props.id, 'Headwear')}} type="Submit" value="Try it on" readOnly/>
+          props.tryOnItem('headwear', props.id, "Headwear")}} type="Submit" value="Try it on" readOnly/>
         <input className="red-button" onClick={() => {
           handleDelete(props.id);
           props.deleteItem('headwear', props.id)}} type="Submit" value="Delete" readOnly/>

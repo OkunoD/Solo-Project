@@ -3,18 +3,25 @@ import { connect } from 'react-redux';
 //import { Link } from 'react-router-dom';
 import JacketsCard from './JacketsCard.jsx';
 import ItemCard from './ItemCard.jsx';
+import { openAlert, closeAlert } from '../actions/actions.js'
+
 
 const mapStateToProps = (state) => {
     return {
         wornHeadwear: state.wornHeadwear,
-        wornTop: state.wornTop,
-        wornJacket: state.wornJacket,
-        wornBottom: state.wornBottom,
+        wornTop: state.wornTops,
+        wornJacket: state.wornJackets,
+        wornBottom: state.wornBottoms,
         wornShoes: state.wornShoes,
-        wornAccessory: state.wornAccessory,
+        wornAccessory: state.wornAccessories,
         refresh: state.refresh,
     };
 };
+
+const mapDispatchToProps = (dispatch) => ({
+    openAlert : (payload)  => dispatch(openAlert(payload)),
+    closeAlert : ()  => dispatch(closeAlert()),
+  });
 
 const Outfit = props => {
     
@@ -41,11 +48,26 @@ const Outfit = props => {
         };
       }, []);
 
+    const toggleAlert = (message) => {
+        console.log('inside toggleAlert, message is', message);
+        props.openAlert(message);
+    }
+
     const saveOutfit = () => {
         const outfitIds = [];
-        for (let i=0; i<outfitArr.length; i++) {
-            outfitIds.push(outfitArr[i].id)
+        const getOutfitIds = (outfitArr) => {
+            for (let i=0; i<outfitArr.length; i++) {
+                if (Array.isArray(outfitArr[i])) {
+                    getOutfitIds(outfitArr[i]);
+                }
+                outfitIds.push(outfitArr[i].id)
+            }
         }
+        getOutfitIds(outfitArr);
+
+        // for (let i=0; i<outfitArr.length; i++) {
+        //     outfitIds.push(outfitArr[i].id)
+        // }
 
         const outfitData = {
             name: outfitName,
@@ -66,6 +88,7 @@ const Outfit = props => {
             .then((response) => response.json())
             .then((data) => {
                 console.log("SAVE OUTFIT DATA IS: ", data);
+                toggleAlert(data.message);
             })
             .catch((error) => {
               console.error('Error:', error);
@@ -95,6 +118,7 @@ const Outfit = props => {
                     contentType={currentItem.contentType}
                     brand={currentItem.brand}
                     size={currentItem.size}
+                    type={currentItem.type}
                     // index = {i}
                 />) 
                 : outfit.push(<div key={i + 10000}></div>);
@@ -123,4 +147,4 @@ const Outfit = props => {
 
 
 
-export default connect(mapStateToProps) (Outfit);
+export default connect(mapStateToProps, mapDispatchToProps) (Outfit);

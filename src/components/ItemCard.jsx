@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addJacketActionCreator, deleteJacketActionCreator, tryOnJacketActionCreator } from '../actions/actions.js'
+import { takeOffItemActionCreator, openAlert, closeAlert } from '../actions/actions.js'
 
 
 // let key = undefined;
@@ -10,6 +10,7 @@ const mapStateToProps = function(state, ownProps) {
     id: ownProps.id,
     name: ownProps.name,
     color: ownProps.color,
+    type: ownProps.type,
     file: ownProps.file,
     brand: ownProps.brand,
     size: ownProps.size,
@@ -17,6 +18,7 @@ const mapStateToProps = function(state, ownProps) {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  takeOffItem: (payload1, payload2) => dispatch(takeOffItemActionCreator(payload1, payload2)),
 });
 
 const ItemCard = (props) => {
@@ -54,23 +56,22 @@ const ItemCard = (props) => {
         <div className="image-container">
           <img src={imageSrc} alt="Retrieved from state" className="image-content" />
         </div>
+        <div>
         <div className="item-details">
           <div className="designer-and-size">
             <p className="item-brand">{props.brand}</p>
             <p className="item-size">{props.size}</p>
           </div>
         <p className="item-name">{props.name}</p>
-        {/* <p>{props.color}</p> */}
+          <div className="item-button-div">
+            <input className="red-button" type="Submit" value="take off" onClick={() => {
+              console.log('take off input received')
+              props.takeOffItem(props.id, props.type)}
+            } readOnly/>
+          </div>
         </div>
-        {/* <div className="item-button-div">
-          <input className="black-button" onClick={() => {
-            console.log('tryon input received')}
-           } readOnly/>
-          <input className="red-button" onClick={() => {
-            console.log('delete input received')}
-           } readOnly/>
-        </div> */}
       </div>
+    </div>
     );};
 
 export default connect(mapStateToProps, mapDispatchToProps) (ItemCard);

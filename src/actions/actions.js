@@ -30,6 +30,11 @@ export const tryOnItemActionCreator =  (itemType, itemId, wornType) => ({
   payload: [ itemType, itemId, wornType ],
 });
 
+export const takeOffItemActionCreator = (itemId, wornType) => ({
+  type: types.TAKEOFF_ITEM,
+  payload: [ itemId, wornType ],
+});
+
 export const deleteItemActionCreator = (itemTypeToDelete, itemId) => ({
   type: types.DELETE_ITEM,
   payload: [ itemTypeToDelete, itemId ],
