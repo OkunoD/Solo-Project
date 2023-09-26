@@ -105,8 +105,8 @@ describe("OutfitContainer", () => {
 
     fetchMock.enableMocks();
 
-    fetchMock.mockResponseOnce(JSON.stringify(fillWardrobeMockResponse));
     fetchMock.mockResponseOnce(JSON.stringify(outfitRefsMockResponse));
+    fetchMock.mockResponseOnce(JSON.stringify(fillWardrobeMockResponse));
 
 
     // global.fetch = jest.fn();
