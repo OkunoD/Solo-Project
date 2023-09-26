@@ -19,7 +19,7 @@ const BottomsDrawer = props => {
         const currentBottom = arrOfBottoms[i];
         bottoms.push(
             <BottomsCard
-                key = {i}
+                key = {currentBottom.id}
                 bottomName={currentBottom.name}
                 bottomId={currentBottom.id}
                 bottomColor={currentBottom.color}

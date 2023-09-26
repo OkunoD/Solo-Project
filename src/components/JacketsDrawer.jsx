@@ -19,7 +19,7 @@ const JacketsDrawer = props => {
         const currentJacket = arrOfJackets[i];
         jackets.push(
             <JacketsCard
-                key = {i}
+                key = {currentJacket.id}
                 jacketName={currentJacket.name}
                 jacketId={currentJacket.id}
                 jacketColor={currentJacket.color}

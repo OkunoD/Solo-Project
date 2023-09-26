@@ -19,7 +19,7 @@ const ShoesDrawer = props => {
         const currentShoes = arrOfShoes[i];
         shoes.push(
             <ShoesCard
-                key = {i}
+                key = {currentShoes.id}
                 shoesName={currentShoes.name}
                 shoesId={currentShoes.id}
                 shoesColor={currentShoes.color}

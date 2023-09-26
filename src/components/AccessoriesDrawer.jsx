@@ -19,7 +19,7 @@ const AccessoriesDrawer = props => {
         const currentAccessory = arrOfAccessories[i];
         accessories.push(
             <AccessoriesCard
-                key = {i}
+                key = {currentAccessory.id}
                 accessoryName={currentAccessory.name}
                 accessoryId={currentAccessory.id}
                 acccessoryColor={currentAccessory.color}

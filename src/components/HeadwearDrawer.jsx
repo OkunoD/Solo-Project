@@ -19,7 +19,7 @@ const HeadwearDrawer = props => {
         const currentHeadwear = arrOfHeadwear[i];
         headwear.push(
             <HeadwearCard
-                key = {i}
+                key = {currentHeadwear.id}
                 headwearName={currentHeadwear.name}
                 headwearId={currentHeadwear.id}
                 headwearColor={currentHeadwear.color}

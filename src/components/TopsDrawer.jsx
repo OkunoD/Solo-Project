@@ -19,7 +19,7 @@ const TopsDrawer = props => {
         const currentTop = arrOfTops[i];
         tops.push(
             <TopsCard
-                key = {i}
+                key = {currentTop.id}
                 topName={currentTop.name}
                 topId={currentTop.id}
                 topColor={currentTop.color}

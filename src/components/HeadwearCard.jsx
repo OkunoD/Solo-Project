@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { deleteItemActionCreator, tryOnItemActionCreator, openAlert, closeAlert } from '../actions/actions.js'
 
-let key = undefined;
+// let key = undefined;
 
 const mapStateToProps = function(state, ownProps) {
   return {
@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Headwear = (props) => {
-  key = props.index;
+  // key = props.index;
   
   const [imageSrc, setImageSrc] = useState('');
 
