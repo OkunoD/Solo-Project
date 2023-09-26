@@ -114,7 +114,7 @@ const OutfitContainer = (props) => {
                             <p></p>
                             <div className="outfit-name-and-delete">
                                 <div className="outfit-names">{outfitRef.name}</div>
-                                <button className="delete-item-button" onClick={()=>{
+                                <button className="delete-item-button" data-testid={`delete-outfit-button-${index}`} onClick={()=>{
                                     deleteOutfit(outfitRef._id);
                                     outfitRefs.splice(index, 1);
                                     }}>delete outfit</button>
