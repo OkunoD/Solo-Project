@@ -3,6 +3,7 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   isAlertOn: false,
   message: '',
+  refresh: false,
 
   totalHeadwear: 0,
   totalTops: 0,
@@ -14,63 +15,27 @@ const initialState = {
 
   headwearList: [],
   // lastHeadwearId: 0,
-  wornHeadwear: { 
-    id: '',
-    type: '',
-    name: '',
-    imgUrl: '',
-    color: '',
-  },
+  wornHeadwear: [],
 
   topsList: [],
   // lastTopsId: 0,
-  wornTop: { 
-    id: '',
-    type: '',
-    name: '',
-    imgUrl: '',
-    color: '',
-  },
+  wornTop: [],
 
   jacketsList: [],
   // lastJacketsId: 0,
-  wornJacket: { 
-    id: '',
-    type: '',
-    name: '',
-    imgUrl: '',
-    color: '',
-  },
+  wornJacket: [],
 
   bottomsList: [],
   // lastBottomsId: 0,
-  wornBottom: { 
-    id: '',
-    type: '',
-    name: '',
-    imgUrl: '',
-    color: '',
-  },
+  wornBottom: [],
 
   shoesList: [],
   // lastShoesId: 0,
-  wornShoes: { 
-    id: '',
-    type: '',
-    name: '',
-    imgUrl: '',
-    color: '',
-  },
+  wornShoes: [],
 
   accessoriesList: [],
   // lastAccessoriesId: 0,
-  wornAccessory: { 
-    id: '',
-    type: '',
-    name: '',
-    imgUrl: '',
-    color: '',
-  },
+  wornAccessory: [],
 }
 
 // put the post/fetch inside the frontend in same action 
@@ -154,10 +119,26 @@ const wardrobeReducer = (state = initialState, action) => {
   };
 
   const tryOnItem = (listName, itemId, wornType) => {
+    //add conditional where if tried on item already is on (i.e. is in wornType)
+    //then we don't add it again (i.e. return {...state} without pushing into array)
+    
     const wornItem = state[listName].find(item => item.id === itemId)
+    if (state[wornType].includes(wornItem)) {
+      return {
+        ...state,
+      }
+    }
+    
+    const wornItemsArray = state[wornType];
+    console.log('state[wornType] is:', state[wornType])
+    wornItemsArray.push(wornItem);
+    const updatedList = wornItemsArray;
+    console.log('state refresh is', state["refresh"]);
+
     return {
       ...state,
-      [wornType]: wornItem,
+      refresh: !state["refresh"],
+      [wornType]: updatedList,
     };
   };
 

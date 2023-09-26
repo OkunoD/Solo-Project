@@ -12,6 +12,7 @@ const mapStateToProps = (state) => {
         wornBottom: state.wornBottom,
         wornShoes: state.wornShoes,
         wornAccessory: state.wornAccessory,
+        refresh: state.refresh,
     };
 };
 
@@ -25,6 +26,9 @@ const Outfit = props => {
     
     
     useEffect(() => {
+        fillOutfit(outfitArr);
+        console.log('outfit is', outfit);
+
         const handleScroll = () => {
           const scrollThreshold = 20; 
           if (window.scrollY >= scrollThreshold) {
@@ -38,7 +42,7 @@ const Outfit = props => {
         return () => {
           window.removeEventListener('scroll', handleScroll);
         };
-      }, []);
+      }, [props.refresh]);
 
     const saveOutfit = () => {
         const outfitIds = [];
@@ -71,26 +75,34 @@ const Outfit = props => {
         });
     }
 
-    for (let i = 0; i < outfitArr.length; i++) {
-        const currentItem = outfitArr[i];
-        // console.log('in outfit loop, currentItem is: ', currentItem);
-        // console.log('in outfit loop, currentItemName is: ', currentItem.name);
-        // console.log('in outfit loop currentItemColor is: ', currentItem.color);
-        // console.log('in outfit loop, currentOutfitImgUrl is: ', currentItem.imgUrl);
-
-        currentItem.id ? 
-        outfit.push(
-            <ItemCard
-                key={i}
-                id={currentItem.id}
-                name={currentItem.name}
-                color={currentItem.color}
-                file={currentItem.file}
-                contentType={currentItem.contentType}
-                // index = {i}
-            />) 
-            : outfit.push(<div key={i}></div>);
+    const fillOutfit = (outfitArr) => {
+        for (let i = 0; i < outfitArr.length; i++) {
+            if (Array.isArray(outfitArr[i])) {
+                console.log('inside filloutfit Array.isArray conditional');
+                fillOutfit(outfitArr[i]);
+            }
+            const currentItem = outfitArr[i];
+    
+            console.log('in outfit loop, currentItem is: ', currentItem);
+            console.log('in outfit loop, currentItemName is: ', currentItem.name);
+            console.log('in outfit loop currentItemColor is: ', currentItem.color);
+    
+            currentItem.id ? 
+            outfit.push(
+                <ItemCard
+                    key={currentItem.id}
+                    id={currentItem.id}
+                    name={currentItem.name}
+                    color={currentItem.color}
+                    file={currentItem.file}
+                    contentType={currentItem.contentType}
+                    // index = {i}
+                />) 
+                : outfit.push(<div key={i + 10000}></div>);
+        }
     }
+    fillOutfit(outfitArr);
+
     return(
         <div className={`sticky-outfit ${isSticky ? 'with-shadow' : ''}`}>
             <div className="clothingBox" data-testid="my-outfit-container">
