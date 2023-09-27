@@ -251,8 +251,8 @@ animation-delay: calc(.5s * var(--i))
     z-index: 1;
     width: 140px;
     // height: 220px;
-    margin-left: 0px;
-    margin-right: 3px;
+    margin-left: 1.5px;
+    margin-right: 1.5px;
     margin-bottom: 5px;
     border-style: solid;
     border-width: 1px;
@@ -331,7 +331,10 @@ animation-delay: calc(.5s * var(--i))
     &:hover {
         font-weight: 400;
         text-decoration: underline;
-        cursor: pointer;
+        // cursor: pointer;
+        cursor: context-menu;
+        // cursor: text;
+        // cursor: cell;
     }
 }
 .item-button-div {
@@ -505,7 +508,61 @@ max-height: 100%;
     transition: all 250ms linear 4s;
 }
 .edit-item-modal {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+    color: white;
     position: absolute;
-    z-index: 0;
-    opacity: 0;
+    z-index: 3;
+    opacity: 1;
+    height: 226.09px;
+    // transition: opacity 0.5s ease-in-out;
+}
+.edit-item-input-div {
+    margin-top: 122px;
+    padding: 0px;
+}
+.edit-category-select-list {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(212, 212, 212);
+    margin-bottom: 8px;
+}
+.edit-brand-field {
+    padding-left: 2px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(212, 212, 212);
+    height: 17px;
+    width: 79px;
+}
+.edit-size-select-list {
+    margin-top: 0px;
+    margin-left: 19px;
+    height: 18px;
+    padding: 0px;
+    width: 30px;
+}
+.edit-name-field {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(212, 212, 212);
+    margin-top: 2px;
+    width: 128px;
+    height: 15px;
+}
+.edit-item-borders {
+    margin-left: 0px;
+    padding: 3px;
+
+}
+.update-item-button {
+    @extend .green-button;
+    background-color: white;
+    margin-top: 6px;
+    width: 134px;
+}
+.exit-edit-button {
+    @extend .red-button;
+    color: red;
+    border-color: red;
+
 }

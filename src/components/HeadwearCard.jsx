@@ -93,9 +93,15 @@ const Headwear = (props) => {
   return (
     <>
       <div className="itemBox">
-        {showModal ??
+        {showModal &&
         <ItemEditorModal 
           itemList={"headwearList"}
+          toggleEditModal={toggleEditModal}
+          currentName={props.name}
+          currentType={props.type}
+          currentBrand={props.brand}
+          currentColor={props.color}
+          currentSize={props.size}
         />
         
         }
