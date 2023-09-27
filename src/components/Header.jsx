@@ -16,7 +16,7 @@ const Header = ({view}) => {
     };
     
     const myClosetLogo = (
-        <div className="waviy" title="my-closet-logo">
+        <div className="waviy" data-testid="my-closet-logo">
             <span style={{'--i': 1}}>M</span>
             <span style={{'--i': 2}}>Y</span>
             <span>.</span>
@@ -29,7 +29,7 @@ const Header = ({view}) => {
         </div>
     );
     const myOutfitsLogo = (
-        <div className="waviy" title="my-outfits-logo">
+        <div className="waviy" data-testid="my-outfits-logo">
             <span style={{'--i': 1}}>M</span>
             <span style={{'--i': 2}}>Y</span>
             <span>.</span>
@@ -43,7 +43,7 @@ const Header = ({view}) => {
         </div>
     );
     const outfitsButton = (
-        <div className={"header-button"} title="outfits-button">
+        <div className={"header-button"} data-testid="outfits-button">
             <span style={{'--i': 0}}>O</span>
             <span style={{'--i': 1}}>U</span>
             <span style={{'--i': 2}}>T</span>
@@ -54,7 +54,7 @@ const Header = ({view}) => {
         </div>
     );
     const closetButton = (
-        <div className={"header-button"} title="closet-button">
+        <div className={"header-button"} data-testid="closet-button">
             <span style={{'--i': 0}}>C</span>
             <span style={{'--i': 1}}>L</span>
             <span style={{'--i': 2}}>O</span>
@@ -64,7 +64,7 @@ const Header = ({view}) => {
         </div>
     );
     const addItemButton = (
-        <div title="add-item-button" className={isClicked ? "clicked-button": "header-button"} onClick={()=>{toggleModal();handleClick();}}>
+        <div data-testid="add-item-button" className={isClicked ? "clicked-button": "header-button"} onClick={()=>{toggleModal();handleClick();}}>
             <span style={{'--i': 0}}>A</span>
             <span style={{'--i': 1}}>D</span>
             <span style={{'--i': 2}}>D</span>
@@ -76,7 +76,7 @@ const Header = ({view}) => {
         </div>
     );
     const signInButton = (
-        <div title="sign-in-button" className={"header-button"}>
+        <div data-testid="sign-in-button" className={"header-button"}>
             <span style={{'--i': 0}}>S</span>
             <span style={{'--i': 1}}>I</span>
             <span style={{'--i': 2}}>G</span>
@@ -94,7 +94,7 @@ const Header = ({view}) => {
          </div>
     );
     const signOutButton = (
-        <div title="sign-out-button" className={"header-button"}>
+        <div data-testid="sign-out-button" className={"header-button"}>
             <span style={{'--i': 0}}>S</span>
             <span style={{'--i': 1}}>I</span>
             <span style={{'--i': 2}}>G</span>

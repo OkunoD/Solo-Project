@@ -65,10 +65,6 @@ const Outfit = props => {
         }
         getOutfitIds(outfitArr);
 
-        // for (let i=0; i<outfitArr.length; i++) {
-        //     outfitIds.push(outfitArr[i].id)
-        // }
-
         const outfitData = {
             name: outfitName,
             outfit: outfitIds,
@@ -103,9 +99,11 @@ const Outfit = props => {
             }
             const currentItem = outfitArr[i];
     
-            console.log('in outfit loop, currentItem is: ', currentItem);
-            console.log('in outfit loop, currentItemName is: ', currentItem.name);
-            console.log('in outfit loop currentItemColor is: ', currentItem.color);
+            // console.log('in outfit loop, currentItem is: ', currentItem);
+            // console.log('in outfit loop, currentItemName is: ', currentItem.name);
+            // console.log('in outfit loop, currentItemBrand is: ', currentItem.brand);
+            // console.log('in outfit loop, currentItemSize is: ', currentItem.size);
+            // console.log('in outfit loop currentItemColor is: ', currentItem.color);
     
             currentItem.id ? 
             outfit.push(
@@ -119,7 +117,6 @@ const Outfit = props => {
                     brand={currentItem.brand}
                     size={currentItem.size}
                     type={currentItem.type}
-                    // index = {i}
                 />) 
                 : outfit.push(<div key={i + 10000}></div>);
         }

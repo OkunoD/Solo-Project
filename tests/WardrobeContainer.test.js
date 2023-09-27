@@ -104,7 +104,7 @@ describe("WardrobeContainer", () => {
         });
         //
 
-        const myClosetLogo = screen.getByTitle("my-closet-logo");
+        const myClosetLogo = screen.getByTestId("my-closet-logo");
         expect(myClosetLogo).toBeVisible();
 
         const myOutfitContainer = screen.getByTestId("my-outfit-container");

@@ -42,7 +42,7 @@ describe('itemCreator module', () => {
             </Provider>
         )
 
-        const addItemButton = screen.getByTitle('add-item-button');
+        const addItemButton = screen.getByTestId('add-item-button');
         fireEvent.click(addItemButton);
         const closeModalButton = screen.getByTestId("close-modal-button");
 
@@ -61,7 +61,7 @@ describe('itemCreator module', () => {
             </Provider>
         )
 
-        const addItemButton = screen.getByTitle('add-item-button');
+        const addItemButton = screen.getByTestId('add-item-button');
         fireEvent.click(addItemButton);
         expect(screen.getByText("ADD PIECE")).toBeVisible();
 

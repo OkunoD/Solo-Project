@@ -26,9 +26,10 @@ const ItemCard = (props) => {
     // console.log('in Item, props is', props);
     // console.log('in Item, props.file is:', props.file);
     // console.log('in Item, props.contentType is:', props.contentType);
-
     // console.log('in Item, props.id is:', props.id);
     // console.log('in Item, props.name is:', props.name);
+    // console.log('in Item, props.size is:', props.size);
+    // console.log('in Item, props.brand is:', props.brand);
     // console.log('in Item, props.color is:', props.color);
 
     const [imageSrc, setImageSrc] = useState('');
@@ -64,10 +65,12 @@ const ItemCard = (props) => {
           </div>
         <p className="item-name">{props.name}</p>
           <div className="item-button-div">
-            <input className="red-button" type="Submit" value="take off" onClick={() => {
-              console.log('take off input received')
-              props.takeOffItem(props.id, props.type)}
-            } readOnly/>
+            {props.hideButton ?? 
+              <input className="red-button" type="Submit" value="take off" onClick={() => {
+                console.log('take off input received')
+                props.takeOffItem(props.id, props.type)}
+              } readOnly/>
+            }
           </div>
         </div>
       </div>

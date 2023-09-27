@@ -98,9 +98,12 @@ const OutfitContainer = (props) => {
                                     key={foundObject.id}
                                     id={foundObject.id}
                                     name={foundObject.name}
+                                    brand={foundObject.brand}
+                                    size={foundObject.size}
                                     color={foundObject.color}
                                     file={foundObject.file}
                                     contentType={foundObject.contentType}
+                                    hideButton={true}
                                 />)
                             }
                         }
