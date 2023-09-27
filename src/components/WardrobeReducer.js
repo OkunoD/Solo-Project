@@ -4,37 +4,24 @@ const initialState = {
   isAlertOn: false,
   message: '',
   refresh: false,
-
-  totalHeadwear: 0,
-  totalTops: 0,
-  totalJackets: 0,
-  totalBottoms: 0,
-  totalShoes: 0,
-  totalAccessories: 0,
   lastItemId: 0,
-
+  
   headwearList: [],
-  // lastHeadwearId: 0,
   wornHeadwear: [],
-
+  
   topsList: [],
-  // lastTopsId: 0,
   wornTops: [],
-
+  
   jacketsList: [],
-  // lastJacketsId: 0,
   wornJackets: [],
-
+  
   bottomsList: [],
-  // lastBottomsId: 0,
   wornBottoms: [],
-
+  
   shoesList: [],
-  // lastShoesId: 0,
   wornShoes: [],
-
+  
   accessoriesList: [],
-  // lastAccessoriesId: 0,
   wornAccessories: [],
 }
 

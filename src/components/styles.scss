@@ -247,6 +247,8 @@ animation-delay: calc(.5s * var(--i))
     margin-bottom: 8px;
 }
 .itemBox {
+    position: relative;
+    z-index: 1;
     width: 140px;
     // height: 220px;
     margin-left: 0px;
@@ -327,8 +329,6 @@ animation-delay: calc(.5s * var(--i))
     transition: all 0s ease-in-out;
 
     &:hover {
-        white-space: normal;
-        max-height: none;
         font-weight: 400;
         text-decoration: underline;
         cursor: pointer;
@@ -503,4 +503,9 @@ max-height: 100%;
 .alert.hidden {
     opacity: 0;
     transition: all 250ms linear 4s;
+}
+.edit-item-modal {
+    position: absolute;
+    z-index: 0;
+    opacity: 0;
 }

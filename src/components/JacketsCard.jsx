@@ -94,7 +94,7 @@ const Jackets = (props) => {
             <p className="item-brand">{props.brand ? props.brand : 'no brand'}</p>
             <p className="item-size">{props.size ? props.size: 'no size'}</p>
             </div>
-          <p className="item-name">{props.name}</p>
+          <p className="item-name" title={props.name}>{props.name}</p>
           <div className="item-button-div">
             <input className="black-button" onClick={() => {
               props.tryOnItem('jackets', props.id, 'Jackets')}} type="Submit" value="Try it on" readOnly/>

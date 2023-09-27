@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { deleteItemActionCreator, tryOnItemActionCreator, openAlert, closeAlert } from '../actions/actions.js'
-
+import ItemEditorModal from './EditItemModal.jsx';
 // let key = undefined;
 
 const mapStateToProps = function(state, ownProps) {
@@ -27,6 +27,7 @@ const Headwear = (props) => {
   // key = props.index;
   
   const [imageSrc, setImageSrc] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   const imageData = props.file ? props.file.data : null;
   const contentType = props.contentType;
@@ -68,6 +69,10 @@ const Headwear = (props) => {
     props.openAlert(message);
   }
 
+  const toggleEditModal = () => {
+    setShowModal(!showModal);
+  }
+
   const handleDelete = async (itemId) => {
     try {
       const response = await fetch(`/api/items/${itemId}`, {
@@ -86,28 +91,36 @@ const Headwear = (props) => {
   };
 
   return (
-    <div className="itemBox">
-      <div className="image-container">
-        <img src={imageSrc} alt="Retrieved from state" className="image-content" />
-      </div>
-      <div>
-      <div className="item-details">
-        <div className="designer-and-size">
-        <p className="item-brand">{props.brand ? props.brand : 'no brand'}</p>
-        <p className="item-size">{props.size ? props.size: 'no size'}</p>
+    <>
+      <div className="itemBox">
+        {showModal ??
+        <ItemEditorModal 
+          itemList={"headwearList"}
+        />
+        
+        }
+        <div className="image-container">
+          <img src={imageSrc} alt="Retrieved from state" className="image-content" />
         </div>
-      <p className="item-name">{props.name}</p>
-      <div className="item-button-div">
-        <input className="black-button" onClick={() => {
-          console.log('tryon input received');
-          props.tryOnItem('headwear', props.id, "Headwear")}} type="Submit" value="Try it on" readOnly/>
-        <input className="red-button" onClick={() => {
-          handleDelete(props.id);
-          props.deleteItem('headwear', props.id)}} type="Submit" value="Delete" readOnly/>
+        <div>
+        <div className="item-details">
+          <div className="designer-and-size">
+          <p className="item-brand">{props.brand ? props.brand : 'no brand'}</p>
+          <p className="item-size">{props.size ? props.size: 'no size'}</p>
+          </div>
+        <p className="item-name" title={props.name} onClick={()=> toggleEditModal()}>{props.name}</p>
+        <div className="item-button-div">
+          <input className="black-button" onClick={() => {
+            console.log('tryon input received');
+            props.tryOnItem('headwear', props.id, "Headwear")}} type="Submit" value="Try it on" readOnly/>
+          <input className="red-button" onClick={() => {
+            handleDelete(props.id);
+            props.deleteItem('headwear', props.id)}} type="Submit" value="Delete" readOnly/>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    </>
   );
 };
 
