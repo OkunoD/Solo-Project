@@ -16,8 +16,8 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
   const [itemColor, setColor] = useState('');
   const [itemSize, setSize] = useState('');
 
-  const addItem = (payload1, payload2, payload3, payload4, payload5) => {
-    dispatch(addItemActionCreator(payload1,payload2,payload3,payload4,payload5));
+  const addItem = (payload1, payload2, payload3, payload4, payload5, payload6) => {
+    dispatch(addItemActionCreator(payload1,payload2,payload3,payload4,payload5, payload6));
   }
 
   const toggleAlert = (message) => {
@@ -44,7 +44,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
   const handleSubmit = () => {
     const lastItemId = state['lastItemId'];
     const formData = new FormData();
-    
+
     formData.append('file', selectedFile);
     formData.append('id', lastItemId+1);
     formData.append('name', itemName);
@@ -132,7 +132,9 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
         <div className="add-item-buttons-container">
           <input style={{padding: '3px'}} className="green-button" data-testid="submit-item-button" onClick={() => {
             // props.addItem(itemType, itemName, selectedFile, itemColor);
-            addItem(itemType, itemName, selectedFile, itemColor);
+            console.log('itemSize is', itemSize);
+            console.log('itemBrand is', itemBrand);
+            addItem(itemType, itemName, selectedFile, itemColor, itemBrand, itemSize);
             handleSubmit();
             }} type="submit" value="Add Item" />
           <button data-testid="close-modal-button" className="red-button" onClick={()=>{toggleModal();handleClick();}}>Close</button>

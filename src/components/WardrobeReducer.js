@@ -92,6 +92,7 @@ const wardrobeReducer = (state = initialState, action) => {
     // // const lastItemId = state[lastItemIdString];
     const updatedList = [...state[listName]];
     // const newItemId = lastItemId + 1;
+    console.log('updatedList before adding is: ', updatedList);
 
     const newItemId = state['lastItemId'] + 1;
 
@@ -109,6 +110,7 @@ const wardrobeReducer = (state = initialState, action) => {
     console.log("newItem.file inside addItem reducer is: ", newItem.file);
 
     updatedList.push(newItem);
+    console.log('updatedList after adding is', updatedList);
 
     return {
       ...state,
@@ -186,7 +188,7 @@ const wardrobeReducer = (state = initialState, action) => {
       return
 
     case types.ADD_ITEM:
-      return addItem(action.payload1, action.payload2, action.payload3, action.payload4);
+      return addItem(action.payload1, action.payload2, action.payload3, action.payload4, action.payload5, action.payload6);
 
     case types.TRYON_ITEM:
       const [ itemType, itemId, wornType ] = action.payload;
