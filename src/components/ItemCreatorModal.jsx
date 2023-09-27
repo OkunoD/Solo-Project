@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItemActionCreator, fillWardrobeActionCreator } from '../actions/actions';
+import { addItemActionCreator, openAlert, closeAlert, fillWardrobeActionCreator } from '../actions/actions';
 // import { connect } from 'react-redux';
 import { mockData } from '../../mockData';
+
 
 export const ItemCreatorModal = ({toggleModal, handleClick}) => {
   const state = useSelector((state) => state);
@@ -18,7 +19,12 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
   const addItem = (payload1, payload2, payload3, payload4, payload5) => {
     dispatch(addItemActionCreator(payload1,payload2,payload3,payload4,payload5));
   }
-  
+
+  const toggleAlert = (message) => {
+    console.log('before dispatch in togglealert');
+    dispatch(openAlert(message));
+  }
+
   const handleCategorySelect = (e) => {
     setType(e.target.value);
   };
@@ -33,6 +39,33 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedFile(file);
+  }
+
+  const handleSubmit = () => {
+    const lastItemId = state['lastItemId'];
+    const formData = new FormData();
+    
+    formData.append('file', selectedFile);
+    formData.append('id', lastItemId+1);
+    formData.append('name', itemName);
+    formData.append('type', itemType);
+    formData.append('color', itemColor);
+    formData.append('brand', itemBrand);
+    formData.append('size', itemSize);
+
+    fetch('/api/items', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        console.log('inside post request before toggleAlert, data.message is: ', data.message);
+        toggleAlert(data.message);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
 
   return (
@@ -100,31 +133,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
           <input style={{padding: '3px'}} className="green-button" data-testid="submit-item-button" onClick={() => {
             // props.addItem(itemType, itemName, selectedFile, itemColor);
             addItem(itemType, itemName, selectedFile, itemColor);
-
-            const lastItemId = state['lastItemId'];
-
-            console.log('reached fetch request');
-
-            const formData = new FormData();
-            formData.append('file', selectedFile);
-            formData.append('id', lastItemId+1);
-            formData.append('name', itemName);
-            formData.append('type', itemType);
-            formData.append('color', itemColor);
-            formData.append('brand', itemBrand);
-            formData.append('size', itemSize);
-
-            fetch('/api/items', {
-              method: 'POST',
-              body: formData,
-            })
-              .then((response) => response.json())
-              .then((data) => {
-                console.log(data);
-              })
-              .catch((error) => {
-                console.error('Error:', error);
-              });
+            handleSubmit();
             }} type="submit" value="Add Item" />
           <button data-testid="close-modal-button" className="red-button" onClick={()=>{toggleModal();handleClick();}}>Close</button>
         </div>
