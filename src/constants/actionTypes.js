@@ -14,5 +14,7 @@ export const TAKEOFF_ITEM = 'TAKEOFF_ITEM';
 
 export const DELETE_ITEM = 'DELETE_ITEM';
 
+export const UPDATE_ITEM = 'UPDATE_ITEM';
+
 
 // export const DELETE_OUTFIT = 'DELETE_OUTFIT';

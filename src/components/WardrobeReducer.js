@@ -153,6 +153,35 @@ const wardrobeReducer = (state = initialState, action) => {
     };
   };
 
+  const updateItem = (itemId, itemList, updatedData) => {
+    console.log('itemId is', itemId);
+    console.log("updatedData is:", updatedData);
+    console.log("itemList is: ", itemList);
+    console.log("state[itemList] is", state[itemList]);
+
+    const itemToUpdate = state[itemList].find((item) => item.id === itemId);
+
+    if (!itemToUpdate) {
+      console.log('no itemToUpdate');
+      return state;
+    }
+
+    const updatedItem = {...itemToUpdate, ...updatedData};
+
+    const index = state[itemList].findIndex((item) => item.id === itemId);
+
+    const updatedItemList = [
+      ...state[itemList].slice(0, index),
+      updatedItem,
+      ...state[itemList].slice(index + 1),
+    ];
+
+    return {
+      ...state,
+      [itemList]: updatedItemList,
+    };
+  };
+
   switch (action.type) {
     case types.TURN_ON_ALERT:
       console.log('inside TURN_ON_ALERT');
@@ -170,7 +199,6 @@ const wardrobeReducer = (state = initialState, action) => {
 
     case types.FETCH_MONGO_DATA_SUCCESS:
       return fillWardrobe(action.payload);//
-
     case types.FETCH_MONGO_DATA_ERROR:
       return
 
@@ -195,6 +223,13 @@ const wardrobeReducer = (state = initialState, action) => {
       console.log('in reducer, itemTypeToDelete is: ', itemTypeToDelete);
       console.log('in DELETE_ITEM reducer', {itemIdToDelete});
       return deleteItem(`${itemTypeToDelete}List`, itemIdToDelete);
+
+    case types.UPDATE_ITEM:
+      const [ updatedItemId, itemList, updatedData ] = action.payload;
+      console.log('in UPDATE_ITEM case, updatedItemId is:', updatedItemId);
+      console.log('in UPDATE_ITEM case, itemList is:', itemList);
+      console.log('in UPDATE_ITEM case, updatedData is:', updatedData);
+      return updateItem(updatedItemId, itemList, updatedData);
 
     default: {
       return state;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { updateItemActionCreator } from '../actions/actions';
+import { updateItemActionCreator } from '../actions/actions';
 
 export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList, currentName, currentType, currentBrand, currentColor, currentSize}) => {
   const dispatch = useDispatch();
@@ -12,6 +12,14 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
   const [newColor, setNewColor] = useState(currentColor);
   const [newSize, setNewSize] = useState(currentSize);
   console.log(itemList);
+
+  const updateItemState = (itemId, itemList, updatedItem) => {
+    dispatch(updateItemActionCreator(itemId, itemList, updatedItem));
+  }
+
+
+
+
   // Fetch the item data based on itemId from the server or Redux store.
 //   useEffect(() => {
 //     // Fetch the item data based on the itemId and populate the form fields.
@@ -34,9 +42,12 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
         color: newColor,
         size: newSize,
     };
-
+    console.log('itemList is: ', itemList);
     console.log("itemId in updateItem function is: ", itemId);
     console.log("updatedItem in updateItem function is: ", updatedItem);
+
+    updateItemState(itemId, itemList, updatedItem);
+
     // Dispatch the update action.
     // dispatch(updateItemActionCreator(itemId, updatedItem));
 
@@ -129,6 +140,7 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
             console.log("newType is", newType);
 
             updateItem();
+            
             toggleEditModal();
         }}>UPDATE ITEM</button>
 
