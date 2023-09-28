@@ -87,6 +87,24 @@ const deleteItemController = async (req, res) => {
   } 
 };
 
+const updateItemController = async (req, res) => {
+  try {
+    const itemId = req.params.itemId;
+    const updatedData = req.body;
+
+    const updatedItem = await Item.findOneAndUpdate({id: itemId}, updatedData, { new: true });
+  
+    console.log({itemId});
+    console.log(req.body); 
+    console.log('updatedItem is: ', updatedItem);
+  
+    res.status(200).json({ message: 'Item updated successfully.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error.' });
+  }
+};
+
 const getOutfitsController = async (req, res) => {
   Outfit.find({}, (err, outfits) => {
     if (err) {
@@ -134,6 +152,7 @@ module.exports = {
   fillWardrobeController, 
   getItemController,
   deleteItemController,
+  updateItemController,
   getOutfitsController,
   addOutfitController,
   deleteOutfitController,

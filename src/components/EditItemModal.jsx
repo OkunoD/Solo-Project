@@ -6,11 +6,11 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
-  const [itemType, setType] = useState('');
-  const [itemBrand, setBrand] = useState('');
-  const [itemName, setName] = useState('');
-  const [itemColor, setColor] = useState('');
-  const [itemSize, setSize] = useState('');
+  const [newType, setNewType] = useState(currentType);
+  const [newBrand, setNewBrand] = useState(currentBrand);
+  const [newName, setNewName] = useState(currentName);
+  const [newColor, setNewColor] = useState(currentColor);
+  const [newSize, setNewSize] = useState(currentSize);
   console.log(itemList);
   // Fetch the item data based on itemId from the server or Redux store.
 //   useEffect(() => {
@@ -28,15 +28,17 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
   const updateItem = () => {
     // Create an object with the updated data.
     const updatedItem = {
-        type: itemType,
-        brand: itemBrand,
-        name: itemName,
-        color: itemColor,
-        size: itemSize,
+        type: newType,
+        brand: newBrand,
+        name: newName,
+        color: newColor,
+        size: newSize,
     };
 
+    console.log("itemId in updateItem function is: ", itemId);
+    console.log("updatedItem in updateItem function is: ", updatedItem);
     // Dispatch the update action.
-    dispatch(updateItemActionCreator(itemId, updatedItem));
+    // dispatch(updateItemActionCreator(itemId, updatedItem));
 
     // Make an API request to update the item on the server.
     fetch(`/api/items/${itemId}`, {
@@ -58,7 +60,7 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
 
     // Close the modal and trigger any necessary actions.
     // toggleModal();
-    handleClick();
+    // handleClick();
 };
 
   return (
@@ -66,7 +68,7 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
         {/* <div className="editItemHeaders">{currentName}</div> */}
       <div className="edit-item-borders">
       <button className="exit-edit-button" style={{float:"right"}}onClick={()=>toggleEditModal()}>X</button>
-        <select className="edit-category-select-list" id="category-select-list" data-testid="category-select-list" onChange={(e) => setType(e.target.value)} value={currentType}>
+        <select className="edit-category-select-list" id="category-select-list" data-testid="category-select-list" onChange={(e) => setNewType(e.target.value)} value={newType}>
          <option value="null">Category</option>
          <option value="headwear">Hat</option>
          <option value="tops">Top</option>
@@ -75,7 +77,7 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
          <option value="shoes">Shoes</option>
          <option value="accessories">Accessory</option>
         </select>
-        <select className="edit-color-select-list" id="color-select-list" data-testid="color-select-list" onChange={(e)=>setColor(e.target.value)} value={currentColor}>
+        <select className="edit-color-select-list" id="color-select-list" data-testid="color-select-list" onChange={(e)=>setNewColor(e.target.value)} value={newColor}>
          <option value="null">Color</option>
          <option value="White">White</option>
          <option value="Black">Black</option>
@@ -97,8 +99,8 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
          <option value="New Color">New Color</option>
         </select>
         <div className="edit-item-input-div">
-          <input className="edit-brand-field" placeholder={currentBrand} onChange={(e)=>setBrand(e.target.value)} type="text" value={itemBrand} />
-        <select className="edit-size-select-list" placeholder={currentSize} id="size-select-list" data-testid="size-select-list" onChange={(e)=>setSize(e.target.value)} value={currentSize}>
+          <input className="edit-brand-field" placeholder={currentBrand} onChange={(e)=>setNewBrand(e.target.value)} type="text" value={newBrand} />
+        <select className="edit-size-select-list" placeholder={currentSize} id="size-select-list" data-testid="size-select-list" onChange={(e)=>setNewSize(e.target.value)} value={newSize}>
          <option value="null">Size</option>
          <option value="XS">XS</option>
          <option value="S">S</option>
@@ -116,9 +118,17 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
         </select>
         </div>
         <div>
-          <input className="edit-name-field" placeholder={currentName} onChange={(e) => setName(e.target.value)} type="text" value={itemName} />
+          <input className="edit-name-field" placeholder={currentName} onChange={(e) => setNewName(e.target.value)} type="text" value={newName} />
         </div>
         <button className="update-item-button" onClick={() => {
+            console.log("itemId is: ", itemId);
+            console.log("newName is: ", newName);
+            console.log("newBrand is", newBrand);
+            console.log("newSize is: ", newSize);
+            console.log("newColor is", newColor);
+            console.log("newType is", newType);
+
+            updateItem();
             toggleEditModal();
         }}>UPDATE ITEM</button>
 

@@ -11,6 +11,7 @@ const {
   addItemController, 
   fillWardrobeController, 
   getItemController, 
+  updateItemController,
   deleteItemController,
   getOutfitsController,
   addOutfitController,
@@ -56,6 +57,7 @@ router.get('/api/items', fillWardrobeController);
 router.post('/api/items', upload.single('file'), addItemController);
 router.get('/api/items/:id', getItemController);
 router.delete('/api/items/:itemId', deleteItemController);
+router.put('/api/items/:itemId', updateItemController);
 
 router.get('/api/outfits', getOutfitsController);
 router.post('/api/outfits', addOutfitController);
