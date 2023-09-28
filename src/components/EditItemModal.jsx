@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateItemActionCreator } from '../actions/actions';
+import { updateItemActionCreator, openAlert } from '../actions/actions';
 
 export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList, currentName, currentType, currentBrand, currentColor, currentSize}) => {
   const dispatch = useDispatch();
@@ -11,27 +11,10 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
   const [newName, setNewName] = useState(currentName);
   const [newColor, setNewColor] = useState(currentColor);
   const [newSize, setNewSize] = useState(currentSize);
-  console.log(itemList);
 
   const updateItemState = (itemId, itemList, updatedItem) => {
     dispatch(updateItemActionCreator(itemId, itemList, updatedItem));
   }
-
-
-
-
-  // Fetch the item data based on itemId from the server or Redux store.
-//   useEffect(() => {
-//     // Fetch the item data based on the itemId and populate the form fields.
-//     const item = state[itemList].find((item) => item.id === itemId);
-//     if (item) {
-//         setType(item.type);
-//         setBrand(item.brand);
-//         setName(item.name);
-//         setColor(item.color);
-//         setSize(item.size);
-//     }
-//   }, [itemId]);
 
   const updateItem = () => {
     // Create an object with the updated data.
@@ -62,8 +45,8 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        // Handle success or error as needed.
-      })
+        dispatch(openAlert(data.message, "green"));
+     })
       .catch((error) => {
         console.error('Error:', error);
         // Handle the error.

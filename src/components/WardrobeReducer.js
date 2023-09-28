@@ -2,6 +2,7 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   isAlertOn: false,
+  alertColor: 'red',
   message: '',
   refresh: false,
   lastItemId: 0,
@@ -188,7 +189,8 @@ const wardrobeReducer = (state = initialState, action) => {
       return {
         ...state,
         isAlertOn: true,
-        message: action.payload,
+        message: action.payload[0],
+        alertColor: action.payload[1],
       };
     case types.TURN_OFF_ALERT:
       console.log('inside TURN_OFF_ALERT');

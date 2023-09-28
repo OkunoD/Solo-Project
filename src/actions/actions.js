@@ -1,9 +1,9 @@
 // import actionType constants
 import * as types from '../constants/actionTypes';
 
-export const openAlert = (message) => ({
+export const openAlert = (message, color) => ({
   type: types.TURN_ON_ALERT,
-  payload: message,
+  payload: [ message, color ]
 });
 
 export const closeAlert = () => ({

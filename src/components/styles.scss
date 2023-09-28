@@ -494,14 +494,27 @@ max-height: 100%;
     width: 40%;
     text-align: center;
     padding: 4px;
-    color: red;
+    color: black;
     background-color: white;
     border-width: 2px;
     border-style: solid;
-    border-color: red;
+    border-color: black;
     z-index: 3000;
     transition: all 250ms linear .2s;
 }
+
+.alert-red {
+    @extend .alert;
+    color: red;
+    border-color: red;
+}
+
+.alert-green {
+    @extend .alert;
+    color: green;
+    border-color: green;
+}
+
 
 .alert.hidden {
     opacity: 0;

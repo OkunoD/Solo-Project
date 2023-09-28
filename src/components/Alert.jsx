@@ -9,9 +9,10 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Alert = ({ message, closeAlert }) => {
     const isAlertOn = useSelector(state=>state.isAlertOn);
+    const alertColor = useSelector(state=>state.alertColor);
 
     return (
-        <div className={`alert${isAlertOn ? '' : ' hidden'}`}
+        <div className={`alert${isAlertOn ? `-${alertColor}` : ' hidden'}`}
         onTransitionEnd={()=>{
             console.log('hit onTransitionEnd');
             closeAlert();
