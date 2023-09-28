@@ -95,6 +95,7 @@ const Headwear = (props) => {
       <div className="itemBox">
         {showModal &&
         <ItemEditorModal 
+          itemId={props.id}
           itemList={"headwearList"}
           toggleEditModal={toggleEditModal}
           currentName={props.name}

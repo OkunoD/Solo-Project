@@ -75,6 +75,27 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
          <option value="shoes">Shoes</option>
          <option value="accessories">Accessory</option>
         </select>
+        <select className="edit-color-select-list" id="color-select-list" data-testid="color-select-list" onChange={(e)=>setColor(e.target.value)} value={currentColor}>
+         <option value="null">Color</option>
+         <option value="White">White</option>
+         <option value="Black">Black</option>
+         <option value="Grey">Grey</option>
+         <option value="Navy">Navy</option>
+         <option value="Blue">Blue</option>
+         <option value="Light Blue">Light Blue</option>
+         <option value="Purple">Purple</option>
+         <option value="Red">Red</option>
+         <option value="Green">Green</option>
+         <option value="Yellow">Yellow</option>
+         <option value="Orange">Orange</option>
+         <option value="Brown">Brown</option>
+         <option value="Tan">Tan</option>
+         <option value="Cream">Cream</option>
+         <option value="Gold">Gold</option>
+         <option value="Silver">Silver</option>
+         <option value="Camo">Camo</option>
+         <option value="New Color">New Color</option>
+        </select>
         <div className="edit-item-input-div">
           <input className="edit-brand-field" placeholder={currentBrand} onChange={(e)=>setBrand(e.target.value)} type="text" value={itemBrand} />
         <select className="edit-size-select-list" placeholder={currentSize} id="size-select-list" data-testid="size-select-list" onChange={(e)=>setSize(e.target.value)} value={currentSize}>

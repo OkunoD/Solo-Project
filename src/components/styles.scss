@@ -513,31 +513,42 @@ max-height: 100%;
     position: absolute;
     z-index: 3;
     opacity: 1;
-    height: 226.09px;
+    height: 225px;
     // transition: opacity 0.5s ease-in-out;
 }
 .edit-item-input-div {
-    margin-top: 122px;
+    margin-top: 107px;
     padding: 0px;
 }
 .edit-category-select-list {
+    color: grey;
     border-style: solid;
     border-width: 1px;
     border-color: rgb(212, 212, 212);
-    margin-bottom: 8px;
+    margin-bottom: 3px;
+    width: 90px;
 }
+.edit-color-select-list {
+    @extend .edit-category-select-list;
+}
+
 .edit-brand-field {
     padding-left: 2px;
+    margin-bottom: 1px;
     border-style: solid;
     border-width: 1px;
     border-color: rgb(212, 212, 212);
-    height: 17px;
-    width: 79px;
+    height: 15px;
+    width: 90px;
 }
 .edit-size-select-list {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(212, 212, 212);
+    color: grey;
     margin-top: 0px;
-    margin-left: 19px;
-    height: 18px;
+    margin-left: 8.5px;
+    height: 19px;
     padding: 0px;
     width: 30px;
 }
