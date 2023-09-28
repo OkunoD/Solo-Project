@@ -64,9 +64,9 @@ const Headwear = (props) => {
             } 
           }, []);
           
-  const toggleAlert = (message) => {
+  const toggleAlert = (message, color) => {
     console.log('inside toggleAlert, message is', message);
-    props.openAlert(message);
+    props.openAlert(message, color);
   }
 
   const toggleEditModal = () => {
@@ -81,7 +81,7 @@ const Headwear = (props) => {
       if (response.status === 200) {
         const data = await response.json();
         console.log('inside handleDelete, data.message is: ',data.message);
-        toggleAlert(data.message);
+        toggleAlert(data.message, "red");
       } else {
         throw new Error('Error deleting item');
       }

@@ -4,7 +4,6 @@ import { addItemActionCreator, openAlert, closeAlert, fillWardrobeActionCreator 
 // import { connect } from 'react-redux';
 import { mockData } from '../../mockData';
 
-
 export const ItemCreatorModal = ({toggleModal, handleClick}) => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -20,9 +19,9 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
     dispatch(addItemActionCreator(payload1,payload2,payload3,payload4,payload5, payload6));
   }
 
-  const toggleAlert = (message) => {
+  const toggleAlert = (message, color) => {
     console.log('before dispatch in togglealert');
-    dispatch(openAlert(message));
+    dispatch(openAlert(message, color));
   }
 
   const handleCategorySelect = (e) => {
@@ -61,7 +60,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
       .then((data) => {
         console.log(data);
         console.log('inside post request before toggleAlert, data.message is: ', data.message);
-        toggleAlert(data.message);
+        toggleAlert(data.message, "green");
       })
       .catch((error) => {
         console.error('Error:', error);

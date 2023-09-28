@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    openAlert : (payload)  => dispatch(openAlert(payload)),
+    openAlert : (message, color)  => dispatch(openAlert(message, color)),
     closeAlert : ()  => dispatch(closeAlert()),
   });
 
@@ -48,9 +48,9 @@ const Outfit = props => {
         };
       }, []);
 
-    const toggleAlert = (message) => {
+    const toggleAlert = (message, color) => {
         console.log('inside toggleAlert, message is', message);
-        props.openAlert(message);
+        props.openAlert(message, color);
     }
 
     const saveOutfit = () => {
@@ -84,7 +84,7 @@ const Outfit = props => {
             .then((response) => response.json())
             .then((data) => {
                 console.log("SAVE OUTFIT DATA IS: ", data);
-                toggleAlert(data.message);
+                toggleAlert(data.message, "green");
             })
             .catch((error) => {
               console.error('Error:', error);

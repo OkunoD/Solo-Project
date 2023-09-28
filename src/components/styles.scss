@@ -482,8 +482,6 @@ max-height: 100%;
         transform: rotateY(360deg) 
     }
 }
-.flip-animation {
-}
 
 .alert {
     font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
@@ -502,20 +500,16 @@ max-height: 100%;
     z-index: 3000;
     transition: all 250ms linear .2s;
 }
-
 .alert-red {
     @extend .alert;
     color: red;
     border-color: red;
 }
-
 .alert-green {
     @extend .alert;
     color: green;
     border-color: green;
 }
-
-
 .alert.hidden {
     opacity: 0;
     transition: all 250ms linear 4s;

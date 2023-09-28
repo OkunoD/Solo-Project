@@ -7,7 +7,7 @@ import { openAlert, closeAlert } from '../actions/actions.js';
 
 
 const mapDispatchToProps = (dispatch) => ({
-    openAlert : (payload)  => dispatch(openAlert(payload)),
+    openAlert : (message, color)  => dispatch(openAlert(message, color)),
     closeAlert : ()  => dispatch(closeAlert()),
 });
   
@@ -45,9 +45,9 @@ const OutfitContainer = (props) => {
         }
     }, []);
 
-    const toggleAlert = (message) => {
+    const toggleAlert = (message, color) => {
         console.log('inside toggleAlert, message is', message);
-        props.openAlert(message);
+        props.openAlert(message, color);
         // setTimeout(() => props.closeAlert(), 3000);
       }
 
@@ -59,7 +59,7 @@ const OutfitContainer = (props) => {
         if (response.status === 200) {
             const data = await response.json();
             console.log('inside deleteOutfit, data.message is: ',data.message);
-            toggleAlert(data.message);
+            toggleAlert(data.message, "red");
         } else {
             throw new Error('Error deleting outfit');
         }
