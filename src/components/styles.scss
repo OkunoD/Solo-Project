@@ -504,6 +504,7 @@ max-height: 100%;
     border-color: green;
 }
 .alert.hidden {
+    z-index: 0;
     opacity: 0;
     transition: all 250ms linear 4s;
 }
@@ -578,4 +579,9 @@ max-height: 100%;
     @extend .red-button;
     color: red;
     border-color: red;
+}
+
+.footer-div {
+    margin: 40px;
+    font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }

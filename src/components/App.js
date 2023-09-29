@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, connect } from 'react-redux';
-import Header from './Header.jsx';
 import { fillWardrobeActionCreator } from '../actions/actions';
+
+import Header from './Header.jsx';
 import WardrobeContainer from '../containers/WardrobeContainer.jsx'
 import OutfitContainer from '../containers/OutfitContainer.jsx';
-import ItemCreator from './ItemCreatorModal.jsx';
+import Footer from './Footer';
+
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { mockData } from '../../mockData.js';
 import Alert from './Alert.jsx';
@@ -51,6 +53,7 @@ const App = (props) => {
                 <Route exact path="/outfits" element={<OutfitContainer/>}/>
                 {/* <Route exact path="/addItem" element={<ItemCreator/>}/> */}
             </Routes>
+            <Footer/>
         </>
     );
 }
