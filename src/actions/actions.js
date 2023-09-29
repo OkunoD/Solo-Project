@@ -50,6 +50,13 @@ export const sortDrawerActionCreator = (clothingType, property) => ({
   payload: [ clothingType, property ],
 });
 
+export const randomizeOutfitActionCreator = () => ({
+  type: types.RANDOMIZE_OUTFIT,
+});
+
+export const clearOutfitActionCreator = () => ({
+  type: types.CLEAR_OUTFIT,
+});
 
 //not sure if need
 // export const deleteOutfitActionCreator = (outfitToDelete) => ({

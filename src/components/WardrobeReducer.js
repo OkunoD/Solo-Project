@@ -36,10 +36,9 @@ const wardrobeReducer = (state = initialState, action) => {
 
     const colorSortedItems = allItemsArray.sort((a,b)=> b.color.localeCompare(a.color));
 
-    console.log("fillwardrobe payload is", payload);
-    console.log("fillwardrobe payload[0] is", payload[0]);
-    console.log("fillwardrobe payload[0].color is", payload[0].color);
-
+    // console.log("fillwardrobe payload is", payload);
+    // console.log("fillwardrobe payload[0] is", payload[0]);
+    // console.log("fillwardrobe payload[0].color is", payload[0].color);
 
     const headwear = []
     const tops = [];
@@ -47,24 +46,6 @@ const wardrobeReducer = (state = initialState, action) => {
     const bottoms = [];
     const shoes = [];
     const accessories = [];
-
-    // // console.log('fillWardrobe payload is: ', payload); //should be an array of objects [{type: 'headwear'}, {type: 'headwear'}, etc]
-    
-    // for (let i = 0; i < payload.length; i++) {
-    //   if (payload[i].type === 'headwear') {
-    //     headwear.push(payload[i]); 
-    //   } else if (payload[i].type === 'tops') {
-    //     tops.push(payload[i]); 
-    //   } else if (payload[i].type === 'jackets') {
-    //     jackets.push(payload[i]); 
-    //   } else if (payload[i].type === 'bottoms') {
-    //     bottoms.push(payload[i]); 
-    //   } else if (payload[i].type === 'shoes') {
-    //     shoes.push(payload[i]); 
-    //   } else if (payload[i].type === 'accessories') {
-    //     accessories.push(payload[i]); 
-    //   };
-    // };
 
     for (let i = 0; i < colorSortedItems.length; i++) {
       if (colorSortedItems[i].type === 'headwear') {
@@ -81,9 +62,7 @@ const wardrobeReducer = (state = initialState, action) => {
         accessories.push(colorSortedItems[i]); 
       };
     };
-    
-    // console.log('fillWardrobe payload[payload.length-1].id is: ', payload[payload.length-1].id)
-    
+        
     return {
       ...state,
       lastItemId: payload[payload.length-1].id,
@@ -228,7 +207,30 @@ const wardrobeReducer = (state = initialState, action) => {
   };
 
   const filterDrawer = (clothingType, properties) => {
-    
+
+  }
+
+  const randomizeOutfit = () => {
+    return {
+      ...state,
+      wornHeadwear: null,
+      wornTops: null,
+      wornJackets: null,
+      wornBottoms: null,
+      wornShoes: null,
+      wornAccessories: null,
+    }
+  }
+  const clearOutfit = () => {
+    return {
+      ...state,
+      wornHeadwear: [],
+      wornTops: [],
+      wornJackets: [],
+      wornBottoms: [],
+      wornShoes: [],
+      wornAccessories: [],
+    }
   }
 
   switch (action.type) {
@@ -284,6 +286,12 @@ const wardrobeReducer = (state = initialState, action) => {
     case types.SORT_DRAWER:
       const [ clothingType, property ] = action.payload;
       return sortDrawer(clothingType, property);
+
+    case types.RANDOMIZE_OUTFIT:
+      return randomizeOutfit();
+
+    case types.CLEAR_OUTFIT:
+      return clearOutfit();
 
     default: {
       return state;

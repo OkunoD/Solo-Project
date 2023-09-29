@@ -6,7 +6,7 @@ import { ItemCreatorModal } from './ItemCreatorModal'
 const Footer = () => {
     return (
         <div className="footer-div">
-            <div>OKUNO AND CO. 2023</div>
+            <div className="footer-copyright">Okuno &copy; 2023</div>
         </div>
     )
 }

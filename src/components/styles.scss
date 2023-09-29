@@ -584,8 +584,18 @@ max-height: 100%;
 }
 
 .footer-div {
+    display: block;
+    justify-content: space-between;
+    text-align: center;
     margin: 40px;
     font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+.footer-copyright {
+    align-items: center;
+    text-align: right;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 13px;
 }
 
 .sort-by-select-list {
@@ -599,4 +609,12 @@ max-height: 100%;
     margin: 5px 0px 0px 20px;
     font-weight: normal;
     display: flex;
+}
+
+.randomize-outfit-button {
+    @extend .black-button;
+}
+
+.clear-outfit-button {
+    @extend .black-button;
 }

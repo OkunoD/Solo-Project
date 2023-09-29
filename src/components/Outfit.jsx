@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 //import { Link } from 'react-router-dom';
 import JacketsCard from './JacketsCard.jsx';
 import ItemCard from './ItemCard.jsx';
-import { openAlert, closeAlert } from '../actions/actions.js'
+import { 
+    openAlert, 
+    closeAlert, 
+    randomizeOutfitActionCreator, 
+    clearOutfitActionCreator } from '../actions/actions.js'
 
 
 const mapStateToProps = (state) => {
@@ -21,6 +25,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     openAlert : (message, color)  => dispatch(openAlert(message, color)),
     closeAlert : ()  => dispatch(closeAlert()),
+    randomizeOutfit : () => dispatch(randomizeOutfitActionCreator()),
+    clearOutfit : () => dispatch(clearOutfitActionCreator()),
   });
 
 const Outfit = props => {
@@ -126,7 +132,18 @@ const Outfit = props => {
     return(
         <div className={`sticky-outfit ${isSticky ? 'with-shadow' : ''}`}>
             <div className="clothingBox" data-testid="my-outfit-container">
-                <div className="my-outfit">My Outfit</div>
+                <div className="my-outfit-header">
+                    <div className="my-outfit">My Outfit</div>
+                    <button className="randomize-outfit-button"
+                    onClick={()=>console.log('clicked')}
+                    >RANDOMIZE</button>
+                    <button className="clear-outfit-button"
+                    onClick={()=>{
+                        console.log('clicked clear outfit')
+                        props.clearOutfit();
+                    }}
+                    >CLEAR OUTFIT</button>
+                </div>
                 <div className="yourClothing" style={{marginBottom:"0px"}}>
                     {outfit}
                 </div>
