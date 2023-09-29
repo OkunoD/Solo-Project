@@ -4,8 +4,7 @@ import { updateItemActionCreator, openAlert } from '../actions/actions';
 
 export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList, currentName, currentType, currentBrand, currentColor, currentSize}) => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-
+//   const state = useSelector((state) => state);
   const [newType, setNewType] = useState(currentType);
   const [newBrand, setNewBrand] = useState(currentBrand);
   const [newName, setNewName] = useState(currentName);
@@ -31,10 +30,6 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
 
     updateItemState(itemId, itemList, updatedItem);
 
-    // Dispatch the update action.
-    // dispatch(updateItemActionCreator(itemId, updatedItem));
-
-    // Make an API request to update the item on the server.
     fetch(`/api/items/${itemId}`, {
       method: 'PUT',
       headers: {
@@ -49,17 +44,11 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
      })
       .catch((error) => {
         console.error('Error:', error);
-        // Handle the error.
       });
-
-    // Close the modal and trigger any necessary actions.
-    // toggleModal();
-    // handleClick();
 };
 
   return (
     <div className="edit-item-modal">
-        {/* <div className="editItemHeaders">{currentName}</div> */}
       <div className="edit-item-borders">
       <button className="exit-edit-button" style={{float:"right"}}onClick={()=>toggleEditModal()}>X</button>
         <select className="edit-category-select-list" id="category-select-list" data-testid="category-select-list" onChange={(e) => setNewType(e.target.value)} value={newType}>
@@ -95,7 +84,7 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
         <div className="edit-item-input-div">
           <input className="edit-brand-field" placeholder={currentBrand} onChange={(e)=>setNewBrand(e.target.value)} type="text" value={newBrand} />
         <select className="edit-size-select-list" placeholder={currentSize} id="size-select-list" data-testid="size-select-list" onChange={(e)=>setNewSize(e.target.value)} value={newSize}>
-         <option value="null">Size</option>
+         <option value="No Size">Size</option>
          <option value="XS">XS</option>
          <option value="S">S</option>
          <option value="M">M</option>
@@ -126,13 +115,6 @@ export const ItemEditorModal = ({ toggleEditModal, handleClick, itemId, itemList
             
             toggleEditModal();
         }}>UPDATE ITEM</button>
-
-
-        {/* Render the same form fields as the creation component with values pre-populated. */}
-
-        {/* Add onChange handlers to update the state when the user edits the fields. */}
-        {/* Add a button to trigger the updateItem function. */}
-        {/* Add a close button to close the modal. */}
       </div>
     </div>
   );

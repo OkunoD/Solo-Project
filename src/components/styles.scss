@@ -403,21 +403,14 @@ animation-delay: calc(.5s * var(--i))
         border-color: black; /* Border color becomes white when hovered */
     }
 }
-.image-container1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: auto;
-}
 .image-container {
     align-items: center;
     justify-content: center;
     display: flex;
     height: 150px;
     width: auto;
-    min-height: 0;
-    max-height: 500px;
+    // min-height: 0px;
+    // max-height: 500px;
     overflow: hidden;
     padding-top: 0%;
     position: relative;
@@ -575,12 +568,14 @@ max-height: 100%;
 .update-item-button {
     @extend .green-button;
     background-color: white;
-    margin-top: 6px;
+    margin-top: 5px;
+    // margin-bottom: .5px;
     width: 134px;
+    height: 19.3px;
+    padding: 1px;
 }
 .exit-edit-button {
     @extend .red-button;
     color: red;
     border-color: red;
-
 }

@@ -31,6 +31,16 @@ const initialState = {
 const wardrobeReducer = (state = initialState, action) => {
 
   const fillWardrobe = (payload) => {
+
+    const allItemsArray = payload;
+
+    const colorSortedItems = allItemsArray.sort((a,b)=> a.color.localeCompare(b.color));
+
+    console.log("fillwardrobe payload is", payload);
+    console.log("fillwardrobe payload[0] is", payload[0]);
+    console.log("fillwardrobe payload[0].color is", payload[0].color);
+
+
     const headwear = []
     const tops = [];
     const jackets = [];

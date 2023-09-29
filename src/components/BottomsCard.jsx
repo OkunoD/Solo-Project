@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { deleteItemActionCreator, tryOnItemActionCreator, openAlert, closeAlert } from '../actions/actions.js'
-
-let key = undefined;
+import ItemEditorModal from './EditItemModal.jsx';
 
 const mapStateToProps = function(state, ownProps) {
   return {
@@ -12,6 +11,7 @@ const mapStateToProps = function(state, ownProps) {
     size: state.bottomsList[ownProps.index].size,
     brand: state.bottomsList[ownProps.index].brand,
     file: state.bottomsList[ownProps.index].file,
+    type: state.bottomsList[ownProps.index].type,
   };
 };
 
@@ -23,9 +23,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Bottoms = (props) => {
-  key = props.index;
+  // key = props.index;
   
   const [imageSrc, setImageSrc] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
   
   const imageData = props.file ? props.file.data : null;
   const contentType = props.contentType;
@@ -62,10 +64,15 @@ const Bottoms = (props) => {
             } 
           }, []);
           
-  const toggleAlert = (message) => {
+  const toggleAlert = (message, color) => {
     console.log('inside toggleAlert, message is', message);
-    props.openAlert(message);
+    props.openAlert(message, color);
   }
+
+  const toggleEditModal = () => {
+    setShowModal(!showModal);
+  }
+
 
   const handleDelete = async (itemId) => {
     try {
@@ -86,6 +93,17 @@ const Bottoms = (props) => {
   
   return (
     <div className="itemBox">
+      {showModal &&
+      <ItemEditorModal 
+        itemId={props.id}
+        itemList={"bottomsList"}
+        toggleEditModal={toggleEditModal}
+        currentName={props.name}
+        currentType={props.type}
+        currentBrand={props.brand}
+        currentColor={props.color}
+        currentSize={props.size}
+      />}
       <div className="image-container">
         <img src={imageSrc} alt="Retrieved from state" className="image-content" />
       </div>
@@ -95,7 +113,7 @@ const Bottoms = (props) => {
         <p className="item-brand">{props.brand ? props.brand : 'no brand'}</p>
         <p className="item-size">{props.size ? props.size: 'no size'}</p>
         </div>
-      <p className="item-name" title={props.name}>{props.name}</p>
+      <p className="item-name" title={props.name} onClick={()=> toggleEditModal()}>{props.name}</p>
       <div className="item-button-div">
         <input className="black-button" onClick={() => {
           console.log('tryon input received');
