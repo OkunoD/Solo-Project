@@ -21,6 +21,12 @@ const mapStateToProps = (state) => {
         wornShoes: state.wornShoes,
         wornAccessory: state.wornAccessories,
         refresh: state.refresh,
+        wornHeadwearLocked: state.wornHeadwearLocked,
+        wornTopsLocked: state.wornTopsLocked,
+        wornJacketsLocked: state.wornJacketsLocked,
+        wornBottomsLocked: state.wornBottomsLocked,
+        wornShoesLocked: state.wornShoesLocked,
+        wornAccessoriesLocked: state.wornAccessoriesLocked,
     };
 };
 
@@ -106,28 +112,28 @@ const Outfit = props => {
                 console.log('inside filloutfit Array.isArray conditional');
                 fillOutfit(outfitArr[i]);
             }
-            const currentItem = outfitArr[i];
-    
-            // console.log('in outfit loop, currentItem is: ', currentItem);
-            // console.log('in outfit loop, currentItemName is: ', currentItem.name);
-            // console.log('in outfit loop, currentItemBrand is: ', currentItem.brand);
-            // console.log('in outfit loop, currentItemSize is: ', currentItem.size);
-            // console.log('in outfit loop currentItemColor is: ', currentItem.color);
-    
-            currentItem.id ? 
-            outfit.push(
-                <ItemCard
-                    key={currentItem.id}
-                    id={currentItem.id}
-                    name={currentItem.name}
-                    color={currentItem.color}
-                    file={currentItem.file}
-                    contentType={currentItem.contentType}
-                    brand={currentItem.brand}
-                    size={currentItem.size}
-                    type={currentItem.type}
-                />) 
-                : outfit.push(<div key={i + 10000}></div>);
+            if (!Array.isArray(outfitArr[i])) {
+                const currentItem = outfitArr[i];
+                console.log('in outfit loop, currentItem is: ', currentItem);
+                console.log('in outfit loop, currentItemName is: ', currentItem.name);
+                console.log('in outfit loop, currentItemBrand is: ', currentItem.brand);
+                console.log('in outfit loop, currentItemSize is: ', currentItem.size);
+                console.log('in outfit loop currentItemColor is: ', currentItem.color);
+                currentItem.id ? 
+                outfit.push(
+                    <ItemCard
+                        key={currentItem.id}
+                        id={currentItem.id}
+                        name={currentItem.name}
+                        color={currentItem.color}
+                        file={currentItem.file}
+                        contentType={currentItem.contentType}
+                        brand={currentItem.brand}
+                        size={currentItem.size}
+                        type={currentItem.type}
+                    />) 
+                    : outfit.push(<div key={i + 10000}></div>);
+            }
         }
     }
     fillOutfit(outfitArr);
@@ -150,13 +156,13 @@ const Outfit = props => {
                     }}
                     >CLEAR OUTFIT</button>
                 </div>
-                <div className="lock-item-buttons-div">
-                    <button className="lock-item-button" onClick={()=>props.lockItem('wornHeadwearLocked')}>lock headwear</button>
-                    <button className="lock-item-button" onClick={()=>props.lockItem('wornTopsLocked')}>lock tops</button>
-                    <button className="lock-item-button" onClick={()=>props.lockItem('wornJacketsLocked')}>lock jackets</button>
-                    <button className="lock-item-button" onClick={()=>props.lockItem('wornBottomsLocked')}>lock bottoms</button>
-                    <button className="lock-item-button" onClick={()=>props.lockItem('wornShoesLocked')}>lock shoes</button>
-                    <button className="lock-item-button" onClick={()=>props.lockItem('wornAccessoriesLocked')}>lock accessories</button>
+                <div className="lock-item-buttons-div">LOCK:
+                    <button className={props.wornHeadwearLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornHeadwearLocked')}>headwear</button>
+                    <button className={props.wornTopsLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornTopsLocked')}>tops</button>
+                    <button className={props.wornJacketsLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornJacketsLocked')}>jackets</button>
+                    <button className={props.wornBottomsLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornBottomsLocked')}>bottoms</button>
+                    <button className={props.wornShoesLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornShoesLocked')}>shoes</button>
+                    <button className={props.wornAccessoriesLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornAccessoriesLocked')}>accessories</button>
                 </div>
                 <div className="yourClothing" style={{marginBottom:"0px"}}>
                     {outfit}

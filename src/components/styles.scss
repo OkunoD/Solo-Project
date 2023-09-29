@@ -90,7 +90,7 @@ animation-delay: calc(.5s * var(--i))
     white-space: nowrap;
     width: 100%;
     max-width: 250px;
-    margin: 5px 0px 9px 16px;
+    margin: 0px 0px 9px 18px;
     padding: 1.5px;
 }
 .clothingBox {
@@ -619,9 +619,16 @@ max-height: 100%;
     @extend .black-button;
 }
 .lock-item-buttons-div {
-    margin-left: 15px;
+    margin-left: 17px;
 }
 
-.lock-item-button {
+.locked-item-button {
     @extend .black-button;
+    color: white;
+    background-color: #000000;
+    border-color: white; 
+}
+.unlocked-item-button {
+    @extend .black-button;
+    
 }

@@ -170,7 +170,6 @@ const wardrobeReducer = (state = initialState, action) => {
       ...state,
       refresh: !state["refresh"],
       [wornType]: updatedList,
-      [`${wornType}Locked`]: false,
     };
   }
 
@@ -233,26 +232,41 @@ const wardrobeReducer = (state = initialState, action) => {
 
   const randomizeOutfit = () => {
     const getRandomItem = (itemList) => {
+      const capitalized = `${itemList[0].type.charAt(0).toUpperCase()}${itemList[0].type.slice(1)}`
+      const wornList = `worn${capitalized}`;
       const randomIndex = Math.floor(Math.random() * itemList.length);
-      return itemList[randomIndex];
-    }
-    const randomHeadwear = getRandomItem(state.headwearList);
-    const randomTop = getRandomItem(state.topsList);
-    const randomJacket = getRandomItem(state.jacketsList);
-    const randomBottom = getRandomItem(state.bottomsList);
-    const randomShoe = getRandomItem(state.shoesList);
-    const randomAccessory = getRandomItem(state.accessoriesList);
 
+      console.log("itemList is", itemList);
+      console.log("itemList[0].type is", itemList[0].type);
+      console.log("capitalized is", capitalized);
+      console.log('wornList is', wornList);
+
+      if (state[wornList].includes(itemList[randomIndex])) {
+        console.log('inside if statement!!!');
+        return getRandomItem(itemList);
+      } else if (!state[wornList].includes(itemList[randomIndex])){
+        console.log("about to return itemList[randomIndex]", itemList[randomIndex]);
+        return itemList[randomIndex];
+      }
+    }
+    const randomHeadwear = (state.wornHeadwearLocked===false) ? [getRandomItem(state.headwearList)] : state.wornHeadwear;
+    const randomTop = (state.wornTopsLocked===false) ? [getRandomItem(state.topsList)] : state.wornTops;
+    const randomJacket = (state.wornJacketsLocked===false) ? [getRandomItem(state.jacketsList)] : state.wornJackets;
+    const randomBottom = (state.wornBottomsLocked===false) ? [getRandomItem(state.bottomsList)] : state.wornBottoms;
+    const randomShoe = (state.wornShoesLocked===false) ? [getRandomItem(state.shoesList)] : state.wornShoes;
+    const randomAccessory = (state.wornAccessoriesLocked===false) ? [getRandomItem(state.accessoriesList)] : state.wornAccessories;
+
+    console.log('randomHeadwear is', randomHeadwear);
     console.log("state.wornHeadwearLocked",state.wornHeadwearLocked);
 
     return {
       ...state,
-      wornHeadwear: (state.wornHeadwearLocked===false) ? [randomHeadwear] : state.wornHeadwear,
-      wornTops: (state.wornTopsLocked===false) ? [randomTop] : state.wornTops,
-      wornJackets: (state.wornJacketsLocked===false) ? [randomJacket] : state.wornJackets,
-      wornBottoms: (state.wornBottomsLocked===false) ? [randomBottom] : state.wornBottoms,
-      wornShoes: (state.wornShoesLocked===false) ? [randomShoe] : state.wornShoes,
-      wornAccessories: (state.wornAccessoriesLocked===false) ? [randomAccessory] : state.wornAccessories,
+      wornHeadwear: randomHeadwear,
+      wornTops: randomTop,
+      wornJackets:randomJacket,
+      wornBottoms: randomBottom,
+      wornShoes: randomShoe,
+      wornAccessories: randomAccessory,
     }
   }
   const clearOutfit = () => {
