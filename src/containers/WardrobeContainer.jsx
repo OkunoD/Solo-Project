@@ -26,25 +26,6 @@ const mapDispatchToProps = dispatch => ({
 });
   
 const WardrobeContainer = (props) => {
-  // useEffect(() => {
-  //   if (process.env.NODE_ENV==='development') {
-  //     console.log({mockData});
-  //     props.fillWardrobe(mockData);
-  //   } else {
-  //     fetch('/api/items')
-  //       .then((response) => {
-  //         console.log('response is: ', response);
-  //         return response.json();
-  //       })
-  //       .then((data) => {
-  //         console.log('data is: ', data);
-  //         props.fillWardrobe(data);
-  //       })
-  //       .catch((error) => {
-  //         console.error('Error:', error);
-  //       });
-  //   }
-  // }, []);
 
   return(
     <div className="wardrobe-container">

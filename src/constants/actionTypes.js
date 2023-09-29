@@ -16,5 +16,7 @@ export const DELETE_ITEM = 'DELETE_ITEM';
 
 export const UPDATE_ITEM = 'UPDATE_ITEM';
 
+export const SORT_DRAWER = 'SORT_DRAWER';
+
 
 // export const DELETE_OUTFIT = 'DELETE_OUTFIT';

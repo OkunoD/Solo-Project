@@ -43,7 +43,14 @@ export const deleteItemActionCreator = (itemTypeToDelete, itemId) => ({
 export const updateItemActionCreator = (updatedItemId, itemList, updatedData) => ({
   type: types.UPDATE_ITEM,
   payload: [updatedItemId, itemList, updatedData],
-})
+});
+
+export const sortDrawerActionCreator = (clothingType, property) => ({
+  type: types.SORT_DRAWER,
+  payload: [ clothingType, property ],
+});
+
+
 //not sure if need
 // export const deleteOutfitActionCreator = (outfitToDelete) => ({
 //   type: types.DELETE_OUTFIT,

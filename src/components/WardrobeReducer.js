@@ -34,7 +34,7 @@ const wardrobeReducer = (state = initialState, action) => {
 
     const allItemsArray = payload;
 
-    const colorSortedItems = allItemsArray.sort((a,b)=> a.color.localeCompare(b.color));
+    const colorSortedItems = allItemsArray.sort((a,b)=> b.color.localeCompare(a.color));
 
     console.log("fillwardrobe payload is", payload);
     console.log("fillwardrobe payload[0] is", payload[0]);
@@ -48,20 +48,37 @@ const wardrobeReducer = (state = initialState, action) => {
     const shoes = [];
     const accessories = [];
 
-    // console.log('fillWardrobe payload is: ', payload); //should be an array of objects [{type: 'headwear'}, {type: 'headwear'}, etc]
-    for (let i = 0; i < payload.length; i++) {
-      if (payload[i].type === 'headwear') {
-        headwear.push(payload[i]); 
-      } else if (payload[i].type === 'tops') {
-        tops.push(payload[i]); 
-      } else if (payload[i].type === 'jackets') {
-        jackets.push(payload[i]); 
-      } else if (payload[i].type === 'bottoms') {
-        bottoms.push(payload[i]); 
-      } else if (payload[i].type === 'shoes') {
-        shoes.push(payload[i]); 
-      } else if (payload[i].type === 'accessories') {
-        accessories.push(payload[i]); 
+    // // console.log('fillWardrobe payload is: ', payload); //should be an array of objects [{type: 'headwear'}, {type: 'headwear'}, etc]
+    
+    // for (let i = 0; i < payload.length; i++) {
+    //   if (payload[i].type === 'headwear') {
+    //     headwear.push(payload[i]); 
+    //   } else if (payload[i].type === 'tops') {
+    //     tops.push(payload[i]); 
+    //   } else if (payload[i].type === 'jackets') {
+    //     jackets.push(payload[i]); 
+    //   } else if (payload[i].type === 'bottoms') {
+    //     bottoms.push(payload[i]); 
+    //   } else if (payload[i].type === 'shoes') {
+    //     shoes.push(payload[i]); 
+    //   } else if (payload[i].type === 'accessories') {
+    //     accessories.push(payload[i]); 
+    //   };
+    // };
+
+    for (let i = 0; i < colorSortedItems.length; i++) {
+      if (colorSortedItems[i].type === 'headwear') {
+        headwear.push(colorSortedItems[i]); 
+      } else if (colorSortedItems[i].type === 'tops') {
+        tops.push(colorSortedItems[i]); 
+      } else if (colorSortedItems[i].type === 'jackets') {
+        jackets.push(colorSortedItems[i]); 
+      } else if (colorSortedItems[i].type === 'bottoms') {
+        bottoms.push(colorSortedItems[i]); 
+      } else if (colorSortedItems[i].type === 'shoes') {
+        shoes.push(colorSortedItems[i]); 
+      } else if (colorSortedItems[i].type === 'accessories') {
+        accessories.push(colorSortedItems[i]); 
       };
     };
     
@@ -79,6 +96,7 @@ const wardrobeReducer = (state = initialState, action) => {
     }
   }
 
+  
   const addItem = (...payload) => {
     console.log("Inside addItem reducer");
     // console.log('payload is :', payload);
@@ -86,14 +104,14 @@ const wardrobeReducer = (state = initialState, action) => {
     const listName = `${itemType}List`;
     // const lastItemIdString = `last${itemType.charAt(0).toUpperCase()}${itemType.slice(1)}Id`;
     const totalItemIdString = `total${itemType.charAt(0).toUpperCase()}${itemType.slice(1)}`;
-
+    
     // // const lastItemId = state[lastItemIdString];
     const updatedList = [...state[listName]];
     // const newItemId = lastItemId + 1;
     console.log('updatedList before adding is: ', updatedList);
-
+    
     const newItemId = state['lastItemId'] + 1;
-
+    
     const newItem = {
       id: newItemId,
       type: payload[0],
@@ -103,13 +121,13 @@ const wardrobeReducer = (state = initialState, action) => {
       brand: payload[4],
       size: payload[5],
     };
-
+    
     console.log("newItem inside addItem reducer is: ", newItem);
     console.log("newItem.file inside addItem reducer is: ", newItem.file);
-
+    
     updatedList.push(newItem);
     console.log('updatedList after adding is', updatedList);
-
+    
     return {
       ...state,
       [listName]: updatedList,
@@ -148,7 +166,7 @@ const wardrobeReducer = (state = initialState, action) => {
     const wornItemsArray = state[wornType];
     console.log('state[wornType] is:', state[wornType])
     const updatedList = wornItemsArray.filter((item) => itemId !== item.id);
-
+    
     return {
       ...state,
       refresh: !state["refresh"],
@@ -163,15 +181,15 @@ const wardrobeReducer = (state = initialState, action) => {
       [listName]: updatedList,
     };
   };
-
+  
   const updateItem = (itemId, itemList, updatedData) => {
     console.log('itemId is', itemId);
     console.log("updatedData is:", updatedData);
     console.log("itemList is: ", itemList);
     console.log("state[itemList] is", state[itemList]);
-
+    
     const itemToUpdate = state[itemList].find((item) => item.id === itemId);
-
+    
     if (!itemToUpdate) {
       console.log('no itemToUpdate');
       return state;
@@ -192,6 +210,98 @@ const wardrobeReducer = (state = initialState, action) => {
       [itemList]: updatedItemList,
     };
   };
+  
+  const sortDrawer = (clothingType, property) => {
+    const listName = `${clothingType}List`;
+
+    if (clothingType === "headwear") {
+      if (property === "color") {
+
+        const updatedList = state[listName].sort((a,b)=> a.color.localeCompare(b.color));
+        console.log("INSIDE SORT DRAWER REDUCER");
+        console.log("state is", state);
+        console.log("state[listName] is, ", state[listName]);
+        console.log(state["refresh"]);
+        console.log({property});
+        console.log({clothingType});
+        console.log({updatedList});
+        return {
+          ...state,
+          refresh: !state["refresh"],
+          [listName]: updatedList,
+        };
+      } if (property === "designer") {
+        const updatedList = state[listName].sort((a,b)=> a.brand.localeCompare(b.brand));
+        console.log("INSIDE SORT DRAWER REDUCER");
+        console.log("state is", state);
+        console.log("state[listName] is, ", state[listName]);
+        console.log(state["refresh"]);
+        console.log({property});
+        console.log({clothingType});
+        console.log({updatedList});
+        return {
+          ...state,
+          refresh: !state["refresh"],
+          [listName]: updatedList,
+        }
+      } else {
+        return {
+          ...state,
+        }
+      }
+    } else if (clothingType === "tops") {
+      if (property === "color") {
+
+        const updatedList = state[listName].sort((a,b)=> a.color.localeCompare(b.color));
+        console.log("INSIDE SORT DRAWER REDUCER");
+        console.log("state is", state);
+        console.log("state[listName] is, ", state[listName]);
+        console.log(state["refresh"]);
+        console.log({property});
+        console.log({clothingType});
+        console.log({updatedList});
+        return {
+          ...state,
+          refresh: !state["refresh"],
+          [listName]: updatedList,
+        };
+      } if (property === "designer") {
+        const updatedList = state[listName].sort((a,b)=> a.brand.localeCompare(b.brand));
+        console.log("INSIDE SORT DRAWER REDUCER");
+        console.log("state is", state);
+        console.log("state[listName] is, ", state[listName]);
+        console.log(state["refresh"]);
+        console.log({property});
+        console.log({clothingType});
+        console.log({updatedList});
+        return {
+          ...state,
+          refresh: !state["refresh"],
+          [listName]: updatedList,
+        }
+      } else {
+        return {
+          ...state,
+        }
+      }
+    } else if (clothingType === "jackets") {
+      return {
+        ...state,
+      }
+    } else if (clothingType === "bottoms") {
+      return {
+        ...state,
+      }
+    } else if (clothingType === "shoes") {
+      return {
+        ...state,
+      }
+    } else if (clothingType === "accessories") {
+      return {
+        ...state,
+      }
+    }
+  }
 
   switch (action.type) {
     case types.TURN_ON_ALERT:
@@ -202,10 +312,10 @@ const wardrobeReducer = (state = initialState, action) => {
         message: action.payload[0],
         alertColor: action.payload[1],
       };
-    case types.TURN_OFF_ALERT:
-      console.log('inside TURN_OFF_ALERT');
-      return {
-        ...state,
+      case types.TURN_OFF_ALERT:
+        console.log('inside TURN_OFF_ALERT');
+        return {
+          ...state,
         isAlertOn: false,
       };
 
@@ -242,6 +352,10 @@ const wardrobeReducer = (state = initialState, action) => {
       console.log('in UPDATE_ITEM case, itemList is:', itemList);
       console.log('in UPDATE_ITEM case, updatedData is:', updatedData);
       return updateItem(updatedItemId, itemList, updatedData);
+
+    case types.SORT_DRAWER:
+      const [ clothingType, property ] = action.payload;
+      return sortDrawer(clothingType, property);
 
     default: {
       return state;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { deleteItemActionCreator, tryOnItemActionCreator, openAlert, closeAlert } from '../actions/actions.js'
 import ItemEditorModal from './EditItemModal.jsx';
 
@@ -12,6 +12,7 @@ const mapStateToProps = function(state, ownProps) {
     brand: state.topsList[ownProps.index].brand,
     file: state.topsList[ownProps.index].file,
     type: state.topsList[ownProps.index].type,
+    refresh: state.refresh,
   };
 };
 
@@ -60,7 +61,7 @@ const Tops = (props) => {
                 });
               }, 500);
             } 
-          }, []);
+          }, [props.refresh]);
           
   const toggleAlert = (message, color) => {
     console.log('inside toggleAlert, message is', message);
