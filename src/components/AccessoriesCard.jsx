@@ -16,7 +16,7 @@ const mapStateToProps = function(state, ownProps) {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  openAlert : (payload)  => dispatch(openAlert(payload)),
+  openAlert : (payload, payload1)  => dispatch(openAlert(payload, payload1)),
   closeAlert : ()  => dispatch(closeAlert()),
   tryOnItem : (payload1, payload2, payload3) => dispatch(tryOnItemActionCreator(payload1, payload2, payload3)),
   deleteItem : (payload1, payload2) => dispatch(deleteItemActionCreator(payload1, payload2)),
@@ -71,6 +71,16 @@ const Accessories = (props) => {
   const toggleEditModal = () => {
     setShowModal(!showModal);
   }
+  
+  const deleteItemConfirm = (type, id) => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this item?");
+    if (isConfirmed) {
+      handleDelete(id);
+      props.deleteItem(type, id);
+    } else {
+      return;
+    };
+  };
 
   const handleDelete = async (itemId) => {
     try {
@@ -117,8 +127,8 @@ const Accessories = (props) => {
           console.log('tryon input received');
           props.tryOnItem('accessories', props.id, 'Accessories')}} type="Submit" value="Try it on" readOnly/>
         <input className="red-button" onClick={() => {
-          handleDelete(props.id);
-          props.deleteItem('accessories', props.id)}} type="Submit" value="Delete" readOnly/>
+          deleteItemConfirm(props.type, props.id)}}
+          type="Submit" value="Delete" readOnly/>
         </div>
       </div>
     </div>
