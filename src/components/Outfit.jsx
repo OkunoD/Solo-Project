@@ -135,7 +135,10 @@ const Outfit = props => {
                 <div className="my-outfit-header">
                     <div className="my-outfit">My Outfit</div>
                     <button className="randomize-outfit-button"
-                    onClick={()=>console.log('clicked')}
+                    onClick={()=>{
+                        console.log('clicked randomize outfit')
+                        props.randomizeOutfit();
+                    }}
                     >RANDOMIZE</button>
                     <button className="clear-outfit-button"
                     onClick={()=>{

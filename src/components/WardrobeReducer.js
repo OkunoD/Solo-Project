@@ -116,8 +116,9 @@ const wardrobeReducer = (state = initialState, action) => {
   };
 
   const tryOnItem = (listName, itemId, wornType) => {
+    //(topsList, itemId, wornTops)
     //add conditional where if tried on item already is on (i.e. is in wornType)
-    //then we don't add it again (i.e. return {...state} without pushing into array)
+    //then we don't add it again (i.e. we should just return {...state} without pushing into array)
     
     const wornItem = state[listName].find(item => item.id === itemId)
     if (state[wornType].includes(wornItem)) {
@@ -211,14 +212,25 @@ const wardrobeReducer = (state = initialState, action) => {
   }
 
   const randomizeOutfit = () => {
+    const getRandomItem = (itemList) => {
+      const randomIndex = Math.floor(Math.random() * itemList.length);
+      return itemList[randomIndex];
+    }
+    const randomHeadwear = getRandomItem(state.headwearList);
+    const randomTop = getRandomItem(state.topsList);
+    const randomJacket = getRandomItem(state.jacketsList);
+    const randomBottom = getRandomItem(state.bottomsList);
+    const randomShoe = getRandomItem(state.shoesList);
+    const randomAccessory = getRandomItem(state.accessoriesList);
+
     return {
       ...state,
-      wornHeadwear: null,
-      wornTops: null,
-      wornJackets: null,
-      wornBottoms: null,
-      wornShoes: null,
-      wornAccessories: null,
+      wornHeadwear: [randomHeadwear],
+      wornTops: [randomTop],
+      wornJackets: [randomJacket],
+      wornBottoms: [randomBottom],
+      wornShoes: [randomShoe],
+      wornAccessories: [randomAccessory],
     }
   }
   const clearOutfit = () => {
