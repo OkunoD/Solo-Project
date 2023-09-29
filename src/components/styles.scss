@@ -618,3 +618,10 @@ max-height: 100%;
 .clear-outfit-button {
     @extend .black-button;
 }
+.lock-item-buttons-div {
+    margin-left: 15px;
+}
+
+.lock-item-button {
+    @extend .black-button;
+}

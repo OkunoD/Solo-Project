@@ -22,6 +22,8 @@ export const RANDOMIZE_OUTFIT = 'RANDOMIZE_OUTFIT';
 
 export const CLEAR_OUTFIT = 'CLEAR_OUTFIT';
 
+export const LOCK_ITEM = 'LOCK_ITEM';
+
 
 
 // export const DELETE_OUTFIT = 'DELETE_OUTFIT';

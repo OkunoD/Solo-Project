@@ -58,6 +58,11 @@ export const clearOutfitActionCreator = () => ({
   type: types.CLEAR_OUTFIT,
 });
 
+export const lockItemActionCreator = (wornItemType) => ({
+  type: types.LOCK_ITEM,
+  payload: [ wornItemType ],
+})
+
 //not sure if need
 // export const deleteOutfitActionCreator = (outfitToDelete) => ({
 //   type: types.DELETE_OUTFIT,

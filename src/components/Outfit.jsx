@@ -7,7 +7,9 @@ import {
     openAlert, 
     closeAlert, 
     randomizeOutfitActionCreator, 
-    clearOutfitActionCreator } from '../actions/actions.js'
+    clearOutfitActionCreator,
+    lockItemActionCreator
+ } from '../actions/actions.js'
 
 
 const mapStateToProps = (state) => {
@@ -27,6 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
     closeAlert : ()  => dispatch(closeAlert()),
     randomizeOutfit : () => dispatch(randomizeOutfitActionCreator()),
     clearOutfit : () => dispatch(clearOutfitActionCreator()),
+    lockItem: (wornItemType) => dispatch(lockItemActionCreator(wornItemType)),
   });
 
 const Outfit = props => {
@@ -146,6 +149,14 @@ const Outfit = props => {
                         props.clearOutfit();
                     }}
                     >CLEAR OUTFIT</button>
+                </div>
+                <div className="lock-item-buttons-div">
+                    <button className="lock-item-button" onClick={()=>props.lockItem('wornHeadwearLocked')}>lock headwear</button>
+                    <button className="lock-item-button" onClick={()=>props.lockItem('wornTopsLocked')}>lock tops</button>
+                    <button className="lock-item-button" onClick={()=>props.lockItem('wornJacketsLocked')}>lock jackets</button>
+                    <button className="lock-item-button" onClick={()=>props.lockItem('wornBottomsLocked')}>lock bottoms</button>
+                    <button className="lock-item-button" onClick={()=>props.lockItem('wornShoesLocked')}>lock shoes</button>
+                    <button className="lock-item-button" onClick={()=>props.lockItem('wornAccessoriesLocked')}>lock accessories</button>
                 </div>
                 <div className="yourClothing" style={{marginBottom:"0px"}}>
                     {outfit}

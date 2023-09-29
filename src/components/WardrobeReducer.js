@@ -7,6 +7,13 @@ const initialState = {
   refresh: false,
   lastItemId: 0,
   
+  wornHeadwearLocked: false,
+  wornTopsLocked: false,
+  wornJacketsLocked: false,
+  wornBottomsLocked: false,
+  wornShoesLocked: false,
+  wornAccessoriesLocked: false,
+
   headwearList: [],
   wornHeadwear: [],
   
@@ -132,13 +139,25 @@ const wardrobeReducer = (state = initialState, action) => {
     wornItemsArray.push(wornItem);
     const updatedList = wornItemsArray;
     console.log('state refresh is', state["refresh"]);
+    console.log("`${wornType}Locked`", `${wornType}Locked`);
 
     return {
       ...state,
       refresh: !state["refresh"],
       [wornType]: updatedList,
+      [`${wornType}Locked`]: true,
     };
   };
+
+  const lockItem = (wornItemType) => {
+    console.log("state[wornItemType] is:", state[wornItemType])
+    console.log({wornItemType});
+
+    return {
+      ...state,
+      [wornItemType]: !state[wornItemType],
+    }
+  }
 
   const takeOffItem = (itemId, wornType) => {
     console.log('itemId is', itemId);
@@ -151,6 +170,7 @@ const wardrobeReducer = (state = initialState, action) => {
       ...state,
       refresh: !state["refresh"],
       [wornType]: updatedList,
+      [`${wornType}Locked`]: false,
     };
   }
 
@@ -223,14 +243,16 @@ const wardrobeReducer = (state = initialState, action) => {
     const randomShoe = getRandomItem(state.shoesList);
     const randomAccessory = getRandomItem(state.accessoriesList);
 
+    console.log("state.wornHeadwearLocked",state.wornHeadwearLocked);
+
     return {
       ...state,
-      wornHeadwear: [randomHeadwear],
-      wornTops: [randomTop],
-      wornJackets: [randomJacket],
-      wornBottoms: [randomBottom],
-      wornShoes: [randomShoe],
-      wornAccessories: [randomAccessory],
+      wornHeadwear: (state.wornHeadwearLocked===false) ? [randomHeadwear] : state.wornHeadwear,
+      wornTops: (state.wornTopsLocked===false) ? [randomTop] : state.wornTops,
+      wornJackets: (state.wornJacketsLocked===false) ? [randomJacket] : state.wornJackets,
+      wornBottoms: (state.wornBottomsLocked===false) ? [randomBottom] : state.wornBottoms,
+      wornShoes: (state.wornShoesLocked===false) ? [randomShoe] : state.wornShoes,
+      wornAccessories: (state.wornAccessoriesLocked===false) ? [randomAccessory] : state.wornAccessories,
     }
   }
   const clearOutfit = () => {
@@ -242,6 +264,12 @@ const wardrobeReducer = (state = initialState, action) => {
       wornBottoms: [],
       wornShoes: [],
       wornAccessories: [],
+      wornHeadwearLocked: false,
+      wornTopsLocked: false,
+      wornJacketsLocked: false,
+      wornBottomsLocked: false,
+      wornShoesLocked: false,
+      wornAccessoriesLocked: false,
     }
   }
 
@@ -304,6 +332,10 @@ const wardrobeReducer = (state = initialState, action) => {
 
     case types.CLEAR_OUTFIT:
       return clearOutfit();
+
+    case types.LOCK_ITEM:
+      const [ wornItemType ] = action.payload;
+      return lockItem(wornItemType);
 
     default: {
       return state;
