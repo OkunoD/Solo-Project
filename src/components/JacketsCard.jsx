@@ -12,6 +12,7 @@ const mapStateToProps = function(state, ownProps) {
     brand: state.jacketsList[ownProps.index].brand,
     file: state.jacketsList[ownProps.index].file,
     type: state.jacketsList[ownProps.index].type,
+    refresh: state.refresh,
   };
 };
 
@@ -60,7 +61,7 @@ const Jackets = (props) => {
                   });
                 }, 500);
               } 
-            }, []);
+            }, [props.refresh]);
     
     const toggleAlert = (message, color) => {
       console.log('inside toggleAlert, message is', message);

@@ -12,6 +12,7 @@ const mapStateToProps = function(state, ownProps) {
     brand: state.shoesList[ownProps.index].brand,
     file: state.shoesList[ownProps.index].file,
     type: state.shoesList[ownProps.index].type,
+    refresh: state.refresh,
   };
 };
 
@@ -60,7 +61,7 @@ const Shoes = (props) => {
                 });
               }, 500);
             } 
-          }, []);
+          }, [props.refresh]);
           
   const toggleAlert = (message, color) => {
     console.log('inside toggleAlert, message is', message);

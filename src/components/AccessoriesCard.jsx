@@ -12,6 +12,7 @@ const mapStateToProps = function(state, ownProps) {
     brand: state.accessoriesList[ownProps.index].brand,
     file: state.accessoriesList[ownProps.index].file,
     type: state.accessoriesList[ownProps.index].type,
+    refresh: state.refresh,
   };
 };
 
@@ -61,7 +62,7 @@ const Accessories = (props) => {
                 });
               }, 500);
             } 
-          }, []);
+          }, [props.refresh]);
           
   const toggleAlert = (message, color) => {
     console.log('inside toggleAlert, message is', message);
@@ -71,7 +72,7 @@ const Accessories = (props) => {
   const toggleEditModal = () => {
     setShowModal(!showModal);
   }
-  
+
   const deleteItemConfirm = (type, id) => {
     const isConfirmed = window.confirm("Are you sure you want to delete this item?");
     if (isConfirmed) {

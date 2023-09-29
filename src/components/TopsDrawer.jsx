@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect, useDispatch } from 'react-redux';
-//import { Link } from 'react-router-dom';
 import TopsCard from './TopsCard.jsx';
-import ItemCreator from './ItemCreatorModal.jsx';//change to itemCreator
-import { addTopActionCreator, deleteTopActionCreator, sortDrawerActionCreator } from '../actions/actions.js'
+import { sortDrawerActionCreator } from '../actions/actions.js'
 
 const mapStateToProps = (state) => {
     return {
@@ -13,12 +11,14 @@ const mapStateToProps = (state) => {
 
 
 const TopsDrawer = props => {
-    const dispatch = useDispatch();
-
+    
     const tops = []; 
     const arrOfTops = props.tops;
-    const sortedTops = [];
+    const dispatch = useDispatch();
 
+    const sortDrawer = (clothingType, property) => {
+        dispatch(sortDrawerActionCreator(clothingType, property));
+    };
 
     for (let i = 0; i < arrOfTops.length; i++) {
         const currentTop = arrOfTops[i];
@@ -31,21 +31,18 @@ const TopsDrawer = props => {
                 imgUrl={currentTop.imgUrl}
                 index = {i}
             />);
-    }
-
-    const sortDrawer = (clothingType, property) => {
-        dispatch(sortDrawerActionCreator(clothingType, property));
-    }
+    };
 
     return(
         <div className="clothingBox" data-testid="tops-drawer">
             <div className="categoryHeaders">Tops
-            <select className="sort-by-select-list" data-testid="sort-by-select-list" onChange={(e)=>sortDrawer("tops", e.target.value)}>
-                <option value="color">Color</option>
-                <option value="brand">Designer</option>
-                <option value="subtype">Subtype</option>
-                <option value="size">Size</option>
-            </select>
+            <p className="drawer-filters">sort by:</p>
+                <select className="sort-by-select-list" data-testid="sort-by-select-list" onChange={(e)=>sortDrawer("tops", e.target.value)}>
+                    <option value="color">Color</option>
+                    <option value="brand">Brand</option>
+                    <option value="size">Size</option>
+                    <option value="subtype">Subtype</option>
+                </select>
             </div>
             <div className="yourClothing">
             {tops}

@@ -219,74 +219,17 @@ const wardrobeReducer = (state = initialState, action) => {
     console.log("clothingType is", clothingType);
     console.log("listName is", listName);
     console.log("updatedList is", updatedList);
+
     return {
       ...state,
       refresh: !state["refresh"],
       [listName]: updatedList,
     }
-
-  //   if (clothingType === "headwear") {
-  //     if (property === "color") {
-  //       const updatedList = state[listName].sort((a,b)=> a.color.localeCompare(b.color));
-
-  //       return {
-  //         ...state,
-  //         refresh: !state["refresh"],
-  //         [listName]: updatedList,
-  //       };
-  //     } if (property === "designer") {
-  //       const updatedList = state[listName].sort((a,b)=> a.brand.localeCompare(b.brand));
-  //       return {
-  //         ...state,
-  //         refresh: !state["refresh"],
-  //         [listName]: updatedList,
-  //       }
-  //     } else {
-  //       return {
-  //         ...state,
-  //       }
-  //     }
-  //   } else if (clothingType === "tops") {
-  //     if (property === "color") {
-
-  //       const updatedList = state[listName].sort((a,b)=> a.color.localeCompare(b.color));
-
-  //       console.log("state[listname][property] is", state[listName][0][property])
-  //       return {
-  //         ...state,
-  //         refresh: !state["refresh"],
-  //         [listName]: updatedList,
-  //       };
-  //     } if (property === "designer") {
-  //       const updatedList = state[listName].sort((a,b)=> a.brand.localeCompare(b.brand));
-  //       return {
-  //         ...state,
-  //         refresh: !state["refresh"],
-  //         [listName]: updatedList,
-  //       }
-  //     } else {
-  //       return {
-  //         ...state,
-  //       }
-  //     }
-  //   } else if (clothingType === "jackets") {
-  //     return {
-  //       ...state,
-  //     }
-  //   } else if (clothingType === "bottoms") {
-  //     return {
-  //       ...state,
-  //     }
-  //   } else if (clothingType === "shoes") {
-  //     return {
-  //       ...state,
-  //     }
-  //   } else if (clothingType === "accessories") {
-  //     return {
-  //       ...state,
-  //     }
-    // }
   };
+
+  const filterDrawer = (clothingType, properties) => {
+    
+  }
 
   switch (action.type) {
     case types.TURN_ON_ALERT:

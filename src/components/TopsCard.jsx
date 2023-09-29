@@ -60,7 +60,7 @@ const Tops = (props) => {
                   console.error('Error fetching item', error.message);
                 });
               }, 500);
-            } 
+            }
           }, [props.refresh]);
           
   const toggleAlert = (message, color) => {

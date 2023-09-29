@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-//import { Link } from 'react-router-dom';
+import { connect, useDispatch } from 'react-redux';
 import BottomsCard from './BottomsCard.jsx';
-import ItemCreator from './ItemCreatorModal.jsx';//change to itemCreator
-import { addBottomActionCreator, deleteBottomActionCreator } from '../actions/actions.js'
+import { sortDrawerActionCreator } from '../actions/actions.js'
 
 const mapStateToProps = (state) => {
     return {
@@ -13,8 +11,15 @@ const mapStateToProps = (state) => {
 
 
 const BottomsDrawer = props => {
+
     const bottoms = []; 
     const arrOfBottoms = props.bottoms;
+    const dispatch = useDispatch();
+
+    const sortDrawer = (clothingType, property) => {
+        dispatch(sortDrawerActionCreator(clothingType, property));
+    }
+
     for (let i = 0; i < arrOfBottoms.length; i++) {
         const currentBottom = arrOfBottoms[i];
         bottoms.push(
@@ -29,7 +34,15 @@ const BottomsDrawer = props => {
     }
     return(
         <div className="clothingBox" data-testid="bottoms-drawer">
-            <div className="categoryHeaders">Bottoms</div>
+            <div className="categoryHeaders">Bottoms
+                <p className="drawer-filters">sort by:</p>
+                    <select className="sort-by-select-list" data-testid="sort-by-select-list" onChange={(e)=>sortDrawer("bottoms", e.target.value)}>
+                        <option value="color">Color</option>
+                        <option value="brand">Brand</option>
+                        <option value="size">Size</option>
+                        <option value="subtype">Subtype</option>
+                    </select>
+                </div>
             <div className="yourClothing">
             {bottoms}
             </div>

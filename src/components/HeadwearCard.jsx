@@ -12,6 +12,7 @@ const mapStateToProps = function(state, ownProps) {
     brand: state.headwearList[ownProps.index].brand,
     file: state.headwearList[ownProps.index].file,
     type: state.headwearList[ownProps.index].type,
+    refresh: state.refresh,
   };
 };
 
@@ -60,7 +61,7 @@ const Headwear = (props) => {
                 });
               }, 500);
             } 
-          }, []);
+          }, [props.refresh]);
           
   const toggleAlert = (message, color) => {
     console.log('inside toggleAlert, message is', message);

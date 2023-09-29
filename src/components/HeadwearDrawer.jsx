@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect, useDispatch } from 'react-redux';
-//import { Link } from 'react-router-dom';
 import HeadwearCard from './HeadwearCard.jsx';
-import HeadwearCreator from './ItemCreatorModal.jsx';
-import { addHeadwearctionCreator, deleteHeadwearActionCreator, sortDrawerActionCreator } from '../actions/actions.js'
+import { sortDrawerActionCreator } from '../actions/actions.js'
 
 const mapStateToProps = (state) => {
     return {
@@ -13,11 +11,10 @@ const mapStateToProps = (state) => {
 
 
 const HeadwearDrawer = props => {
-    const dispatch = useDispatch();
     
     const headwear = []; 
     const arrOfHeadwear = props.headwear;
-    const sortedHeadwear = [];
+    const dispatch = useDispatch();
 
     const sortDrawer = (clothingType, property) => {
         dispatch(sortDrawerActionCreator(clothingType, property));
@@ -38,12 +35,13 @@ const HeadwearDrawer = props => {
     return(
         <div className="clothingBox" data-testid="headwear-drawer">
             <div className="categoryHeaders">Headwear
-            <select className="sort-by-select-list" data-testid="sort-by-select-list" onChange={(e)=>sortDrawer("headwear", e.target.value)}>
-                <option value="color">Color</option>
-                <option value="designer">Designer</option>
-                <option value="subtype">Subtype</option>
-                <option value="size">Size</option>
-            </select>
+            <p className="drawer-filters">sort by:</p>
+                <select className="sort-by-select-list" data-testid="sort-by-select-list" onChange={(e)=>sortDrawer("headwear", e.target.value)}>
+                    <option value="color">Color</option>
+                    <option value="brand">Brand</option>
+                    <option value="size">Size</option>
+                    <option value="subtype">Subtype</option>
+                </select>
             </div>
             <div className="yourClothing">
             {headwear}
