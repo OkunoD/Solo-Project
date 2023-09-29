@@ -37,13 +37,14 @@ const HeadwearDrawer = props => {
     }
     return(
         <div className="clothingBox" data-testid="headwear-drawer">
-            <div className="categoryHeaders">Headwear</div>
+            <div className="categoryHeaders">Headwear
             <select className="sort-by-select-list" data-testid="sort-by-select-list" onChange={(e)=>sortDrawer("headwear", e.target.value)}>
                 <option value="color">Color</option>
                 <option value="designer">Designer</option>
                 <option value="subtype">Subtype</option>
                 <option value="size">Size</option>
             </select>
+            </div>
             <div className="yourClothing">
             {headwear}
             </div>

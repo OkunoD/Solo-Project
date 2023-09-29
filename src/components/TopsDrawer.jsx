@@ -39,13 +39,14 @@ const TopsDrawer = props => {
 
     return(
         <div className="clothingBox" data-testid="tops-drawer">
-            <div className="categoryHeaders">Tops</div>
+            <div className="categoryHeaders">Tops
             <select className="sort-by-select-list" data-testid="sort-by-select-list" onChange={(e)=>sortDrawer("tops", e.target.value)}>
                 <option value="color">Color</option>
-                <option value="designer">Designer</option>
+                <option value="brand">Designer</option>
                 <option value="subtype">Subtype</option>
                 <option value="size">Size</option>
             </select>
+            </div>
             <div className="yourClothing">
             {tops}
             </div>
