@@ -70,7 +70,7 @@ animation-delay: calc(.5s * var(--i))
 .sticky-outfit {
     padding-bottom: 0px;
     margin-bottom: 0px;
-    background-color: white;
+    background: linear-gradient(to bottom, rgb(232, 230, 230), white);
     position: sticky;
     top: 61px;
     z-index: 100;
@@ -96,7 +96,8 @@ animation-delay: calc(.5s * var(--i))
 }
 .clothingBox {
     // height: ;
-    margin-bottom: 1%;
+    
+    margin-bottom: 0%;
     margin-left: 0%;
     margin-right: 0%;
     // actual Grailed color
@@ -123,8 +124,13 @@ animation-delay: calc(.5s * var(--i))
     text-transform: uppercase;
 }
 .categoryHeaders {
+    background: linear-gradient(to bottom, rgb(229, 228, 228), white);
+
     font-size: 20px;
-    margin: 7px 0px 7px 18px;
+    margin: 0px 0px 7px 0px;
+    padding-top: 12px;
+    padding-bottom: 5px;
+    padding-left: 18px;
     font-weight: bold;
     display: flex;
     align-items: left;
