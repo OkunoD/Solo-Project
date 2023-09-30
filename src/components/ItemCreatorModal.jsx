@@ -69,8 +69,8 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
 
   return (
     <div className="add-item-modal">
-      <div className="addItemHeaders">ADD PIECE</div>
-      <div className="addItemBorders">
+      {/* <div className="addItemHeaders">ADD PIECE</div> */}
+      <div className="add-item-borders">
         <div>
         <select className="select-list" id="category-select-list" data-testid="category-select-list" onChange={handleCategorySelect} value={itemType}>
          <option value="null">Category</option>

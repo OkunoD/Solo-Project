@@ -200,7 +200,7 @@ const wardrobeReducer = (state = initialState, action) => {
 
     const updatedItemList = [
       ...state[itemList].slice(0, index),
-      updatedItem,
+      outerHeightupdatedItem,
       ...state[itemList].slice(index + 1),
     ];
 
@@ -236,16 +236,14 @@ const wardrobeReducer = (state = initialState, action) => {
       const wornList = `worn${capitalized}`;
       const randomIndex = Math.floor(Math.random() * itemList.length);
 
-      console.log("itemList is", itemList);
-      console.log("itemList[0].type is", itemList[0].type);
-      console.log("capitalized is", capitalized);
-      console.log('wornList is', wornList);
+      // console.log("itemList is", itemList);
+      // console.log("itemList[0].type is", itemList[0].type);
+      // console.log("capitalized is", capitalized);
+      // console.log('wornList is', wornList);
 
       if (state[wornList].includes(itemList[randomIndex])) {
-        console.log('inside if statement!!!');
         return getRandomItem(itemList);
       } else if (!state[wornList].includes(itemList[randomIndex])){
-        console.log("about to return itemList[randomIndex]", itemList[randomIndex]);
         return itemList[randomIndex];
       }
     }
@@ -255,9 +253,6 @@ const wardrobeReducer = (state = initialState, action) => {
     const randomBottom = (state.wornBottomsLocked===false) ? [getRandomItem(state.bottomsList)] : state.wornBottoms;
     const randomShoe = (state.wornShoesLocked===false) ? [getRandomItem(state.shoesList)] : state.wornShoes;
     const randomAccessory = (state.wornAccessoriesLocked===false) ? [getRandomItem(state.accessoriesList)] : state.wornAccessories;
-
-    console.log('randomHeadwear is', randomHeadwear);
-    console.log("state.wornHeadwearLocked",state.wornHeadwearLocked);
 
     return {
       ...state,
@@ -269,6 +264,7 @@ const wardrobeReducer = (state = initialState, action) => {
       wornAccessories: randomAccessory,
     }
   }
+
   const clearOutfit = () => {
     return {
       ...state,

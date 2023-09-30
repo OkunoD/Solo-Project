@@ -25,15 +25,16 @@ a {
     font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     font-weight: normal;
     background-color: white;
-    // align-items: center;
+    align-items: left;
     padding: 15px 16px 10px 16px;
     margin: 0px 0px 0px 0px;
-    height: 35px;
+    min-height: 35px;
+    width: 100%;
     border-bottom: 1px solid #c3c3c3;
     border-radius: 0px;
     text-decoration: none;
-    display: flex;
-    justify-content: space-between;
+    display: inline-flex;
+    justify-content: left;
     position: sticky;
     top: 0;
     z-index: 200;
@@ -139,19 +140,19 @@ animation-delay: calc(.5s * var(--i))
     white-space: nowrap;
 }
 .user-input-field {
-    margin-top: 4px;
+    margin-top: 7px;
     padding: 2px;
     border-style: solid;
     border-width: 1px;
     border-color: rgb(212, 212, 212);
 }
 .file-input {
-    margin-top: 4px;
+    margin-top: 7px;
 }
 .add-item-buttons-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 8px;
+    margin-top: 6px;
     margin-right: 9.5px;
 }
 .outfit-names {
@@ -235,10 +236,9 @@ animation-delay: calc(.5s * var(--i))
     margin-bottom: 6px;
     margin-left: 0px;
 }
-.addItemBorders {
-    margin-left: 10px;
-    margin-bottom: 0px;
-    padding: 2px;
+.add-item-borders {
+    margin: 8px 1px 0px 14px;
+    padding: 10px;
     font-size: 15px;
     font-weight: bold;
 }
@@ -262,12 +262,14 @@ animation-delay: calc(.5s * var(--i))
     border-color: #000000;
 }
 .add-item-container {
+    display: inline-block;
     position: relative;
+    z-index: 10;
 }
 .add-item-modal {
     position: absolute;
-    top: 50px;
-    left: -79px;
+    top: 48px;
+    left: -90px;
     z-index: 2000;
     justify-content: center;
     align-items: center;
@@ -284,10 +286,11 @@ animation-delay: calc(.5s * var(--i))
     border-radius: 0px;
     border-color: black;
     background-color: white;
-    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2); /* Horizontal offset, Vertical offset, Blur radius, Color */
+    // box-shadow: 0px 80px 1px rgba(0, 0, 0, 0.2); /* Horizontal offset, Vertical offset, Blur radius, Color */
     transition: all;
 }
 .select-list {
+    margin-top: 0px;
     margin-right: 10px;
 }
 .item-details {
@@ -427,12 +430,17 @@ max-height: 100%;
     @extend .black-button;
     padding: 10px;
     font-size: 18px;
+    z-index: 5;
 }
 .header-button {
     @extend .black-button;
+    font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    border: none;
     font-size: 18px;
     padding: 0px 10px;
     margin: 4px 10px 5px 10px;
+    position: relative;
+    z-index: 19;
     &:hover span {
         animation-name: flip;
         animation-duration: 3s;
@@ -443,11 +451,25 @@ max-height: 100%;
         animation-play-state: alternate;
     }
 }
+
+.login-buttons-div {
+    display: inline-block;
+    justify-content: right;
+    font-size: 10px;
+}
+.nav-bar-buttons-div {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+
 .clicked-button {
     @extend .header-button;
     color: white;
     background-color: black;
     border-color: white;
+    position: relative;
+    z-index: 90;
 
     span {
         animation-name: flip;
@@ -613,12 +635,30 @@ max-height: 100%;
 
 .randomize-outfit-button {
     @extend .black-button;
+    height: 21px;
+    font-size: 14px;
 }
 
-.clear-outfit-button {
-    @extend .black-button;
+.randomize-outfit-button:hover{
+    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet, red);
+    animation:slidebg 2s linear infinite;
+  }
+@keyframes slidebg {
+    to {
+    background-position:19vw;
+    }
 }
-.lock-item-buttons-div {
+.clear-outfit-button {
+    @extend .red-button;
+    height: 21px;
+    font-size: 14px;
+    margin-left: 66px;
+}
+.lock-item-div {
+    display: flex;
+    border: none;
+    border-color: white;
+    border-width: 1px;
     margin-left: 17px;
 }
 
@@ -627,8 +667,37 @@ max-height: 100%;
     color: white;
     background-color: #000000;
     border-color: white; 
+    // margin: 0px;
+    margin-top: 4px;
 }
 .unlocked-item-button {
     @extend .black-button;
-    
+    margin-top: 4px;
+}
+.lock-emoji {
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.outfit-footer {
+    display: flex;
+    justify-content: space-between;
+}
+.full-shadow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust color and opacity as needed */
+    z-index: 3; /* Adjust the z-index to ensure it's above other content */
+    pointer-events: none; /* Allows clicks to pass through the shadow */
+}
+
+.my-closet-logo-div {
+    min-width: 170px;
+}
+.my-outfits-logo-div {
+    min-width: 170px;
 }
