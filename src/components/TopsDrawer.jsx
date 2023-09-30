@@ -41,7 +41,7 @@ const TopsDrawer = props => {
                     <option value="color">Color</option>
                     <option value="brand">Brand</option>
                     <option value="size">Size</option>
-                    <option value="subtype">Subtype</option>
+                    {/* <option value="subtype">Subtype</option> */}
                 </select>
             </div>
             <div className="yourClothing">

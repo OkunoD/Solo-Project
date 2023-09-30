@@ -707,3 +707,7 @@ max-height: 100%;
 .my-outfits-logo-div {
     min-width: 170px;
 }
+.header-login-button {
+    @extend .header-button;
+    font-size: 14px;
+}

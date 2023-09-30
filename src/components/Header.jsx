@@ -83,7 +83,7 @@ const Header = ({view}) => {
         </>
     );
     const signInButton = (
-        <div data-testid="sign-in-button" className={"header-button"}>
+        <div data-testid="sign-in-button" className={"header-login-button"}>
             <span style={{'--i': 0}}>S</span>
             <span style={{'--i': 1}}>I</span>
             <span style={{'--i': 2}}>G</span>
@@ -101,7 +101,7 @@ const Header = ({view}) => {
          </div>
     );
     const signOutButton = (
-        <div data-testid="sign-out-button" className={"header-button"}>
+        <div data-testid="sign-out-button" className={"header-login-button"}>
             <span style={{'--i': 0}}>S</span>
             <span style={{'--i': 1}}>I</span>
             <span style={{'--i': 2}}>G</span>
