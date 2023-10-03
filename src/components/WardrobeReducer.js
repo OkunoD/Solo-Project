@@ -44,22 +44,27 @@ const initialState = {
   accessoriesSizesArray: [],
   accessoriesSubtypesArray: [],
   
-
+  headwearListUnfiltered: [],
   headwearList: [],
   wornHeadwear: [],
   
+  topsListUnfiltered: [],
   topsList: [],
   wornTops: [],
   
+  jacketsListUnfiltered: [],
   jacketsList: [],
   wornJackets: [],
   
+  bottomsListUnfiltered: [],
   bottomsList: [],
   wornBottoms: [],
   
+  shoesListUnfiltered: [],
   shoesList: [],
   wornShoes: [],
   
+  accessoriesListUnfiltered: [],
   accessoriesList: [],
   wornAccessories: [],
 }
@@ -104,6 +109,7 @@ const wardrobeReducer = (state = initialState, action) => {
     return {
       ...state,
       lastItemId: payload[payload.length-1].id,
+      headwearListUnfiltered: headwear,
       headwearList: headwear,
       topsList: tops,
       jacketsList: jackets,
@@ -272,12 +278,11 @@ const wardrobeReducer = (state = initialState, action) => {
     console.log('inside filterDrawer, payload[2] is,', payload[2])
     console.log('inside filterDrawer, payload[3] is,', payload[3])
     console.log('inside filterDrawer, payload[4] is,', payload[4])
-
-
-
+    
     const listName = `${clothingType}List`;
-
-    const filteredList = state[listName].filter((item) => {
+    const listNameUnfiltered = `${clothingType}ListUnfiltered`;
+    
+    const filteredList = state[listNameUnfiltered].filter((item) => {
       return (
         (colorFilter.length === 0 || colorFilter.includes(item.color)) &&
         (brandFilter.length === 0 || brandFilter.includes(item.brand)) &&
