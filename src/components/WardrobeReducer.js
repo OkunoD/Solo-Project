@@ -259,13 +259,23 @@ const wardrobeReducer = (state = initialState, action) => {
   };
 
   const filterDrawer = (...payload) => {
+    console.log('inside filterDrawer')
+
     const clothingType = payload[0];
     const colorFilter = payload[1]; //array of colors to filter in
     const brandFilter = payload[2]; //array of brands to filter in
     const sizeFilter = payload[3]; //array of sizes to filter in
     const subtypeFilter = payload[4]; //array of subtypes to filter in
 
-    listName = `${clothingType}List`;
+    console.log('inside filterDrawer, payload[0] is,', payload[0])
+    console.log('inside filterDrawer, payload[1] is,', payload[1])
+    console.log('inside filterDrawer, payload[2] is,', payload[2])
+    console.log('inside filterDrawer, payload[3] is,', payload[3])
+    console.log('inside filterDrawer, payload[4] is,', payload[4])
+
+
+
+    const listName = `${clothingType}List`;
 
     const filteredList = state[listName].filter((item) => {
       return (
@@ -434,6 +444,9 @@ const wardrobeReducer = (state = initialState, action) => {
 
     case types.GET_FILTER_ARRAYS:
       return getFilterArrays(action.payload);
+
+    case types.FILTER_DRAWER:
+      return filterDrawer(...action.payload);
 
     case types.RANDOMIZE_OUTFIT:
       return randomizeOutfit();

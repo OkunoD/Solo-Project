@@ -23,6 +23,10 @@ const HeadwearDrawer = props => {
     const headwear = []; 
     const arrOfHeadwear = props.headwear;
     const arrOfColors = props.headwearColorsArray;
+    const arrOfBrands = props.headwearBrandsArray;
+    const arrOfSizes = props.headwearSizesArray;
+    const arrOfSubtypes = props.headwearSubtypesArray;
+
     const dispatch = useDispatch();
     
     useEffect(() => {
@@ -84,7 +88,14 @@ const HeadwearDrawer = props => {
                     {/* <option value="subtype">Subtype</option> */}
                 </select>
                 <button onClick={()=> setShowFilterModal(!showFilterModal)}>Filter:</button>
-                {showFilterModal && <FilterModal colorsArr={arrOfColors}/>}
+                {showFilterModal && 
+                <FilterModal 
+                clothingType={"headwear"}
+                colorsArr={arrOfColors}
+                brandsArr={arrOfBrands}
+                sizesArr={arrOfSizes}
+                subtypesArr={arrOfSubtypes}
+                />}
                 {/* <div>
                     {selectColorsDropdownArray}
                 </div> */}

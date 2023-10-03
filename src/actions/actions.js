@@ -55,6 +55,11 @@ export const getFilterArraysActionCreator = (clothingType) => ({
   payload: clothingType,
 })
 
+export const filterDrawerActionCreator = (clothingType, colors, brands, sizes, subtypes) => ({
+  type: types.FILTER_DRAWER,
+  payload: [ clothingType, colors, brands, sizes, subtypes ],
+})
+
 export const randomizeOutfitActionCreator = () => ({
   type: types.RANDOMIZE_OUTFIT,
 });

@@ -20,6 +20,8 @@ export const SORT_DRAWER = 'SORT_DRAWER';
 
 export const GET_FILTER_ARRAYS = 'GET_FILTER_ARRAYS';
 
+export const FILTER_DRAWER = 'FILTER_DRAWER';
+
 export const RANDOMIZE_OUTFIT = 'RANDOMIZE_OUTFIT';
 
 export const CLEAR_OUTFIT = 'CLEAR_OUTFIT';
