@@ -61,7 +61,7 @@ const ShoesDrawer = props => {
                         <option value="size">Size</option>
                         {/* <option value="subtype">Subtype</option> */}
                     </select>
-                    <button onClick={()=> setShowFilterModal(!showFilterModal)}>Filter:</button>
+                    <button className="show-filter-button" onClick={()=> setShowFilterModal(!showFilterModal)}>Filter:</button>
                 {showFilterModal && 
                 <FilterModal 
                 clothingType={"shoes"}
@@ -69,6 +69,7 @@ const ShoesDrawer = props => {
                 brandsArr={arrOfBrands}
                 sizesArr={arrOfSizes}
                 subtypesArr={arrOfSubtypes}
+                setShowFilterModal={setShowFilterModal}
                 />}
                 </div>
             <div className="yourClothing">
