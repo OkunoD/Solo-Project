@@ -14,20 +14,16 @@ const mapStateToProps = (state) => {
     };
 };
 
-
 const HeadwearDrawer = props => {
-
-    console.log('headwear is', props.headwear);
-    const [ showFilterModal, setShowFilterModal ] = useState(false);
     
+    const [ showFilterModal, setShowFilterModal ] = useState(false);
+    const dispatch = useDispatch();
     const headwear = []; 
     const arrOfHeadwear = props.headwear;
     const arrOfColors = props.headwearColorsArray;
     const arrOfBrands = props.headwearBrandsArray;
     const arrOfSizes = props.headwearSizesArray;
     const arrOfSubtypes = props.headwearSubtypesArray;
-
-    const dispatch = useDispatch();
     
     useEffect(() => {
         console.log("before getFilterArrays in useEffect");
@@ -36,34 +32,13 @@ const HeadwearDrawer = props => {
         // selectColorsDropdown();
     }, [arrOfHeadwear]);
     
-    const sortDrawer = (clothingType, property) => {
-        dispatch(sortDrawerActionCreator(clothingType, property));
-    }
     const getFilterArrays = (clothingType) => {
         dispatch(getFilterArraysActionCreator(clothingType));
     }
-    // getFilterArrays("headwear");
 
-    const selectColorsDropdownArray = [];
-
-    // const selectColorsDropdown = () => {
-    //     const selectColorsArray = [];
-    //     const selectColors = (colorsArray) => {
-    //         for (let i=0; i<colorsArray.length; i++) {
-    //             console.log('inside selectColors loop, i is', i);
-    //             selectColorsArray.push(<option key={i+100000000} value={colorsArray[i]}>{colorsArray[i]}</option>)
-    //         }
-    //     }
-    //     console.log('inside selectColorsDropdown funct, arrOfColors is',  arrOfColors)
-    //     selectColors(props.headwearColorsArray);
-
-    //     selectColorsDropdownArray.push(
-    //         <select className="filter-by-colors-list" data-testid="filter-by-colors-list">
-    //             {selectColorsArray}
-    //         </select>
-    //     )
-    // }
-    // selectColorsDropdown();
+    const sortDrawer = (clothingType, property) => {
+        dispatch(sortDrawerActionCreator(clothingType, property));
+    }
 
     for (let i = 0; i < arrOfHeadwear.length; i++) {
         const currentHeadwear = arrOfHeadwear[i];

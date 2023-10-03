@@ -1,20 +1,42 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import TopsCard from './TopsCard.jsx';
-import { sortDrawerActionCreator } from '../actions/actions.js'
+import FilterModal from './FilterModal.jsx'
+import { sortDrawerActionCreator, getFilterArraysActionCreator } from '../actions/actions.js'
+
 
 const mapStateToProps = (state) => {
     return {
-        tops: state.topsList
+        tops: state.topsList,
+        topsColorsArray: state.topsColorsArray,
+        topsBrandsArray: state.topsBrandsArray,
+        topsSizesArray: state.topsSizesArray,
+        topsSubtypesArray: state.topsSubtypesArray,
     };
 };
 
 
 const TopsDrawer = props => {
     
+    const [ showFilterModal, setShowFilterModal ] = useState(false);
+    const dispatch = useDispatch();
     const tops = []; 
     const arrOfTops = props.tops;
-    const dispatch = useDispatch();
+    const arrOfColors = props.topsColorsArray;
+    const arrOfBrands = props.topsBrandsArray;
+    const arrOfSizes = props.topsSizesArray;
+    const arrOfSubtypes = props.topsSubtypesArray;
+    
+    useEffect(() => {
+        console.log("before getFilterArrays in useEffect");
+        getFilterArrays("tops");
+        console.log("in useEffect", props.topsColorsArray);
+        // selectColorsDropdown();
+    }, [arrOfTops]);
+    
+    const getFilterArrays = (clothingType) => {
+        dispatch(getFilterArraysActionCreator(clothingType));
+    }
 
     const sortDrawer = (clothingType, property) => {
         dispatch(sortDrawerActionCreator(clothingType, property));
@@ -32,7 +54,6 @@ const TopsDrawer = props => {
                 index = {i}
             />);
     };
-
     return(
         <div className="clothingBox" data-testid="tops-drawer">
             <div className="categoryHeaders">Tops
@@ -43,6 +64,15 @@ const TopsDrawer = props => {
                     <option value="size">Size</option>
                     {/* <option value="subtype">Subtype</option> */}
                 </select>
+                <button onClick={()=> setShowFilterModal(!showFilterModal)}>Filter:</button>
+                {showFilterModal && 
+                <FilterModal 
+                clothingType={"tops"}
+                colorsArr={arrOfColors}
+                brandsArr={arrOfBrands}
+                sizesArr={arrOfSizes}
+                subtypesArr={arrOfSubtypes}
+                />}
             </div>
             <div className="yourClothing">
             {tops}

@@ -1,20 +1,39 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import ShoesCard from './ShoesCard.jsx';
-import { sortDrawerActionCreator } from '../actions/actions.js'
+import FilterModal from './FilterModal.jsx'
+import { sortDrawerActionCreator, getFilterArraysActionCreator } from '../actions/actions.js'
 
 const mapStateToProps = (state) => {
     return {
-        shoes: state.shoesList
+        shoes: state.shoesList,
+        shoesColorsArray: state.shoesColorsArray,
+        shoesBrandsArray: state.shoesBrandsArray,
+        shoesSizesArray: state.shoesSizesArray,
+        shoesSubtypesArray: state.shoesSubtypesArray,
     };
 };
 
 
 const ShoesDrawer = props => {
 
+    const [ showFilterModal, setShowFilterModal ] = useState(false);
+    const dispatch = useDispatch();
     const shoes = []; 
     const arrOfShoes = props.shoes;
-    const dispatch = useDispatch();
+    const arrOfColors = props.shoesColorsArray;
+    const arrOfBrands = props.shoesBrandsArray;
+    const arrOfSizes = props.shoesSizesArray;
+    const arrOfSubtypes = props.shoesSubtypesArray;
+    
+    useEffect(() => {
+        console.log("before getFilterArrays in useEffect");
+        getFilterArrays("shoes");
+    }, [arrOfShoes]);
+    
+    const getFilterArrays = (clothingType) => {
+        dispatch(getFilterArraysActionCreator(clothingType));
+    }
 
     const sortDrawer = (clothingType, property) => {
         dispatch(sortDrawerActionCreator(clothingType, property));
@@ -42,6 +61,15 @@ const ShoesDrawer = props => {
                         <option value="size">Size</option>
                         {/* <option value="subtype">Subtype</option> */}
                     </select>
+                    <button onClick={()=> setShowFilterModal(!showFilterModal)}>Filter:</button>
+                {showFilterModal && 
+                <FilterModal 
+                clothingType={"shoes"}
+                colorsArr={arrOfColors}
+                brandsArr={arrOfBrands}
+                sizesArr={arrOfSizes}
+                subtypesArr={arrOfSubtypes}
+                />}
                 </div>
             <div className="yourClothing">
             {shoes}

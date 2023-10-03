@@ -67,6 +67,10 @@ const initialState = {
   accessoriesListUnfiltered: [],
   accessoriesList: [],
   wornAccessories: [],
+
+  undergarmentsListUnfiltered: [],
+  undergarmentsList: [],
+  wornUndergarments: [],
 }
 
 // put the post/fetch inside the frontend in same action 
@@ -89,6 +93,7 @@ const wardrobeReducer = (state = initialState, action) => {
     const bottoms = [];
     const shoes = [];
     const accessories = [];
+    const undergarments = [];
 
     for (let i = 0; i < colorSortedItems.length; i++) {
       if (colorSortedItems[i].type === 'headwear') {
@@ -103,7 +108,9 @@ const wardrobeReducer = (state = initialState, action) => {
         shoes.push(colorSortedItems[i]); 
       } else if (colorSortedItems[i].type === 'accessories') {
         accessories.push(colorSortedItems[i]); 
-      };
+      } else if (colorSortedItems[i].type === 'undergarments') {
+        undergarments.push(colorSortedItems[i]); 
+      };;
     };
         
     return {
@@ -111,11 +118,18 @@ const wardrobeReducer = (state = initialState, action) => {
       lastItemId: payload[payload.length-1].id,
       headwearListUnfiltered: headwear,
       headwearList: headwear,
+      topsListUnfiltered: tops,
       topsList: tops,
+      jacketsListUnfiltered: jackets,
       jacketsList: jackets,
+      bottomsListUnfiltered: bottoms,
       bottomsList: bottoms,
+      shoesListUnfiltered: shoes,
       shoesList: shoes,
+      accessoriesListUnfiltered: accessories,
       accessoriesList: accessories,
+      undergarmentsListUnfiltered: undergarments,
+      undergarmentsList: undergarments,
     }
   }
 
