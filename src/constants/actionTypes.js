@@ -18,11 +18,15 @@ export const UPDATE_ITEM = 'UPDATE_ITEM';
 
 export const SORT_DRAWER = 'SORT_DRAWER';
 
+export const GET_FILTER_ARRAYS = 'GET_FILTER_ARRAYS';
+
 export const RANDOMIZE_OUTFIT = 'RANDOMIZE_OUTFIT';
 
 export const CLEAR_OUTFIT = 'CLEAR_OUTFIT';
 
 export const LOCK_ITEM = 'LOCK_ITEM';
+
+
 
 
 

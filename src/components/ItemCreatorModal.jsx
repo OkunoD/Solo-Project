@@ -90,6 +90,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
          <option value="Blue">Blue</option>
          <option value="Light Blue">Light Blue</option>
          <option value="Purple">Purple</option>
+         <option value="Pink">Pink</option>
          <option value="Red">Red</option>
          <option value="Green">Green</option>
          <option value="Yellow">Yellow</option>
@@ -99,24 +100,36 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
          <option value="Cream">Cream</option>
          <option value="Gold">Gold</option>
          <option value="Silver">Silver</option>
-         <option value="Camo">Camo</option>
          <option value="New Color">New Color</option>
         </select>
         <select className="select-list" id="size-select-list" data-testid="size-select-list" onChange={handleSizeSelect} value={itemSize}>
          <option value="null">Size</option>
+         <option value="XXS">XXS</option>
          <option value="XS">XS</option>
          <option value="S">S</option>
          <option value="M">M</option>
          <option value="L">L</option>
          <option value="XL">XL</option>
+         <option value="XXL">XXL</option>
          <option value="6">6</option>
          <option value="7">7</option>
+         <option value="7.5">7.5</option>
          <option value="8">8</option>
+         <option value="8.5">8.5</option>
          <option value="9">9</option>
-         <option value="10">10</option>
+         <option value="9.5">9.5</option>
+         <option value="10.5">10.5</option>
          <option value="11">11</option>
          <option value="12">12</option>
          <option value="13">13</option>
+         <option value="26">26</option>
+         <option value="27">27</option>
+         <option value="28">28</option>
+         <option value="29">29</option>
+         <option value="30">30</option>
+         <option value="31">31</option>
+         <option value="32">32</option>
+         <option value="33">33</option>
         </select>
         </div>
         <div>

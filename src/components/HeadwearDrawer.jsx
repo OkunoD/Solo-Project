@@ -1,24 +1,65 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import HeadwearCard from './HeadwearCard.jsx';
-import { sortDrawerActionCreator } from '../actions/actions.js'
+import FilterModal from './FilterModal.jsx'
+import { sortDrawerActionCreator, getFilterArraysActionCreator } from '../actions/actions.js'
 
 const mapStateToProps = (state) => {
     return {
-        headwear: state.headwearList
+        headwear: state.headwearList,
+        headwearColorsArray: state.headwearColorsArray,
+        headwearBrandsArray: state.headwearBrandsArray,
+        headwearSizesArray: state.headwearSizesArray,
+        headwearSubtypesArray: state.headwearSubtypesArray,
     };
 };
 
 
 const HeadwearDrawer = props => {
+
+    console.log('headwear is', props.headwear);
+    const [ showFilterModal, setShowFilterModal ] = useState(false);
     
     const headwear = []; 
     const arrOfHeadwear = props.headwear;
+    const arrOfColors = props.headwearColorsArray;
     const dispatch = useDispatch();
-
+    
+    useEffect(() => {
+        console.log("before getFilterArrays in useEffect");
+        getFilterArrays("headwear");
+        console.log("in useEffect", props.headwearColorsArray);
+        // selectColorsDropdown();
+    }, [arrOfHeadwear]);
+    
     const sortDrawer = (clothingType, property) => {
         dispatch(sortDrawerActionCreator(clothingType, property));
     }
+    const getFilterArrays = (clothingType) => {
+        dispatch(getFilterArraysActionCreator(clothingType));
+    }
+    // getFilterArrays("headwear");
+
+    const selectColorsDropdownArray = [];
+
+    // const selectColorsDropdown = () => {
+    //     const selectColorsArray = [];
+    //     const selectColors = (colorsArray) => {
+    //         for (let i=0; i<colorsArray.length; i++) {
+    //             console.log('inside selectColors loop, i is', i);
+    //             selectColorsArray.push(<option key={i+100000000} value={colorsArray[i]}>{colorsArray[i]}</option>)
+    //         }
+    //     }
+    //     console.log('inside selectColorsDropdown funct, arrOfColors is',  arrOfColors)
+    //     selectColors(props.headwearColorsArray);
+
+    //     selectColorsDropdownArray.push(
+    //         <select className="filter-by-colors-list" data-testid="filter-by-colors-list">
+    //             {selectColorsArray}
+    //         </select>
+    //     )
+    // }
+    // selectColorsDropdown();
 
     for (let i = 0; i < arrOfHeadwear.length; i++) {
         const currentHeadwear = arrOfHeadwear[i];
@@ -42,6 +83,11 @@ const HeadwearDrawer = props => {
                     <option value="size">Size</option>
                     {/* <option value="subtype">Subtype</option> */}
                 </select>
+                <button onClick={()=> setShowFilterModal(!showFilterModal)}>Filter:</button>
+                {showFilterModal && <FilterModal colorsArr={arrOfColors}/>}
+                {/* <div>
+                    {selectColorsDropdownArray}
+                </div> */}
             </div>
             <div className="yourClothing">
             {headwear}

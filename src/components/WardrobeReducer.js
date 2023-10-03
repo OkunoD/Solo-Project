@@ -14,6 +14,37 @@ const initialState = {
   wornShoesLocked: false,
   wornAccessoriesLocked: false,
 
+  headwearColorsArray: [],
+  headwearBrandsArray: [],
+  headwearSizesArray: [],
+  headwearSubtypesArray: [],
+
+  topsColorsArray: [],
+  topsBrandsArray: [],
+  topsSizesArray: [],
+  topsSubtypesArray: [],
+
+  jacketsColorsArray: [],
+  jacketsBrandsArray: [],
+  jacketsSizesArray: [],
+  jacketsSubtypesArray: [],
+
+  bottomsColorsArray: [],
+  bottomsBrandsArray: [],
+  bottomsSizesArray: [],
+  bottomsSubtypesArray: [],
+
+  shoesColorsArray: [],
+  shoesBrandsArray: [],
+  shoesSizesArray: [],
+  shoesSubtypesArray: [],
+
+  accessoriesColorsArray: [],
+  accessoriesBrandsArray: [],
+  accessoriesSizesArray: [],
+  accessoriesSubtypesArray: [],
+  
+
   headwearList: [],
   wornHeadwear: [],
   
@@ -200,7 +231,7 @@ const wardrobeReducer = (state = initialState, action) => {
 
     const updatedItemList = [
       ...state[itemList].slice(0, index),
-      outerHeightupdatedItem,
+      updatedItem,
       ...state[itemList].slice(index + 1),
     ];
 
@@ -213,7 +244,8 @@ const wardrobeReducer = (state = initialState, action) => {
   const sortDrawer = (clothingType, property) => {
     const listName = `${clothingType}List`;
     const updatedList = state[listName].sort((a,b) => a[property].localeCompare(b[property]));
-    
+
+    console.log('state inside sortDrawer is', state);
     console.log("property is", property);
     console.log("clothingType is", clothingType);
     console.log("listName is", listName);
@@ -226,8 +258,71 @@ const wardrobeReducer = (state = initialState, action) => {
     }
   };
 
-  const filterDrawer = (clothingType, properties) => {
+  const filterDrawer = (...payload) => {
+    const clothingType = payload[0];
+    const colorFilter = payload[1]; //array of colors to filter in
+    const brandFilter = payload[2]; //array of brands to filter in
+    const sizeFilter = payload[3]; //array of sizes to filter in
+    const subtypeFilter = payload[4]; //array of subtypes to filter in
 
+    listName = `${clothingType}List`;
+
+    const filteredList = state[listName].filter((item) => {
+      return (
+        (colorFilter.length === 0 || colorFilter.includes(item.color)) &&
+        (brandFilter.length === 0 || brandFilter.includes(item.brand)) &&
+        (sizeFilter.length === 0 || sizeFilter.includes(item.size)) &&
+        (subtypeFilter.length === 0 || subtypeFilter.includes(item.subType))
+      );
+    })
+    
+    return {
+      ...state,
+      [listName]: filteredList,
+    }
+  }
+  
+  const getFilterArrays = (clothingType) => {
+    
+    const listName = `${clothingType}List`;
+    
+    const allColors = [];
+    const allBrands = [];
+    const allSizes =  [];
+    const allSubtypes = [];
+
+    for (let i = 0; i < state[listName].length; i++) {
+      if (!allColors.includes(state[listName][i].color)) {
+        allColors.push(state[listName][i].color);
+      };
+      if (!allBrands.includes(state[listName][i].brand)) {
+        allBrands.push(state[listName][i].brand);
+      };
+      if (!allSizes.includes(state[listName][i].size)) {
+        allSizes.push(state[listName][i].size);
+      };
+      if (!allSubtypes.includes(state[listName][i].subtype)) {
+        allSubtypes.push(state[listName][i].subtype);
+      };
+    };
+    console.log('inside getFilterArrays reducer clothingType is:', clothingType);
+    console.log('inside getFilterArrays reducer state is:', state);
+    console.log('inside getFilterArrays reducer state["headwearList"] is:', state["headwearList"]);
+    console.log('inside getFilterArrays reducer state[listname template] is:', state[`${listName}`]);
+    console.log('inside getFilterArrays reducer state[listname] is:', state[listName]);
+    console.log('inside getFilterArrays reducer listName is:', listName);
+    console.log('inside getFilterArrays reducer allColors is:', allColors);
+    console.log('inside getFilterArrays reducer allBrands is:', allBrands);
+    console.log('inside getFilterArrays reducer allSizes is:', allSizes);
+    console.log('inside getFilterArrays reducer allSubtypes is:', allSubtypes);
+    
+    return {
+      ...state,
+      [`${clothingType}ColorsArray`]: allColors,
+      [`${clothingType}BrandsArray`]: allBrands,
+      [`${clothingType}SizesArray`]: allSizes,
+      [`${clothingType}SubtypesArray`]: allSubtypes,
+    }
   }
 
   const randomizeOutfit = () => {
@@ -264,7 +359,7 @@ const wardrobeReducer = (state = initialState, action) => {
       wornAccessories: randomAccessory,
     }
   }
-
+  
   const clearOutfit = () => {
     return {
       ...state,
@@ -336,6 +431,9 @@ const wardrobeReducer = (state = initialState, action) => {
     case types.SORT_DRAWER:
       const [ clothingType, property ] = action.payload;
       return sortDrawer(clothingType, property);
+
+    case types.GET_FILTER_ARRAYS:
+      return getFilterArrays(action.payload);
 
     case types.RANDOMIZE_OUTFIT:
       return randomizeOutfit();
