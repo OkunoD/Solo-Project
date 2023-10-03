@@ -96,7 +96,7 @@ const FilterModal = (props) => {
     console.log({subtypesFilter});
     
     dispatch(filterDrawerActionCreator(clothingType, colorFilter, brandsFilter, sizesFilter, subtypesFilter));
-    
+    props.setShowFilterModal();
   }
   
   const handleCheckboxChange = (itemId, checklistCategory) => {
@@ -125,14 +125,10 @@ const FilterModal = (props) => {
 
   return (
     <div className="filter-modal">
-      
-      <div className="color-and-brand-filter-div">
-      <div className="filter-checklist">
+      {/* <div className="color-and-brand-filter-div"> */}
+      <div className="filter-category-div">
         <h2>color:</h2>
-        <ul>
-          {/* {console.log('before checklist map')}
-          {console.log('colorsChecklistArray is', colorsChecklistArray)}
-        {console.log('colors is', colors)} */}
+        <ul className="filter-checklist">
           {colors && colors.map((type) => (
             <li key={type.id}>
               <label>
@@ -147,9 +143,9 @@ const FilterModal = (props) => {
           ))}
         </ul>
       </div>
-      <div className="filter-checklist">
+      <div className="filter-category-div">
         <h2>brand:</h2>
-        <ul>
+        <ul className="filter-checklist">
           {brands && brands.map((type) => (
             <li key={type.id}>
               <label>
@@ -163,12 +159,13 @@ const FilterModal = (props) => {
             </li>
           ))}
         </ul>
-      </div>
-      </div>
-      <div className="size-and-subtype-filter-div">
-      <div className="filter-checklist">
+       </div>
+      {/* </div> */}
+      {/* <div className="size-and-subtype-filter-div"> */}
+      <div className="filter-category-div">
+
         <h2>size:</h2>
-        <ul>
+        <ul className="filter-checklist">
           {sizes && sizes.map((type) => (
             <li key={type.id}>
               <label>
@@ -182,10 +179,10 @@ const FilterModal = (props) => {
             </li>
           ))}
         </ul>
-      </div>
-      <div className="filter-checklist">
+        </div>
+      <div className="filter-category-div">
         <h2>subtype:</h2>
-        <ul>
+        <ul className="filter-checklist">
           {subtypes && subtypes.map((type) => (
             <li key={type.id}>
               <label>
@@ -200,8 +197,8 @@ const FilterModal = (props) => {
           ))}
         </ul>
       </div>
-      </div>
-      <button onClick={()=>handleSubmit()}>filter</button>
+      {/* </div> */}
+      <button className="apply-filter-button" onClick={()=>handleSubmit()}>APPLY FILTERS</button>
     </div>
   );
 }

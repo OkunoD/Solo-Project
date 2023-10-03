@@ -628,8 +628,8 @@ max-height: 100%;
 
 .sort-by-select-list {
     @extend .select-list;
-    margin: 4px 0px 0px 3px;
-    height: 18px;
+    margin: 3px 0px 0px 3px;
+    height: 21px;
 }
 
 .drawer-filters {
@@ -712,12 +712,45 @@ max-height: 100%;
     font-size: 14px;
 }
 .filter-modal {
+    position: absolute;
+    background-color: white;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+    padding: 0px 20px 10px 20px;
+    z-index: 2;
+    left: 308px;
+    top: 179px;
     font-size: 10px;
     display: flex;
 }
-.color-and-brand-filter-div {
-
+.filter-category-div {
+    display: flex;
+    margin: 0px 10px 0px 0px;
 }
 .size-and-subtype-filter-div {
 
+}
+.filter-checklist {
+    padding: 0px 10px 0px 0px;
+    // border-style: solid;
+    border-right: 1px solid;
+    // margin: 0px 0px 0px 0px;
+    list-style: none;
+    font-size: 13px;
+    font-weight: normal;
+}
+.show-filter-button {
+    font-size: 14px;
+    height: 21px;
+    margin-top: 3px;
+    margin-left: 15px;
+    padding: -10px 1px 1px 1px;
+}
+.apply-filter-button {
+    width: 70px;
+    height: 40px;
+    position: relative;
+    margin: 12px 0px 0px 0px;
 }
