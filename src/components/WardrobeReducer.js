@@ -304,7 +304,7 @@ const wardrobeReducer = (state = initialState, action) => {
         (subtypeFilter.length === 0 || subtypeFilter.includes(item.subType))
       );
     })
-    
+    console.log('inside reducer, state[filtered] is', state[listNameUnfiltered]);
     return {
       ...state,
       [listName]: filteredList,
@@ -313,7 +313,7 @@ const wardrobeReducer = (state = initialState, action) => {
   
   const getFilterArrays = (clothingType) => {
     
-    const listName = `${clothingType}List`;
+    const listName = `${clothingType}ListUnfiltered`;
     
     const allColors = [];
     const allBrands = [];

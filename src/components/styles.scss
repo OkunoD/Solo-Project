@@ -712,22 +712,22 @@ max-height: 100%;
     font-size: 14px;
 }
 .filter-modal {
-    position: absolute;
-    background-color: white;
-    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
-    border-style: solid;
+    position: relative;
+    background-color: none;
+    // box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
+    // border-style: solid;
     border-color: grey;
     border-width: 1px;
-    padding: 0px 20px 10px 20px;
+    padding: 0px 20px 10px 10px;
     z-index: 2;
-    left: 308px;
-    top: 179px;
+    left: 3px;
+    top: 3px;
     font-size: 10px;
     display: flex;
 }
 .filter-category-div {
     display: flex;
-    margin: 0px 10px 0px 0px;
+    margin: -10px 10px 0px 0px;
 }
 .size-and-subtype-filter-div {
 
@@ -735,11 +735,12 @@ max-height: 100%;
 .filter-checklist {
     padding: 0px 10px 0px 0px;
     // border-style: solid;
-    border-right: 1px solid;
-    // margin: 0px 0px 0px 0px;
+    border-left: 1px solid;
+    border-color: rgb(214, 214, 214);
+    margin: 10px 10px 0px 4px;
     list-style: none;
     font-size: 13px;
-    font-weight: normal;
+    font-weight: 100;
 }
 .show-filter-button {
     font-size: 14px;
@@ -749,8 +750,15 @@ max-height: 100%;
     padding: -10px 1px 1px 1px;
 }
 .apply-filter-button {
-    width: 70px;
-    height: 40px;
+    width: 59px;
+    height: 30px;
     position: relative;
+    top: 15px;
     margin: 12px 0px 0px 0px;
+    font-size: 11px;
+}
+.filter-name {
+    margin: 10px 0px 0px 0px;
+    font-size: 16px;
+    font-weight: normal;
 }

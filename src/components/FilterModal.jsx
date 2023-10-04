@@ -96,7 +96,7 @@ const FilterModal = (props) => {
     console.log({subtypesFilter});
     
     dispatch(filterDrawerActionCreator(clothingType, colorFilter, brandsFilter, sizesFilter, subtypesFilter));
-    props.setShowFilterModal();
+    // props.setShowFilterModal();
   }
   
   const handleCheckboxChange = (itemId, checklistCategory) => {
@@ -127,7 +127,7 @@ const FilterModal = (props) => {
     <div className="filter-modal">
       {/* <div className="color-and-brand-filter-div"> */}
       <div className="filter-category-div">
-        <h2>color:</h2>
+        <p className="filter-name">color</p>
         <ul className="filter-checklist">
           {colors && colors.map((type) => (
             <li key={type.id}>
@@ -144,7 +144,7 @@ const FilterModal = (props) => {
         </ul>
       </div>
       <div className="filter-category-div">
-        <h2>brand:</h2>
+        <p className="filter-name">brand</p>
         <ul className="filter-checklist">
           {brands && brands.map((type) => (
             <li key={type.id}>
@@ -163,8 +163,7 @@ const FilterModal = (props) => {
       {/* </div> */}
       {/* <div className="size-and-subtype-filter-div"> */}
       <div className="filter-category-div">
-
-        <h2>size:</h2>
+        <p className="filter-name">size</p>
         <ul className="filter-checklist">
           {sizes && sizes.map((type) => (
             <li key={type.id}>
@@ -181,7 +180,7 @@ const FilterModal = (props) => {
         </ul>
         </div>
       <div className="filter-category-div">
-        <h2>subtype:</h2>
+        <p className="filter-name">subtype</p>
         <ul className="filter-checklist">
           {subtypes && subtypes.map((type) => (
             <li key={type.id}>
