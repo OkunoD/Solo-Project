@@ -197,7 +197,10 @@ const FilterModal = (props) => {
         </ul>
       </div>
       {/* </div> */}
-      <button className="apply-filter-button" onClick={()=>handleSubmit()}>APPLY FILTERS</button>
+      <div className="filter-buttons-div">
+        <button className="clear-filter-button">clear filters</button>
+        <button className="apply-filter-button" onClick={()=>handleSubmit()}>APPLY FILTERS</button>
+      </div>
     </div>
   );
 }

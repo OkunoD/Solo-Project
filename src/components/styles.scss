@@ -749,13 +749,36 @@ max-height: 100%;
     margin-left: 15px;
     padding: -10px 1px 1px 1px;
 }
-.apply-filter-button {
-    width: 59px;
-    height: 30px;
+.filter-buttons-div {
     position: relative;
-    top: 15px;
-    margin: 12px 0px 0px 0px;
+    align-items: flex-end;
+    justify-content: space-between;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+}
+.apply-filter-button {
+    width: 100px;
+    height: 30px;
+    margin: 0px 0px 0px 0px;
     font-size: 11px;
+}
+.clear-filter-button {
+    @extend .black-button;
+    
+    font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    border: none;
+    width: 100px;
+    height: 20px;
+    font-size: 11px;
+    font-weight: 100;
+    margin-left: 10px;
+    &:hover {
+        text-decoration: underline;
+        color: black; /* Text color becomes white when hovered */
+        background-color: transparent; /* Background becomes black when hovered */
+        border-color: white; /* Border color becomes white when hovered */
+    }
 }
 .filter-name {
     margin: 10px 0px 0px 0px;
