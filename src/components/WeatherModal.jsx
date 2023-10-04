@@ -12,6 +12,7 @@ import {
  } from '../actions/actions.js'
  import { geoApiOptions, geoApiUrl } from '../apis/apis.js';
  import { ForecastModal } from './ForecastModal.jsx';
+ import { mockWeather, mockForecast } from '../../mockData.js';
 
 
  export const Search = ({onSearchChange}) => {
@@ -59,7 +60,11 @@ import {
     const [forecast, setForecast] = useState(null);
 
     useEffect(()=> {
-        handleOnSearchChange({value: "20 20", label: "Pasadena"});
+        if (process.env.NODE_ENV==="development") {
+            setCurrentWeather(mockWeather);
+            setForecast(mockForecast);
+            return;
+        }
         console.log(currentWeather);
         console.log(forecast);
     },[])
@@ -92,8 +97,8 @@ import {
         })
     }
 
-    console.log(currentWeather);
-    console.log(forecast);
+    console.log("currentWeatherJson", JSON.stringify(currentWeather));
+    console.log("forecastJson", JSON.stringify(forecast));
 
 
     // console.log("props.data", props.data);
@@ -128,18 +133,18 @@ import {
                 <p className="temperature">{Math.round(currentWeather.main.temp)}°F</p>
                 <div className="details">
                     <div className="details">
-                        <div classname="parameter-row">
+                        <div className="parameter-row">
                             <span className="parameter-label">Details</span>
                         </div>
-                        <div classname="parameter-row">
+                        <div className="parameter-row">
                             <span className="parameter-label">Feels Like</span>
                             <span className="parameter-value">{Math.round(currentWeather.main.feels_like)}°F</span>
                         </div>
-                        <div classname="parameter-row">
+                        <div className="parameter-row">
                             <span className="parameter-label">Wind</span>
                             <span className="parameter-value">{currentWeather.wind.speed} M/S</span>
                         </div>
-                        <div classname="parameter-row">
+                        <div className="parameter-row">
                             <span className="parameter-label">Humidity</span>
                             <span className="parameter-value">{currentWeather.main.humidity}%</span>
                         </div>
