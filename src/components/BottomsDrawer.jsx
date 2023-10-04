@@ -18,6 +18,8 @@ const mapStateToProps = (state) => {
 const BottomsDrawer = props => {
 
     const [ showFilterModal, setShowFilterModal ] = useState(false);
+    const [ isClicked, setIsClicked ] = useState(false);
+
     const dispatch = useDispatch();
     const bottoms = []; 
     const arrOfBottoms = props.bottoms;
@@ -60,7 +62,7 @@ const BottomsDrawer = props => {
                         <option value="size">Size</option>
                         {/* <option value="subtype">Subtype</option> */}
                     </select>
-                <button className="show-filter-button" onClick={()=> setShowFilterModal(!showFilterModal)}>Filter:</button>
+                    <button className={isClicked ? "clicked-filter-button" : "show-filter-button"} onClick={()=> {setShowFilterModal(!showFilterModal);setIsClicked(!isClicked);}}>Filter:</button>
                 {showFilterModal && 
                 <FilterModal 
                 clothingType={"bottoms"}

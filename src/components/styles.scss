@@ -748,8 +748,29 @@ max-height: 100%;
     font-size: 14px;
     height: 21px;
     margin-top: 3px;
+    border-width: .5px;
+    border-radius: 3px;
     margin-left: 15px;
     padding: -10px 1px 1px 1px;
+    border-left: 1px solid rgb(143, 143, 143);
+    border-top: 1px solid rgb(143, 143, 143);
+
+    border-right: 2px solid rgb(159, 159, 159);
+    border-bottom: 2px solid rgb(169, 169, 169);
+}
+.clicked-filter-button {
+    @extend .show-filter-button;
+    border-radius: 3px;
+    border-width: .5px;
+    border-color: grey;
+    padding: -10px 1px 0px 1px;
+    border-right: 1px solid rgb(126, 126, 126);
+    border-bottom: 1px solid rgb(126, 126, 126);
+
+    border-left: 2px solid rgb(126, 126, 126);
+    border-top: 2px solid rgb(126, 126, 126);
+    // background: grey;
+    background: linear-gradient(to bottom, rgb(224, 224, 224), white)
 }
 .filter-buttons-div {
     position: relative;
