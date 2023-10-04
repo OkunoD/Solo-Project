@@ -21,6 +21,7 @@ const FilterModal = (props) => {
   const [brands, setBrands] = useState([]);
   const [sizes, setSizes] = useState([]);
   const [subtypes, setSubtypes] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
   const colorsChecklistArray = [];
   const brandsChecklistArray = [];
@@ -80,6 +81,21 @@ const FilterModal = (props) => {
     }
     setSubtypes(subtypesChecklistArray);
   };
+  
+  const clearFilters = () => {
+    console.log('clearfilters colors is', colors);
+    console.log('clearfilters colors[0].checked is', colors[0].checked);
+
+    colors.forEach((type) => type.checked = false);
+    brands.forEach((type) => type.checked = false);
+    sizes.forEach((type) => type.checked = false);
+    subtypes.forEach((type) => type.checked = false);
+    setRefresh(!refresh);
+
+    // can disable dispatch below if want to just clear checks without 
+    // actually refilling drawer without any filters
+    dispatch(filterDrawerActionCreator(clothingType, [], [], [], []));
+  }
   
   const handleSubmit = () => {
     const colorFilter = [];
@@ -198,7 +214,7 @@ const FilterModal = (props) => {
       </div>
       {/* </div> */}
       <div className="filter-buttons-div">
-        <button className="clear-filter-button">clear filters</button>
+        <button className="clear-filter-button" onClick={()=>clearFilters()}>clear filters</button>
         <button className="apply-filter-button" onClick={()=>handleSubmit()}>APPLY FILTERS</button>
       </div>
     </div>
