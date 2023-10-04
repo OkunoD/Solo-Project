@@ -63,6 +63,7 @@ import {
         console.log(currentWeather);
         console.log(forecast);
     },[])
+    
         
     const fetchWeather = (lat, lon, searchData) => {
         console.log('inside fetchWeather called by Outfit useEffect')
@@ -109,19 +110,21 @@ import {
 
     return (
     <>
+    <div className="weather">
+        
         {currentWeather && 
         <div className="weather-modal">
             <Search 
                 onSearchChange={handleOnSearchChange}
                 />
-            <div className="current-weather-div">
+            <div className="top">
                 <div className="city-and-description-div">
                     <p className="city">{currentWeather.city}</p>
                     <p className="weather-description">{currentWeather.weather[0].description}</p>
                 </div>
             <img alt="weather" className="weather-icon" src={`icons/${currentWeather.weather[0].icon}.png`} />
             </div>
-            <div className="temperature-and-details-div">
+            <div className="bottom">
                 <p className="temperature">{Math.round(currentWeather.main.temp)}°F</p>
                 <div className="details">
                     <div className="details">
@@ -146,9 +149,10 @@ import {
                 </div>
 
             </div>
-            <ForecastModal/>
         </div>
         }
+        {forecast && <ForecastModal data={forecast}/>}
+        </div>
     </>
     )
  }

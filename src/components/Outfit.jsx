@@ -47,6 +47,7 @@ const Outfit = props => {
     const outfit = []; 
     const outfitArr = [props.wornHeadwear, props.wornTop, props.wornJacket, props.wornBottom, props.wornShoes, props.wornAccessory];
 
+
     useEffect(() => {
         const handleScroll = () => {
           const scrollThreshold = 20; 
