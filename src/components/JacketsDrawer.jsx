@@ -27,10 +27,7 @@ const JacketsDrawer = props => {
     const arrOfSubtypes = props.jacketsSubtypesArray;
     
     useEffect(() => {
-        console.log("before getFilterArrays in useEffect");
         getFilterArrays("jackets");
-        console.log("in useEffect", props.jacketsColorsArray);
-        // selectColorsDropdown();
     }, [arrOfJackets]);
     
     const getFilterArrays = (clothingType) => {

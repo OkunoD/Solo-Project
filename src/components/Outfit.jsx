@@ -1,8 +1,9 @@
 import React, { Component, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-//import { Link } from 'react-router-dom';
 import JacketsCard from './JacketsCard.jsx';
 import ItemCard from './ItemCard.jsx';
+import { mockWeather } from '../../mockData.js';
+import { WeatherModal } from './WeatherModal.jsx';
 import { 
     openAlert, 
     closeAlert, 
@@ -45,9 +46,30 @@ const Outfit = props => {
     
     const outfit = []; 
     const outfitArr = [props.wornHeadwear, props.wornTop, props.wornJacket, props.wornBottom, props.wornShoes, props.wornAccessory];
+    const [openWeatherResponse, setOpenWeatherResponse] = useState(false);
     
-    
+    const fetchWeather = () => {
+        console.log('inside fetchWeather called by Outfit useEffect')
+        fetch('/api/weather')
+        .then(async (data) => {
+            const json = await data.json();
+            console.log('im at the response of fetch weather')
+            console.log('weather json is', json)
+            console.log('weather data is', data)
+            setOpenWeatherResponse(data);
+        }).catch((error)=> {
+            console.log('there was an error in weatherfetching')
+            console.error(error)
+        })
+    }
+
     useEffect(() => {
+        if (openWeatherResponse.length!==0) {
+            fetchWeather();
+        }
+        if (process.env.NODE_ENV==='development') {
+            setOpenWeatherResponse(mockWeather);
+        }
         const handleScroll = () => {
           const scrollThreshold = 20; 
           if (window.scrollY >= scrollThreshold) {
@@ -85,9 +107,9 @@ const Outfit = props => {
             outfit: outfitIds,
         }
 
-        console.log({outfitData});
-        console.log({outfitArr});
-        console.log({outfitName});
+        // console.log({outfitData});
+        // console.log({outfitArr});
+        // console.log({outfitName});
 
         fetch('/api/outfits', {
             method: 'POST',
@@ -155,7 +177,11 @@ const Outfit = props => {
                         props.clearOutfit();
                     }}
                     >CLEAR OUTFIT</button>
-
+                    {/* {openWeatherResponse &&  */}
+                    <WeatherModal 
+                    data={openWeatherResponse}
+                    />
+                    {/* } */}
                 <div className="lock-item-div">
                     <div className="lock-emoji">
                         <span>&#128274;</span>

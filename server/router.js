@@ -8,6 +8,7 @@ const path = require('path');
 const { User, Item, Outfit } = require('./models.js');
 const mongoose = require('mongoose');
 const { 
+  getWeatherController,
   addItemController, 
   fillWardrobeController, 
   getItemController, 
@@ -52,7 +53,13 @@ router.get('/logout', (req, res) => {
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
+const routeTester = (req,res,next) => {
+  console.log('route hit');
+  next();
+}
 // Define routes and controllers
+
+router.get('/api/weather', routeTester, getWeatherController);
 router.get('/api/items', fillWardrobeController);
 router.post('/api/items', upload.single('file'), addItemController);
 router.get('/api/items/:id', getItemController);

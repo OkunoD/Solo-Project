@@ -83,9 +83,6 @@ const FilterModal = (props) => {
   };
   
   const clearFilters = () => {
-    console.log('clearfilters colors is', colors);
-    console.log('clearfilters colors[0].checked is', colors[0].checked);
-
     colors.forEach((type) => type.checked = false);
     brands.forEach((type) => type.checked = false);
     sizes.forEach((type) => type.checked = false);
@@ -106,10 +103,6 @@ const FilterModal = (props) => {
     brands.forEach((type)=> (type.checked === true) && brandsFilter.push(type.text))
     sizes.forEach((type)=> (type.checked === true) && sizesFilter.push(type.text))
     subtypes.forEach((type)=> (type.checked === true) && subtypesFilter.push(type.text))
-    console.log({colorFilter});
-    console.log({brandsFilter});
-    console.log({sizesFilter});
-    console.log({subtypesFilter});
     
     dispatch(filterDrawerActionCreator(clothingType, colorFilter, brandsFilter, sizesFilter, subtypesFilter));
     // props.setShowFilterModal();

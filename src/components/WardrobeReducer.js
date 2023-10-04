@@ -279,20 +279,12 @@ const wardrobeReducer = (state = initialState, action) => {
   };
 
   const filterDrawer = (...payload) => {
-    console.log('inside filterDrawer')
-
     const clothingType = payload[0];
     const colorFilter = payload[1]; //array of colors to filter in
     const brandFilter = payload[2]; //array of brands to filter in
     const sizeFilter = payload[3]; //array of sizes to filter in
     const subtypeFilter = payload[4]; //array of subtypes to filter in
 
-    console.log('inside filterDrawer, payload[0] is,', payload[0])
-    console.log('inside filterDrawer, payload[1] is,', payload[1])
-    console.log('inside filterDrawer, payload[2] is,', payload[2])
-    console.log('inside filterDrawer, payload[3] is,', payload[3])
-    console.log('inside filterDrawer, payload[4] is,', payload[4])
-    
     const listName = `${clothingType}List`;
     const listNameUnfiltered = `${clothingType}ListUnfiltered`;
     
@@ -304,7 +296,7 @@ const wardrobeReducer = (state = initialState, action) => {
         (subtypeFilter.length === 0 || subtypeFilter.includes(item.subType))
       );
     })
-    console.log('inside reducer, state[filtered] is', state[listNameUnfiltered]);
+
     return {
       ...state,
       [listName]: filteredList,
@@ -334,16 +326,6 @@ const wardrobeReducer = (state = initialState, action) => {
         allSubtypes.push(state[listName][i].subtype);
       };
     };
-    console.log('inside getFilterArrays reducer clothingType is:', clothingType);
-    console.log('inside getFilterArrays reducer state is:', state);
-    console.log('inside getFilterArrays reducer state["headwearList"] is:', state["headwearList"]);
-    console.log('inside getFilterArrays reducer state[listname template] is:', state[`${listName}`]);
-    console.log('inside getFilterArrays reducer state[listname] is:', state[listName]);
-    console.log('inside getFilterArrays reducer listName is:', listName);
-    console.log('inside getFilterArrays reducer allColors is:', allColors);
-    console.log('inside getFilterArrays reducer allBrands is:', allBrands);
-    console.log('inside getFilterArrays reducer allSizes is:', allSizes);
-    console.log('inside getFilterArrays reducer allSubtypes is:', allSubtypes);
     
     return {
       ...state,

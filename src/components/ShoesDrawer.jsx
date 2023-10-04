@@ -27,7 +27,6 @@ const ShoesDrawer = props => {
     const arrOfSubtypes = props.shoesSubtypesArray;
     
     useEffect(() => {
-        console.log("before getFilterArrays in useEffect");
         getFilterArrays("shoes");
     }, [arrOfShoes]);
     

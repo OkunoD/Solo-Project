@@ -679,6 +679,8 @@ max-height: 100%;
 .unlocked-item-button {
     @extend .black-button;
     margin-top: 4px;
+    color: grey;
+    border-color: grey;
 }
 .lock-emoji {
     padding-bottom: 2px;

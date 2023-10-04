@@ -26,7 +26,6 @@ const AccessoriesDrawer = props => {
     const arrOfSubtypes = props.accessoriesSubtypesArray;
     
     useEffect(() => {
-        console.log("before getFilterArrays in useEffect");
         getFilterArrays("accessories");
     }, [arrOfAccessories]);
     

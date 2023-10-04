@@ -1,5 +1,22 @@
 const { User, Item, Outfit} = require('./models');
 
+const getWeatherController = async (req, res) => {
+  try {
+    console.log("inside getWeatherController");
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=34.1476452&lon=-118.1444779&appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&units=imperial`);
+    // console.log('response is', response);
+    // const data = await response.json();
+    console.log("weather server response", response);
+    const data = await response.json();
+    console.log('server data is:', data);
+    res.send(data);
+  } catch (error) {
+    console.error('Error:', error.message);
+    // Send an error response to the client
+    res.status(500).json({ error: 'An error occurred while fetching weather data' });
+  }
+}
+
 const fillWardrobeController = (req, res) => {
   Item.find({}, (err, items) => {
     if (err) {
@@ -148,6 +165,7 @@ const deleteOutfitController = async (req, res) => {
 
 
 module.exports = { 
+  getWeatherController,
   addItemController, 
   fillWardrobeController, 
   getItemController,
