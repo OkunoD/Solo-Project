@@ -11,6 +11,7 @@ import {
     lockItemActionCreator
  } from '../actions/actions.js'
  import { geoApiOptions, geoApiUrl } from '../apis/apis.js';
+ import { ForecastModal } from './ForecastModal.jsx';
 
 
  export const Search = ({onSearchChange}) => {
@@ -107,19 +108,21 @@ import {
 
 
     return (
+    <>
+        {currentWeather && 
         <div className="weather-modal">
             <Search 
                 onSearchChange={handleOnSearchChange}
-            />
+                />
             <div className="current-weather-div">
                 <div className="city-and-description-div">
-                    <p className="city">Pasadena</p>
-                    <p className="weather-description">Sunny</p>
+                    <p className="city">{currentWeather.city}</p>
+                    <p className="weather-description">{currentWeather.weather[0].description}</p>
                 </div>
-            <img alt="weather" className="weather-icon" src="icons/01d.png" />
+            <img alt="weather" className="weather-icon" src={`icons/${currentWeather.weather[0].icon}.png`} />
             </div>
             <div className="temperature-and-details-div">
-                <p className="temperature">99 degreez</p>
+                <p className="temperature">{Math.round(currentWeather.main.temp)}°F</p>
                 <div className="details">
                     <div className="details">
                         <div classname="parameter-row">
@@ -127,15 +130,15 @@ import {
                         </div>
                         <div classname="parameter-row">
                             <span className="parameter-label">Feels Like</span>
-                            <span className="parameter-value">22</span>
+                            <span className="parameter-value">{Math.round(currentWeather.main.feels_like)}°F</span>
                         </div>
                         <div classname="parameter-row">
                             <span className="parameter-label">Wind</span>
-                            <span className="parameter-value">22mph</span>
+                            <span className="parameter-value">{currentWeather.wind.speed} M/S</span>
                         </div>
                         <div classname="parameter-row">
                             <span className="parameter-label">Humidity</span>
-                            <span className="parameter-value">sweaty</span>
+                            <span className="parameter-value">{currentWeather.main.humidity}%</span>
                         </div>
 
                     </div>
@@ -143,6 +146,9 @@ import {
                 </div>
 
             </div>
+            <ForecastModal/>
         </div>
+        }
+    </>
     )
  }
