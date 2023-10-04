@@ -53,20 +53,57 @@ import {
  } 
 
  export const WeatherModal = (props) => {
-    const [data, setData] = useState(props.data);
+
+    const [currentWeather, setCurrentWeather] = useState(null);
+    const [forecast, setForecast] = useState(null);
+
     useEffect(()=> {
-        setData(props.data);
-        console.log({data});
-        // console.log({});
-
+        handleOnSearchChange({value: "20 20", label: "Pasadena"});
+        console.log(currentWeather);
+        console.log(forecast);
     },[])
+        
+    const fetchWeather = (lat, lon, searchData) => {
+        console.log('inside fetchWeather called by Outfit useEffect')
+        fetch(`/api/weather?param1=${lat}&param2=${lon}`)
+        .then(async (response) => {
+            const weatherJson = await response.json();
+            const currentWeatherObj = await weatherJson[0];
+            const forecastObj = await weatherJson[1];
 
-    console.log("props.data", props.data);
-    console.log("data", data);
+            // const currentWeatherJson = await data.currentWeatherJson.json();
+            // const forecastJson = await data.forecastJson.json();
+            console.log('im at the response of fetch weather')
+            console.log('weatherJson is', weatherJson)
+            console.log("forecastObj is,", forecastObj);
+            console.log("weatherObj is,", currentWeatherObj);
+            // console.log('forecastJson  is', forecastJson)
+            // const currentWeatherObj = await weatherJson[0];
+            // const forecastObj = await weatherJson[1];
+            setCurrentWeather({ city: searchData.label, ...currentWeatherObj})
+            setForecast({ city: searchData.label, ...forecastObj})
 
-    const handleOnSearchChange = (searchData) => {
-        console.log(searchData);
+        })
+        .catch((error)=> {
+            console.log('there was an error in weatherfetching')
+            console.error(error)
+        })
     }
+
+    console.log(currentWeather);
+    console.log(forecast);
+
+
+    // console.log("props.data", props.data);
+    // console.log("data", data);
+
+    const handleOnSearchChange = async (searchData) => {
+        console.log(searchData);
+        const [lat, lon] = searchData.value.split(" ");
+        await fetchWeather(lat, lon, searchData);
+
+    }
+
 
 
     return (
@@ -74,8 +111,38 @@ import {
             <Search 
                 onSearchChange={handleOnSearchChange}
             />
-            <h1>weather!</h1>
-            <p>{data.weather[0].id}</p>
+            <div className="current-weather-div">
+                <div className="city-and-description-div">
+                    <p className="city">Pasadena</p>
+                    <p className="weather-description">Sunny</p>
+                </div>
+            <img alt="weather" className="weather-icon" src="icons/01d.png" />
+            </div>
+            <div className="temperature-and-details-div">
+                <p className="temperature">99 degreez</p>
+                <div className="details">
+                    <div className="details">
+                        <div classname="parameter-row">
+                            <span className="parameter-label">Details</span>
+                        </div>
+                        <div classname="parameter-row">
+                            <span className="parameter-label">Feels Like</span>
+                            <span className="parameter-value">22</span>
+                        </div>
+                        <div classname="parameter-row">
+                            <span className="parameter-label">Wind</span>
+                            <span className="parameter-value">22mph</span>
+                        </div>
+                        <div classname="parameter-row">
+                            <span className="parameter-label">Humidity</span>
+                            <span className="parameter-value">sweaty</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
         </div>
     )
  }

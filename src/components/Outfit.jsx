@@ -46,31 +46,8 @@ const Outfit = props => {
     
     const outfit = []; 
     const outfitArr = [props.wornHeadwear, props.wornTop, props.wornJacket, props.wornBottom, props.wornShoes, props.wornAccessory];
-    const [openWeatherResponse, setOpenWeatherResponse] = useState(false);
-    
-    const fetchWeather = () => {
-        console.log('inside fetchWeather called by Outfit useEffect')
-        fetch('/api/weather')
-        .then(async (data) => {
-            const json = await data.json();
-            console.log('im at the response of fetch weather')
-            console.log('weather json is', json)
-            console.log('weather data is', data)
-            setOpenWeatherResponse(data);
-        }).catch((error)=> {
-            console.log('there was an error in weatherfetching')
-            console.error(error)
-        })
-    }
 
     useEffect(() => {
-        if (openWeatherResponse.length!==0) {
-            fetchWeather();
-        }
-        if (process.env.NODE_ENV==='development') {
-            console.log('inside development useEffect', mockWeather);
-            setOpenWeatherResponse(mockWeather);
-        }
         const handleScroll = () => {
           const scrollThreshold = 20; 
           if (window.scrollY >= scrollThreshold) {
@@ -178,11 +155,7 @@ const Outfit = props => {
                         props.clearOutfit();
                     }}
                     >CLEAR OUTFIT</button>
-                    {openWeatherResponse && 
-                    <WeatherModal 
-                    data={openWeatherResponse}
-                    />
-                    }
+                    <WeatherModal />
                 <div className="lock-item-div">
                     <div className="lock-emoji">
                         <span>&#128274;</span>

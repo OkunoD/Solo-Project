@@ -3,13 +3,21 @@ const { User, Item, Outfit} = require('./models');
 const getWeatherController = async (req, res) => {
   try {
     console.log("inside getWeatherController");
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=34.1476452&lon=-118.1444779&appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&units=imperial`);
-    // console.log('response is', response);
-    // const data = await response.json();
-    console.log("weather server response", response);
-    const data = await response.json();
-    console.log('server data is:', data);
-    res.send(data);
+    const lat = req.query.param1;
+    const lon = req.query.param2;
+    console.log('CONTROLLER LAT IS', lat);
+    console.log('CONTROLLER LON IS', lon);
+
+    const currentWeatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&units=imperial`);
+    const forecastResponse = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.OPEN_WEATHER_MAP_API_KEY}&units=imperial`);
+
+    const currentWeatherJson = await currentWeatherResponse.json();
+    const forecastJson = await forecastResponse.json();
+
+    console.log("currentWeather server response", currentWeatherResponse);
+    console.log("forecast server response", forecastResponse);
+
+    res.json([currentWeatherJson, forecastJson]);
   } catch (error) {
     console.error('Error:', error.message);
     // Send an error response to the client

@@ -54,12 +54,14 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 const routeTester = (req,res,next) => {
+  console.log('req.query.param1', req.query.param1);
+  console.log('req.query.param2', req.query.param2);
   console.log('route hit');
-  next();
+  next(req, res);
 }
 // Define routes and controllers
 
-router.get('/api/weather', routeTester, getWeatherController);
+router.get('/api/weather', getWeatherController);
 router.get('/api/items', fillWardrobeController);
 router.post('/api/items', upload.single('file'), addItemController);
 router.get('/api/items/:id', getItemController);
