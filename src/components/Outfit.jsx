@@ -68,6 +68,7 @@ const Outfit = props => {
             fetchWeather();
         }
         if (process.env.NODE_ENV==='development') {
+            console.log('inside development useEffect', mockWeather);
             setOpenWeatherResponse(mockWeather);
         }
         const handleScroll = () => {
@@ -177,11 +178,11 @@ const Outfit = props => {
                         props.clearOutfit();
                     }}
                     >CLEAR OUTFIT</button>
-                    {/* {openWeatherResponse &&  */}
+                    {openWeatherResponse && 
                     <WeatherModal 
                     data={openWeatherResponse}
                     />
-                    {/* } */}
+                    }
                 <div className="lock-item-div">
                     <div className="lock-emoji">
                         <span>&#128274;</span>

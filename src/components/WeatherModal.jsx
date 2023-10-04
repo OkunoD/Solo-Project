@@ -12,10 +12,20 @@ import {
 
  export const WeatherModal = (props) => {
     const [data, setData] = useState(props.data);
+    useEffect(()=> {
+        setData(props.data);
+        console.log({data});
+        // console.log({});
+
+    },[])
+
+    console.log("props.data", props.data);
+    console.log("data", data);
+
     return (
         <div className="weather-modal">
             <h1>weather!</h1>
-            <p>{data}</p>
+            <p>{data.weather[0].id}</p>
         </div>
     )
  }
