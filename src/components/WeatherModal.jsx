@@ -3,19 +3,19 @@ import { connect } from 'react-redux';
 import JacketsCard from './JacketsCard.jsx';
 import ItemCard from './ItemCard.jsx';
 import { AsyncPaginate } from 'react-select-async-paginate';
-import { 
-    openAlert, 
-    closeAlert, 
-    randomizeOutfitActionCreator, 
+import {
+    openAlert,
+    closeAlert,
+    randomizeOutfitActionCreator,
     clearOutfitActionCreator,
     lockItemActionCreator
- } from '../actions/actions.js'
- import { geoApiOptions, geoApiUrl } from '../apis/apis.js';
- import { ForecastModal } from './ForecastModal.jsx';
- import { mockWeather, mockForecast } from '../../mockData.js';
+} from '../actions/actions.js'
+import { geoApiOptions, geoApiUrl } from '../apis/apis.js';
+import { ForecastModal } from './ForecastModal.jsx';
+import { mockWeather, mockForecast } from '../../mockData.js';
 
 
- export const Search = ({onSearchChange}) => {
+export const Search = ({ onSearchChange }) => {
 
     const [search, setSearch] = useState(null);
 
@@ -32,7 +32,7 @@ import {
                     }
                 })
             }
-        } catch (error) { 
+        } catch (error) {
             console.error(error);
         }
     }
@@ -51,50 +51,52 @@ import {
             loadOptions={loadOptions}
         />
     )
-    
- } 
 
- export const WeatherModal = (props) => {
+}
+
+export const WeatherModal = (props) => {
 
     const [currentWeather, setCurrentWeather] = useState(null);
     const [forecast, setForecast] = useState(null);
+    const [showForecast, setShowForecast] = useState(false);
+    const [showSearch, setShowSearch] = useState(false);
 
-    useEffect(()=> {
-        if (process.env.NODE_ENV==="development") {
+    useEffect(() => {
+        if (process.env.NODE_ENV === "development") {
             setCurrentWeather(mockWeather);
             setForecast(mockForecast);
             return;
         }
         console.log(currentWeather);
         console.log(forecast);
-    },[])
-    
-        
+    }, [])
+
+
     const fetchWeather = (lat, lon, searchData) => {
         console.log('inside fetchWeather called by Outfit useEffect')
         fetch(`/api/weather?param1=${lat}&param2=${lon}`)
-        .then(async (response) => {
-            const weatherJson = await response.json();
-            const currentWeatherObj = await weatherJson[0];
-            const forecastObj = await weatherJson[1];
+            .then(async (response) => {
+                const weatherJson = await response.json();
+                const currentWeatherObj = await weatherJson[0];
+                const forecastObj = await weatherJson[1];
 
-            // const currentWeatherJson = await data.currentWeatherJson.json();
-            // const forecastJson = await data.forecastJson.json();
-            console.log('im at the response of fetch weather')
-            console.log('weatherJson is', weatherJson)
-            console.log("forecastObj is,", forecastObj);
-            console.log("weatherObj is,", currentWeatherObj);
-            // console.log('forecastJson  is', forecastJson)
-            // const currentWeatherObj = await weatherJson[0];
-            // const forecastObj = await weatherJson[1];
-            setCurrentWeather({ city: searchData.label, ...currentWeatherObj})
-            setForecast({ city: searchData.label, ...forecastObj})
+                // const currentWeatherJson = await data.currentWeatherJson.json();
+                // const forecastJson = await data.forecastJson.json();
+                console.log('im at the response of fetch weather')
+                console.log('weatherJson is', weatherJson)
+                console.log("forecastObj is,", forecastObj);
+                console.log("weatherObj is,", currentWeatherObj);
+                // console.log('forecastJson  is', forecastJson)
+                // const currentWeatherObj = await weatherJson[0];
+                // const forecastObj = await weatherJson[1];
+                setCurrentWeather({ city: searchData.label, ...currentWeatherObj })
+                setForecast({ city: searchData.label, ...forecastObj })
 
-        })
-        .catch((error)=> {
-            console.log('there was an error in weatherfetching')
-            console.error(error)
-        })
+            })
+            .catch((error) => {
+                console.log('there was an error in weatherfetching')
+                console.error(error)
+            })
     }
 
     console.log("currentWeatherJson", JSON.stringify(currentWeather));
@@ -114,50 +116,59 @@ import {
 
 
     return (
-    <>
-    <div className="weather">
-        
-        {currentWeather && 
-        <div className="weather-modal">
-            <Search 
-                onSearchChange={handleOnSearchChange}
-                />
-            <div className="top">
-                <div className="city-and-description-div">
-                    <p className="city">{currentWeather.city}</p>
-                    <p className="weather-description">{currentWeather.weather[0].description}</p>
-                </div>
-            <img alt="weather" className="weather-icon" src={`icons/${currentWeather.weather[0].icon}.png`} />
+        <>
+        <div className="weather-spacer-and-modal">
+            <div className="weather-spacer">
             </div>
-            <div className="bottom">
-                <p className="temperature">{Math.round(currentWeather.main.temp)}°F</p>
-                <div className="details">
-                    <div className="details">
-                        <div className="parameter-row">
-                            <span className="parameter-label">Details</span>
-                        </div>
-                        <div className="parameter-row">
-                            <span className="parameter-label">Feels Like</span>
-                            <span className="parameter-value">{Math.round(currentWeather.main.feels_like)}°F</span>
-                        </div>
-                        <div className="parameter-row">
-                            <span className="parameter-label">Wind</span>
-                            <span className="parameter-value">{currentWeather.wind.speed} M/S</span>
-                        </div>
-                        <div className="parameter-row">
-                            <span className="parameter-label">Humidity</span>
-                            <span className="parameter-value">{currentWeather.main.humidity}%</span>
-                        </div>
+            <div className="weather">
 
+                {currentWeather &&
+                    <div className="weather-modal">
+                        {showSearch && <Search
+                            onSearchChange={handleOnSearchChange}
+                        />}
+                            <div className="city-and-description-div">
+                                <p className="city" onClick={()=>setShowSearch(!showSearch)}>{currentWeather.city}</p>
+                                <p className="weather-description">{currentWeather.weather[0].description}</p>
+                                <div className="icon-and-temperature">
+
+                                    <img alt="weather" className="weather-icon" src={`icons/${currentWeather.weather[0].icon}.png`} />
+                                    <p className="temperature">{Math.round(currentWeather.main.temp)}°F</p>
+                                </div>
+                            </div>
+                        <div className="top">
+                        </div>
+                        <div className="bottom">
+                            <div className="details">
+                                <div className="details">
+                                    <div className="parameter-row">
+                                        <span className="parameter-label">Details</span>
+                                    </div>
+                                    <div className="parameter-row">
+                                        <span className="parameter-label">Feels Like</span>
+                                        <span className="parameter-value">{Math.round(currentWeather.main.feels_like)}°F</span>
+                                    </div>
+                                    <div className="parameter-row">
+                                        <span className="parameter-label">Wind</span>
+                                        <span className="parameter-value">{currentWeather.wind.speed} M/S</span>
+                                    </div>
+                                    <div className="parameter-row">
+                                        <span className="parameter-label">Humidity</span>
+                                        <span className="parameter-value">{currentWeather.main.humidity}%</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <button className="show-forecast-button"
+                            onClick={() => { setShowForecast(!showForecast) }}>Show Forecast</button>
                     </div>
-
-                </div>
-
+                }
+                {(showForecast && forecast) && <ForecastModal data={forecast} />}
             </div>
-        </div>
-        }
-        {forecast && <ForecastModal data={forecast}/>}
-        </div>
-    </>
+            </div>
+        </>
     )
- }
+}

@@ -156,7 +156,6 @@ const Outfit = props => {
                         props.clearOutfit();
                     }}
                     >CLEAR OUTFIT</button>
-                    <WeatherModal />
                 <div className="lock-item-div">
                     <div className="lock-emoji">
                         <span>&#128274;</span>
