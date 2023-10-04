@@ -117,57 +117,63 @@ export const WeatherModal = (props) => {
 
     return (
         <>
-        <div className="weather-spacer-and-modal">
-            <div className="weather-spacer">
-            </div>
-            <div className="weather">
+            <div className="weather-spacer-and-modal">
+                <div className="weather">
 
-                {currentWeather &&
-                    <div className="weather-modal">
-                        {showSearch && <Search
-                            onSearchChange={handleOnSearchChange}
-                        />}
+                    {currentWeather &&
+                        <div className="weather-modal">
+                            {showSearch && <Search
+                                onSearchChange={handleOnSearchChange}
+                            />}
                             <div className="city-and-description-div">
-                                <p className="city" onClick={()=>setShowSearch(!showSearch)}>{currentWeather.city}</p>
-                                <p className="weather-description">{currentWeather.weather[0].description}</p>
-                                <div className="icon-and-temperature">
-
-                                    <img alt="weather" className="weather-icon" src={`icons/${currentWeather.weather[0].icon}.png`} />
-                                    <p className="temperature">{Math.round(currentWeather.main.temp)}°F</p>
-                                </div>
-                            </div>
-                        <div className="top">
-                        </div>
-                        <div className="bottom">
-                            <div className="details">
-                                <div className="details">
-                                    <div className="parameter-row">
-                                        <span className="parameter-label">Details</span>
-                                    </div>
-                                    <div className="parameter-row">
-                                        <span className="parameter-label">Feels Like</span>
-                                        <span className="parameter-value">{Math.round(currentWeather.main.feels_like)}°F</span>
-                                    </div>
-                                    <div className="parameter-row">
-                                        <span className="parameter-label">Wind</span>
-                                        <span className="parameter-value">{currentWeather.wind.speed} M/S</span>
-                                    </div>
-                                    <div className="parameter-row">
-                                        <span className="parameter-label">Humidity</span>
-                                        <span className="parameter-value">{currentWeather.main.humidity}%</span>
-                                    </div>
-
+                                <p className="city">{currentWeather.city}
+                                    {/* <button className="show-city-search-button" onClick={() => setShowSearch(!showSearch)}>v</button> */}
+                                </p>
+                                <div className="description-and-dropdown">
+                                    <p className="weather-description">{currentWeather.weather[0].description}</p>
+                                    <button className="show-city-search-button" onClick={() => setShowSearch(!showSearch)}>v</button>
                                 </div>
 
                             </div>
+                            <div>
+                                <div className="top">
+                                    <div>
 
+                                        <div className="icon-and-temperature">
+                                            <img alt="weather" className="weather-icon" src={`icons/${currentWeather.weather[0].icon}.png`} />
+                                            <p className="temperature">{Math.round(currentWeather.main.temp)}</p>
+                                            <span className="degrees-symbol">°F</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div className="details">
+                                        <div className="parameter-row">
+                                            <span className="parameter-label">Feels Like</span>
+                                            <span className="parameter-value">{Math.round(currentWeather.main.feels_like)}°F</span>
+                                        </div>
+                                        <div className="parameter-row">
+                                            <span className="parameter-label">Wind</span>
+                                            <span className="parameter-value">{currentWeather.wind.speed} M/S</span>
+                                        </div>
+                                        <div className="parameter-row">
+                                            <span className="parameter-label">Humidity</span>
+                                            <span className="parameter-value">{currentWeather.main.humidity}%</span>
+                                        </div>
+                                        <div className="forecast-spacer"></div>
+                                        <span className="show-forecast-button"
+                                            onClick={() => { setShowForecast(!showForecast) }}>Show Forecast</span>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
                         </div>
-                        <button className="show-forecast-button"
-                            onClick={() => { setShowForecast(!showForecast) }}>Show Forecast</button>
-                    </div>
-                }
-                {(showForecast && forecast) && <ForecastModal data={forecast} />}
-            </div>
+                    }
+                    {(showForecast && forecast) && <ForecastModal data={forecast} />}
+                </div>
             </div>
         </>
     )

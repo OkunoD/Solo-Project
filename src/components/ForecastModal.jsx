@@ -22,7 +22,7 @@ export const ForecastModal = ({ data }) => {
 
     return (
         <>
-            <label className="title"></label>
+            <div className="forecast-items-spacer"></div>
             <Accordion allowZeroExpanded>
                 {data.list.splice(0, 7).map((item, index) => (
                     <AccordionItem key={index}>
