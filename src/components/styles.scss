@@ -167,6 +167,7 @@ animation-delay: calc(.5s * var(--i))
 }
 .my-outfit-header {
     height: 69px;
+    margin-bottom: 12px;
 }
 .my-outfit {
     margin: 7px 0px 5px 18px;
@@ -1014,7 +1015,7 @@ max-height: 100%;
 .weather-spacer-and-modal {
     z-index: 50;
     position: fixed;
-    top: Calc(100% - 930px); 
+    top: Calc(40px); 
     left: Calc(min(100% - 465px, 1260px));
 
     display: flex;
@@ -1143,10 +1144,12 @@ max-height: 100%;
     }
 }
 .show-forecast-button {
+    position: fixed;
+    top: 123px;
     background: linear-gradient(to bottom, rgb(224, 224, 224), white);
     margin-left: 29px;
     font-size: 12px;
-    height: 20px;
+    height: 15px;
     padding: 2px 4px;
     z-index: 200;
     border-left: 1px solid #c3c3c3;
