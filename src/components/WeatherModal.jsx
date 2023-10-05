@@ -122,9 +122,11 @@ export const WeatherModal = (props) => {
 
                     {currentWeather &&
                         <div className="weather-modal">
+                            <div className="city-search-bar">
                             {showSearch && <Search
                                 onSearchChange={handleOnSearchChange}
                             />}
+                            </div>
                             <div className="city-and-description-div">
                                 <p className="city">{currentWeather.city}
                                     {/* <button className="show-city-search-button" onClick={() => setShowSearch(!showSearch)}>v</button> */}
