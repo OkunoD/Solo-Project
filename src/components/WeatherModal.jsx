@@ -59,7 +59,7 @@ export const WeatherModal = (props) => {
     const [currentWeather, setCurrentWeather] = useState(null);
     const [forecast, setForecast] = useState(null);
     const [showForecast, setShowForecast] = useState(false);
-    const [showSearch, setShowSearch] = useState(false);
+    const [showSearch, setShowSearch] = useState(true);
     const [isSticky, setIsSticky] = useState(false);
 
     useEffect(() => {
@@ -67,6 +67,7 @@ export const WeatherModal = (props) => {
             setCurrentWeather(mockWeather);
             setForecast(mockForecast);
         }
+
         const handleScroll = () => {
             const scrollThreshold = 63; 
             if (window.scrollY >= scrollThreshold) {
@@ -99,8 +100,10 @@ export const WeatherModal = (props) => {
                 // console.log('forecastJson  is', forecastJson)
                 // const currentWeatherObj = await weatherJson[0];
                 // const forecastObj = await weatherJson[1];
-                setCurrentWeather({ city: searchData.label, ...currentWeatherObj })
-                setForecast({ city: searchData.label, ...forecastObj })
+                // searchData.label.split(", ")[0] gets just city w/out regions/country
+
+                setCurrentWeather({ city: searchData.label.split(", ")[0], ...currentWeatherObj })
+                setForecast({ city: searchData.label.split(", ")[0], ...forecastObj })
 
             })
             .catch((error) => {
@@ -120,18 +123,13 @@ export const WeatherModal = (props) => {
         console.log(searchData);
         const [lat, lon] = searchData.value.split(" ");
         await fetchWeather(lat, lon, searchData);
-
+        setShowSearch(false);
     }
-
-
 
     return (
         <>
         <div className={`${isSticky ? 'weather-spacer-and-modal-sticky' : 'weather-spacer-and-modal'}`}>
-
-            {/* <div className="weather-spacer-and-modal"> */}
                 <div className="weather">
-
                     {currentWeather &&
                         <div className="weather-modal">
                             <div className="city-and-description-div">
@@ -183,13 +181,13 @@ export const WeatherModal = (props) => {
                             </div>
                         </div>
                     }
+                    {(showForecast && forecast) && <ForecastModal data={forecast} />}
+                </div>
                             <div className="city-search-bar">
                             {showSearch && <Search
                                 onSearchChange={handleOnSearchChange}
                             />}
                             </div>
-                    {(showForecast && forecast) && <ForecastModal data={forecast} />}
-                </div>
             </div>
         </>
     )

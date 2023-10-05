@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin&family=Open+Sans:wght@300&display=swap');
-
+ 
 body {
     font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     font-weight: bold;
@@ -33,6 +33,7 @@ body {
     // min-width: 930;
     width:100%;
     min-width: 400px;
+    // padding: 16px;
 
 }
 .wardrobe-spacer {
@@ -59,8 +60,8 @@ a {
     font-weight: normal;
     background-color: white;
     align-items: left;
-    padding: 15px 16px 10px 16px;
-    margin: 0px 0px 0px 0px;
+    // padding: 15px 16px 10px 16px;
+    margin: 10px 0px 0px 0px;
     min-height: 35px;
     width: 100%;
     border-bottom: 1px solid #c3c3c3;
@@ -533,7 +534,7 @@ max-height: 100%;
 }
 .nav-bar-buttons-div {
     display: flex;
-    width: 80%;
+    width: 100%;
     justify-content: space-between;
 }
 
@@ -795,9 +796,15 @@ max-height: 100%;
 }
 
 .my-closet-logo-div {
+    margin-right: 20px;
+    margin-left: 20px;
     min-width: 170px;
+    margin-bottom: 10px;
 }
 .my-outfits-logo-div {
+    margin-right: 20px;
+    margin-bottom: 10px;
+    margin-left: 20px;
     min-width: 170px;
 }
 .header-login-button {
@@ -903,6 +910,8 @@ max-height: 100%;
     width: 100%;
     border-radius: 6px;
     display: flex;
+    display: flex;
+    // align-items: flex-end;
     padding: 0px 0px 0px 10px;
     height: 50px;
     // box-shadow: 10px -2px 20px 2px rgb( 0 0 0 / 30%);
@@ -915,9 +924,10 @@ max-height: 100%;
     display: flex;
     position: sticky;
     top: 300px;
-    width: 1000px;
+    // width: 1000px;
     margin-top: 12px;
     margin-left: 10px;
+    z-index: 300;
 }
 .css-b62m3t-container {
     border-radius: 0px;
@@ -1024,12 +1034,15 @@ max-height: 100%;
     position: absolute;
     top: Calc(40px); 
     left: Calc(min(100% - 465px, 1260px));
+
+    // left: Calc(min(100% - 465px, 1260px));
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    // align-items: flex-end;
+    // justify-content: space-between;
     // padding: 40px 50% 10px calc(max(48%, 590px));
     margin: 0px 0px 0px 0%;
-    width: 100%;
-    min-width: 930;
+    // width: 150px;
     // background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(234, 234, 234) 100%);
     height: 72px;
     // border-bottom: 1px solid #c3c3c3;
@@ -1070,8 +1083,10 @@ max-height: 100%;
     margin: 20px auto 0 auto;
     padding: 0 0px 0px 0px;
     // border-left: 1px solid black;
-    justify-content: space-between;
+    // justify-content: space-between;
     min-width: 0;
+    display: flex;
+    align-items: flex-end;
 }
 .top {
     display: flex;
