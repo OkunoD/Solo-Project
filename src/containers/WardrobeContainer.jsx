@@ -33,7 +33,7 @@ const WardrobeContainer = (props) => {
         <Header view={"myCloset"}/>
         {/* <ItemCreator /> */}
         <Outfit />
-        <p className="wardrobe-spacer"> </p>
+        <div className="wardrobe-spacer"> </div>
         <HeadwearDrawer />
         <TopsDrawer />
         <JacketsDrawer />

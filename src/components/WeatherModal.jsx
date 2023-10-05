@@ -60,17 +60,27 @@ export const WeatherModal = (props) => {
     const [forecast, setForecast] = useState(null);
     const [showForecast, setShowForecast] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+    const [isSticky, setIsSticky] = useState(false);
 
     useEffect(() => {
         if (process.env.NODE_ENV === "development") {
             setCurrentWeather(mockWeather);
             setForecast(mockForecast);
-            return;
         }
-        console.log(currentWeather);
-        console.log(forecast);
-    }, [])
-
+        const handleScroll = () => {
+            const scrollThreshold = 63; 
+            if (window.scrollY >= scrollThreshold) {
+              setIsSticky(true);
+            } else {
+              setIsSticky(false);
+            }
+          };
+          window.addEventListener('scroll', handleScroll);
+      
+          return () => {
+            window.removeEventListener('scroll', handleScroll);
+          };
+        }, []);
 
     const fetchWeather = (lat, lon, searchData) => {
         console.log('inside fetchWeather called by Outfit useEffect')
@@ -117,16 +127,13 @@ export const WeatherModal = (props) => {
 
     return (
         <>
-            <div className="weather-spacer-and-modal">
+        <div className={`${isSticky ? 'weather-spacer-and-modal-sticky' : 'weather-spacer-and-modal'}`}>
+
+            {/* <div className="weather-spacer-and-modal"> */}
                 <div className="weather">
 
                     {currentWeather &&
                         <div className="weather-modal">
-                            <div className="city-search-bar">
-                            {showSearch && <Search
-                                onSearchChange={handleOnSearchChange}
-                            />}
-                            </div>
                             <div className="city-and-description-div">
                                 <p className="city">{currentWeather.city}
                                     {/* <button className="show-city-search-button" onClick={() => setShowSearch(!showSearch)}>v</button> */}
@@ -176,6 +183,11 @@ export const WeatherModal = (props) => {
                             </div>
                         </div>
                     }
+                            <div className="city-search-bar">
+                            {showSearch && <Search
+                                onSearchChange={handleOnSearchChange}
+                            />}
+                            </div>
                     {(showForecast && forecast) && <ForecastModal data={forecast} />}
                 </div>
             </div>

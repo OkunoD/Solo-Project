@@ -36,7 +36,8 @@ body {
 
 }
 .wardrobe-spacer {
-    height: 29px;
+    // height: 29px;
+    height: 0px;
 }
 .outfit-container {
     @extend .wardrobe-container;
@@ -67,7 +68,8 @@ a {
     text-decoration: none;
     display: inline-flex;
     justify-content: left;
-    position: fixed;
+    // position: fixed;
+    position: relative;
     top: 0;
     z-index: 200;
     // min-width: 930px;
@@ -130,13 +132,16 @@ animation-delay: calc(.5s * var(--i))
     padding-bottom: 0px;
     margin-bottom: 0px;
     background: linear-gradient(to bottom, rgb(232, 230, 230), white);
-    position: sticky;
-    top: 61px;
+    position: relative;
+    top: 0px;
+    // position: sticky;
+    // top: 61px;
     z-index: 2;
     box-shadow: none;
     transition: all 0.8s ease; /* Add a transition for the shadow */
 }
 .sticky-outfit.with-shadow {
+    position: sticky;
     box-shadow: 0px 15px 12px rgba(0, 0, 0, .25); /* Add shadow to the bottom */
     border-color: white;
   }
@@ -167,7 +172,7 @@ animation-delay: calc(.5s * var(--i))
 }
 .my-outfit-header {
     height: 69px;
-    margin-bottom: 12px;
+    margin-bottom: 0px;
 }
 .my-outfit {
     margin: 7px 0px 5px 18px;
@@ -908,9 +913,11 @@ max-height: 100%;
 }
 .city-search-bar {
     display: flex;
-    position: fixed;
-    top: 122px;
+    position: sticky;
+    top: 300px;
     width: 1000px;
+    margin-top: 12px;
+    margin-left: 10px;
 }
 .css-b62m3t-container {
     border-radius: 0px;
@@ -1001,7 +1008,7 @@ max-height: 100%;
     z-index: 10000;
     top: 122px;
     min-width: 10000px;
-    border-bottom: 1px solid #c3c3c3;
+    // border-bottom: 1px solid #c3c3c3;
 }
 @media (max-width: 768px) {
     .outfit-and-weather-border {
@@ -1014,10 +1021,9 @@ max-height: 100%;
 }
 .weather-spacer-and-modal {
     z-index: 50;
-    position: fixed;
+    position: absolute;
     top: Calc(40px); 
     left: Calc(min(100% - 465px, 1260px));
-
     display: flex;
     justify-content: space-between;
     // padding: 40px 50% 10px calc(max(48%, 590px));
@@ -1034,6 +1040,14 @@ max-height: 100%;
     // max-width: calc(100% - 2000px);
     // white-space: nowrap; /* Prevent text from wrapping */
     // overflow: hidden; /* Hide overflowing content */
+}
+.weather-spacer-and-modal-sticky {
+    @extend .weather-spacer-and-modal;
+    position: fixed;
+    top: -20px;
+    left: Calc(min(100% - 465px, 1260px));
+
+
 }
 @media (max-width: 768px) {
     .weather-spacer-and-modal {
@@ -1144,7 +1158,7 @@ max-height: 100%;
     }
 }
 .show-forecast-button {
-    position: fixed;
+    position: sticky;
     top: 123px;
     background: linear-gradient(to bottom, rgb(224, 224, 224), white);
     margin-left: 29px;
