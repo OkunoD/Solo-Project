@@ -78,6 +78,9 @@ animation-delay: calc(.5s * var(--i))
     transform: rotateY(360deg) 
 }
 }
+.outfits-spacer {
+    height: 55px;
+}
 .sticky-outfit {
     padding-bottom: 0px;
     margin-bottom: 0px;
@@ -150,7 +153,7 @@ animation-delay: calc(.5s * var(--i))
     align-items: left;
 }
 .outfit-name-and-delete {
-    margin: 0px 16px;
+    margin: 0px 18px;
     padding: 0px;
     display: flex;
     max-width: 898px;

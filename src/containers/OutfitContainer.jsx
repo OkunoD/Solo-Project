@@ -132,6 +132,7 @@ const OutfitContainer = (props) => {
   return(
     <div className="outfit-container">
         <Header view={"myOutfits"}/>
+            <div className="outfits-spacer"></div>
             <div>
                 {fitsList}
             </div>
