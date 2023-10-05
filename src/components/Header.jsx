@@ -134,6 +134,7 @@ const Header = ({ view }) => {
                         </div>
                     </div>
                 </div>
+
                 <WeatherModal />
             </>
         )

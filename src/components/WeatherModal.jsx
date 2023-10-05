@@ -133,7 +133,9 @@ export const WeatherModal = (props) => {
                                 </p>
                                 <div className="description-and-dropdown">
                                     <p className="weather-description">{currentWeather.weather[0].description}</p>
-                                    <button className="show-city-search-button" onClick={() => setShowSearch(!showSearch)}>v</button>
+                                    <button className="show-city-search-button" onClick={() => setShowSearch(!showSearch)}>
+                                        <img className="dropdown-button-img" src="icons/dropdown_button.png"></img>
+                                    </button>
                                 </div>
 
                             </div>
