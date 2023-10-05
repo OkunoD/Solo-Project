@@ -150,12 +150,12 @@ const Outfit = props => {
                         props.randomizeOutfit();
                     }}
                     >RANDOMIZE</button>
-                    <button className="clear-outfit-button"
+                    {/* <button className="clear-outfit-button"
                     onClick={()=>{
                         console.log('clicked clear outfit')
                         props.clearOutfit();
                     }}
-                    >CLEAR OUTFIT</button>
+                    >CLEAR OUTFIT</button> */}
                 <div className="lock-item-div">
                     <div className="lock-emoji">
                         <span>&#128274;</span>
@@ -164,17 +164,30 @@ const Outfit = props => {
                         <button className={props.wornHeadwearLocked ? "locked-item-button" : "unlocked-item-button"} 
                         onClick={()=>props.lockItem('wornHeadwearLocked')}
                         >{props.wornHeadwearLocked ? <span>headwear</span> : <span>headwear</span>}</button>
+                        <span className="divider-span">|</span>
                         <button className={props.wornTopsLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornTopsLocked')}>tops</button>
+                        <span className="divider-span">|</span>
                         <button className={props.wornJacketsLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornJacketsLocked')}>jackets</button>
+                        <span className="divider-span">|</span>
                         <button className={props.wornBottomsLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornBottomsLocked')}>bottoms</button>
+                        <span className="divider-span">|</span>
                         <button className={props.wornShoesLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornShoesLocked')}>shoes</button>
+                        <span className="divider-span">|</span>
                         <button className={props.wornAccessoriesLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornAccessoriesLocked')}>accessories</button>
+                        <span className="divider-span">|</span>
+                        <button className="clear-outfit-button-small"
+                    onClick={()=>{
+                        console.log('clicked clear outfit')
+                        props.clearOutfit();
+                    }}
+                    >CLEAR OUTFIT</button>
                     </div>
                 </div>
                 </div>
                 <div className="yourClothing" style={{marginBottom:"0px"}}>
                     {outfit}
                 </div>
+                <div className="outfit-and-weather-border"></div>
                 <div className="outfit-footer">
                 <div className="outfit-submit">
                     <input style={{borderColor:"white",borderWidth:"0px"}} className="user-input-field" placeholder="Outfit Name" onChange={(e) => setOutfitName(e.target.value)} type="text" value={outfitName}></input>

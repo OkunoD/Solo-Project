@@ -20,6 +20,14 @@ body {
 .outfit-container {
     @extend .wardrobe-container;
 }
+.divider-span {
+    vertical-align: middle;
+    padding-top: 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: lighter;
+    color: grey;
+}
 a {
     text-decoration: none;
     text-decoration-color: #000000;
@@ -76,7 +84,7 @@ animation-delay: calc(.5s * var(--i))
     background: linear-gradient(to bottom, rgb(232, 230, 230), white);
     position: sticky;
     top: 61px;
-    z-index: 10;
+    z-index: 20;
     box-shadow: none;
     transition: all 0.8s ease; /* Add a transition for the shadow */
 }
@@ -666,6 +674,14 @@ max-height: 100%;
     font-size: 14px;
     margin-left: 66px;
 }
+.clear-outfit-button-small {
+    @extend .red-button;
+    height: 15px;
+    font-size: 11px;
+    margin-left: 0px;
+    padding: 0px 4px;
+    border-color: transparent;
+}
 .lock-item-div {
     display: flex;
     border: none;
@@ -677,16 +693,31 @@ max-height: 100%;
 .locked-item-button {
     @extend .black-button;
     color: white;
-    background-color: #000000;
+    background-color: #7b7b7b;
     border-color: white; 
+
+    padding: 0px 3px;
     // margin: 0px;
     margin-top: 4px;
+    z-index: 30000;
+    &:hover {
+        color: white; /* Text color becomes white when hovered */
+        background-color: #7b7b7b; /* Background becomes black when hovered */
+        border-color: white; /* Border color becomes white when hovered */
+    }
+
 }
 .unlocked-item-button {
     @extend .black-button;
     margin-top: 4px;
     color: grey;
-    border-color: grey;
+    border-color: transparent;
+    padding: 0px 3px;
+    &:hover {
+        color: white; /* Text color becomes white when hovered */
+        background-color: #7b7b7b; /* Background becomes black when hovered */
+        border-color: white; /* Border color becomes white when hovered */
+    }
 }
 .lock-emoji {
     padding-bottom: 2px;
@@ -910,21 +941,28 @@ max-height: 100%;
 .daily-details-grid-item label:last-child {
     color: #212121;
 }
-.weather-spacer-and-modal {
-    z-index: 11;
+.outfit-and-weather-border {
     position: fixed;
-    // top: Calc(100% - 930px); 
-    // left: Calc(100% - 500px);
+    z-index: 100000;
+    top: 122px;
+    min-width: 10000px;
+    border-bottom: 1px solid #c3c3c3;
+}
+.weather-spacer-and-modal {
+    z-index: 20000;
+    position: fixed;
+    top: Calc(100% - 930px); 
+    left: Calc(100% - 500px);
 
     display: flex;
     justify-content: space-between;
-    padding: 40px 50% 10px calc(max(48%, 590px));
+    // padding: 40px 50% 10px calc(max(48%, 590px));
     margin: 0px 0px 0px 0%;
     width: 100%;
     min-width: 0;
     // background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(234, 234, 234) 100%);
     height: 72px;
-    border-bottom: 1px solid #c3c3c3;
+    // border-bottom: 1px solid #c3c3c3;
 
     // z-index: 130;
     // position: absolute;
