@@ -14,6 +14,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
   const [itemName, setName] = useState('');
   const [itemColor, setColor] = useState('');
   const [itemSize, setSize] = useState('');
+  const [itemSubtype, setSubtype] = useState('');
 
   const addItem = (payload1, payload2, payload3, payload4, payload5, payload6) => {
     dispatch(addItemActionCreator(payload1,payload2,payload3,payload4,payload5, payload6));
@@ -26,6 +27,10 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
 
   const handleCategorySelect = (e) => {
     setType(e.target.value);
+  };
+
+  const handleSubtypeSelect = (e) => {
+    setSubtype(e.target.value);
   };
 
   const handleColorSelect = (e) => {
@@ -51,6 +56,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
     formData.append('color', itemColor);
     formData.append('brand', itemBrand);
     formData.append('size', itemSize);
+    formData.append('subtype', itemSubtype);
 
     fetch('/api/items', {
       method: 'POST',
@@ -80,6 +86,7 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
          <option value="bottoms">Bottoms</option>
          <option value="shoes">Shoes</option>
          <option value="accessories">Accessory</option>
+         <option value="underwear">Underwear</option>
         </select>
         <select className="select-list" id="color-select-list" data-testid="color-select-list" onChange={handleColorSelect} value={itemColor}>
          <option value="null">Color</option>
@@ -131,6 +138,9 @@ export const ItemCreatorModal = ({toggleModal, handleClick}) => {
          <option value="32">32</option>
          <option value="33">33</option>
         </select>
+        </div>
+        <div>
+          <input className="user-input-field" placeholder="Subtype" onChange={(e) => setSubtype(e.target.value)} type="text" value={itemSubtype} />
         </div>
         <div>
           <input className="user-input-field" placeholder="Brand" onChange={(e) => setBrand(e.target.value)} type="text" value={itemBrand} />

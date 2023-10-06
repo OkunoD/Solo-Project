@@ -14,6 +14,7 @@ import JacketsDrawer from '../components/JacketsDrawer.jsx';
 import BottomsDrawer from '../components/BottomsDrawer.jsx';
 import ShoesDrawer from '../components/ShoesDrawer.jsx';
 import AccessoriesDrawer from '../components/AccessoriesDrawer.jsx';
+import UnderwearDrawer from '../components/UnderwearDrawer';
 import ItemCreatorModal from '../components/ItemCreatorModal';
 import Outfit from '../components/Outfit';
 import Header from '../components/Header';
@@ -40,6 +41,7 @@ const WardrobeContainer = (props) => {
         <BottomsDrawer />
         <ShoesDrawer />
         <AccessoriesDrawer />
+        <UnderwearDrawer />
       {/* </div> */}
     </div>
   );

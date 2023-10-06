@@ -13,6 +13,7 @@ const initialState = {
   wornBottomsLocked: false,
   wornShoesLocked: false,
   wornAccessoriesLocked: false,
+  wornUnderwearLocked: false,
 
   headwearColorsArray: [],
   headwearBrandsArray: [],
@@ -43,6 +44,11 @@ const initialState = {
   accessoriesBrandsArray: [],
   accessoriesSizesArray: [],
   accessoriesSubtypesArray: [],
+
+  underwearColorsArray: [],
+  underwearBrandsArray: [],
+  underwearSizesArray: [],
+  underwearSubtypesArray: [],
   
   headwearListUnfiltered: [],
   headwearList: [],
@@ -68,9 +74,9 @@ const initialState = {
   accessoriesList: [],
   wornAccessories: [],
 
-  undergarmentsListUnfiltered: [],
-  undergarmentsList: [],
-  wornUndergarments: [],
+  underwearListUnfiltered: [],
+  underwearList: [],
+  wornUnderwear: [],
 }
 
 // put the post/fetch inside the frontend in same action 
@@ -326,7 +332,7 @@ const wardrobeReducer = (state = initialState, action) => {
         allSubtypes.push(state[listName][i].subtype);
       };
     };
-    
+
     return {
       ...state,
       [`${clothingType}ColorsArray`]: allColors,
@@ -353,12 +359,13 @@ const wardrobeReducer = (state = initialState, action) => {
         return itemList[randomIndex];
       }
     }
-    const randomHeadwear = (state.wornHeadwearLocked===false) ? [getRandomItem(state.headwearList)] : state.wornHeadwear;
-    const randomTop = (state.wornTopsLocked===false) ? [getRandomItem(state.topsList)] : state.wornTops;
-    const randomJacket = (state.wornJacketsLocked===false) ? [getRandomItem(state.jacketsList)] : state.wornJackets;
-    const randomBottom = (state.wornBottomsLocked===false) ? [getRandomItem(state.bottomsList)] : state.wornBottoms;
-    const randomShoe = (state.wornShoesLocked===false) ? [getRandomItem(state.shoesList)] : state.wornShoes;
-    const randomAccessory = (state.wornAccessoriesLocked===false) ? [getRandomItem(state.accessoriesList)] : state.wornAccessories;
+    const randomHeadwear = (state.wornHeadwearLocked===false && state.headwearList.length !==0) ? [getRandomItem(state.headwearList)] : state.wornHeadwear;
+    const randomTop = (state.wornTopsLocked===false && state.topsList.length !==0) ? [getRandomItem(state.topsList)] : state.wornTops;
+    const randomJacket = (state.wornJacketsLocked===false && state.jacketsList.length !==0) ? [getRandomItem(state.jacketsList)] : state.wornJackets;
+    const randomBottom = (state.wornBottomsLocked===false && state.bottomsList.length !==0) ? [getRandomItem(state.bottomsList)] : state.wornBottoms;
+    const randomShoe = (state.wornShoesLocked===false && state.shoesList.length !==0) ? [getRandomItem(state.shoesList)] : state.wornShoes;
+    const randomAccessory = (state.wornAccessoriesLocked===false && state.accessoriesList.length !==0) ? [getRandomItem(state.accessoriesList)] : state.wornAccessories;
+    const randomUnderwear = (state.wornUnderwearLocked===false && state.underwearList.length!==0) ? [getRandomItem(state.underwearList)] : state.wornUnderwear;
 
     return {
       ...state,
@@ -368,6 +375,7 @@ const wardrobeReducer = (state = initialState, action) => {
       wornBottoms: randomBottom,
       wornShoes: randomShoe,
       wornAccessories: randomAccessory,
+      wornUnderwear: randomUnderwear,
     }
   }
   
@@ -386,6 +394,7 @@ const wardrobeReducer = (state = initialState, action) => {
       wornBottomsLocked: false,
       wornShoesLocked: false,
       wornAccessoriesLocked: false,
+      wornUnderwearLocked: false,
     }
   }
 

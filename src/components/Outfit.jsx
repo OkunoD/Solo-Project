@@ -21,6 +21,7 @@ const mapStateToProps = (state) => {
         wornBottom: state.wornBottoms,
         wornShoes: state.wornShoes,
         wornAccessory: state.wornAccessories,
+        wornUnderwear: state.wornUnderwear,
         refresh: state.refresh,
         wornHeadwearLocked: state.wornHeadwearLocked,
         wornTopsLocked: state.wornTopsLocked,
@@ -28,6 +29,7 @@ const mapStateToProps = (state) => {
         wornBottomsLocked: state.wornBottomsLocked,
         wornShoesLocked: state.wornShoesLocked,
         wornAccessoriesLocked: state.wornAccessoriesLocked,
+        wornUnderwearLocked: state.wornUnderwearLocked,
     };
 };
 
@@ -45,7 +47,7 @@ const Outfit = props => {
     const [outfitName, setOutfitName] = useState('');
     
     const outfit = []; 
-    const outfitArr = [props.wornHeadwear, props.wornTop, props.wornJacket, props.wornBottom, props.wornShoes, props.wornAccessory];
+    const outfitArr = [props.wornHeadwear, props.wornTop, props.wornJacket, props.wornBottom, props.wornShoes, props.wornAccessory, props.wornUnderwear];
 
 
     useEffect(() => {
@@ -174,6 +176,8 @@ const Outfit = props => {
                         <button className={props.wornShoesLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornShoesLocked')}>shoes</button>
                         <span className="divider-span">|</span>
                         <button className={props.wornAccessoriesLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornAccessoriesLocked')}>accessories</button>
+                        <span className="divider-span">|</span>
+                        <button className={props.wornUnderwearLocked ? "locked-item-button" : "unlocked-item-button"} onClick={()=>props.lockItem('wornUnderwearLocked')}>underwear</button>
                         <span className="divider-span">|</span>
                         <button className="clear-outfit-button-small"
                     onClick={()=>{
