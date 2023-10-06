@@ -50,6 +50,7 @@ const addItemController = async (req, res, next) => {
       color: req.body.color,
       brand: req.body.brand,
       size: req.body.size,
+      subtype: req.body.subtype,
     })
     try {
       await item.save();
@@ -70,6 +71,7 @@ const addItemController = async (req, res, next) => {
       color: req.body.color,
       brand: req.body.brand,
       size: req.body.size,
+      subtype: req.body.subtype,
     })
     try {
       await item.save();

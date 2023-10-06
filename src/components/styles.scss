@@ -614,10 +614,12 @@ max-height: 100%;
     z-index: 3;
     opacity: 1;
     height: 225px;
+    justify-content: space-between;
+    display: flex;
     // transition: opacity 0.5s ease-in-out;
 }
 .edit-item-input-div {
-    margin-top: 107px;
+    // margin-top: 107px;
     padding: 0px;
 }
 .edit-category-select-list {
@@ -660,10 +662,18 @@ max-height: 100%;
     width: 128px;
     height: 15px;
 }
+.edit-subtype-field {
+    @extend .edit-name-field;
+    margin-top: 0px;
+    margin-bottom: 3px;
+    width: 84px;
+}
 .edit-item-borders {
     margin-left: 0px;
-    padding: 3px;
-
+    padding: 3px 3px 5px 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .update-item-button {
     @extend .green-button;

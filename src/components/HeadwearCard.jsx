@@ -12,6 +12,7 @@ const mapStateToProps = function(state, ownProps) {
     brand: state.headwearList[ownProps.index].brand,
     file: state.headwearList[ownProps.index].file,
     type: state.headwearList[ownProps.index].type,
+    subtype: state.headwearList[ownProps.index].subtype,
     refresh: state.refresh,
   };
 };
@@ -112,6 +113,7 @@ const Headwear = (props) => {
         currentBrand={props.brand}
         currentColor={props.color}
         currentSize={props.size}
+        currentSubtype={props.subtype}
       />}
       <div className="image-container">
         <img src={imageSrc} alt="Retrieved from state" className="image-content" />

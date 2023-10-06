@@ -99,7 +99,7 @@ const wardrobeReducer = (state = initialState, action) => {
     const bottoms = [];
     const shoes = [];
     const accessories = [];
-    const undergarments = [];
+    const underwear = [];
 
     for (let i = 0; i < colorSortedItems.length; i++) {
       if (colorSortedItems[i].type === 'headwear') {
@@ -114,8 +114,8 @@ const wardrobeReducer = (state = initialState, action) => {
         shoes.push(colorSortedItems[i]); 
       } else if (colorSortedItems[i].type === 'accessories') {
         accessories.push(colorSortedItems[i]); 
-      } else if (colorSortedItems[i].type === 'undergarments') {
-        undergarments.push(colorSortedItems[i]); 
+      } else if (colorSortedItems[i].type === 'underwear') {
+        underwear.push(colorSortedItems[i]); 
       };;
     };
         
@@ -134,8 +134,8 @@ const wardrobeReducer = (state = initialState, action) => {
       shoesList: shoes,
       accessoriesListUnfiltered: accessories,
       accessoriesList: accessories,
-      undergarmentsListUnfiltered: undergarments,
-      undergarmentsList: undergarments,
+      underwearListUnfiltered: underwear,
+      underwearList: underwear,
     }
   }
 
@@ -344,6 +344,9 @@ const wardrobeReducer = (state = initialState, action) => {
 
   const randomizeOutfit = () => {
     const getRandomItem = (itemList) => {
+      if (itemList.length===1) {
+        return itemList[0];
+      }
       const capitalized = `${itemList[0].type.charAt(0).toUpperCase()}${itemList[0].type.slice(1)}`
       const wornList = `worn${capitalized}`;
       const randomIndex = Math.floor(Math.random() * itemList.length);
@@ -388,6 +391,7 @@ const wardrobeReducer = (state = initialState, action) => {
       wornBottoms: [],
       wornShoes: [],
       wornAccessories: [],
+      wornUnderwear: [],
       wornHeadwearLocked: false,
       wornTopsLocked: false,
       wornJacketsLocked: false,
