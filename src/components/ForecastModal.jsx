@@ -21,7 +21,7 @@ export const ForecastModal = ({ data }) => {
     const forecastDays = WEEK_DAYS.slice(dayOfWeek, WEEK_DAYS.LENGTH).concat(WEEK_DAYS.slice(0, dayOfWeek));
 
     return (
-        <>
+        <div className="forecast-modal">
             <div className="forecast-items-spacer"></div>
             <Accordion allowZeroExpanded>
                 {data.list.splice(0, 7).map((item, index) => (
@@ -64,6 +64,6 @@ export const ForecastModal = ({ data }) => {
                     </AccordionItem>
                 ))}
             </Accordion>
-        </>
+        </div>
     )
 }

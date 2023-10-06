@@ -69,7 +69,7 @@ export const WeatherModal = (props) => {
         }
 
         const handleScroll = () => {
-            const scrollThreshold = 63; 
+            const scrollThreshold = 54; 
             if (window.scrollY >= scrollThreshold) {
               setIsSticky(true);
             } else {
@@ -134,7 +134,6 @@ export const WeatherModal = (props) => {
                         <div className="weather-modal">
                             <div className="city-and-description-div">
                                 <p className="city">{currentWeather.city}
-                                    {/* <button className="show-city-search-button" onClick={() => setShowSearch(!showSearch)}>v</button> */}
                                 </p>
                                 <div className="description-and-dropdown">
                                     <p className="weather-description">{currentWeather.weather[0].description}</p>
@@ -142,17 +141,18 @@ export const WeatherModal = (props) => {
                                         <img className="dropdown-button-img" src="icons/dropdown_button.png"></img>
                                     </button>
                                 </div>
-
                             </div>
                             <div>
                                 <div className="top">
-                                    <div>
+                                    <div className="icon-temperature-and-forecast-button">
 
                                         <div className="icon-and-temperature">
                                             <img alt="weather" className="weather-icon" src={`icons/${currentWeather.weather[0].icon}.png`} />
                                             <p className="temperature">{Math.round(currentWeather.main.temp)}</p>
                                             <span className="degrees-symbol">°F</span>
                                         </div>
+                                        {/* <span className="show-forecast-button"
+                                            onClick={() => { setShowForecast(!showForecast) }}>Show Forecast</span> */}
 
                                     </div>
 
@@ -169,7 +169,7 @@ export const WeatherModal = (props) => {
                                             <span className="parameter-label">Humidity</span>
                                             <span className="parameter-value">{currentWeather.main.humidity}%</span>
                                         </div>
-                                        <div className="forecast-spacer"></div>
+                                        {/* <div className="forecast-spacer"></div> */}
                                         <span className="show-forecast-button"
                                             onClick={() => { setShowForecast(!showForecast) }}>Show Forecast</span>
 
@@ -181,13 +181,14 @@ export const WeatherModal = (props) => {
                             </div>
                         </div>
                     }
-                    {(showForecast && forecast) && <ForecastModal data={forecast} />}
                 </div>
+                <div className='weather-width-div'></div>
                             <div className="city-search-bar">
                             {showSearch && <Search
                                 onSearchChange={handleOnSearchChange}
-                            />}
+                                />}
                             </div>
+                                {(showForecast && forecast) && <ForecastModal data={forecast} />}
             </div>
         </>
     )
