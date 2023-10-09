@@ -1,4 +1,4 @@
-const { User, Item, Outfit} = require('./models');
+const { User, Item, Outfit} = require('./models')
 
 const getWeatherController = async (req, res) => {
   try {
