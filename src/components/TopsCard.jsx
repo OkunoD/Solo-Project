@@ -44,6 +44,7 @@ const Tops = (props) => {
         //  probably could use reworking, but works.  
         if (!imageSrc) {
           setTimeout(()=> {
+            console.log("props.id in img set is", props.id);
             fetch(`api/items/${props.id}`)
             .then((response) => {
               return response.json();
